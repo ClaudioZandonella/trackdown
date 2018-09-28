@@ -1,0 +1,12 @@
+Package: rmdrive
+Title: Functions for Using Google Drive with RMarkdown
+Version: 0.0.0.9000
+Authors@R: person("Emily", "Kothe", email = "emily.kothe@deakin.edu.au", role = c("aut", "cre"))
+Description: Provides functions for sending a .Rmd file to google drive, and retrieving it after editing. 
+Depends: R (>= 3.5.1)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    googledrive
+RoxygenNote: 6.1.0
