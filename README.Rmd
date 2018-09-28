@@ -12,6 +12,6 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# rmdrive <img src="man/figures/rmdrive_hex.png" align="right" />
+# rmdrive <img src="man/figures/rmdrive_hex.png" align="right" width ="150" height="165"/>
 
 rmdrive provides easy functions to move rmd files to googledrive for synchronous collaboration, then return it back to a local .Rmd for knitting.  
