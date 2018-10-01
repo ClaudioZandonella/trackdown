@@ -13,6 +13,6 @@ This package is not on CRAN. To use this package please un the following
 code:
 
 ``` r
-devtools::install_github("Lingtax/rmdrive")
+devtools::install_github("ekothe/rmdrive")
 library(rmdrive)
 ```

@@ -21,6 +21,6 @@ rmdrive provides easy functions to move rmd files to googledrive for synchronous
 This package is not on CRAN. To use this package please un the following code:
 
 ```{r eval=FALSE}
-devtools::install_github("Lingtax/rmdrive")
+devtools::install_github("ekothe/rmdrive")
 library(rmdrive)
 ```
