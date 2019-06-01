@@ -18,7 +18,7 @@ rmdrive provides easy functions to move rmd files to googledrive for synchronous
 
 # Installation
 
-This package is not on CRAN. To use this package please un the following code:
+This package is not on CRAN. To use this package please run the following code:
 
 ```{r eval=FALSE}
 devtools::install_github("ekothe/rmdrive")
