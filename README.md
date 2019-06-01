@@ -9,8 +9,8 @@ knitting.
 
 # Installation
 
-This package is not on CRAN. To use this package please un the following
-code:
+This package is not on CRAN. To use this package please run the
+following code:
 
 ``` r
 devtools::install_github("ekothe/rmdrive")
