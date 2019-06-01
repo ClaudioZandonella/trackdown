@@ -33,7 +33,7 @@ A typical workflow where this package is useful is when:
 - you want to turn it into an R Markdown file so you can write R code in there, or simply work on it in your preferred editor       
 - you want to keep the R Markdown file in sync with the Google doc while you and others work on them together     
 
-This function will firstly prompt you to authenticate, and then it will download the google doc into your current working directory as an Rmd file:
+Let's assume there is an existing google doc that you want to bring to your desktop as an R Markdown file. This function will firstly prompt you to authenticate, and then it will download the google doc into your current working directory as an Rmd file:
 
 ```{r eval=FALSE}
 download_rmd(file = "my-r-markdown-file-name",  # do not include the .Rmd 
@@ -48,7 +48,5 @@ update_rmd(file = "my-r-markdown-file-name",    # do not include the .Rmd
 ```
 
 You can run that line often while editing, similar to `git commit` (it does take about 5-10 seconds to complete the update). Imagine now that some time passes and your co-author has updated the Google doc while you've been doing other things, and you want to update your local Rmd with their changes.
-
-
 
 Note that code blocks are not decorated like we see them in RStudio or knitted output. Plus the code is not run as it moves from Rmd to Google doc, so you will not see any output from the code in your Google doc. 
