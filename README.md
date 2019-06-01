@@ -1,18 +1,43 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+rmdrive <img src="man/figures/rmdrive_hex.png" align="right" width ="150" height="165"/>
+========================================================================================
 
-# rmdrive <img src="man/figures/rmdrive_hex.png" align="right" width ="150" height="165"/>
+rmdrive provides easy functions to move rmd files to googledrive for synchronous collaboration, then return it back to a local .Rmd for knitting.
 
-rmdrive provides easy functions to move rmd files to googledrive for
-synchronous collaboration, then return it back to a local .Rmd for
-knitting.
+Installation
+============
 
-# Installation
-
-This package is not on CRAN. To use this package please un the following
-code:
+This package is not on CRAN. To use this package please un the following code:
 
 ``` r
 devtools::install_github("ekothe/rmdrive")
 library(rmdrive)
 ```
+
+How to use
+==========
+
+A typical workflow where this package is useful is when:
+
+-   you have a google doc that you or someone else has started
+-   you want to turn it into an R Markdown file so you can write R code in there, or simply work on it in your preferred editor
+-   you want to keep the R Markdown file in sync with the Google doc while you and others work on them together
+
+This function will firstly prompt you to authenticate, and then it will download the google doc into your current working directory as an Rmd file:
+
+``` r
+download_rmd(file = "my-r-markdown-file-name",  # do not include the .Rmd 
+             gfile = "My google doc filename")  # name of google doc file
+```
+
+Now let's imagine you do some work on your Rmd, write some code, etc. At some point you'll be ready to update the Google doc so your non-R-using co-authors can see what you've done. This line of code will update the existing Google doc with the changes you made to the Rmd file:
+
+``` r
+update_rmd(file = "my-r-markdown-file-name",    # do not include the .Rmd 
+           gfile = "My google doc filename")  # name of google doc file
+```
+
+You can run that line often while editing, similar to `git commit` (it does take about 5-10 seconds to complete the update).
+
+Note that code blocks are not decorated like we see them in RStudio or knitted output. Plus the code is not run as it moves from Rmd to Google doc, so you will not see any output from the code in your Google doc.
