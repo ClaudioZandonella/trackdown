@@ -1,12 +1,21 @@
 Package: rmdrive
-Title: Functions for Using Google Drive with RMarkdown
+Title: Functions for Collaborative Editing of RMarkdown files on Google Drive
 Version: 0.0.0.9000
-Authors@R: person("Emily", "Kothe", email = "emily.kothe@deakin.edu.au", role = c("aut", "cre"))
-Description: Provides functions for sending a .Rmd file to google drive, and retrieving it after editing. 
+Authors@R: as.person(c(
+    "Emily Kothe <emily.kothe@deakin.edu.au> [aut, cre]", 
+    "Janosch Linkersdörfer <linkersdoerfer@mailbox.org> [aut]"
+  ))
+Description: Provides functions for uploading local .Rmd files to Google Drive
+  as well as downloading and rendering .Rmd files edited on Google Drive.
 Depends: R (>= 3.5.1)
-License: What license is it under?
+License: MIT
 Encoding: UTF-8
 LazyData: true
-Imports: 
-    googledrive
+Imports:
+  googledrive,
+  magrittr,
+  rmarkdown,
+  stringr,
+  tools
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0

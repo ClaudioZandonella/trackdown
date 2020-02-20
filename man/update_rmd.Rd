@@ -2,18 +2,25 @@
 % Please edit documentation in R/Rmd.R
 \name{update_rmd}
 \alias{update_rmd}
-\title{Updates raw rmarkdown for collaborative editing on Google Docs}
+\title{Updates \code{.Rmd} file in Google Drive}
 \usage{
-update_rmd(file, gfile)
+update_rmd(file, gfile = basename(file), path = NULL,
+  team_drive = NULL)
 }
 \arguments{
-\item{file}{The name (without file extension) of an .Rmd you want to upload to Google Docs}
+\item{file}{character. The name (without file extension) of a local \code{.Rmd}
+file.}
 
-\item{gfile}{The name (current or desired) of a Google Docs file (must be unique in your google docs account)}
+\item{gfile}{character. The name of a Google Drive file (defaults to local
+file name).}
+
+\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).}
+
+\item{team_drive}{character. The name of a Google Team Drive (optional).}
 }
 \description{
-Updates the content of an existing Google Docs file with the name gfile
-}
-\examples{
-update_rmd(file = "testingfile", gfile = "testingfile-1234")
+Replaces the content of an existing file in Google Drive with the contents of
+a local \code{.Rmd} file.
+
+\emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 }
