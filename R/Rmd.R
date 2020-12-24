@@ -35,7 +35,7 @@ upload_rmd <- function(file,
   
   # upload local file to Google Drive
   if (!is.null(path)) {
-    path <- googledrive::drive_get(path = path, team_drive = team_drive)
+    path <- get_path_dribble(path = path, team_drive = team_drive)
   } else if (is.null(path) & !is.null(team_drive)) {
     path <- googledrive::team_drive_find(team_drive)
   } else {
