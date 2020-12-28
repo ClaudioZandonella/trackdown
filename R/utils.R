@@ -142,11 +142,12 @@ get_path_dribble <- function(path , team_drive = NULL){
 #' @noRd
 #'
 sanitize_gfile <- function(gfile) {
-  readLines(gfile, warn = FALSE) %>%
+  temp <- readLines(gfile, warn = FALSE) %>%
     c(., "") %>%
     paste(collapse = "\n") %>%
-    stringr::str_replace_all("\n\n\n", "\n\n") %>%
-    cat(file = gfile)
+    stringr::str_replace_all("\n\n\n", "\n\n")
+  
+  cat(temp, file = gfile) # workaround for the writing problem (TO REVIEW)
 }
 
 #' pipe operator
