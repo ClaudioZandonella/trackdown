@@ -1,5 +1,7 @@
 # Utils for chunk extraction ----------------------------------------------
 
+# create rmdrive folder if missing
+
 init_rmdrive <- function(local_rmd){
   
   proj_name <- sub("\\..*", "", local_rmd)
