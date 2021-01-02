@@ -4,8 +4,6 @@
 
 init_rmdrive <- function(local_rmd){
   
-  proj_name <- sub("\\..*", "", local_rmd)
-  
   if(!dir.exists(".rmdrive")){
     dir.create(".rmdrive") # create the hidden folder for temp files
     message(paste(proj_name, "setup completed!"))

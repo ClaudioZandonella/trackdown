@@ -49,7 +49,7 @@ upload_rmd <- function(file,
   file.copy(local_file, temp_file, overwrite = T)
   
   if (hide_chunks) {
-    init_rmdrive(local_file) # init .rmdrive folder
+    init_rmdrive(basename(file)) # init .rmdrive folder
     hide_chunk(temp_file)
     
     if (upload_report) {
@@ -117,7 +117,7 @@ upload_rmd <- function(file,
       
       if (hide_chunks) {
         
-        init_rmdrive(local_file) # init .rmdrive folder
+        init_rmdrive(basename(file)) # init .rmdrive folder
         hide_chunk(temp_file)
         
         if(update_report){
