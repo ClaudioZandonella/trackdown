@@ -1,7 +1,15 @@
-# Utils for chunk extraction ----------------------------------------------
+##########################################
+####    Utils for chunk extraction    ####
+##########################################
 
-# create rmdrive folder if missing
+#----    init_rmdrive    ----
 
+#' Title create .rmdrive folder if missing
+#'
+#' @param local_rmd character indicating the name of the file without extension
+#'
+#' @return NULL
+#'
 init_rmdrive <- function(local_rmd){
   
   if(!dir.exists(".rmdrive")){
@@ -10,6 +18,8 @@ init_rmdrive <- function(local_rmd){
   }
   
 }
+
+#----    extract_chunk    ----
 
 # Extract chunk as list
 
@@ -35,6 +45,8 @@ extract_chunk <- function(local_rmd){
   return(chunk_info)
 }
 
+#----    extract_yaml    ----
+
 # Extract yaml header
 
 extract_yaml <- function(local_rmd){
@@ -45,6 +57,8 @@ extract_yaml <- function(local_rmd){
   
   saveRDS(yaml_header, file = file.path(".rmdrive","yaml_header.rds"))
 }
+
+#----    hide_chunk    ----
 
 # remove chunks from .rmd file
 
@@ -92,6 +106,9 @@ hide_chunk <- function(local_rmd){
     cat(., file = local_rmd)
 }
 
+
+#----    restore_chunk    ----
+
 # add chunk at the placeholder position
 
 restore_chunk <- function(local_rmd){
@@ -115,6 +132,9 @@ restore_chunk <- function(local_rmd){
   cat(temp_paper, file = local_rmd)
   
 }
+
+
+#----    upload_report    ----
 
 # upload report
 
