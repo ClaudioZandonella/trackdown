@@ -36,7 +36,7 @@ extract_chunk <- function(local_rmd){
   
   chunk_info$ends <- ends
   
-  chunk_info$index <- 1:nrow(chunk_info)
+  chunk_info$index <- seq(length.out = nrow(chunk_info))
   
   chunk_info$chunk_text <- sapply(seq_along(starts), function(i){
     paste(local_rmd[starts[i]:ends[i]], collapse = "\n")
