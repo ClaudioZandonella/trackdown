@@ -51,11 +51,11 @@ extract_chunk <- function(local_rmd){
 
 extract_yaml <- function(local_rmd){
   
-  yaml_index <- which(paper == "---") # chunk start
+  yaml_index <- which(local_rmd == "---") # chunk start
   
-  yaml_header <- paste(paper[yaml_index[1]:yaml_index[2]], collapse = "\n")
+  res <- paste(local_rmd[yaml_index[1]:yaml_index[2]], collapse = "\n")
   
-  saveRDS(yaml_header, file = file.path(".rmdrive","yaml_header.rds"))
+  return(res)
 }
 
 #----    hide_chunk    ----
@@ -64,29 +64,18 @@ extract_yaml <- function(local_rmd){
 
 hide_chunk <- function(local_rmd){
   
-  #proj_name <- sub("\\..*", "", local_rmd) # get project name
-  
-  #init_rmdrive(local_rmd)
-  
+  # read file
   paper <- readLines(local_rmd, warn = F)
   
+  # Extract and save code chunks
   chunk_info <- extract_chunk(paper)
-  
-  # Extract Yaml
-  
-  yaml_index <- which(paper == "---") # chunk start
-  
-  yaml_header <- paste(paper[yaml_index[1]:yaml_index[2]], collapse = "\n")
-  
-  saveRDS(yaml_header, file = file.path(".rmdrive","yaml_header.rds"))
-  
-  # Save chunk info
-  
   saveRDS(chunk_info, file = file.path(".rmdrive", "chunk_info.rds"))
   
-  # starts <- which(startsWith(paper, "```{")) # chunk start
-  # ends <- which(paper == "```") # chunk end
+  # Extract and save Yaml header
+  yaml_header <- extract_yaml(paper) 
+  saveRDS(yaml_header, file = file.path(".rmdrive","yaml_header.rds"))
   
+  # replace chunks in file
   for(i in seq_along(chunk_info$index)){
     paper[chunk_info$starts[i]:chunk_info$ends[i]] <- NA # chunk space as NA
     
@@ -101,7 +90,6 @@ hide_chunk <- function(local_rmd){
   
   paper %>% 
     paste(., collapse = "\n") %>% 
-    stringr::str_remove_all(., "NA") %>% 
     stringr::str_replace_all(., "\n\n\n", "\n\n") %>% 
     cat(., file = local_rmd)
 }

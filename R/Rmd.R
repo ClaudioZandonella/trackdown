@@ -1,3 +1,9 @@
+#############################
+####    Rmd Functions    ####
+#############################
+
+#----    upload_rmd    ----
+
 #' Upload `.Rmd` file to Google Drive for collaborative editing
 #'
 #' Uploads a local `.Rmd` file to Google Drive as a plain text document.
@@ -10,6 +16,11 @@
 #'   file name).
 #' @param path character. (Sub)directory in My Drive or a Team Drive (optional).
 #' @param team_drive character. The name of a Google Team Drive (optional).
+#' @param hide_chunks logical value indicating whether to remove code chunks
+#'   from the text document. Placeholders of  type "[[chunck_<name>]]" are
+#'   displayed instead.
+#' @param  upload_report logical value indicating whether to upload an
+#'   additional pdf file with the chunchs output (e.g., figuers and tables). 
 #'
 #' @return NULL
 #' @export
@@ -75,7 +86,8 @@ upload_rmd <- function(file,
     file.remove(temp_file)
 }
 
-  
+#----    update_rmd    ----
+
 #' Updates `.Rmd` file in Google Drive
 #'
 #' Replaces the content of an existing file in Google Drive with the contents of
@@ -140,6 +152,8 @@ update_rmd <- function(file,
   }
 }
 
+#----    download_rmd    ----
+
 #' Downloads `.Rmd` from Google Docs
 #'
 #' Downloads a text file from Google Drive and saves it as a local `.Rmd`
@@ -186,6 +200,8 @@ download_rmd <- function(file,
   }
 }
 
+#----    render_rmd    ----
+
 #' Render Rmd file from GoogleDrive
 #'
 #' Renders Rmd file from GoogleDrive if there have been edits
@@ -203,3 +219,5 @@ render_rmd <- function(file,
     rmarkdown::render(paste0(file, ".Rmd"))
   }
 }
+
+#----

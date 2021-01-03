@@ -1,3 +1,9 @@
+#########################
+####    Utilities    ####
+#########################
+
+#----    check_file    ----
+
 #' Check whether local file exists
 #'
 #' Checks whether the specified local file exists, stops otherwise.
@@ -11,6 +17,8 @@ check_file <- function(file) {
     stop("file does not exist: ", sQuote(file), call. = FALSE)
   }
 }
+
+#----    check_gfile    ----
 
 #' Check whether file exists in Google Drive
 #'
@@ -34,6 +42,9 @@ check_gfile <- function(dribble) {
   }
 }
 
+
+#----    check_identity    ----
+
 #' Check file identity
 #'
 #' Compares the contents of a local Rmd file with a file from GoogleDrive
@@ -54,6 +65,8 @@ check_identity <- function(file){
     FALSE
   }
 }
+
+#----    get_dribble    ----
 
 #' Get dribble
 #'
@@ -96,6 +109,8 @@ get_dribble_old <- function(gfile, path = NULL, team_drive = NULL) {
   }
 }
 
+#----    get_path_dribble    ----
+
 #' Get path dribble
 #'
 #' Gets dribble ("Drive tibble") for the last folder provided in the path
@@ -132,6 +147,8 @@ get_path_dribble <- function(path , team_drive = NULL){
   return(dribble)
 }
 
+#----    sanitize_gfile    ----
+
 #' Sanitize Rmd file downloaded from GoogleDrive
 #'
 #' Adds a final EOL and removes double linebreaks added when downloading file
@@ -161,3 +178,7 @@ sanitize_gfile <- function(gfile) {
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+#----
+
+
