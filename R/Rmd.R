@@ -104,7 +104,8 @@ update_rmd <- function(file,
                        path = NULL,
                        team_drive = NULL,
                        hide_chunks = FALSE,
-                       update_report = FALSE) {
+                       upload_report = FALSE) {
+  
   # check whether local file exists
   local_file <- paste0(file, ".Rmd")
   check_file(local_file)
@@ -114,7 +115,7 @@ update_rmd <- function(file,
   check_gfile(dribble)
   
   # check whether user really wants to replace file in Google Drive
-  response <- menu(
+  response <- utils::menu(
     c("Yes", "No"),
     title = paste(
       "Updating the file in Google Drive will overwrite its current content.",
@@ -132,7 +133,7 @@ update_rmd <- function(file,
       init_rmdrive(basename(file)) # init .rmdrive folder
       hide_chunk(temp_file)
       
-      if(update_report){
+      if(upload_report){
         
         upload_report()
         
@@ -159,7 +160,15 @@ update_rmd <- function(file,
 #' Downloads a text file from Google Drive and saves it as a local `.Rmd`
 #'   file if the local file does not exist or differs from file in Google Drive.
 #'
-#' @inheritParams upload_rmd
+#' @param file character. The name (without file extension) of a local `.Rmd`
+#'   file.
+#' @param gfile character. The name of a Google Drive file (defaults to local
+#'   file name).
+#' @param path character. (Sub)directory in My Drive or a Team Drive (optional).
+#' @param team_drive character. The name of a Google Team Drive (optional).
+#' @param restore_chunks logical value indicating whether to restore code chunks
+#'   in the document.
+#'   
 #' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise
 #' @export
 #'

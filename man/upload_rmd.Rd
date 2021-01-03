@@ -2,13 +2,19 @@
 % Please edit documentation in R/Rmd.R
 \name{upload_rmd}
 \alias{upload_rmd}
-\title{Upload \code{.Rmd} file to Google Drive for collaborative editing}
+\title{Upload `.Rmd` file to Google Drive for collaborative editing}
 \usage{
-upload_rmd(file, gfile = basename(file), path = NULL,
-  team_drive = NULL)
+upload_rmd(
+  file,
+  gfile = basename(file),
+  path = NULL,
+  team_drive = NULL,
+  hide_chunks = FALSE,
+  upload_report = FALSE
+)
 }
 \arguments{
-\item{file}{character. The name (without file extension) of a local \code{.Rmd}
+\item{file}{character. The name (without file extension) of a local `.Rmd`
 file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
@@ -17,9 +23,16 @@ file name).}
 \item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
+
+\item{hide_chunks}{logical value indicating whether to remove code chunks
+from the text document. Placeholders of  type "[[chunck_<name>]]" are
+displayed instead.}
+
+\item{upload_report}{logical value indicating whether to upload an
+additional pdf file with the chunchs output (e.g., figuers and tables).}
 }
 \description{
-Uploads a local \code{.Rmd} file to Google Drive as a plain text document.
-Will only upload the file if it doesn't already exist in the chosen
-location. To update an existing file \link{update_rmd}.
+Uploads a local `.Rmd` file to Google Drive as a plain text document.
+  Will only upload the file if it doesn't already exist in the chosen
+  location. To update an existing file [update_rmd].
 }

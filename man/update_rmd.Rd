@@ -2,13 +2,19 @@
 % Please edit documentation in R/Rmd.R
 \name{update_rmd}
 \alias{update_rmd}
-\title{Updates \code{.Rmd} file in Google Drive}
+\title{Updates `.Rmd` file in Google Drive}
 \usage{
-update_rmd(file, gfile = basename(file), path = NULL,
-  team_drive = NULL)
+update_rmd(
+  file,
+  gfile = basename(file),
+  path = NULL,
+  team_drive = NULL,
+  hide_chunks = FALSE,
+  upload_report = FALSE
+)
 }
 \arguments{
-\item{file}{character. The name (without file extension) of a local \code{.Rmd}
+\item{file}{character. The name (without file extension) of a local `.Rmd`
 file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
@@ -17,10 +23,18 @@ file name).}
 \item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
+
+\item{hide_chunks}{logical value indicating whether to remove code chunks
+from the text document. Placeholders of  type "[[chunck_<name>]]" are
+displayed instead.}
+
+\item{upload_report}{logical value indicating whether to upload an
+additional pdf file with the chunchs output (e.g., figuers and tables).}
 }
 \description{
 Replaces the content of an existing file in Google Drive with the contents of
-a local \code{.Rmd} file.
-
-\emph{Use with caution as tracked changes in the Google Drive file will be lost!}
+  a local `.Rmd` file.
+}
+\details{
+*Use with caution as tracked changes in the Google Drive file will be lost!*
 }

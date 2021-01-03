@@ -160,7 +160,7 @@ get_path_dribble <- function(path , team_drive = NULL){
 #'
 sanitize_gfile <- function(gfile) {
   temp <- readLines(gfile, warn = FALSE) %>%
-    c(., "") %>%
+    c("") %>%
     paste(collapse = "\n") %>%
     stringr::str_replace_all("\n\n\n", "\n\n")
   

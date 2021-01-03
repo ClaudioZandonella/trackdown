@@ -4,11 +4,10 @@
 \alias{render_rmd}
 \title{Render Rmd file from GoogleDrive}
 \usage{
-render_rmd(file, gfile = basename(file), path = NULL,
-  team_drive = NULL)
+render_rmd(file, gfile = basename(file), path = NULL, team_drive = NULL)
 }
 \arguments{
-\item{file}{character. The name (without file extension) of a local \code{.Rmd}
+\item{file}{character. The name (without file extension) of a local `.Rmd`
 file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local

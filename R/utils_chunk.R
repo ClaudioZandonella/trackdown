@@ -4,7 +4,7 @@
 
 #----    init_rmdrive    ----
 
-#' Title create .rmdrive folder if missing
+#' Create .rmdrive folder if missing
 #'
 #' @param local_rmd character indicating the name of the file without extension
 #'
@@ -21,8 +21,12 @@ init_rmdrive <- function(local_rmd){
 
 #----    extract_chunk    ----
 
-# Extract chunk as list
-
+#' Extract chunks as list from document
+#'
+#' @param local_rmd character indicating the name of the file without extension
+#'
+#' @return TODO
+#'
 extract_chunk <- function(local_rmd){
 
   #paper <- readLines(con = local_rmd) # read file
@@ -88,10 +92,12 @@ hide_chunk <- function(local_rmd){
   
   paper <- paper[!is.na(paper)] # remove extra space named as NA
   
-  paper %>% 
-    paste(., collapse = "\n") %>% 
-    stringr::str_replace_all(., "\n\n\n", "\n\n") %>% 
-    cat(., file = local_rmd)
+  # sanitize paper
+  paper <- paper %>% 
+    paste(collapse = "\n") %>% 
+    stringr::str_replace_all("\n\n\n", "\n\n")
+  
+  cat(paper, file = local_rmd)
 }
 
 
@@ -111,11 +117,12 @@ restore_chunk <- function(local_rmd){
     temp_paper[index[i]] <- chunk_info$chunk_text[[i]]
   }
   
+  # sanitize paper
   temp_paper <- temp_paper %>% 
-    c(., "") %>% 
-    paste(., collapse = "\n") %>% 
-    stringr::str_remove_all(., "NA") %>% # remove NA
-    stringr::str_replace_all(., "\n\n\n", "\n\n") # remove extra spaces
+    c("") %>% 
+    paste(collapse = "\n") %>% 
+    stringr::str_remove_all("NA") %>% # remove NA
+    stringr::str_replace_all("\n\n\n", "\n\n") # remove extra spaces
   
   cat(temp_paper, file = local_rmd)
   
@@ -138,11 +145,15 @@ upload_report <- function(){
   
   temp_chunk <- chunk_info[!stringr::str_detect(temp_chunk$name, stringr::regex('setup', ignore_case = T)), ] # remove echo = F chunks
   
-  temp_chunk <- paste0(paste("###", temp_chunk$name, "\n\n"), temp_chunk$chunk_text)
+  temp_chunk <- paste0(paste("###", temp_chunk$name, "\n\n"), 
+                       temp_chunk$chunk_text) %>% 
+    paste0(collapse = "\n\n")
   
-  temp_chunk %>% 
-    paste0(., collapse = "\n\n") %>% 
-    cat(yaml_header, ., sep = "\n\n", file = ".report_temp.Rmd")
+  cat(yaml_header, temp_chunk, sep = "\n\n", file = ".report_temp.Rmd")
   
   rmarkdown::render(".report_temp.Rmd", output_format = "pdf_document", output_file = ".rmdrive/report_temp.pdf", quiet = T)
 }
+
+#----
+
+
