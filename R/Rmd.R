@@ -160,7 +160,7 @@ update_rmd <- function(file,
 #' Downloads a text file from Google Drive and saves it as a local `.Rmd`
 #'   file if the local file does not exist or differs from file in Google Drive.
 #'
-#' @param file character. The name (without file extension) of a local `.Rmd`
+#' @param file character. The path (without file extension) of a local `.Rmd`
 #'   file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
