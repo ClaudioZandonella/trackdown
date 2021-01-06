@@ -141,12 +141,11 @@ upload_report <- function(){
   
   temp_chunk <- chunk_info
   
-  #setup_chunk <- temp_chunk[stringr::str_detect(temp_chunk$name, stringr::regex('setup', ignore_case = T)), ]
+  setup_chunk <- temp_chunk[stringr::str_detect(temp_chunk$name, stringr::regex('setup', ignore_case = T)), ]
   
   temp_chunk <- chunk_info[!stringr::str_detect(temp_chunk$name, stringr::regex('setup', ignore_case = T)), ] # remove echo = F chunks
   
-  temp_chunk <- paste0(paste("###", temp_chunk$name, "\n\n"), 
-                       temp_chunk$chunk_text) %>% 
+  temp_chunk <- paste0(paste("###", temp_chunk$name, "\n\n"), temp_chunk$chunk_text) %>% 
     paste0(collapse = "\n\n")
   
   cat(yaml_header, temp_chunk, sep = "\n\n", file = ".report_temp.Rmd")
@@ -155,5 +154,3 @@ upload_report <- function(){
 }
 
 #----
-
-
