@@ -18,5 +18,6 @@ Imports:
   rmarkdown,
   stringr,
   tibble,
-  tools
+  tools,
+  dplyr
 RoxygenNote: 7.1.1
