@@ -128,16 +128,39 @@ update_rmd <- function(file,
     temp_file <- paste0(".temp-", basename(file), ".txt")
     file.copy(local_file, temp_file, overwrite = T) # overwrite temp file if interrupted
     
-    if (hide_chunks) {
+    if (isTRUE(hide_chunks)) {
       
       init_rmdrive(basename(file)) # init .rmdrive folder
       hide_chunk(temp_file)
       
-      if(upload_report){
+    }
+      
+    if (isTRUE(upload_report)) {
+      
+      upload_report()
         
-        upload_report()
+      dribble_report <- get_dribble(paste0(gfile, "_report.pdf"), path, team_drive) # get uploaded pdf
+      
+      if(nrow(dribble_report) < 1){ # check if the file pdf report not exist
         
-        dribble_report <- get_dribble(paste0(gfile, "_report.pdf"), path, team_drive) # get uploaded pdf
+        # upload local file to Google Drive
+        if (!is.null(path)) {
+          path <- get_path_dribble(path = path, team_drive = team_drive)
+        } else if (is.null(path) & !is.null(team_drive)) {
+          path <- googledrive::team_drive_find(team_drive)
+        } else {
+          path <- "/"
+        }
+        
+        googledrive::drive_upload(
+          media = ".rmdrive/report_temp.pdf",
+          path = path,
+          name = paste0(gfile, "_report.pdf")
+        )
+        
+        file.remove(".report_temp.Rmd")
+        
+      } else{
         
         googledrive::drive_update(
           file = dribble_report,
@@ -147,7 +170,6 @@ update_rmd <- function(file,
         file.remove(".report_temp.Rmd")
       }
     }
-    
     googledrive::drive_update(file = dribble, media = temp_file)
     file.remove(temp_file)
   }
