@@ -62,28 +62,28 @@ upload_rmd <- function(file,
   if (isTRUE(hide_chunks)) {
     init_rmdrive(basename(file)) # init .rmdrive folder
     hide_chunk(temp_file)
-    
-    if (isTRUE(upload_report)) {
-      
-      upload_report() # function to knit a temporary report named .report_temp.Rmd
-      
-      googledrive::drive_upload(
-        media = ".rmdrive/report_temp.pdf",
-        path = path,
-        name = paste0(gfile, "_report.pdf")
-      )
-      
-      file.remove(".report_temp.Rmd")
-      
-    }
   }
+    
+  if (isTRUE(upload_report)) {
+      
+    upload_report() # function to knit a temporary report named .report_temp.Rmd
+    
     googledrive::drive_upload(
-      media = temp_file,
+      media = ".rmdrive/report_temp.pdf",
       path = path,
-      name = gfile,
-      type = "document"
+      name = paste0(gfile, "_report.pdf")
     )
-    file.remove(temp_file)
+    
+    file.remove(".report_temp.Rmd")
+  }
+  
+  googledrive::drive_upload(
+    media = temp_file,
+    path = path,
+    name = gfile,
+    type = "document"
+  )
+  file.remove(temp_file)
 }
 
 #----    update_rmd    ----
