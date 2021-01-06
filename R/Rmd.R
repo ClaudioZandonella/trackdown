@@ -10,7 +10,7 @@
 #'   Will only upload the file if it doesn't already exist in the chosen
 #'   location. To update an existing file [update_rmd].
 #'
-#' @param file character. The name (without file extension) of a local `.Rmd`
+#' @param file character. The path (without file extension) of a local `.Rmd`
 #'   file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
@@ -20,7 +20,7 @@
 #'   from the text document. Placeholders of  type "[[chunck_<name>]]" are
 #'   displayed instead.
 #' @param  upload_report logical value indicating whether to upload an
-#'   additional pdf file with the chunchs output (e.g., figuers and tables). 
+#'   additional pdf file with the chunks output (e.g., figures and tables). 
 #'
 #' @return NULL
 #' @export
