@@ -14,7 +14,7 @@ upload_rmd(
 )
 }
 \arguments{
-\item{file}{character. The name (without file extension) of a local `.Rmd`
+\item{file}{character. The path (without file extension) of a local `.Rmd`
 file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
@@ -29,7 +29,7 @@ from the text document. Placeholders of  type "[[chunck_<name>]]" are
 displayed instead.}
 
 \item{upload_report}{logical value indicating whether to upload an
-additional pdf file with the chunchs output (e.g., figuers and tables).}
+additional pdf file with the chunks output (e.g., figures and tables).}
 }
 \description{
 Uploads a local `.Rmd` file to Google Drive as a plain text document.

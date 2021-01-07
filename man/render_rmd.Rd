@@ -7,7 +7,7 @@
 render_rmd(file, gfile = basename(file), path = NULL, team_drive = NULL)
 }
 \arguments{
-\item{file}{character. The name (without file extension) of a local `.Rmd`
+\item{file}{character. The path (without file extension) of a local `.Rmd`
 file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local

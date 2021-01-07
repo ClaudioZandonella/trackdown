@@ -13,7 +13,7 @@ download_rmd(
 )
 }
 \arguments{
-\item{file}{character. The name (without file extension) of a local `.Rmd`
+\item{file}{character. The path (without file extension) of a local `.Rmd`
 file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
