@@ -317,6 +317,20 @@ stop_quietly <- function(text = NULL) {
   stop()
 }
 
+# Printing Messages -----
+
+main_process <- function(message){
+  cli::cat_rule(message)
+}
+
+start_process <- function(message){
+  cli::cat_bullet(bullet_col = "#8E8E8E", message)
+}
+
+finish_process <- function(message){
+  cli::cat_bullet(bullet = "tick", bullet_col = "green", message)
+}
+
 #----    pipe operator    ----
 
 #' pipe operator
