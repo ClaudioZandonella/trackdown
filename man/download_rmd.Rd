@@ -7,7 +7,7 @@
 download_rmd(
   file,
   gfile = basename(file),
-  path = NULL,
+  path = "rmdrive",
   team_drive = NULL,
   restore_chunks = FALSE
 )

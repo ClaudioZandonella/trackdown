@@ -4,7 +4,13 @@
 \alias{render_rmd}
 \title{Render Rmd file from GoogleDrive}
 \usage{
-render_rmd(file, gfile = basename(file), path = NULL, team_drive = NULL)
+render_rmd(
+  file,
+  gfile = basename(file),
+  path = "rmdrive",
+  team_drive = NULL,
+  restore_chunks = FALSE
+)
 }
 \arguments{
 \item{file}{character. The path (without file extension) of a local `.Rmd`
@@ -20,6 +26,9 @@ folder the full path is required (e.g., "rmdrive/my_folder"). Use
 recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
+
+\item{restore_chunks}{logical value indicating whether to restore code chunks
+in the document.}
 }
 \description{
 Renders Rmd file from GoogleDrive if there have been edits

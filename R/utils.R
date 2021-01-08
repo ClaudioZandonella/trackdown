@@ -55,8 +55,8 @@ check_gfile <- function(dribble) {
 #' @noRd
 #'
 check_identity <- function(local_path, local_file){
-  local_file <- file.path(local_path, local_file)
   temp_file <- file.path(local_path, paste0(".temp-", local_file))
+  local_file <- file.path(local_path, local_file)
   
   if (file.exists(local_file)){
     md5_file <- unname(tools::md5sum(local_file))

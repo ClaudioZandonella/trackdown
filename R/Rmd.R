@@ -227,7 +227,7 @@ update_rmd <- function(file,
 #'
 download_rmd <- function(file,
                          gfile = basename(file),
-                         path = NULL,
+                         path = "rmdrive",
                          team_drive = NULL,
                          restore_chunks = FALSE) {
   
@@ -274,16 +274,24 @@ download_rmd <- function(file,
 #' Render Rmd file from GoogleDrive
 #'
 #' Renders Rmd file from GoogleDrive if there have been edits
-#'
+#' 
 #' @inheritParams upload_rmd
+#' @param restore_chunks logical value indicating whether to restore code chunks
+#'   in the document.
 #' @return NULL
 #' @export
 #'
 render_rmd <- function(file,
                        gfile = basename(file),
-                       path = NULL,
-                       team_drive = NULL) {
-  changed <- download_rmd(file, gfile, path, team_drive)
+                       path = "rmdrive",
+                       team_drive = NULL,
+                       restore_chunks = FALSE) {
+  
+  changed <- download_rmd(file = file, 
+                          gfile = gfile, 
+                          path = path, 
+                          team_drive = team_drive,
+                          restore_chunks =  restore_chunks)
   if (changed) {
     rmarkdown::render(paste0(file, ".Rmd"))
   }
