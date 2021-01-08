@@ -39,6 +39,8 @@ upload_rmd <- function(file,
                        hide_chunks = FALSE,
                        upload_report = FALSE) {
   
+  main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
+  
   # check whether local file exists
   local_path <-  dirname(file)
   local_file <- paste0(basename(file), ".Rmd")
@@ -75,12 +77,21 @@ upload_rmd <- function(file,
                  local_path = local_path)
     
     if (isTRUE(hide_chunks)) {
+      
+      start_process("Removing chunks...")
+      
       hide_chunk(file_text = temp_file,
                  local_path = local_path)
+      
+      finish_process(paste("Chunks removed from", emph_file(file)))
     }
     
     if (isTRUE(upload_report)) {
+      
+      start_process("Uploading report...")
+      
       # function to knit a temporary report named .report_temp.Rmd
+      
       knit_report(local_path = local_path) 
       
       googledrive::drive_upload(
@@ -89,11 +100,14 @@ upload_rmd <- function(file,
         name = paste0(gfile, "_report.pdf"),
         type = "pdf"
       )
-      cat("\n")
+      
+      finish_process(paste(emph_file(file), "pdf report uploaded!"))
       
       file.remove(file.path(local_path,".report_temp.Rmd"))
     }
   }
+  
+  start_process("Uploading main file to Google Drive...")
   
   # upload local file to Google Drive
   googledrive::drive_upload(
@@ -103,6 +117,8 @@ upload_rmd <- function(file,
     type = "document"
   )
   invisible(file.remove(temp_file))
+  
+  finish_process(paste(emph_file(file), "uploaded!"))
 }
 
 #----    update_rmd    ----
@@ -144,13 +160,18 @@ update_rmd <- function(file,
   )
   
   if (response == 1) {
-    # create .tmep-file to upload
+    
+    main_process(paste("Uploading", emph_file(file), "with local changes..."))
+    
+    # create .temp-file to upload
     temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".txt"))
     file.copy(file.path(local_path, local_file), 
               temp_file, overwrite = T)
     
     # We need to extract chunks in both cases
     if(isTRUE(hide_chunks) || isTRUE(upload_report)){
+      
+      start_process("Removing chunks...")
       
       # create .rmdrive folder with info about chunks
       init_rmdrive(file_text = temp_file,
@@ -159,6 +180,8 @@ update_rmd <- function(file,
       if (isTRUE(hide_chunks)) {
         hide_chunk(file_text = temp_file,
                    local_path = local_path)
+        
+        finish_process("Chunks removed!")
       }
       
       if (isTRUE(upload_report)) {
@@ -173,6 +196,8 @@ update_rmd <- function(file,
     
         if(nrow(dribble_report) < 1){ 
           
+          start_process("Uploading report...")
+          
           # get dribble of the parent
           path <- get_parent_dribble(path = path, 
                                      team_drive = team_drive)
@@ -184,7 +209,8 @@ update_rmd <- function(file,
             name = paste0(gfile, "_report.pdf"),
             type = "pdf"
           )
-          cat("\n")
+          
+          finish_process(paste(emph_file(file), "pdf report uploaded!"))
           
         } else{
           
@@ -193,6 +219,8 @@ update_rmd <- function(file,
             file = dribble_report,
             media = file.path(local_path, ".rmdrive/report_temp.pdf")
           )
+          
+          finish_process(paste(emph_file(file), "pdf report updated!"))
         }
       file.remove(".report_temp.Rmd")
       }
@@ -204,6 +232,8 @@ update_rmd <- function(file,
     
     invisible(file.remove(temp_file))
   }
+  
+  finish_process(paste(emph_file(file), "updated!"))
 }
 
 #----    download_rmd    ----
@@ -231,6 +261,8 @@ download_rmd <- function(file,
                          team_drive = NULL,
                          restore_chunks = FALSE) {
   
+  main_process(paste("Downloading", emph_file(file), "with online changes..."))
+
   # local info
   local_path <-  dirname(file)
   local_file <- paste0(basename(file), ".Rmd")
@@ -260,13 +292,18 @@ download_rmd <- function(file,
   if (!check_identity(local_path = local_path,
                       local_file = local_file)) {
     file.rename(temp_file, paste0(file, ".Rmd"))
-    TRUE
+    
+    finish_process(paste(emph_file(file), "updated with online changes!"))
+    
+    changed = TRUE
   } else {
-    message("The local Rmd file is identical with the file from Google Drive. ",
-            "Aborting...")
+    
+    cli::cli_alert_danger(paste("The local", emph_file(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
     file.remove(temp_file)
-    FALSE
+    changed = FALSE
   }
+  
+  return(invisible(changed)) # to retun a invisible TRUE/FALSE for rendering
 }
 
 #----    render_rmd    ----
@@ -287,13 +324,18 @@ render_rmd <- function(file,
                        team_drive = NULL,
                        restore_chunks = FALSE) {
   
+  
+  
   changed <- download_rmd(file = file, 
                           gfile = gfile, 
                           path = path, 
                           team_drive = team_drive,
                           restore_chunks =  restore_chunks)
   if (changed) {
-    rmarkdown::render(paste0(file, ".Rmd"))
+    
+    rmarkdown::render(paste0(file, ".Rmd"), quiet = T)
+    
+    finish_process(paste(emph_file(file), "donwloaded and rendered!"))
   }
 }
 
