@@ -98,7 +98,8 @@ upload_rmd <- function(file,
         media = file.path(local_path, ".rmdrive/report_temp.pdf"),
         path = path,
         name = paste0(gfile, "_report.pdf"),
-        type = "pdf"
+        type = "pdf",
+        verbose = F
       )
       
       finish_process(paste(emph_file(file), "pdf report uploaded!"))
@@ -114,7 +115,8 @@ upload_rmd <- function(file,
     media = temp_file,
     path = path,
     name = gfile,
-    type = "document"
+    type = "document",
+    verbose = F
   )
   invisible(file.remove(temp_file))
   
@@ -207,7 +209,8 @@ update_rmd <- function(file,
             media = file.path(local_path, ".rmdrive/report_temp.pdf"),
             path = path,
             name = paste0(gfile, "_report.pdf"),
-            type = "pdf"
+            type = "pdf",
+            verbose = F
           )
           
           finish_process(paste(emph_file(file), "pdf report uploaded!"))
@@ -217,7 +220,8 @@ update_rmd <- function(file,
           # update local file to Google Drive
           googledrive::drive_update(
             file = dribble_report,
-            media = file.path(local_path, ".rmdrive/report_temp.pdf")
+            media = file.path(local_path, ".rmdrive/report_temp.pdf"),
+            verbose = F
           )
           
           finish_process(paste(emph_file(file), "pdf report updated!"))
@@ -228,7 +232,8 @@ update_rmd <- function(file,
     
     # upload local file to Google Drive
     googledrive::drive_update(file = dribble, 
-                              media = temp_file)
+                              media = temp_file,
+                              verbose = F)
     
     invisible(file.remove(temp_file))
   }
@@ -276,7 +281,8 @@ download_rmd <- function(file,
     file = dribble,
     type = "text/plain",
     path = file.path(local_path, paste0(".temp-", basename(file))),
-    overwrite = TRUE
+    overwrite = TRUE,
+    verbose = F
   )
   temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".Rmd"))
   file.rename(file.path(local_path, paste0(".temp-", basename(file), ".txt")),
