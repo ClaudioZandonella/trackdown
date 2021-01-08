@@ -14,7 +14,8 @@
 #'
 check_file <- function(file) {
   if (!file.exists(file)) {
-    stop("file does not exist: ", sQuote(file), call. = FALSE)
+    stop("file does not exist: ", sQuote(file), 
+         ".\nRemember to specify name without extension ;)", call. = FALSE)
   }
 }
 
@@ -181,8 +182,12 @@ get_path_dribble <- function(path , team_drive = NULL){
 #' 
 #' !TODO! evaluate possible problems when using team_drive.
 #'
-#' @inheritParams upload_rmd
-#' @return A dribble object if information of the created folder.
+#' @param name character vector indicating the sequence of folders to create
+#' @param parent_id a string indicating the Google Drive id of the parent folder
+#' @param team_drive a string indicating the name of a Google Team Drive
+#'   (optional).
+#'
+#' @return A dribble object with information of the created folder.
 #' @noRd
 #' 
 create_drive_folder <- function(name, parent_id = NULL, team_drive = NULL){
@@ -276,7 +281,7 @@ sanitize_gfile <- function(gfile) {
 #' Stop a function without throwing an error.
 #' Function adapted from https://stackoverflow.com/a/42945293/12481476
 #'
-#' @param text a character string indicating the message to display 
+#' @param text a string indicating the message to display 
 #'
 #' @return NULL
 #'

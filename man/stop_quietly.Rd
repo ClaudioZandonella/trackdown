@@ -7,7 +7,7 @@
 stop_quietly(text = NULL)
 }
 \arguments{
-\item{text}{a character string indicating the message to display}
+\item{text}{a string indicating the message to display}
 }
 \description{
 Stop a function without throwing an error.

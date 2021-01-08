@@ -6,84 +6,108 @@
 
 #' Upload `.Rmd` file to Google Drive for collaborative editing
 #'
-#' Uploads a local `.Rmd` file to Google Drive as a plain text document.
-#'   Will only upload the file if it doesn't already exist in the chosen
-#'   location. To update an existing file \code{\link{update_rmd}}.
+#' Uploads a local `.Rmd` file to Google Drive as a plain text document. Will
+#' only upload the file if it doesn't already exist in the chosen location. By
+#' default files are uploaded in the folder "rmdrive", if is not available on
+#' Google Drive, permission to create is required to the user. To update an
+#' existing file \code{\link{update_rmd}}.
 #'
 #' @param file character. The path (without file extension) of a local `.Rmd`
 #'   file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
 #' @param path character. (Sub)directory in My Drive or a Team Drive (optional).
+#'   By default files are uploaded in the folder "rmdrive". To specify another
+#'   folder the full path is required (e.g., "rmdrive/my_folder"). Use
+#'   \code{NULL} to upload directly at the root level, although it is not
+#'   recommended.
 #' @param team_drive character. The name of a Google Team Drive (optional).
 #' @param hide_chunks logical value indicating whether to remove code chunks
 #'   from the text document. Placeholders of  type "[[chunck_<name>]]" are
 #'   displayed instead.
 #' @param  upload_report logical value indicating whether to upload an
-#'   additional pdf file with the chunks output (e.g., figures and tables). 
+#'   additional pdf file with the chunks output (e.g., figures and tables). Note
+#'   that this require the time to compile the document.
 #'
 #' @return NULL
 #' @export
 #'
 upload_rmd <- function(file,
                        gfile = basename(file),
-                       path = NULL,
+                       path = "rmdrive",
                        team_drive = NULL,
                        hide_chunks = FALSE,
                        upload_report = FALSE) {
   
   # check whether local file exists
-  local_file <- paste0(file, ".Rmd")
-  check_file(local_file)
+  local_path <-  dirname(file)
+  local_file <- paste0(basename(file), ".Rmd")
+  check_file(file.path(local_path, local_file))
   
   # check whether file on Google Drive exists
-  dribble <- get_dribble(gfile, path, team_drive)
+  dribble <- get_dribble(gfile = gfile,
+                         path = path,
+                         team_drive = team_drive)
+  
   if (nrow(dribble) > 0) {
     stop(
       "a file with this name already exists in GoogleDrive: ",
       sQuote(gfile),
-      ". Did you mean to use `update_rmd()`",
+      ". Did you mean to use `update_rmd()`?",
       call. = FALSE
     )
   }
   
-  # upload local file to Google Drive
+  # get dribble of the parent
   if (!is.null(path)) {
     path <- get_path_dribble(path = path, team_drive = team_drive)
   } else if (is.null(path) & !is.null(team_drive)) {
     path <- googledrive::team_drive_find(team_drive)
   } else {
-    path <- "/"
+    path <- get_root_id()
   }
   
-  temp_file <- paste0(".temp-", basename(file), ".txt")
-  file.copy(local_file, temp_file, overwrite = T)
+  # create .tmep-file to upload
+  temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".txt"))
+  file.copy(file.path(local_path, local_file), 
+            temp_file, overwrite = T)
   
-  if (isTRUE(hide_chunks)) {
-    init_rmdrive(basename(file)) # init .rmdrive folder
-    hide_chunk(temp_file)
-  }
+  # We need to extract chunks in both cases
+  if(isTRUE(hide_chunks) || isTRUE(upload_report)){
     
-  if (isTRUE(upload_report)) {
+    # create .rmdrive folder with info about chunks
+    init_rmdrive(file_text = temp_file,
+                 local_path = local_path)
+    
+    if (isTRUE(hide_chunks)) {
+      hide_chunk(file_text = temp_file,
+                 local_path = local_path)
+    }
+    
+    if (isTRUE(upload_report)) {
+      # function to knit a temporary report named .report_temp.Rmd
+      knit_report(local_path = local_path) 
       
-    upload_report() # function to knit a temporary report named .report_temp.Rmd
-    
-    googledrive::drive_upload(
-      media = ".rmdrive/report_temp.pdf",
-      path = path,
-      name = paste0(gfile, "_report.pdf")
-    )
-    
-    file.remove(".report_temp.Rmd")
+      googledrive::drive_upload(
+        media = file.path(local_path, ".rmdrive/report_temp.pdf"),
+        path = path,
+        name = paste0(gfile, "_report.pdf"),
+        type = "pdf"
+      )
+      cat("\n")
+      
+      file.remove(file.path(local_path,".report_temp.Rmd"))
+    }
   }
   
+  # upload local file to Google Drive
   googledrive::drive_upload(
     media = temp_file,
     path = path,
     name = gfile,
     type = "document"
   )
-  file.remove(temp_file)
+  invisible(file.remove(temp_file))
 }
 
 #----    update_rmd    ----

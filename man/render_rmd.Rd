@@ -13,7 +13,11 @@ file.}
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).}
+\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
+By default files are uploaded in the folder "rmdrive". To specify another
+folder the full path is required (e.g., "rmdrive/my_folder"). Use
+\code{NULL} to upload directly at the root level, although it is not
+recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 }

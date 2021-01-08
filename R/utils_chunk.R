@@ -2,19 +2,19 @@
 ####    Utils for chunk extraction    ####
 ##########################################
 
-#----    init_rmdrive    ----
+#----    mkdir_rmdrive    ----
 
 #' Create .rmdrive folder if missing
 #'
-#' @param local_rmd character indicating the name of the file without extension
-#'
+#' @param local_path string indicating the path where to create the folder
+#' 
 #' @return NULL
 #'
-init_rmdrive <- function(local_rmd){
+mkdir_rmdrive <- function(local_path){
   
-  if(!dir.exists(".rmdrive")){
-    dir.create(".rmdrive") # create the hidden folder for temp files
-    message(paste(local_rmd, "setup completed!"))
+  drk_rmdrive <- paste(local_path, ".rmdrive", sep = "/")
+  if(!dir.exists(drk_rmdrive)){
+    dir.create(drk_rmdrive) # create the hidden folder for temp files
   }
   
 }
@@ -62,22 +62,48 @@ extract_yaml <- function(local_rmd){
   return(res)
 }
 
-#----    hide_chunk    ----
+#----    init_rmdrive    ----
 
-# remove chunks from .rmd file
-
-hide_chunk <- function(local_rmd){
+#' Init rmdrive
+#' 
+#' Create .rmdrive folder with info about chunks 
+#' 
+#' @param file_text sting indicating the file path
+#' @param local_path sting indicating the local path where to create .rmdrive
+#'   folder
+#'   
+#' @noRd
+init_rmdrive <- function(file_text, local_path){
+  # create .rmdrive folder 
+  mkdir_rmdrive(local_path = local_path) 
   
   # read file
-  paper <- readLines(local_rmd, warn = F)
+  paper <- readLines(file_text, warn = F)
   
   # Extract and save code chunks
   chunk_info <- extract_chunk(paper)
-  saveRDS(chunk_info, file = file.path(".rmdrive", "chunk_info.rds"))
+  saveRDS(chunk_info, file = file.path(local_path, ".rmdrive", "chunk_info.rds"))
   
   # Extract and save Yaml header
   yaml_header <- extract_yaml(paper) 
-  saveRDS(yaml_header, file = file.path(".rmdrive","yaml_header.rds"))
+  saveRDS(yaml_header, file = file.path(local_path, ".rmdrive","yaml_header.rds"))
+  
+  message(paste("Document setup completed!\n"))
+}
+
+
+#----    hide_chunk    ----
+
+# remove chunks from .rmd file
+# TODO remove also YAML ??
+
+hide_chunk <- function(file_text, local_path){
+  
+  # read file
+  paper <- readLines(file_text, warn = F)
+  
+  # get saved chunks info
+  chunk_info <- readRDS(file = file.path(local_path, ".rmdrive","chunk_info.rds"))
   
   # replace chunks in file
   for(i in seq_along(chunk_info$index)){
@@ -97,8 +123,9 @@ hide_chunk <- function(local_rmd){
     paste(collapse = "\n") %>% 
     stringr::str_replace_all("\n\n\n", "\n\n")
   
-  cat(paper, file = local_rmd)
+  cat(paper, file = file_text)
 }
+
 
 
 #----    restore_chunk    ----
@@ -129,28 +156,29 @@ restore_chunk <- function(local_rmd){
 }
 
 
-#----    upload_report    ----
+#----    knit_report    ----
 
-# upload report
+# knit_report report
 
-upload_report <- function(){
-
-  chunk_info <- readRDS(".rmdrive/chunk_info.rds")
+knit_report <- function(local_path){
   
-  yaml_header <- readRDS(".rmdrive/yaml_header.rds")
+  # get saved chunks info
+  chunk_info <- readRDS(file = file.path(local_path, ".rmdrive","chunk_info.rds"))
+  yaml_header <- readRDS(file = file.path(local_path, ".rmdrive","yaml_header.rds"))
   
-  temp_chunk <- chunk_info
+  setup_chunk <- chunk_info[stringr::str_detect(chunk_info$name, stringr::regex('setup', ignore_case = T)), ]
   
-  setup_chunk <- temp_chunk[stringr::str_detect(temp_chunk$name, stringr::regex('setup', ignore_case = T)), ]
-  
-  temp_chunk <- chunk_info[!stringr::str_detect(temp_chunk$name, stringr::regex('setup', ignore_case = T)), ] # remove echo = F chunks
+  temp_chunk <- chunk_info[!stringr::str_detect(chunk_info$name, stringr::regex('setup', ignore_case = T)), ] # remove echo = F chunks
   
   temp_chunk <- paste0(paste("###", temp_chunk$name, "\n\n"), temp_chunk$chunk_text) %>% 
     paste0(collapse = "\n\n")
   
-  cat(yaml_header, temp_chunk, sep = "\n\n", file = ".report_temp.Rmd")
+  cat(yaml_header, temp_chunk, sep = "\n\n", file = file.path(local_path, ".report_temp.Rmd"))
   
-  rmarkdown::render(".report_temp.Rmd", output_format = "pdf_document", output_file = ".rmdrive/report_temp.pdf", quiet = T)
+  rmarkdown::render(file.path(local_path, ".report_temp.Rmd"), 
+                    output_format = "pdf_document", 
+                    output_file = ".rmdrive/report_temp.pdf",
+                    quiet = T)
 }
 
 #----

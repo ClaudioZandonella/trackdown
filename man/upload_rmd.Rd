@@ -7,7 +7,7 @@
 upload_rmd(
   file,
   gfile = basename(file),
-  path = NULL,
+  path = "rmdrive",
   team_drive = NULL,
   hide_chunks = FALSE,
   upload_report = FALSE
@@ -20,7 +20,11 @@ file.}
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).}
+\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
+By default files are uploaded in the folder "rmdrive". To specify another
+folder the full path is required (e.g., "rmdrive/my_folder"). Use
+\code{NULL} to upload directly at the root level, although it is not
+recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 
@@ -29,10 +33,13 @@ from the text document. Placeholders of  type "[[chunck_<name>]]" are
 displayed instead.}
 
 \item{upload_report}{logical value indicating whether to upload an
-additional pdf file with the chunks output (e.g., figures and tables).}
+additional pdf file with the chunks output (e.g., figures and tables). Note
+that this require the time to compile the document.}
 }
 \description{
-Uploads a local `.Rmd` file to Google Drive as a plain text document.
-  Will only upload the file if it doesn't already exist in the chosen
-  location. To update an existing file \code{\link{update_rmd}}.
+Uploads a local `.Rmd` file to Google Drive as a plain text document. Will
+only upload the file if it doesn't already exist in the chosen location. By
+default files are uploaded in the folder "rmdrive", if is not available on
+Google Drive, permission to create is required to the user. To update an
+existing file \code{\link{update_rmd}}.
 }
