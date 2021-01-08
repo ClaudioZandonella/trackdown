@@ -131,10 +131,14 @@ hide_chunk <- function(file_text, local_path){
 #----    restore_chunk    ----
 
 # add chunk at the placeholder position
+# TODO consider also YAML_header
 
 restore_chunk <- function(local_rmd){
   
-  chunk_info <- readRDS(file = file.path(".rmdrive","chunk_info.rds"))
+  local_path <-  dirname(local_rmd)
+  local_file <- basename(local_rmd)
+  
+  chunk_info <- readRDS(file = file.path(local_path,".rmdrive","chunk_info.rds"))
   
   temp_paper <- readLines(local_rmd, warn = F)
   

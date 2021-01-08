@@ -230,6 +230,11 @@ download_rmd <- function(file,
                          path = NULL,
                          team_drive = NULL,
                          restore_chunks = FALSE) {
+  
+  # local info
+  local_path <-  dirname(file)
+  local_file <- paste0(basename(file), ".Rmd")
+  
   # check whether file on Google Drive exists
   dribble <- get_dribble(gfile, path, team_drive)
   check_gfile(dribble)
@@ -238,11 +243,12 @@ download_rmd <- function(file,
   googledrive::drive_download(
     file = dribble,
     type = "text/plain",
-    path = paste0("", ".temp-", basename(file)),
+    path = file.path(local_path, paste0(".temp-", basename(file))),
     overwrite = TRUE
   )
-  temp_file <- paste0(".temp-", basename(file), ".Rmd")
-  file.rename(paste0(".temp-", basename(file), ".txt"), temp_file)
+  temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".Rmd"))
+  file.rename(file.path(local_path, paste0(".temp-", basename(file), ".txt")),
+              temp_file)
   
   if (restore_chunks) {
     restore_chunk(temp_file)
@@ -251,7 +257,8 @@ download_rmd <- function(file,
   sanitize_gfile(temp_file)
   
   # compare with and replace local file
-  if (!check_identity(file)) {
+  if (!check_identity(local_path = local_path,
+                      local_file = local_file)) {
     file.rename(temp_file, paste0(file, ".Rmd"))
     TRUE
   } else {

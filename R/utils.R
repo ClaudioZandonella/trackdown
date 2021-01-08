@@ -54,9 +54,9 @@ check_gfile <- function(dribble) {
 #' @return `TRUE` if files are identical, `FALSE` otherwise.
 #' @noRd
 #'
-check_identity <- function(file){
-  local_file <- paste0(file, ".Rmd")
-  temp_file <- paste0(".temp-", basename(file), ".Rmd")
+check_identity <- function(local_path, local_file){
+  local_file <- file.path(local_path, local_file)
+  temp_file <- file.path(local_path, paste0(".temp-", local_file))
   
   if (file.exists(local_file)){
     md5_file <- unname(tools::md5sum(local_file))
