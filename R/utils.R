@@ -174,6 +174,31 @@ get_path_dribble <- function(path , team_drive = NULL){
   return(dribble)
 }
 
+#----    get_parent_dribble    ----
+
+#' Get parent dribble
+#' 
+#' Get the dribble of the parent folder or root if path is not specified
+#' 
+#' @param path character. (Sub)directory in My Drive or a Team Drive
+#' @param team_drive character. The name of a Google Team Drive (optional).
+#'
+#' @return A dribble object.
+#'
+#' @noRd
+#' 
+get_parent_dribble <- function(path = NULL, team_drive = NULL){
+  # get dribble of the parent folder
+  if (!is.null(path)) {
+    path <- get_path_dribble(path = path, team_drive = team_drive)
+  } else if (is.null(path) & !is.null(team_drive)) {
+    path <- googledrive::team_drive_find(team_drive)
+  } else {
+    path <- get_root_id()
+  }
+  return(path)
+}
+
 #----    create_drive_folder    ----
 
 #' Create a folder in Googledrive

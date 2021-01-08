@@ -7,7 +7,7 @@
 update_rmd(
   file,
   gfile = basename(file),
-  path = NULL,
+  path = "rmdrive",
   team_drive = NULL,
   hide_chunks = FALSE,
   upload_report = FALSE

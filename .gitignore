@@ -6,3 +6,8 @@
 deprecated/
 test/
 .rmdrive/
+
+#----    mac auxiliary files    ----
+.DS_Store
+
+#----
