@@ -317,10 +317,18 @@ stop_quietly <- function(text = NULL) {
   stop()
 }
 
-# Printing Messages -----
+# Messages Utils -----
 
 main_process <- function(message){
   cli::cat_rule(message)
+}
+
+emph_file <- function(file){
+  cli::col_blue(basename(file))
+} 
+
+sub_process <- function(message){
+  cli::cli_li(message)
 }
 
 start_process <- function(message){
