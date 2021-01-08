@@ -146,7 +146,7 @@ get_path_dribble <- function(path , team_drive = NULL){
       )
       
       if (response == 2){
-        stop("Process arrested", call. = FALSE)
+        stop_quietly("Process arrested")
       } else{
         
         # evaluate if unique parent folder is available
@@ -203,6 +203,7 @@ create_drive_folder <- function(name, parent_id = NULL, team_drive = NULL){
       #create folder using parent id
       googledrive::drive_mkdir(name = name[i],
                                path = googledrive::as_id(parent_id))
+      cat("\n")
       
       # get folder dribble
       dribble_folder <- googledrive::drive_find(
@@ -267,6 +268,26 @@ sanitize_gfile <- function(gfile) {
   
   cat(temp, file = gfile) # workaround for the writing problem (TO REVIEW)
 }
+
+#----    stop_quietly    ----
+
+#' Stop quietly
+#' 
+#' Stop a function without throwing an error.
+#' Function adapted from https://stackoverflow.com/a/42945293/12481476
+#'
+#' @param text a character string indicating the message to display 
+#'
+#' @return NULL
+#'
+stop_quietly <- function(text = NULL) {
+  opt <- options(show.error.messages = FALSE)
+  on.exit(options(opt))
+  message(text)
+  stop()
+}
+
+#----    pipe operator    ----
 
 #' pipe operator
 #'
