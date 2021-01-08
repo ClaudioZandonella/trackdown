@@ -62,7 +62,7 @@ upload_rmd <- function(file,
   path <- get_parent_dribble(path = path, 
                              team_drive = team_drive)
   
-  # create .tmep-file to upload
+  # create .temp-file to upload
   temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".txt"))
   file.copy(file.path(local_path, local_file), 
             temp_file, overwrite = T)
