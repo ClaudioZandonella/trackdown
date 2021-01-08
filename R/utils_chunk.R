@@ -88,7 +88,7 @@ init_rmdrive <- function(file_text, local_path){
   yaml_header <- extract_yaml(paper) 
   saveRDS(yaml_header, file = file.path(local_path, ".rmdrive","yaml_header.rds"))
   
-  message(paste("Document setup completed!\n"))
+  #message(paste("Document setup completed!\n"))
 }
 
 
