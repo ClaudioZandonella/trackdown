@@ -8,7 +8,7 @@
 #'
 #' Uploads a local `.Rmd` file to Google Drive as a plain text document.
 #'   Will only upload the file if it doesn't already exist in the chosen
-#'   location. To update an existing file [update_rmd].
+#'   location. To update an existing file \code{\link{update_rmd}}.
 #'
 #' @param file character. The path (without file extension) of a local `.Rmd`
 #'   file.
@@ -93,7 +93,7 @@ upload_rmd <- function(file,
 #' Replaces the content of an existing file in Google Drive with the contents of
 #'   a local `.Rmd` file.
 #'
-#' *Use with caution as tracked changes in the Google Drive file will be lost!*
+#' \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 #'
 #' @inheritParams upload_rmd
 #' @return NULL

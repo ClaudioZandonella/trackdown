@@ -3,7 +3,7 @@
 ###############################
 
 
-#  Utility from nameR package https://github.com/lockedata/namer ----------
+#  Utility from namer R-package https://github.com/lockedata/namer
 
 #----    quote_label    ----
 

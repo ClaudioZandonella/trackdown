@@ -34,5 +34,5 @@ additional pdf file with the chunks output (e.g., figures and tables).}
 \description{
 Uploads a local `.Rmd` file to Google Drive as a plain text document.
   Will only upload the file if it doesn't already exist in the chosen
-  location. To update an existing file [update_rmd].
+  location. To update an existing file \code{\link{update_rmd}}.
 }

@@ -36,5 +36,5 @@ Replaces the content of an existing file in Google Drive with the contents of
   a local `.Rmd` file.
 }
 \details{
-*Use with caution as tracked changes in the Google Drive file will be lost!*
+\emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 }
