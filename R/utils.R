@@ -320,7 +320,7 @@ stop_quietly <- function(text = NULL) {
 # Messages Utils -----
 
 main_process <- function(message){
-  cli::cat_rule(message)
+  cat(cli::cat_rule(message), "\n")
 }
 
 emph_file <- function(file){
