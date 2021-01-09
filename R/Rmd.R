@@ -88,8 +88,6 @@ upload_rmd <- function(file,
     
     if (isTRUE(upload_report)) {
       
-      start_process("Uploading report...")
-      
       # function to knit a temporary report named .report_temp.Rmd
       
       knit_report(local_path = local_path) 
@@ -197,8 +195,6 @@ update_rmd <- function(file,
                                       team_drive = team_drive) 
     
         if(nrow(dribble_report) < 1){ 
-          
-          start_process("Uploading report...")
           
           # get dribble of the parent
           path <- get_parent_dribble(path = path, 
@@ -346,4 +342,87 @@ render_rmd <- function(file,
   }
 }
 
-#----
+#----    final_rmd    ----
+
+#' Upload final compiled documemnt on Google Drive
+#'
+#' Render the final .Rdm file and upload the overall version to the specified folder
+#' 
+#' @inheritParams upload_rmd
+#' @return NULL
+#' @export
+#' 
+
+final_rmd <- function(file,
+                      path = "rmdrive",
+                      team_drive = NULL) {
+  
+  main_process(paste0("Uploading the final version of ", emph_file(local_file), "..."))
+  
+  gfile <- basename(file)
+  
+  # get dribble of the parent
+  path <- get_dribble(path)
+  
+  # check whether local file exists
+  local_path <-  dirname(file)
+  local_file <- paste0(basename(file), ".Rmd")
+  check_file(file.path(local_path, local_file))
+  
+  # search for gfile_final
+  
+  dribble <- googledrive::drive_find(q = c(paste0("'", path$id,"' in parents", collapse = " and "),
+                                paste0("name contains ", "'", gfile, "_final", "'")),
+                          team_drive = team_drive)
+  
+  start_process("Rendering document...")
+  
+  final_file <- rmarkdown::render(file.path(local_path, local_file),
+                                  output_file = paste0(basename(file), "_final"),
+                                  quiet = T)
+  
+  # check if the document is html and if chrome is installed
+  
+  if (stringr::str_detect(basename(final_file), ".html")){
+    if (!is.null(pagedown::find_chrome())) {
+      
+      # print knitted html to pdf
+      final_file <-pagedown::chrome_print(file.path(local_path, basename(final_file)))
+      
+    } else {
+      cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
+    }
+  }
+  
+  if (nrow(dribble) < 1) { 
+    
+    googledrive::drive_upload(
+      media = file.path(local_path, basename(final_file)),
+      path = path,
+      name = basename(final_file),
+      verbose = F
+    )
+    
+    finish_process(paste(emph_file(file), "final version uploaded!"))
+    
+  } else{
+    
+    update_file <- utils::menu(c("Yes", "No"),
+                title = paste("The", basename(final_file), "is already present on Google Drive. Do you want to update it?"))
+    
+    if (update_file == 1) {
+      
+      # update local file to Google Drive
+      googledrive::drive_update(
+        file = dribble,
+        media = file.path(local_path, basename(final_file)),
+        verbose = F
+      )
+      
+      finish_process(paste(emph_file(file), "final version updated!"))
+      
+    } else
+      
+      cli::cli_alert_warning("Updating aborted!")
+  }
+}

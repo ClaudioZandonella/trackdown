@@ -98,6 +98,8 @@ get_dribble <- function(gfile, path = NULL, team_drive = NULL) {
   }
 }
 
+# TODO check if dribble_old has to be removed
+
 get_dribble_old <- function(gfile, path = NULL, team_drive = NULL) {
   if (!is.null(path)) {
     googledrive::drive_get(path = path, team_drive = team_drive) %>%
@@ -161,9 +163,11 @@ get_path_dribble <- function(path , team_drive = NULL){
         } else {
           
           # create folder in google drive and return dribble
-          dribble <- create_drive_folder(name = path[i:length(path)], 
+          dribble <- create_drive_folder(name = path[i:length(path)],
                                          parent_id = id_folders, 
                                          team_drive = team_drive)
+          
+          finish_process(paste(cli::col_magenta(name), "folder created on Google Drive!"))
           
           return(dribble)
         }
@@ -227,11 +231,13 @@ create_drive_folder <- function(name, parent_id = "root", team_drive = NULL){
   for (i in seq_along(name)){
     #create folder using parent id (NULL if is not available)
     dribble_folder <- googledrive::drive_mkdir(name = name[i],
-                                               path = googledrive::as_id(parent_id))
+                                               path = googledrive::as_id(parent_id),
+                                               verbose = F)
     cat("\n")
     
     # use folder id as parent for the next folder
     parent_id <- dribble_folder$id
+
   }
   
   return(dribble_folder)

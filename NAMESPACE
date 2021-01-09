@@ -2,6 +2,7 @@
 
 export("%>%")
 export(download_rmd)
+export(final_rmd)
 export(render_rmd)
 export(update_rmd)
 export(upload_rmd)

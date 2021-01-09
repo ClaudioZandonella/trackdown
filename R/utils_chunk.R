@@ -126,8 +126,6 @@ hide_chunk <- function(file_text, local_path){
   cat(paper, file = file_text)
 }
 
-
-
 #----    restore_chunk    ----
 
 # add chunk at the placeholder position
@@ -178,6 +176,8 @@ knit_report <- function(local_path){
     paste0(collapse = "\n\n")
   
   cat(yaml_header, temp_chunk, sep = "\n\n", file = file.path(local_path, ".report_temp.Rmd"))
+  
+  start_process("Compiling pdf report...")
   
   rmarkdown::render(file.path(local_path, ".report_temp.Rmd"), 
                     output_format = "pdf_document", 
