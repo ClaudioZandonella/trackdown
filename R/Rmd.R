@@ -144,7 +144,7 @@ update_rmd <- function(file,
   # check whether local file exists
   local_path <-  dirname(file)
   local_file <- paste0(basename(file), ".Rmd")
-  check_file(file.path(local_path, local_file)) #TODO to check, maybe mistake
+  check_file(file.path(local_path, local_file))
   
   # check whether file on Google Drive exists
   dribble <- get_dribble(gfile, path, team_drive)
@@ -222,7 +222,8 @@ update_rmd <- function(file,
           
           finish_process(paste(emph_file(file), "pdf report updated!"))
         }
-      file.remove(".report_temp.Rmd")
+        
+      file.remove(file.path(local_path, ".report_temp.Rmd"))
       }
     }
     
