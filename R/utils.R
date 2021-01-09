@@ -209,42 +209,29 @@ get_parent_dribble <- function(path = NULL, team_drive = NULL){
 #'
 #' @param name character vector indicating the sequence of folders to create
 #' @param parent_id a string indicating the Google Drive id of the parent folder
+#'   or "root" (default)
 #' @param team_drive a string indicating the name of a Google Team Drive
 #'   (optional).
 #'
 #' @return A dribble object with information of the created folder.
 #' @noRd
 #' 
-create_drive_folder <- function(name, parent_id = NULL, team_drive = NULL){
+#' @example  
+#' create_drive_folder(name = c("main_folder", "nested_folder"),
+#'                     parent_id = "root")
+#'                     
+create_drive_folder <- function(name, parent_id = "root", team_drive = NULL){
   
   if(parent_id == "root") parent_id <- get_root_id(team_drive = team_drive)
   
-  # if root id was not available
-  if(is.null(parent_id)){
+  for (i in seq_along(name)){
+    #create folder using parent id (NULL if is not available)
+    dribble_folder <- googledrive::drive_mkdir(name = name[i],
+                                               path = googledrive::as_id(parent_id))
+    cat("\n")
     
-    # create folder using full path
-    googledrive::drive_mkdir(name = paste0(name, collapse = "/"))
-    
-    dribble_folder <- googledrive::drive_find()
-    
-  } else {
-    
-    for (i in seq_along(name)){
-      #create folder using parent id
-      googledrive::drive_mkdir(name = name[i],
-                               path = googledrive::as_id(parent_id))
-      cat("\n")
-      
-      # get folder dribble
-      dribble_folder <- googledrive::drive_find(
-        q = c(paste0("'", parent_id,"' in parents"), 
-              "mimeType = 'application/vnd.google-apps.folder'",
-              paste0("name = '", name[i],"'")),
-        team_drive = team_drive)
-      
-      # use folder id as parent for the next folder
-      parent_id <- dribble_folder$id
-    }
+    # use folder id as parent for the next folder
+    parent_id <- dribble_folder$id
   }
   
   return(dribble_folder)
@@ -317,24 +304,29 @@ stop_quietly <- function(text = NULL) {
   stop()
 }
 
-# Messages Utils -----
+#----    Messages Utils    ----
 
+# main_process
 main_process <- function(message){
   cat(cli::cat_rule(message), "\n")
 }
 
+# emph_file
 emph_file <- function(file){
   cli::col_blue(basename(file))
 } 
 
+# sub_process
 sub_process <- function(message){
   cli::cli_li(message)
 }
 
+# start_process
 start_process <- function(message){
   cli::cat_bullet(bullet_col = "#8E8E8E", message)
 }
 
+# finish_process
 finish_process <- function(message){
   cli::cat_bullet(bullet = "tick", bullet_col = "green", message)
 }

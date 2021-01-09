@@ -146,7 +146,7 @@ update_rmd <- function(file,
   # check whether local file exists
   local_path <-  dirname(file)
   local_file <- paste0(basename(file), ".Rmd")
-  check_file(file.path(local_path, local_file)) #TODO to check, maybe mistake
+  check_file(file.path(local_path, local_file))
   
   # check whether file on Google Drive exists
   dribble <- get_dribble(gfile, path, team_drive)
