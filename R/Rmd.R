@@ -88,8 +88,6 @@ upload_rmd <- function(file,
     
     if (isTRUE(upload_report)) {
       
-      start_process("Uploading report...")
-      
       # function to knit a temporary report named .report_temp.Rmd
       
       knit_report(local_path = local_path) 
@@ -197,8 +195,6 @@ update_rmd <- function(file,
                                       team_drive = team_drive) 
     
         if(nrow(dribble_report) < 1){ 
-          
-          start_process("Uploading report...")
           
           # get dribble of the parent
           path <- get_parent_dribble(path = path, 
