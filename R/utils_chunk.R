@@ -45,6 +45,12 @@ extract_chunk <- function(local_rmd){
   chunk_info$chunk_text <- sapply(seq_along(starts), function(i){
     paste(local_rmd[starts[i]:ends[i]], collapse = "\n")
   }) # extract chunk and apply a \n
+  
+  chunk_info$chunk_name_file <- sapply(seq_along(chunk_info$name), function(i){
+    ifelse(is.na(chunk_info$name[i]),
+           yes = paste0("[[", "chunk_", i, "]]"),
+           no = paste0("[[", "chunk_", chunk_info$name[i], "]]"))
+  })
 
   return(chunk_info)
 }
@@ -53,12 +59,16 @@ extract_chunk <- function(local_rmd){
 
 # Extract yaml header
 
-extract_yaml <- function(local_rmd){
+extract_yaml <- function(local_rmd, collapse = TRUE){
   
   yaml_index <- which(local_rmd == "---") # chunk start
   
-  res <- paste(local_rmd[yaml_index[1]:yaml_index[2]], collapse = "\n")
+  if(isTRUE(collapse)){
   
+    res <- paste(local_rmd[yaml_index[1]:yaml_index[2]], collapse = "\n")
+  } else{
+    res <- local_rmd[yaml_index[1]:yaml_index[2]]
+  }
   return(res)
 }
 
@@ -137,16 +147,20 @@ restore_chunk <- function(local_rmd){
   local_file <- basename(local_rmd)
   
   chunk_info <- readRDS(file = file.path(local_path,".rmdrive","chunk_info.rds"))
-  
   temp_paper <- readLines(local_rmd, warn = F)
   
-  index <- which(startsWith(temp_paper, "[[chunk")) # check each chunk
+  index <- which(startsWith(temp_paper, "[[chunk")) # chunk index
   
-  for(i in seq_along(chunk_info$chunk_text)){
-    temp_paper[index[i]] <- chunk_info$chunk_text[[i]]
+  if (length(index) < nrow(chunk_info)) {
+    temp_paper <- repair_chunks(temp_paper, chunk_info, index)
+  } else{
+    
+    for(i in seq_along(chunk_info$index)) {
+      temp_paper[index[i]] <- chunk_info$chunk_text[i]
+    }
   }
   
-  # sanitize paper
+# sanitize paper
   temp_paper <- temp_paper %>% 
     c("") %>% 
     paste(collapse = "\n") %>% 
@@ -154,6 +168,44 @@ restore_chunk <- function(local_rmd){
     stringr::str_replace_all("\n\n\n", "\n\n") # remove extra spaces
   
   cat(temp_paper, file = local_rmd)
+  
+}
+
+#----    restore_chunk    ----
+
+# Repairs chunk if missing from the online file
+
+repair_chunks <- function(temp_paper, chunk_info, index){
+  
+  name <- stringr::str_extract(temp_paper, pattern = "\\[(.*?)\\]\\]") # extract available names
+  name <- name[!is.na(name)] # clean
+  
+  name <- ifelse(chunk_info$chunk_name_file %in% name, chunk_info$chunk_name_file, NA)
+  
+  temp_yaml <- extract_yaml(temp_paper, collapse = F)
+  
+  end_yaml <- which(temp_yaml == "---")[2]
+  
+  count <- 1
+  
+  for(i in seq_along(chunk_info$index)) {
+    
+    if (is.na(name[i])) {
+      if (i == 1) {
+        temp_paper[end_yaml] <- paste0("---", "\n", chunk_info$chunk_text[1], collapse = "\n")
+      } else {
+        temp_paper[index[count]+1] <- chunk_info$chunk_text[i]
+      }
+      
+    } else {
+      
+      temp_paper[index[count]] <- chunk_info$chunk_text[i]
+      count <- count + 1
+    }
+    
+  }
+  
+  return(temp_paper)
   
 }
 
