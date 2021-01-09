@@ -19,5 +19,6 @@ Imports:
   stringr,
   tibble,
   tools,
-  dplyr
+  dplyr,
+  pagedown
 RoxygenNote: 7.1.1
