@@ -226,7 +226,8 @@ update_rmd <- function(file,
           
           finish_process(paste(emph_file(file), "pdf report updated!"))
         }
-      file.remove(".report_temp.Rmd")
+        
+      file.remove(file.path(local_path, ".report_temp.Rmd"))
       }
     }
     
