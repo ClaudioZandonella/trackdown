@@ -9,12 +9,33 @@
     ]
   },
   "Packages": {
+    "AsioHeaders": {
+      "Package": "AsioHeaders",
+      "Version": "1.16.1-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9305444d113b052089eba3694047d42d"
+    },
+    "BH": {
+      "Package": "BH",
+      "Version": "1.72.0-3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8f9ce74c6417d61f0782cbae5fd2b7b0"
+    },
     "R6": {
       "Package": "R6",
       "Version": "2.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b203113193e70978a696b2809525649d"
+    },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.0.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "125dc7a0ed375eb68c0ce533b48d291f"
     },
     "askpass": {
       "Package": "askpass",
@@ -36,6 +57,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "543776ae6848fde2f48ff3816d0628bc"
+    },
+    "bookdown": {
+      "Package": "bookdown",
+      "Version": "0.21",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "1bf627f1f77313e345f71e779b658578"
     },
     "cli": {
       "Package": "cli",
@@ -147,6 +175,13 @@
       "RemoteSha": "d18bd8e404fb3e7d25dd448b1f8300f16a44add8",
       "Hash": "624938244a70d1610a4f72a7cd7f93df"
     },
+    "httpuv": {
+      "Package": "httpuv",
+      "Version": "1.5.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4e6dabb220b006ccdc3b3b5ff993b205"
+    },
     "httr": {
       "Package": "httr",
       "Version": "1.4.2",
@@ -167,6 +202,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "e5f4c41c17df8cdf7b0df12117c0d99a"
+    },
+    "later": {
+      "Package": "later",
+      "Version": "1.1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d0a62b247165aabf397fded504660d8a"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -203,6 +245,13 @@
       "Repository": "CRAN",
       "Hash": "a399e4773075fc2375b71f45fca186c4"
     },
+    "pagedown": {
+      "Package": "pagedown",
+      "Version": "0.13",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e6bc3e2140f0bcc9005cdcbcc9d33ad0"
+    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.4.6",
@@ -216,6 +265,27 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "01f28d4278f15c76cddbea05899c5d6f"
+    },
+    "processx": {
+      "Package": "processx",
+      "Version": "3.4.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "22aab6098cb14edd0a5973a8438b569b"
+    },
+    "promises": {
+      "Package": "promises",
+      "Version": "1.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a8730dcbdd19f9047774909f0ec214a4"
+    },
+    "ps": {
+      "Package": "ps",
+      "Version": "1.5.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ebaed51a03411fd5cfc1e12d9079b353"
     },
     "purrr": {
       "Package": "purrr",
@@ -244,6 +314,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "20a0a94af9e8f7040510447763aab3e9"
+    },
+    "servr": {
+      "Package": "servr",
+      "Version": "0.21",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "48d1289a847c801b3f0e76fc619fa65d"
     },
     "stringi": {
       "Package": "stringi",
@@ -307,6 +384,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0bc90078aeee42f2520b1d0a33bd6758"
+    },
+    "websocket": {
+      "Package": "websocket",
+      "Version": "1.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "76ca9061b6fedb4a9547c16d23eb74a6"
     },
     "withr": {
       "Package": "withr",
