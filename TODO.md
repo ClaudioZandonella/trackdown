@@ -1,10 +1,11 @@
 # TODO
 
-* check `regex()` dep
-* remove `.temp*` files if the script fail
 * clean utilities file with `on.exit()` to avoid leaving trash if function fails
+  * remove `report_pdf`
 * save default setting hide_chunks and upload_report for each document so user don't need to specify each time
-
+* change default report name to filename + report
+* manage removed chunk from google drive
+* do not exclude setup chunk
 
 # Notes
 
