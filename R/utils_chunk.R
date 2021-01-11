@@ -171,7 +171,7 @@ restore_chunk <- function(local_rmd){
   
 }
 
-#----    restore_chunk    ----
+#----    repair_chunks    ----
 
 # Repairs chunk if missing from the online file
 
