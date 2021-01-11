@@ -344,9 +344,9 @@ render_rmd <- function(file,
 
 #----    final_rmd    ----
 
-#' Upload final compiled documemnt on Google Drive
+#' Upload final compiled document on Google Drive
 #'
-#' Render the final .Rdm file and upload the overall version to the specified folder
+#' Render the final .Rmd file and upload the overall version to the specified folder
 #' 
 #' @inheritParams upload_rmd
 #' @return NULL
