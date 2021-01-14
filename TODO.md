@@ -22,3 +22,9 @@
 - deal with possible errors when compiling.
 
 - cache
+
+# Problems
+
+- problems when chunks have not the `{}` syntax like simply writing raw code to not evaluate
+
+
