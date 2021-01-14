@@ -198,6 +198,7 @@ restore_chunk <- function(local_rmd){
 repair_chunks <- function(temp_paper, chunk_info, index){
   
   name <- stringr::str_extract(temp_paper, pattern = "\\[(.*?)\\]\\]") # extract available names
+  
   name <- name[!is.na(name)] # clean
   
   name <- ifelse(chunk_info$chunk_name_file %in% name, chunk_info$chunk_name_file, NA)
@@ -206,21 +207,16 @@ repair_chunks <- function(temp_paper, chunk_info, index){
   
   end_yaml <- which(temp_yaml == "---")[2]
   
-  count <- 1
+  count <- 0
+  index <- rev(index)
   
-  for(i in seq_along(chunk_info$index)) {
+  for(i in nrow(chunk_info):1){
     
-    if (is.na(name[i])) {
-      if (i == 1) {
-        temp_paper[end_yaml] <- paste0("---", "\n", chunk_info$chunk_text[1], collapse = "\n")
-      } else {
-        temp_paper[index[count]+1] <- chunk_info$chunk_text[i]
-      }
-      
-    } else {
-      
-      temp_paper[index[count]] <- chunk_info$chunk_text[i]
+    if(is.na(name[i])) {
+      temp[index[count]] <- paste0(chunk_info$chunk_text[i], "\n\n", temp[index[count]])
+    }else{
       count <- count + 1
+      temp[index[count]] <- chunk_info$chunk_text[i]
     }
     
   }
