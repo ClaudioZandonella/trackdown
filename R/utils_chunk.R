@@ -35,8 +35,28 @@ extract_chunk <- function(local_rmd){
   
   # Extract Chunk
   
-  starts <- which(startsWith(local_rmd, "```{")) # chunk start
-  ends <- which(local_rmd == "```") # chunk end
+  all <- which(grepl("```", local_rmd)) # chunk start
+  
+  # The start index is odd and the end is even
+  
+  starts <- all[seq(1, length(all), 2)] # chunk start
+  ends <- all[seq(2, length(all), 2)] # chunk ends
+  
+  
+  # Check if chunk without language exist
+  
+  if(nrow(chunk_info) != length(starts)) {
+    
+    extra_starts <- setdiff(starts, chunk_info$starts) # check missing starts
+    
+    # add empty rows to chunk table
+    chunk_info[(nrow(chunk_info)+1):(nrow(chunk_info) + length(extra_starts)), ] <- NA
+    
+    chunk_info$starts <- ifelse(is.na(chunk_info$starts), extra_starts, chunk_info$starts) # replace starts
+    
+    chunk_info <- chunk_info[order(chunk_info$starts), ] # reorder chunk info
+    
+  }
   
   chunk_info$ends <- ends
   
