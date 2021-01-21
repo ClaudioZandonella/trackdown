@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.com/ClaudioZandonella/reviewdown.svg?branch=develop)](https://travis-ci.com/ClaudioZandonella/reviewdown)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/ClaudioZandonella/reviewdown?branch=master&svg=true)](https://ci.appveyor.com/project/ClaudioZandonella/reviewdown)
 <!-- badges: end -->
 
 `reviewdown` builds up from the ideas provided by `rmdrive` r-package https://github.com/ekothe/rmdrive, which offers functions to copy `.Rmd` files to Google Drive for synchronous collaborative editing, then return them back to a local `.Rmd` file for rendering.  
