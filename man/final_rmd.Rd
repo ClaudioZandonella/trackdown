@@ -2,7 +2,7 @@
 % Please edit documentation in R/Rmd.R
 \name{final_rmd}
 \alias{final_rmd}
-\title{Upload final compiled documemnt on Google Drive}
+\title{Upload final compiled document on Google Drive}
 \usage{
 final_rmd(file, path = "rmdrive", team_drive = NULL)
 }
@@ -19,5 +19,5 @@ recommended.}
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 }
 \description{
-Render the final .Rdm file and upload the overall version to the specified folder
+Render the final .Rmd file and upload the overall version to the specified folder
 }

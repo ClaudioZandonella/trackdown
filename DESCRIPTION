@@ -8,22 +8,24 @@ Authors@R: as.person(c(
 Description: Provides functions for uploading local .Rmd files to Google Drive
   as well as downloading and rendering .Rmd files edited on Google Drive.
 Depends: R (>= 3.5)
-License: MIT
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-  googledrive,
-  devtools,
-  magrittr,
-  purrr,
-  rmarkdown,
-  stringr,
-  tibble,
-  tools,
-  dplyr,
-  pagedown
+    cli,
+    devtools,
+    dplyr,
+    googledrive,
+    magrittr,
+    pagedown,
+    purrr,
+    rmarkdown,
+    stringr,
+    tibble,
+    tools
 RoxygenNote: 7.1.1
 Suggests: 
+    gargle,
+    sodium,
     testthat,
-    vcr,
-    sodium
+    vcr

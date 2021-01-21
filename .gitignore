@@ -9,6 +9,7 @@
 deprecated/
 test/
 .rmdrive/
+prova/
 
 #----    mac auxiliary files    ----
 .DS_Store

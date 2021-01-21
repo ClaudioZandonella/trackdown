@@ -15,7 +15,7 @@
 
 #----    Add to .Rbuildignore    ----
 
-# usethis::use_build_ignore("TODO.Rmd")
+# usethis::use_build_ignore("prova/")
 
 #----    Check package    ----
 
