@@ -7,6 +7,10 @@
 
 [![Travis build
 status](https://travis-ci.com/ClaudioZandonella/reviewdown.svg?branch=develop)](https://travis-ci.com/ClaudioZandonella/reviewdown)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/ClaudioZandonella/reviewdown?branch=develop&svg=true)](https://ci.appveyor.com/project/ClaudioZandonella/reviewdown)
+[![Codecov test
+coverage](https://codecov.io/gh/ClaudioZandonella/reviewdown/branch/develop/graph/badge.svg)](https://codecov.io/gh/ClaudioZandonella/reviewdown?branch=develop)
 <!-- badges: end -->
 
 `reviewdown` builds up from the ideas provided by `rmdrive` r-package

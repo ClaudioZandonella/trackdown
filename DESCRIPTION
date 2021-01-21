@@ -29,4 +29,5 @@ Suggests:
     gargle,
     sodium,
     testthat,
-    vcr
+    vcr,
+    covr
