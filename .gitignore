@@ -1,8 +1,11 @@
+#----    R auxiliary files    -----
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 .rmdrive
+
+#----    folders    ----
 deprecated/
 test/
 .rmdrive/
@@ -10,4 +13,6 @@ test/
 #----    mac auxiliary files    ----
 .DS_Store
 
-#----
+#----    authentication token    ----
+.secrets
+!tests/testthat/.secrets

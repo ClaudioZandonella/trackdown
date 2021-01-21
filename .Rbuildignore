@@ -4,4 +4,4 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^TODO\.md$
-
+^\.secrets$
