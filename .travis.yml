@@ -1,0 +1,79 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+
+jobs:
+  include:
+    - name: "Linux R release" # Linux R release
+      os: linux
+      language: R
+      r: release
+      cache:
+        directories:
+          - /home/travis/.linuxbrew
+          - $HOME/.local/share/renv # global renv cache in linux (not used)
+          - $TRAVIS_BUILD_DIR/renv/library # local renv cache
+
+    # - name: "Linux R devel" # Linux R release
+    #   os: linux
+    #   language: R
+    #   r: devel
+    #   cache:
+    #     directories:
+    #       - /home/travis/.linuxbrew
+    #       - $HOME/.local/share/renv # global renv cache in linux (not used)
+    #       - $TRAVIS_BUILD_DIR/renv/library # local renv cache
+
+    - name: "macOS R release"       # MacOS R release
+      os: osx
+      language: R
+      r: release
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes'
+      env:
+        - RENV_PATHS_ROOT="$HOME/renv/cache"
+      # before_install:
+      #   - brew update
+      #   - brew install ccache
+      cache:
+        ccache: true
+        directories:
+          - $HOME/Library/Caches/Homebrew
+          - /usr/local/Homebrew
+          - /usr/local/lib/R
+          - $RENV_PATHS_ROOT # global renv cache in MacOS (not used)
+          - $TRAVIS_BUILD_DIR/renv/library # local renv cache
+      before_cache:
+        - brew cleanup
+        - find /usr/local/Homebrew \! -regex ".+\.git.+" -delete
+
+    # - name: "macOS R devel"       # MacOS R release
+    #   os: osx
+    #   language: R
+    #   r: devel
+    #   r_build_args: '--no-build-vignettes'
+    #   r_check_args: '--ignore-vignettes'
+    #   env:
+    #     - RENV_PATHS_ROOT="$HOME/renv/cache"
+    #   # before_install:
+    #   #   - brew update
+    #   #   - brew install ccache
+    #   cache:
+    #     ccache: true
+    #     directories:
+    #       - $HOME/Library/Caches/Homebrew
+    #       - /usr/local/Homebrew
+    #       - /usr/local/lib/R
+    #       - $RENV_PATHS_ROOT # global renv cache in MacOS (not used)
+    #       - $TRAVIS_BUILD_DIR/renv/library # local renv cache
+    #   before_cache:
+    #     - brew cleanup
+    #     - find /usr/local/Homebrew \! -regex ".+\.git.+" -delete
+
+
+install:
+  - Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')"
+  - Rscript -e "renv::restore()"
+
+# after_success:
+#   - Rscript -e 'covr::codecov(token = "549179f1-fef6-4a05-be11-e2b5029df6a0", branch = "master")'

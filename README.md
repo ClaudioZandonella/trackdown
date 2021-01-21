@@ -3,6 +3,12 @@
 
 # reviewdown
 
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/ClaudioZandonella/reviewdown.svg?branch=develop)](https://travis-ci.com/ClaudioZandonella/reviewdown)
+<!-- badges: end -->
+
 `reviewdown` builds up from the ideas provided by `rmdrive` r-package
 <https://github.com/ekothe/rmdrive>, which offers functions to copy
 `.Rmd` files to Google Drive for synchronous collaborative editing, then

@@ -7,3 +7,4 @@
 ^\.secrets$
 ^prova$
 ^LICENSE\.md$
+^\.travis\.yml$
