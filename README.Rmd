@@ -17,15 +17,18 @@ knitr::opts_chunk$set(
 `reviewdown` builds up from the ideas provided by `rmdrive` r-package https://github.com/ekothe/rmdrive, which offers functions to copy `.Rmd` files to Google Drive for synchronous collaborative editing, then return them back to a local `.Rmd` file for rendering.  
 
 
-# Old instructions from rmdrive
-
 # Installation
 
 This package is not on CRAN. To install it, please run the following code:
 
 ```{r eval=FALSE}
-remotes::install_github("januz/rmdrive")
+remotes::install_github("ClaudioZandonella/reviewdown", 
+                        ref = "develop")
 ```
+
+
+# Old instructions from rmdrive
+
 
 # How to use
 

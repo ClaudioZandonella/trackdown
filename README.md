@@ -8,16 +8,17 @@
 `.Rmd` files to Google Drive for synchronous collaborative editing, then
 return them back to a local `.Rmd` file for rendering.
 
-# Old instructions from rmdrive
-
 # Installation
 
 This package is not on CRAN. To install it, please run the following
 code:
 
 ``` r
-remotes::install_github("januz/rmdrive")
+remotes::install_github("ClaudioZandonella/reviewdown", 
+                        ref = "develop")
 ```
+
+# Old instructions from rmdrive
 
 # How to use
 
