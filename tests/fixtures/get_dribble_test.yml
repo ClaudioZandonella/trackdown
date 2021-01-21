@@ -1,0 +1,144 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://www.googleapis.com/drive/v3/files?orderBy=recency%20desc&q=%28%27root%27%20in%20parents%29%20and%20%28name%20%3D%20%27Hello-World%27%29%20and%20%28trashed%20%3D%20false%29&supportsTeamDrives=TRUE&fields=%2A
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
+        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
+        ma=2592000; v="46,43"
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      content-encoding: gzip
+      content-length: '1029'
+      content-security-policy: frame-ancestors 'self'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 21 Jan 2021 19:24:31 GMT
+      expires: Mon, 01 Jan 1990 00:00:00 GMT
+      pragma: no-cache
+      server: GSE
+      vary:
+      - Origin
+      - X-Origin
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-xss-protection: 1; mode=block
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+         "kind": "drive#fileList",
+         "incompleteSearch": false,
+         "files": [
+          {
+           "kind": "drive#file",
+           "id": "1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg",
+           "name": "Hello-world",
+           "mimeType": "application/vnd.google-apps.document",
+           "starred": false,
+           "trashed": false,
+           "explicitlyTrashed": false,
+           "parents": [
+            "0AFEWMwVgJC6fUk9PVA"
+           ],
+           "spaces": [
+            "drive"
+           ],
+           "version": "5",
+           "webViewLink": "https://docs.google.com/document/d/1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg/edit?usp=drivesdk",
+           "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
+           "hasThumbnail": false,
+           "thumbnailVersion": "0",
+           "viewedByMe": true,
+           "viewedByMeTime": "2021-01-21T19:09:15.120Z",
+           "createdTime": "2021-01-21T19:09:01.964Z",
+           "modifiedTime": "2021-01-21T19:09:15.120Z",
+           "modifiedByMeTime": "2021-01-21T19:09:15.120Z",
+           "modifiedByMe": true,
+           "owners": [
+            {
+             "kind": "drive#user",
+             "displayName": "review down",
+             "me": true,
+             "permissionId": "05270575818361544715",
+             "emailAddress": "reviewdown.test@gmail.com"
+            }
+           ],
+           "lastModifyingUser": {
+            "kind": "drive#user",
+            "displayName": "review down",
+            "me": true,
+            "permissionId": "05270575818361544715",
+            "emailAddress": "reviewdown.test@gmail.com"
+           },
+           "shared": false,
+           "ownedByMe": true,
+           "capabilities": {
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDownload": true,
+            "canEdit": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+           },
+           "viewersCanCopyContent": true,
+           "copyRequiresWriterPermission": false,
+           "writersCanShare": true,
+           "permissions": [
+            {
+             "kind": "drive#permission",
+             "id": "05270575818361544715",
+             "type": "user",
+             "emailAddress": "reviewdown.test@gmail.com",
+             "role": "owner",
+             "displayName": "review down",
+             "deleted": false
+            }
+           ],
+           "permissionIds": [
+            "05270575818361544715"
+           ],
+           "quotaBytesUsed": "0",
+           "isAppAuthorized": false,
+           "exportLinks": {
+            "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=rtf",
+            "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=odt",
+            "text/html": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=html",
+            "application/pdf": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=pdf",
+            "application/epub+zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=epub",
+            "application/zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=zip",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=docx",
+            "text/plain": "https://docs.google.com/feeds/download/documents/export/Export?id=1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg&exportFormat=txt"
+           }
+          }
+         ]
+        }
+  recorded_at: 2021-01-21 19:24:31 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

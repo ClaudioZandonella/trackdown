@@ -37,7 +37,7 @@
 
 # covr::report()
 # covr::codecov()
-# covr::codecov(token = "549179f1-fef6-4a05-be11-e2b5029df6a0", branch = "develop")
+# covr::codecov(token = "568ca473-a0ed-4fcf-85a0-d368e97d84f8", branch = "develop")
 
 #----    pkgdown    ----
 
