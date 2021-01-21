@@ -1,11 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rmdrive <img src="man/figures/rmdrive_hex.png" align="right" width ="150" height="165"/>
+# reviewdown
 
-`rmdrive` provides convenience functions to copy `.Rmd` files to Google
-Drive for synchronous collaborative editing, then return them back to a
-local `.Rmd` file for rendering.
+`reviewdown` builds up from the ideas provided by `rmdrive` r-package
+<https://github.com/ekothe/rmdrive>, which offers functions to copy
+`.Rmd` files to Google Drive for synchronous collaborative editing, then
+return them back to a local `.Rmd` file for rendering.
+
+# Old instructions from rmdrive
 
 # Installation
 

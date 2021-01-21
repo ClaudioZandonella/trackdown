@@ -1,9 +1,10 @@
-Package: rmdrive
+Package: reviewdown
 Title: Functions for Collaborative Editing of RMarkdown files on Google Drive
 Version: 0.0.0.9000
 Authors@R: as.person(c(
     "Emily Kothe <emily.kothe@deakin.edu.au> [aut, cre]", 
-    "Janosch Linkersdörfer <linkersdoerfer@mailbox.org> [aut]"
+    "Janosch Linkersdörfer <linkersdoerfer@mailbox.org> [aut]",
+    "new authors [aut]"
   ))
 Description: Provides functions for uploading local .Rmd files to Google Drive
   as well as downloading and rendering .Rmd files edited on Google Drive.

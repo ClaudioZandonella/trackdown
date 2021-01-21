@@ -27,8 +27,8 @@
 #' 
 
 get_auth_credentials <- function(){
-  if (gargle:::secret_can_decrypt("rmdrive")) {
-    token_name <- gargle:::secret_read("rmdrive", "rmdrive-testing-name")
+  if (gargle:::secret_can_decrypt("reviewdown")) {
+    token_name <- gargle:::secret_read("reviewdown", "reviewdown-testing-name")
     
     token_name <- token_name[!token_name=='00']
     token_name <- rawToChar(token_name)
