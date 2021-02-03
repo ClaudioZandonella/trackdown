@@ -15,7 +15,7 @@
 
 #----    Add to .Rbuildignore    ----
 
-usethis::use_build_ignore("TODO.md")
+# usethis::use_build_ignore("TODO.md")
 
 #----    Check package    ----
 
