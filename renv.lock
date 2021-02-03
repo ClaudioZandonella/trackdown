@@ -249,10 +249,10 @@
     },
     "git2r": {
       "Package": "git2r",
-      "Version": "0.27.1",
+      "Version": "0.28.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "531a82d1beed1f545beb25f4f5945bf7"
+      "Hash": "f64fd34026f6025de71a4354800e6d79"
     },
     "glue": {
       "Package": "glue",
