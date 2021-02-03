@@ -5,4 +5,6 @@ options(
   gargle_oauth_email = "reviewdown.test@gmail.com"
 )
 
-devtools::load_all()
+if (interactive() && require('devtools')){
+  devtools::load_all()
+  }
