@@ -28,6 +28,7 @@ RoxygenNote: 7.1.1
 Suggests: 
     gargle,
     sodium,
-    testthat,
+    testthat (>= 3.0.0),
     vcr,
     covr
+Config/testthat/edition: 3
