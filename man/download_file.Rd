@@ -6,7 +6,7 @@
 \usage{
 download_file(
   file,
-  gfile = basename(file),
+  gfile = NULL,
   path = "rmdrive",
   team_drive = NULL,
   restore_chunks = FALSE

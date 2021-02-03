@@ -13,9 +13,12 @@
 #' @noRd
 #'
 check_file <- function(file) {
+  # check file is a single string
+  if(!(is.character(file) && length(file) == 1L))
+    stop("file has to be a single string")
+  
   if (!file.exists(file)) {
-    stop("file does not exist: ", sQuote(file), 
-         ".\nRemember to specify name without extension ;)", call. = FALSE)
+    stop('file does not exist: "', file,'"', call. = FALSE)
   }
 }
 
@@ -145,6 +148,57 @@ finish_process <- function(message){
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+#----    get_file_info    ----
+
+#' Get file info
+#' 
+#' Given the path to a file, get file information about path, file-name, file
+#' extension, file-basename.
+#'
+#' @param file a string indicating the path to a file
+#'
+#' @return a list with
+#' \itemize{
+#'   \item{path: the path to the file. If there is no path \code{"."} is
+#'   returned}
+#'   \item{file_name: file name with extension}
+#'   \item{extension: the file extension without point and all lowercase}
+#'   \item{file_basename: the file name without extesion}
+#' }
+#' 
+#' @noRd
+#' 
+#' @examples
+#' get_file_info("my_folder/my_file.txt")
+#' get_file_info("my.file.txt")
+#' 
+
+get_file_info <- function(file){
+  # check file is a single string
+  if(!(is.character(file) && length(file) == 1L))
+    stop("file has to be a single string")
+  
+  # get info
+  path <- dirname(file)
+  file_name <- basename(file)
+  
+  # ensure there is extension
+  if(!grepl(pattern = "\\.", file_name))
+    stop("file do not include extension")
+  
+  # get extension as last element split "."
+  extension <- stringr::str_split(file_name, pattern = "\\.")[[1]] %>%
+    tail(n = 1)
+  
+  file_basename <- sub(pattern = paste0("\\.", extension), replacement = "",
+                       file_name)
+  
+  return(list(path = path,
+              file_name = file_name,
+              extension = tolower(extension), # get lowercase
+              file_basename = file_basename))
+}
 
 #----
 

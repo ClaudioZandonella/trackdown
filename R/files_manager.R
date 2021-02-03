@@ -33,7 +33,7 @@
 #' @export
 #'
 upload_file <- function(file,
-                        gfile = basename(file),
+                        gfile = NULL,
                         path = "rmdrive",
                         team_drive = NULL,
                         hide_chunks = FALSE,
@@ -41,10 +41,13 @@ upload_file <- function(file,
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
-  # check whether local file exists
-  local_path <-  dirname(file)
-  local_file <- paste0(basename(file), ".Rmd")
-  check_file(file.path(local_path, local_file))
+  # check whether local file exists and get file info
+  check_file(file)
+  file_info <- get_file_info(file = file)
+  
+  # check gfile name
+  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
+  
   
   # check whether file on Google Drive exists
   dribble <- get_dribble(gfile = gfile,
@@ -65,23 +68,22 @@ upload_file <- function(file,
                              team_drive = team_drive)
   
   # create .temp-file to upload
-  temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".txt"))
-  file.copy(file.path(local_path, local_file), 
-            temp_file, overwrite = T)
+  temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".txt"))
+  file.copy(file, temp_file, overwrite = T)
   
   # We need to extract chunks in both cases
   if(isTRUE(hide_chunks) || isTRUE(upload_report)){
     
     # create .rmdrive folder with info about chunks
     init_rmdrive(file_text = temp_file,
-                 local_path = local_path)
+                 local_path = file_info$path)
     
     if (isTRUE(hide_chunks)) {
       
       start_process("Removing chunks...")
       
       hide_chunk(file_text = temp_file,
-                 local_path = local_path)
+                 local_path = file_info$path)
       
       finish_process(paste("Chunks removed from", emph_file(file)))
     }
@@ -90,10 +92,10 @@ upload_file <- function(file,
       
       # function to knit a temporary report named .report_temp.Rmd
       
-      knit_report(local_path = local_path) 
+      knit_report(local_path = file_info$path) 
       
       googledrive::drive_upload(
-        media = file.path(local_path, ".rmdrive/report_temp.pdf"),
+        media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
         path = path,
         name = paste0(gfile, "_report.pdf"),
         type = "pdf",
@@ -102,7 +104,7 @@ upload_file <- function(file,
       
       finish_process(paste(emph_file(file), "pdf report uploaded!"))
       
-      file.remove(file.path(local_path,".report_temp.Rmd"))
+      file.remove(file.path(file_info$path,".report_temp.Rmd"))
     }
   }
   
@@ -135,16 +137,18 @@ upload_file <- function(file,
 #' @export
 #'
 update_file <- function(file,
-                        gfile = basename(file),
+                        gfile = NULL,
                         path = "rmdrive",
                         team_drive = NULL,
                         hide_chunks = FALSE,
                         upload_report = FALSE) {
   
-  # check whether local file exists
-  local_path <-  dirname(file)
-  local_file <- paste0(basename(file), ".Rmd")
-  check_file(file.path(local_path, local_file))
+  # check whether local file exists and get file info
+  check_file(file)
+  file_info <- get_file_info(file = file)
+  
+  # check gfile name
+  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
   
   # check whether file on Google Drive exists
   dribble <- get_dribble(gfile, path, team_drive)
@@ -164,9 +168,8 @@ update_file <- function(file,
     main_process(paste("Uploading", emph_file(file), "with local changes..."))
     
     # create .temp-file to upload
-    temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".txt"))
-    file.copy(file.path(local_path, local_file), 
-              temp_file, overwrite = T)
+    temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".txt"))
+    file.copy(file, temp_file, overwrite = T)
     
     # We need to extract chunks in both cases
     if(isTRUE(hide_chunks) || isTRUE(upload_report)){
@@ -175,11 +178,11 @@ update_file <- function(file,
       
       # create .rmdrive folder with info about chunks
       init_rmdrive(file_text = temp_file,
-                   local_path = local_path)
+                   local_path = file_info$path)
       
       if (isTRUE(hide_chunks)) {
         hide_chunk(file_text = temp_file,
-                   local_path = local_path)
+                   local_path = file_info$path)
         
         finish_process("Chunks removed!")
       }
@@ -187,7 +190,7 @@ update_file <- function(file,
       if (isTRUE(upload_report)) {
         
         # knit uploaded pdf named .report_temp.Rmd
-        knit_report(local_path = local_path) 
+        knit_report(local_path = file_info$path) 
         
         # check if the file pdf report is already present
         dribble_report <- get_dribble(paste0(gfile, "_report.pdf"), 
@@ -202,7 +205,7 @@ update_file <- function(file,
           
           # upload local file to Google Drive
           googledrive::drive_upload(
-            media = file.path(local_path, ".rmdrive/report_temp.pdf"),
+            media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
             path = path,
             name = paste0(gfile, "_report.pdf"),
             type = "pdf",
@@ -216,14 +219,14 @@ update_file <- function(file,
           # update local file to Google Drive
           googledrive::drive_update(
             file = dribble_report,
-            media = file.path(local_path, ".rmdrive/report_temp.pdf"),
+            media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
             verbose = F
           )
           
           finish_process(paste(emph_file(file), "pdf report updated!"))
         }
         
-      file.remove(file.path(local_path, ".report_temp.Rmd"))
+      file.remove(file.path(file_info$path, ".report_temp.Rmd"))
       }
     }
     
@@ -258,16 +261,18 @@ update_file <- function(file,
 #' @export
 #'
 download_file <- function(file,
-                         gfile = basename(file),
-                         path = "rmdrive",
-                         team_drive = NULL,
-                         restore_chunks = FALSE) {
+                          gfile = NULL,
+                          path = "rmdrive",
+                          team_drive = NULL,
+                          restore_chunks = FALSE) {
   
   main_process(paste("Downloading", emph_file(file), "with online changes..."))
 
-  # local info
-  local_path <-  dirname(file)
-  local_file <- paste0(basename(file), ".Rmd")
+  # check whether local file exists and get file info
+  file_info <- get_file_info(file = file)
+  
+  # check gfile name
+  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
   
   # check whether file on Google Drive exists
   dribble <- get_dribble(gfile, path, team_drive)
@@ -277,12 +282,12 @@ download_file <- function(file,
   googledrive::drive_download(
     file = dribble,
     type = "text/plain",
-    path = file.path(local_path, paste0(".temp-", basename(file))),
+    path = file.path(file_info$path, paste0(".temp-", basename(file))),
     overwrite = TRUE,
     verbose = F
   )
-  temp_file <- file.path(local_path, paste0(".temp-", basename(file), ".Rmd"))
-  file.rename(file.path(local_path, paste0(".temp-", basename(file), ".txt")),
+  temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".Rmd"))
+  file.rename(file.path(file_info$path, paste0(".temp-", basename(file), ".txt")),
               temp_file)
   
   if (restore_chunks) {
@@ -292,8 +297,8 @@ download_file <- function(file,
   sanitize_gfile(temp_file)
   
   # compare with and replace local file
-  if (!check_identity(local_path = local_path,
-                      local_file = local_file)) {
+  if (!check_identity(local_path = file_info$path,
+                      local_file = file_info$file_name)) {
     file.rename(temp_file, paste0(file, ".Rmd"))
     
     finish_process(paste(emph_file(file), "updated with online changes!"))

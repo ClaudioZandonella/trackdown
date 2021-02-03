@@ -6,7 +6,7 @@
 \usage{
 upload_file(
   file,
-  gfile = basename(file),
+  gfile = NULL,
   path = "rmdrive",
   team_drive = NULL,
   hide_chunks = FALSE,
