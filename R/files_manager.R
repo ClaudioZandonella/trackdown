@@ -1,16 +1,16 @@
 #############################
-####    Rmd Functions    ####
+####    Files Manager    ####
 #############################
 
-#----    upload_rmd    ----
+#----    upload_file    ----
 
-#' Upload `.Rmd` file to Google Drive for collaborative editing
+#' Upload file to Google Drive for collaborative editing
 #'
-#' Uploads a local `.Rmd` file to Google Drive as a plain text document. Will
+#' Uploads a local file to Google Drive as a plain text document. Will
 #' only upload the file if it doesn't already exist in the chosen location. By
 #' default files are uploaded in the folder "rmdrive", if is not available on
 #' Google Drive, permission to create is required to the user. To update an
-#' existing file \code{\link{update_rmd}}.
+#' existing file \code{\link{update_file}}.
 #'
 #' @param file character. The path (without file extension) of a local `.Rmd`
 #'   file.
@@ -32,12 +32,12 @@
 #' @return NULL
 #' @export
 #'
-upload_rmd <- function(file,
-                       gfile = basename(file),
-                       path = "rmdrive",
-                       team_drive = NULL,
-                       hide_chunks = FALSE,
-                       upload_report = FALSE) {
+upload_file <- function(file,
+                        gfile = basename(file),
+                        path = "rmdrive",
+                        team_drive = NULL,
+                        hide_chunks = FALSE,
+                        upload_report = FALSE) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
@@ -55,7 +55,7 @@ upload_rmd <- function(file,
     stop(
       "a file with this name already exists in GoogleDrive: ",
       sQuote(gfile),
-      ". Did you mean to use `update_rmd()`?",
+      ". Did you mean to use `update_file()`?",
       call. = FALSE
     )
   }
@@ -121,25 +121,25 @@ upload_rmd <- function(file,
   finish_process(paste(emph_file(file), "uploaded!"))
 }
 
-#----    update_rmd    ----
+#----    update_file    ----
 
-#' Updates `.Rmd` file in Google Drive
+#' Updates file in Google Drive
 #'
 #' Replaces the content of an existing file in Google Drive with the contents of
-#'   a local `.Rmd` file.
+#'   a local file.
 #'
 #' \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 #'
-#' @inheritParams upload_rmd
+#' @inheritParams upload_file
 #' @return NULL
 #' @export
 #'
-update_rmd <- function(file,
-                       gfile = basename(file),
-                       path = "rmdrive",
-                       team_drive = NULL,
-                       hide_chunks = FALSE,
-                       upload_report = FALSE) {
+update_file <- function(file,
+                        gfile = basename(file),
+                        path = "rmdrive",
+                        team_drive = NULL,
+                        hide_chunks = FALSE,
+                        upload_report = FALSE) {
   
   # check whether local file exists
   local_path <-  dirname(file)
@@ -238,11 +238,11 @@ update_rmd <- function(file,
   finish_process(paste(emph_file(file), "updated!"))
 }
 
-#----    download_rmd    ----
+#----    download_file    ----
 
-#' Downloads `.Rmd` from Google Docs
+#' Downloads from Google Docs
 #'
-#' Downloads a text file from Google Drive and saves it as a local `.Rmd`
+#' Downloads a text file from Google Drive and saves it as a local
 #'   file if the local file does not exist or differs from file in Google Drive.
 #'
 #' @param file character. The path (without file extension) of a local `.Rmd`
@@ -257,7 +257,7 @@ update_rmd <- function(file,
 #' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise
 #' @export
 #'
-download_rmd <- function(file,
+download_file <- function(file,
                          gfile = basename(file),
                          path = "rmdrive",
                          team_drive = NULL,
@@ -309,31 +309,31 @@ download_rmd <- function(file,
   return(invisible(changed)) # to retun a invisible TRUE/FALSE for rendering
 }
 
-#----    render_rmd    ----
+#----    render_file    ----
 
-#' Render Rmd file from GoogleDrive
+#' Render file from GoogleDrive
 #'
-#' Renders Rmd file from GoogleDrive if there have been edits
+#' Renders file from GoogleDrive if there have been edits
 #' 
-#' @inheritParams upload_rmd
+#' @inheritParams upload_file
 #' @param restore_chunks logical value indicating whether to restore code chunks
 #'   in the document.
 #' @return NULL
 #' @export
 #'
-render_rmd <- function(file,
-                       gfile = basename(file),
-                       path = "rmdrive",
-                       team_drive = NULL,
-                       restore_chunks = FALSE) {
+render_file <- function(file,
+                        gfile = basename(file),
+                        path = "rmdrive",
+                        team_drive = NULL,
+                        restore_chunks = FALSE) {
   
   
   
-  changed <- download_rmd(file = file, 
-                          gfile = gfile, 
-                          path = path, 
-                          team_drive = team_drive,
-                          restore_chunks =  restore_chunks)
+  changed <- download_file(file = file, 
+                           gfile = gfile, 
+                           path = path, 
+                           team_drive = team_drive,
+                           restore_chunks =  restore_chunks)
   if (changed) {
     
     rmarkdown::render(paste0(file, ".Rmd"), quiet = T)
@@ -342,20 +342,20 @@ render_rmd <- function(file,
   }
 }
 
-#----    final_rmd    ----
+#----    final_file    ----
 
 #' Upload final compiled document on Google Drive
 #'
-#' Render the final .Rmd file and upload the overall version to the specified folder
+#' Render the final file and upload the overall version to the specified folder
 #' 
-#' @inheritParams upload_rmd
+#' @inheritParams upload_file
 #' @return NULL
 #' @export
 #' 
 
-final_rmd <- function(file,
-                      path = "rmdrive",
-                      team_drive = NULL) {
+final_file <- function(file,
+                       path = "rmdrive",
+                       team_drive = NULL) {
   
   main_process(paste0("Uploading the final version of ", emph_file(local_file), "..."))
   
