@@ -48,8 +48,7 @@ upload_file <- function(file,
   # check gfile name
   gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
   
-  
-  # check whether file on Google Drive exists
+  # check whether gfile on Google Drive exists
   dribble <- get_dribble(gfile = gfile,
                          path = path,
                          team_drive = team_drive)

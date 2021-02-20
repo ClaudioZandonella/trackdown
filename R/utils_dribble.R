@@ -57,11 +57,13 @@ get_dribble <- function(gfile, path = NULL, team_drive = NULL) {
 #' create it is proposed.
 #'
 #' @inheritParams upload_rmd
+#' @param .response automatic response in non interactive environment on whether
+#'   to create new folder if this do not exist (1 = Yes, 2 = No)
 #' @return A dribble object. Note that multiple lines could be returned if
 #'   multiple folders  exist  with the same path.
 #' @noRd
 #' 
-get_path_dribble <- function(path , team_drive = NULL){
+get_path_dribble <- function(path , team_drive = NULL, .response = 1){
   # get sequence of folders
   path <- stringr::str_split(path, pattern = "/", simplify = TRUE)[1,]
   
@@ -77,12 +79,15 @@ get_path_dribble <- function(path , team_drive = NULL){
     
     # Check if path is available on drive
     if(nrow(dribble) < 1){
-      # check whether user wants to create folder in Google Drive
-      response <- utils::menu(c("Yes", "No"), title = paste0(
-        "Folder ", sQuote(paste0(path, sep = "/",  collapse = "")),
-        " does not exists in GoogleDrive.", " Do you want to create it?"
-      )
-      )
+      
+      if(interactive()){
+        # check whether user wants to create folder in Google Drive
+        response <- utils::menu(c("Yes", "No"), title = paste0(
+          "Folder ", sQuote(paste0(path, sep = "/",  collapse = "")),
+          " does not exists in GoogleDrive.", " Do you want to create it?"))
+      } else {
+        response = .response
+      }
       
       if (response == 2){
         stop_quietly("Process arrested")
@@ -92,9 +97,9 @@ get_path_dribble <- function(path , team_drive = NULL){
         if(length(id_folders) != 1){
           stop(paste0("No unique parent folder ", 
                       sQuote(paste0(path[1:(i-1)], sep = "/",  collapse = "")),
-                      " exists in GoogleDrive. Folder ",
+                      " exists in GoogleDrive - Folder ",
                       sQuote(paste0(path[i:length(path)], sep = "/",  collapse = "")),
-                      " can not be created automatically."),
+                      " can not be created automatically"),
                call. = FALSE)
         } else {
           
