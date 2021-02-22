@@ -2,51 +2,39 @@
 ####    Utilities Dribble   ####
 ################################
 
-#----    get_dribble    ----
+#----    get_dribble_info    ----
 
-#' Get dribble
+#' Get dribble Info
 #'
-#' Gets dribble ("Drive tibble") for the file name, folder, and Team Drive
-#'   provided
+#' Given the gfile name, folder, and Team Drive, gets a list with the dribble
+#' ("Drive tibble") for the file and parent folder.
 #'
-#' @inheritParams upload_rmd 
+#' @param path character. (Sub)directory in My Drive or a Team Drive.
+#' @param team_drive character. The name of a Google Team Drive (optional).
+#' 
 #' @return A dribble object.
 #' @noRd
 #' @seealso [googledrive::dribble()]
+#' @examples 
+#'  get_dribble_info(gfile = "Hello-World")
+#'  get_dribble_info(gfile = "Hello-World", path = "reading_folder")
+#'  
 
-get_dribble <- function(gfile, path = NULL, team_drive = NULL) {
+get_dribble_info <- function(gfile, path = NULL, team_drive = NULL) {
   
-  if (!is.null(path)) {
-    path_dribble <- get_path_dribble(path = path, team_drive = team_drive)
-    
-    googledrive::drive_find(q = c(paste0("'", path_dribble$id,"' in parents", collapse = " or "),
-                                  paste0("name = '", gfile,"'")),
-                            team_drive = team_drive)
-    
-  } else if (is.null(path) & !is.null(team_drive)) {
-    # TODO: revise this part according to team_drive functionality
-    googledrive::team_drive_get(team_drive) %>%
-      googledrive::drive_ls(pattern = gfile)
-  } else {
-    googledrive::drive_find(q = c("'root' in parents",
-                                  paste0("name = '", gfile,"'")),
-                            team_drive = team_drive)
-  }
+  parent_dribble <- get_parent_dribble(path = path, team_drive = team_drive)
+  
+  # avoid issue if NULL is returned from get_root_dribble()
+  id_parent <- ifelse(is.null(parent_dribble), "root", parent_dribble$id)
+  
+  file_dribble <- googledrive::drive_find(
+    q = c(paste0("'", id_parent,"' in parents", collapse = " or "),
+          paste0("name = '", gfile,"'")),
+    team_drive = team_drive)
+  
+  return(list(file = file_dribble,
+              parent = parent_dribble))
 }
-
-# # TODO check if dribble_old has to be removed
-# 
-# get_dribble_old <- function(gfile, path = NULL, team_drive = NULL) {
-#   if (!is.null(path)) {
-#     googledrive::drive_get(path = path, team_drive = team_drive) %>%
-#       googledrive::drive_ls(pattern = gfile)
-#   } else if (is.null(path) & !is.null(team_drive)) {
-#     googledrive::team_drive_get(team_drive) %>%
-#       googledrive::drive_ls(pattern = gfile)
-#   } else {
-#     googledrive::drive_ls(path = "~", pattern = gfile)
-#   }
-# }
 
 #----    get_path_dribble    ----
 
@@ -56,23 +44,35 @@ get_dribble <- function(gfile, path = NULL, team_drive = NULL) {
 #' starting from root. If the required folder is not available, options to
 #' create it is proposed.
 #'
-#' @inheritParams upload_rmd
+#' @param path character. (Sub)directory in My Drive or a Team Drive.
+#' @param team_drive character. The name of a Google Team Drive (optional).
 #' @param .response automatic response in non interactive environment on whether
-#'   to create new folder if this do not exist (1 = Yes, 2 = No)
+#'   to create new folder if this do not exist (1 = Yes, 2 = No).
+#'   
 #' @return A dribble object. Note that multiple lines could be returned if
 #'   multiple folders  exist  with the same path.
 #' @noRd
 #' 
-get_path_dribble <- function(path , team_drive = NULL, .response = 1){
+#' @examples 
+#'   get_path_dribble(path = "reading_folder")
+#'   get_path_dribble(path = "reading_folder/my_folder")
+#' 
+
+get_path_dribble <- function(path, team_drive = NULL, .response = 1){
   # get sequence of folders
   path <- stringr::str_split(path, pattern = "/", simplify = TRUE)[1,]
   
   # get folders id starting from root
   for (i in seq_along(path)){
-    id_folders <- if(i == 1L) "root" else dribble$id
+    # get correct initial settings for root folder
+    if(i == 1L) {
+      dribble_folder <- get_root_dribble(team_drive = team_drive)
+    } else {
+      dribble_folder <- dribble
+    }
     
     dribble <- googledrive::drive_find(
-      q = c(paste0("'", id_folders,"' in parents", collapse = " or "), 
+      q = c(paste0("'", dribble_folder$id,"' in parents", collapse = " or "), 
             "mimeType = 'application/vnd.google-apps.folder'",
             paste0("name = '", path[i],"'")),
       team_drive = team_drive)
@@ -94,7 +94,7 @@ get_path_dribble <- function(path , team_drive = NULL, .response = 1){
       } else {
         
         # evaluate if unique parent folder is available
-        if(length(id_folders) != 1){
+        if(nrow(dribble_folder) > 1){
           stop(paste0("No unique parent folder ", 
                       sQuote(paste0(path[1:(i-1)], sep = "/",  collapse = "")),
                       " exists in GoogleDrive - Folder ",
@@ -105,7 +105,7 @@ get_path_dribble <- function(path , team_drive = NULL, .response = 1){
           
           # create folder in google drive and return dribble
           dribble <- create_drive_folder(name = path[i:length(path)],
-                                         parent_id = id_folders, 
+                                         parent_dribble = dribble_folder, 
                                          team_drive = team_drive)
           
           finish_process(paste(cli::col_magenta(path), "folder created on Google Drive!"))
@@ -125,22 +125,30 @@ get_path_dribble <- function(path , team_drive = NULL, .response = 1){
 #' 
 #' Get the dribble of the parent folder or root if path is not specified
 #' 
-#' @param path character. (Sub)directory in My Drive or a Team Drive
+#' @param path character. (Sub)directory in My Drive or a Team Drive.
 #' @param team_drive character. The name of a Google Team Drive (optional).
+#' @param .response automatic response in non interactive environment on whether
+#'   to create new folder if this do not exist (1 = Yes, 2 = No).
 #'
 #' @return A dribble object.
 #'
 #' @noRd
 #' 
-get_parent_dribble <- function(path = NULL, team_drive = NULL){
+get_parent_dribble <- function(path = NULL, team_drive = NULL, .response = 1){
   # get dribble of the parent folder
   if (!is.null(path)) {
-    path <- get_path_dribble(path = path, team_drive = team_drive)
+    path <- get_path_dribble(path = path, 
+                             team_drive = team_drive, 
+                             .response = .response)
+    
   } else if (is.null(path) & !is.null(team_drive)) {
-    path <- googledrive::team_drive_find(team_drive)
+    # TODO evaluate if get_root_dribble works also for team_drive (in case bind the two conditions)
+    path <- googledrive::team_drive_get(team_drive)
+    
   } else {
-    path <- get_root_id()
+    path <- get_root_dribble()
   }
+  
   return(path)
 }
 
@@ -152,9 +160,8 @@ get_parent_dribble <- function(path = NULL, team_drive = NULL){
 #' 
 #' !TODO! evaluate possible problems when using team_drive.
 #'
-#' @param name character vector indicating the sequence of folders to create
-#' @param parent_id a string indicating the Google Drive id of the parent folder
-#'   or "root" (default)
+#' @param name character vector indicating the sequence of folders to create.
+#' @param parent_dribble a dribble of the parent folder or "root" (default).
 #' @param team_drive a string indicating the name of a Google Team Drive
 #'   (optional).
 #'
@@ -165,38 +172,40 @@ get_parent_dribble <- function(path = NULL, team_drive = NULL){
 #' create_drive_folder(name = c("main_folder", "nested_folder"),
 #'                     parent_id = "root")
 #'                     
-create_drive_folder <- function(name, parent_id = "root", team_drive = NULL){
+create_drive_folder <- function(name, parent_dribble = "root", team_drive = NULL){
   
-  if(parent_id == "root") parent_id <- get_root_id(team_drive = team_drive)
+  if(parent_dribble == "root") parent_dribble <- get_root_dribble(team_drive = team_drive)
   
   for (i in seq_along(name)){
-    #create folder using parent id (NULL if is not available)
+    #create folder using parent dribble (NULL if is not available)
     dribble_folder <- googledrive::drive_mkdir(name = name[i],
-                                               path = googledrive::as_id(parent_id),
+                                               path = parent_dribble,
                                                verbose = F)
     
     # use folder id as parent for the next folder
-    parent_id <- dribble_folder$id
+    parent_dribble <- dribble_folder
     
   }
   
   return(dribble_folder)
 }
 
-#----    get_root_id    ----
+#----    get_root_dribble    ----
 
-#' Get root id
+#' Get root dribble
 #'
 #' Gets drive id of the root folder. The id is obtained from the 'parents' field
 #' in the dribble object listing elements in the root directory. If no element
-#' is available in the root folder, id can not be retrieved.
+#' is available in the root folder, id can not be retrieved, NULL returned .
 #'
-#' @inheritParams upload_rmd
-#' @return A drive_id string with the id of the root folder. Note that NULL is
-#'   returned, instead, if no element was available in the root folder.
+#' @param team_drive character. The name of a Google Team Drive (optional).
+#'
+#' @return A dribble of object of the root folder. Note that NULL is returned,
+#'   instead, if no element was available in the root folder.
 #' @noRd
 #' 
-get_root_id <- function(team_drive = NULL){
+
+get_root_dribble <- function(team_drive = NULL){
   
   # get elements with root as parent folder
   dribble <- googledrive::drive_find(q = c("'root' in parents"),
@@ -204,11 +213,12 @@ get_root_id <- function(team_drive = NULL){
   
   if (nrow(dribble) > 0){
     id_root <- googledrive::as_id(dribble$drive_resource[[1]]$parents[[1]])
+    dribble_root <- googledrive::as_dribble(id_root)
   } else {
-    id_root <- NULL
+    dribble_root <- NULL
   }
   
-  return(id_root)
+  return(dribble_root)
 }
 
 

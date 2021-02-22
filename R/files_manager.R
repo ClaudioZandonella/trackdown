@@ -45,15 +45,18 @@ upload_file <- function(file,
   check_file(file)
   file_info <- get_file_info(file = file)
   
+  
   # check gfile name
   gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
   
-  # check whether gfile on Google Drive exists
-  dribble <- get_dribble(gfile = gfile,
-                         path = path,
-                         team_drive = team_drive)
   
-  if (nrow(dribble) > 0) {
+  # get file and parent dribble info
+  dribble <- get_dribble_info(gfile = gfile,
+                              path = path, 
+                              team_drive = team_drive)
+  
+  
+  if (nrow(dribble$file) > 0) {
     stop(
       "a file with this name already exists in GoogleDrive: ",
       sQuote(gfile),
@@ -61,10 +64,6 @@ upload_file <- function(file,
       call. = FALSE
     )
   }
-  
-  # get dribble of the parent
-  path <- get_parent_dribble(path = path, 
-                             team_drive = team_drive)
   
   # create .temp-file to upload
   temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".txt"))
@@ -95,7 +94,7 @@ upload_file <- function(file,
       
       googledrive::drive_upload(
         media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
-        path = path,
+        path = dribble$parent,
         name = paste0(gfile, "_report.pdf"),
         type = "pdf",
         verbose = F
@@ -112,7 +111,7 @@ upload_file <- function(file,
   # upload local file to Google Drive
   googledrive::drive_upload(
     media = temp_file,
-    path = path,
+    path = dribble$parent,
     name = gfile,
     type = "document",
     verbose = F
