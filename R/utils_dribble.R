@@ -12,7 +12,12 @@
 #' @param path character. (Sub)directory in My Drive or a Team Drive.
 #' @param team_drive character. The name of a Google Team Drive (optional).
 #' 
-#' @return A dribble object.
+#' @return A list with two dribble object:
+#' \itemize{
+#'  \item{file} dribble object about the gfile
+#'  \item{parent} dribble object about the parent item
+#' }
+#' 
 #' @noRd
 #' @seealso [googledrive::dribble()]
 #' @examples 
@@ -24,11 +29,8 @@ get_dribble_info <- function(gfile, path = NULL, team_drive = NULL) {
   
   parent_dribble <- get_parent_dribble(path = path, team_drive = team_drive)
   
-  # avoid issue if NULL is returned from get_root_dribble()
-  id_parent <- ifelse(is.null(parent_dribble), "root", parent_dribble$id)
-  
   file_dribble <- googledrive::drive_find(
-    q = c(paste0("'", id_parent,"' in parents", collapse = " or "),
+    q = c(paste0("'", parent_dribble$id,"' in parents", collapse = " or "),
           paste0("name = '", gfile,"'")),
     team_drive = team_drive)
   
@@ -108,7 +110,9 @@ get_path_dribble <- function(path, team_drive = NULL, .response = 1){
                                          parent_dribble = dribble_folder, 
                                          team_drive = team_drive)
           
-          finish_process(paste(cli::col_magenta(path), "folder created on Google Drive!"))
+          finish_process(paste(cli::col_magenta(paste0(
+            path[i:length(path)], "/", collapse = "")), 
+            "folder created on Google Drive!"))
           
           return(dribble)
         }
@@ -161,7 +165,7 @@ get_parent_dribble <- function(path = NULL, team_drive = NULL, .response = 1){
 #' !TODO! evaluate possible problems when using team_drive.
 #'
 #' @param name character vector indicating the sequence of folders to create.
-#' @param parent_dribble a dribble of the parent folder or "root" (default).
+#' @param parent_dribble a dribble of the parent folder or NULL (default to indicate root).
 #' @param team_drive a string indicating the name of a Google Team Drive
 #'   (optional).
 #'
@@ -171,11 +175,14 @@ get_parent_dribble <- function(path = NULL, team_drive = NULL, .response = 1){
 #' @examples  
 #' create_drive_folder(name = c("main_folder", "nested_folder"),
 #'                     parent_id = "root")
-#'                     
-create_drive_folder <- function(name, parent_dribble = "root", team_drive = NULL){
+#'       
+              
+create_drive_folder <- function(name, parent_dribble = NULL, team_drive = NULL){
   
-  if(parent_dribble == "root") parent_dribble <- get_root_dribble(team_drive = team_drive)
-  
+  if(parent_dribble$id == "root"){
+    parent_dribble <- NULL
+  } 
+    
   for (i in seq_along(name)){
     #create folder using parent dribble (NULL if is not available)
     dribble_folder <- googledrive::drive_mkdir(name = name[i],
@@ -196,13 +203,18 @@ create_drive_folder <- function(name, parent_dribble = "root", team_drive = NULL
 #'
 #' Gets drive id of the root folder. The id is obtained from the 'parents' field
 #' in the dribble object listing elements in the root directory. If no element
-#' is available in the root folder, id can not be retrieved, NULL returned .
+#' is available in the root folder, id can not be retrieved, a dataframe with id
+#' = "root" is returned instead.
 #'
 #' @param team_drive character. The name of a Google Team Drive (optional).
 #'
-#' @return A dribble of object of the root folder. Note that NULL is returned,
-#'   instead, if no element was available in the root folder.
+#' @return A dribble of object of the root folder. Note that a dataframe with id
+#'   = "root" is returned, instead, if no element was available in the root
+#'   folder.
 #' @noRd
+#' 
+#' @examples
+#'   get_root_dribble()
 #' 
 
 get_root_dribble <- function(team_drive = NULL){
@@ -215,7 +227,7 @@ get_root_dribble <- function(team_drive = NULL){
     id_root <- googledrive::as_id(dribble$drive_resource[[1]]$parents[[1]])
     dribble_root <- googledrive::as_dribble(id_root)
   } else {
-    dribble_root <- NULL
+    dribble_root <- data.frame(id = "root")
   }
   
   return(dribble_root)

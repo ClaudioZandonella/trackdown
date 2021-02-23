@@ -1,7 +1,8 @@
 ###################################
-####    test Utils Dribble    ####
+####    test Utils Dribble     ####
 ###################################
 
+file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 #----    get_path_dribble    ----
 
 
@@ -29,7 +30,7 @@ test_that("get the correct path dribble", {
   
   # not available folder create new folder
   vcr::use_cassette("get_path_dribble_test_4", {
-    dribble_path_4 <- get_path_dribble(path = "no_available_folder")
+    dribble_path_4 <- get_path_dribble(path = "writing_folder/no_available_folder")
     googledrive::drive_rm(dribble_path_4)
   })
   expect_match(dribble_path_4$name, "no_available_folder")
@@ -98,5 +99,43 @@ test_that("get the correct parent dribble", {
   expect_match(parent_dribble_2$name, "reading_folder")
 })
 
+#----    create_drive_folder()    ----
+
+test_that("create drive folders correctly", {
+  skip_if_no_token()
+  skip_if_offline()
+  
+  folder_names <- c("foo")
+  load(paste0(file_path, "dribble_writing_folder.rda"))
+  parent_root <- data.frame(id = "root")
+  
+  # folder in another folder
+  vcr::use_cassette("create_drive_folder_1", {
+    drive_folder_1 <- create_drive_folder(name = folder_names, parent_dribble = dribble_writing_folder)
+    googledrive::drive_rm(drive_folder_1)
+  })
+  expect_match(drive_folder_1$name, "foo")
+  
+  # folder in root
+  vcr::use_cassette("create_drive_folder_2", {
+    drive_folder_2 <- create_drive_folder(name = folder_names[1], parent_dribble = parent_root)
+    googledrive::drive_rm(drive_folder_2)
+  })
+  expect_match(drive_folder_2$name, "foo")
+})
+
+#----    get_root_dribble()    ----
+
+test_that("get the correct root dribble", {
+  skip_if_no_token()
+  skip_if_offline()
+  
+  # root id
+  vcr::use_cassette("get_root_dribble_1", {
+    root_dribble_1 <- get_root_dribble()
+  })
+  expect_match(root_dribble_1$name, "My Drive")
+  
+})
 
 #----
