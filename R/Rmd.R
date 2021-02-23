@@ -38,8 +38,8 @@ update_rmd <- function(file, gfile) {
 #'
 #' Downloads a Google Docs file and changes the file extension to .Rmd
 #'
-#' @param file The name (without file extension) of an .Rmd you want to upload to Google Docs
-#' @param gfile The name (current or desired) of a Google Docs file (must be unique in your google docs account)
+#' @param file The name (without file extension) of an .Rmd you want to create or update locally
+#' @param gfile The name of an existing Google Docs file (must be unique in your google docs account)
 #'
 #' @return NULL
 #' @export
