@@ -45,10 +45,8 @@ upload_file <- function(file,
   check_file(file)
   file_info <- get_file_info(file = file)
   
-  
   # check gfile name
   gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
-  
   
   # get file and parent dribble info
   dribble <- get_dribble_info(gfile = gfile,
@@ -66,7 +64,8 @@ upload_file <- function(file,
   }
   
   # create .temp-file to upload
-  temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".txt"))
+  temp_file <- file.path(file_info$path, 
+                         paste0(".temp-", file_info$file_basename, ".txt"))
   file.copy(file, temp_file, overwrite = T)
   
   # We need to extract chunks in both cases

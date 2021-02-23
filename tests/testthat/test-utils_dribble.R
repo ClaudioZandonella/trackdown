@@ -3,8 +3,8 @@
 ###################################
 
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
-#----    get_path_dribble    ----
 
+#----    get_path_dribble    ----
 
 test_that("get the correct path dribble", {
   skip_if_no_token()

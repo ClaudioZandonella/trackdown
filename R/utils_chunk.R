@@ -7,12 +7,14 @@
 #' Create .rmdrive folder if missing
 #'
 #' @param local_path string indicating the path where to create the folder
+#' @param folder_name string indicating the folder name, default ".rmdrive"
 #' 
 #' @return NULL
+#' @noRd
 #'
-mkdir_rmdrive <- function(local_path){
+mkdir_rmdrive <- function(local_path, folder_name = ".rmdrive"){
   
-  drk_rmdrive <- paste(local_path, ".rmdrive", sep = "/")
+  drk_rmdrive <- paste(local_path, folder_name, sep = "/")
   if(!dir.exists(drk_rmdrive)){
     dir.create(drk_rmdrive) # create the hidden folder for temp files
   }
@@ -23,24 +25,26 @@ mkdir_rmdrive <- function(local_path){
 
 #' Extract chunks as list from document
 #'
-#' @param local_rmd character indicating the name of the file without extension
-#'
+#' @param text_lines a character vector with the text lines of the file  
+#' @param info_patterns a list with the regex pattern according to file
+#'   extension, returned by get_extension_patterns() function
+#' 
+#' @noRd
 #' @return TODO
 #'
-extract_chunk <- function(local_rmd){
 
-  #paper <- readLines(con = local_rmd) # read file
+extract_chunk <- function(text_lines, info_patterns){
   
-  chunk_info <- get_chunk_info(local_rmd)
+  chunk_info <- get_chunk_info(lines = text_lines, info_patterns = info_patterns)
   
   # Extract Chunk
   
-  all <- which(grepl("```", local_rmd)) # chunk start
+  line_start_chunck <- which(grepl(info_patterns$chunck_header_start, 
+                                   text_lines))
   
   # The start index is odd and the end is even
-  
-  starts <- all[seq(1, length(all), 2)] # chunk start
-  ends <- all[seq(2, length(all), 2)] # chunk ends
+  starts <- line_start_chunck[seq(1, length(line_start_chunck), 2)] # chunk start
+  ends <- line_start_chunck[seq(2, length(line_start_chunck), 2)] # chunk ends
   
   
   # Check if chunk without language exist
@@ -63,7 +67,7 @@ extract_chunk <- function(local_rmd){
   chunk_info$index <- seq(length.out = nrow(chunk_info))
   
   chunk_info$chunk_text <- sapply(seq_along(starts), function(i){
-    paste(local_rmd[starts[i]:ends[i]], collapse = "\n")
+    paste(text_lines[starts[i]:ends[i]], collapse = "\n")
   }) # extract chunk and apply a \n
   
   chunk_info$chunk_name_file <- sapply(seq_along(chunk_info$name), function(i){
@@ -79,15 +83,15 @@ extract_chunk <- function(local_rmd){
 
 # Extract yaml header
 
-extract_yaml <- function(local_rmd, collapse = TRUE){
+extract_yaml <- function(text_lines, collapse = TRUE){
   
-  yaml_index <- which(local_rmd == "---") # chunk start
+  yaml_index <- which(text_lines == "---") # chunk start
   
   if(isTRUE(collapse)){
   
-    res <- paste(local_rmd[yaml_index[1]:yaml_index[2]], collapse = "\n")
+    res <- paste(text_lines[yaml_index[1]:yaml_index[2]], collapse = "\n")
   } else{
-    res <- local_rmd[yaml_index[1]:yaml_index[2]]
+    res <- text_lines[yaml_index[1]:yaml_index[2]]
   }
   return(res)
 }
@@ -99,26 +103,76 @@ extract_yaml <- function(local_rmd, collapse = TRUE){
 #' Create .rmdrive folder with info about chunks 
 #' 
 #' @param file_text sting indicating the file path
-#' @param local_path sting indicating the local path where to create .rmdrive
-#'   folder
+#' @param file_info list with file info returned from get_file_info() function
 #'   
 #' @noRd
-init_rmdrive <- function(file_text, local_path){
+#' 
+
+init_rmdrive <- function(file_text, file_info){
   # create .rmdrive folder 
-  mkdir_rmdrive(local_path = local_path) 
+  mkdir_rmdrive(local_path = file_info$path) 
   
-  # read file
-  paper <- readLines(file_text, warn = F)
+  info_patterns <- get_extension_patterns(extension = file_info$extension)
+    
+  # read file lines
+  text_lines <- readLines(file_text, warn = F)
   
   # Extract and save code chunks
-  chunk_info <- extract_chunk(paper)
-  saveRDS(chunk_info, file = file.path(local_path, ".rmdrive", "chunk_info.rds"))
+  chunk_info <- extract_chunk(text_lines = text_lines, info_patterns = info_patterns)
+  saveRDS(chunk_info, file = file.path(file_info$path, ".rmdrive", "chunk_info.rds"))
   
   # Extract and save Yaml header
-  yaml_header <- extract_yaml(paper) 
-  saveRDS(yaml_header, file = file.path(local_path, ".rmdrive","yaml_header.rds"))
+  yaml_header <- extract_yaml(text_lines = text_lines, extension = file_info$extension) 
+  saveRDS(yaml_header, file = file.path(file_info$path, ".rmdrive","yaml_header.rds"))
   
   #message(paste("Document setup completed!\n"))
+}
+
+#----    get_extension_patterns    ----
+
+#' Get extensions pattern
+#' 
+#' Given the extension (rmd or rnw), return a list with the regex patterns for
+#' the chunck header (start and end), chunk end , and file header (start/end).
+#' 
+#' @param extension 
+#'
+#' @return a list with the regex pattern that identify \itemize{
+#' \item{chunck_header_start} the start of the first line of a chunck
+#' \item{chunck_header_end} the end of the first line of a chunck
+#' \item{chunck_end} the end line of a chunck
+#' \item{file_header_start} the start line of the file header
+#' \item{file_header_end} the end line of the file header
+#' \item{extension} the extension type (rmd or rnw)
+#' }
+#' @noRd
+#'
+#' @examples
+#'   get_extension_patterns("rmd")
+#'   get_extension_patterns("rnw")
+#' 
+
+get_extension_patterns <- function(extension =  c("rmd", "rnw")){
+  extension <- match.arg(extension)
+  
+  if (extension == "rmd"){     # ```{*}   ```
+    res <- list(chunck_header_start = "^```\\{",
+                chunck_header_end = "\\}",
+                chunck_end = "^```",
+                file_header_start = "^---",
+                file_header_end = "^---",
+                extension = extension)
+    
+  } else if (extension == "rnw"){  # <<*>>=   @
+    res <- list(chunck_header_start = "^<<",
+                chunck_header_end = ">>=",
+                chunck_end = "^@",
+                file_header_start = "^\\\\documentclass{",
+                file_header_end = "^\\\\begin{document}",
+                extension = extension)
+  }
+  
+  return(res)
 }
 
 
@@ -161,13 +215,13 @@ hide_chunk <- function(file_text, local_path){
 # add chunk at the placeholder position
 # TODO consider also YAML_header
 
-restore_chunk <- function(local_rmd){
+restore_chunk <- function(local_file){
   
-  local_path <-  dirname(local_rmd)
-  local_file <- basename(local_rmd)
+  local_path <-  dirname(local_file)
+  local_file <- basename(local_file)
   
   chunk_info <- readRDS(file = file.path(local_path,".rmdrive","chunk_info.rds"))
-  temp_paper <- readLines(local_rmd, warn = F)
+  temp_paper <- readLines(local_file, warn = F)
   
   index <- which(startsWith(temp_paper, "[[chunk")) # chunk index
   
@@ -187,7 +241,7 @@ restore_chunk <- function(local_rmd){
     stringr::str_remove_all("NA") %>% # remove NA
     stringr::str_replace_all("\n\n\n", "\n\n") # remove extra spaces
   
-  cat(temp_paper, file = local_rmd)
+  cat(temp_paper, file = local_file)
   
 }
 

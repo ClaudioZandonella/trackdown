@@ -45,13 +45,10 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 /*A sql chunck Chunck with no name but options*/
 ```
 
-```{eval = TRUE}
+```
 A void code
 ```
 
 ```a really strange inline block ```
 
 End of the document
- 
- 
-
