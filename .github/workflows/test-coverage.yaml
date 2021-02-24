@@ -16,7 +16,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      PACKAGE_PASSWORD: ${{ secrets.PACKAGE_PASSWORD }}
+      REVIEWDOWN_PASSWORD: ${{ secrets.REVIEWDOWN_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
 
