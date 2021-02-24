@@ -89,6 +89,11 @@ test_that("get the correct get_chunk_info", {
   lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
   info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(get_chunk_info(lines_rnw, info_patterns_rnw))
+  
+  # no chuncks
+  lines_no_chunck <- c("A file with no chuncks")
+  expect_null(get_chunk_info(lines_no_chunck, info_patterns_rmd))
+  
 })
 
 #----
