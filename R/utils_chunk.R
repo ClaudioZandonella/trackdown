@@ -21,6 +21,63 @@ mkdir_rmdrive <- function(local_path, folder_name = ".rmdrive"){
   
 }
 
+#----    get_chunck_range    ----
+
+#' Get chuncks start and end lines
+#' 
+#' Get chuncks start and end lines
+#'
+#' @param lines a character vector with the text lines of the file  
+#' @param info_patterns a list with the regex pattern according to file
+#'   extension, returned by get_extension_patterns() function
+#'
+#' @return  a tibble with \itemize{
+#'   \item{starts} the line number of the chunck header
+#'   \item{ends} the line number of the chunck end
+#' }
+#' @noRd
+#'
+#' @examples
+#'   # rmd
+#'   lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   info_patterns <- get_extension_patterns(extension = "rmd")
+#'   get_chunck_range(lines, info_patterns)
+#'   
+#'   # rnw
+#'   lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
+#'   info_patterns <- get_extension_patterns(extension = "rnw")
+#'   get_chunck_range(lines, info_patterns)
+#' 
+
+get_chunck_range <- function(lines, info_patterns){
+  
+  if(info_patterns$extension == "rmd"){
+    # solve issue of chuncks without language and '{}'
+    # check for chunck of types '```{...}' or '```'
+    index <- which(grepl("^```(\\s*$|\\{)", lines))
+    
+    if(length(index)>0){
+      header_indices <- index[seq(1,length(index),2)]
+      end_indices <- index[seq(2,length(index),2)]
+    } else {
+      header_indices <- integer()
+      end_indices <- integer()
+    }
+  
+  } else if(info_patterns$extension == "rnw"){
+    # find which lines are chunk starts and chuck ends
+    header_indices <- which(grepl(info_patterns$chunck_header_start, lines))
+    # finde which lines are chuck ends
+    end_indices <- which(grepl(info_patterns$chunck_end, lines))
+  }
+  
+  if(any(header_indices>end_indices))
+    stop("There are some issues in th eidentification of chunck start/end line indexes")
+  
+  return(tibble::tibble(starts = header_indices,
+                        ends = end_indices))
+}
+
 #----    extract_chunk    ----
 
 #' Extract chunks as list from document
@@ -102,20 +159,20 @@ extract_yaml <- function(text_lines, info_patterns, collapse = TRUE){
 #' 
 #' Create .rmdrive folder with info about chunks 
 #' 
-#' @param file_text sting indicating the file path
+#' @param file_txt sting indicating the path to the txt file
 #' @param file_info list with file info returned from get_file_info() function
 #'   
 #' @noRd
 #' 
 
-init_rmdrive <- function(file_text, file_info){
+init_rmdrive <- function(file_txt, file_info){
   # create .rmdrive folder 
   mkdir_rmdrive(local_path = file_info$path) 
   
   info_patterns <- get_extension_patterns(extension = file_info$extension)
     
   # read file lines
-  text_lines <- readLines(file_text, warn = F)
+  text_lines <- readLines(file_txt, warn = F)
   
   # Extract and save code chunks
   chunk_info <- extract_chunk(text_lines = text_lines, info_patterns = info_patterns)
@@ -156,17 +213,17 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
   extension <- match.arg(extension)
   
   if (extension == "rmd"){     # ```{*}   ```
-    res <- list(chunck_header_start = "^```\\{",
-                chunck_header_end = "\\}",
-                chunck_end = "^```",
+    res <- list(chunck_header_start = "^```(\\s*$|\\{)",
+                chunck_header_end = "\\}\\s*$",
+                chunck_end = "^```\\s*$",
                 file_header_start = "^---",
                 file_header_end = "^---",
                 extension = extension)
     
   } else if (extension == "rnw"){  # <<*>>=   @
     res <- list(chunck_header_start = "^<<",
-                chunck_header_end = ">>=",
-                chunck_end = "^@",
+                chunck_header_end = ">>=.*$",
+                chunck_end = "^@\\s*$",
                 file_header_start = "^\\\\documentclass{",
                 file_header_end = "^\\\\begin{document}",
                 extension = extension)
@@ -181,10 +238,10 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 # remove chunks from .rmd file
 # TODO remove also YAML ??
 
-hide_chunk <- function(file_text, local_path){
+hide_chunk <- function(file_txt, local_path){
   
   # read file
-  paper <- readLines(file_text, warn = F)
+  paper <- readLines(file_txt, warn = F)
   
   # get saved chunks info
   chunk_info <- readRDS(file = file.path(local_path, ".rmdrive","chunk_info.rds"))
@@ -207,7 +264,7 @@ hide_chunk <- function(file_text, local_path){
     paste(collapse = "\n") %>% 
     stringr::str_replace_all("\n\n\n", "\n\n")
   
-  cat(paper, file = file_text)
+  cat(paper, file = file_txt)
 }
 
 #----    restore_chunk    ----

@@ -63,7 +63,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 # R Chunck with no name but multiple options (using ,)
 @
 
-<<echo=FALSE>>=
+<<echo=FALSE>>= # a really evil comment
 # R Chunck with no name but options (not using,)
 @
 

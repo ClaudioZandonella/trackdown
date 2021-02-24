@@ -23,15 +23,15 @@ test_that("check a folder 'My_new_folder' is created", {
 
 test_that("file info are correct", {
   
-  ex_rmd <- list(chunck_header_start = "^```\\{",
-                 chunck_header_end = "\\}",
-                 chunck_end = "^```",
+  ex_rmd <- list(chunck_header_start = "^```(\\s*$|\\{)",
+                 chunck_header_end = "\\}\\s*$",
+                 chunck_end = "^```\\s*$",
                  file_header_start = "^---",
                  file_header_end = "^---",
                  extension = "rmd")
   ex_rnw <- list(chunck_header_start = "^<<",
-                 chunck_header_end = ">>=",
-                 chunck_end = "^@",
+                 chunck_header_end = ">>=.*$",
+                 chunck_end = "^@\\s*$",
                  file_header_start = "^\\\\documentclass{",
                  file_header_end = "^\\\\begin{document}",
                  extension = "rnw")

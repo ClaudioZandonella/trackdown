@@ -114,6 +114,7 @@ test_that("get the correct get_chunk_info", {
   # no chuncks
   lines_no_chunck <- c("A file with no chuncks")
   expect_null(get_chunk_info(lines_no_chunck, info_patterns_rmd))
+  expect_null(get_chunk_info(lines_no_chunck, info_patterns_rnw))
   
 })
 

@@ -46,7 +46,13 @@ quote_label = function(x) {
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
-#' @return TODO
+#' @return  a tibble with \itemize{
+#'   \item{language} of the chunck
+#'   \item{name} of the chunck
+#'   \item{options} of the chunck
+#'   \item{starts} the line number of the chunck header
+#' }
+#' Note that in case of "rnw" extension the language is always NA
 #' @noRd
 #'
 #' @examples
@@ -64,19 +70,23 @@ quote_label = function(x) {
 get_chunk_info <- function(lines, info_patterns){
   
   # find which lines are chunk starts and chuck ends
-  chunk_header_indices <- which(grepl(info_patterns$chunck_header_start, lines))
-  # finde which lines are chuck ends
-  chunk_end_indices <- which(grepl(info_patterns$chunck_end, lines))
+  chuncks_range <- get_chunck_range(lines, info_patterns)
 
   # null if no chunks
-  if(length(chunk_header_indices) == 0){
+  if(length(chuncks_range$starts) == 0){
     return(NULL)
   }
   # parse these chunk headers
-  purrr::map_df(chunk_header_indices,
-                digest_chunk_header,
-                lines,
-                info_patterns)
+  res <- purrr::map_df(chuncks_range$starts,
+                       digest_chunk_header,
+                       lines,
+                       info_patterns)
+  
+  # return also chunck start/end line indexes
+  res$starts <- chuncks_range$starts
+  res$ends <- chuncks_range$ends
+  
+  return(res)
 }
 
 #----    parse_chunk_header    ----
@@ -167,11 +177,7 @@ digest_chunk_header <- function(chunk_header_index,
   chunk_info <- parse_chunk_header(
     lines[chunk_header_index], info_patterns)
 
-
-  # keep index
-  chunk_info$starts <- chunk_header_index
-
-  chunk_info
+  return(chunk_info)
 }
 
 #----    transform_params    ----

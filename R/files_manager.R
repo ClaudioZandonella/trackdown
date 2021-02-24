@@ -72,14 +72,14 @@ upload_file <- function(file,
   if(isTRUE(hide_chunks) || isTRUE(upload_report)){
     
     # create .rmdrive folder with info about chunks
-    init_rmdrive(file_text = temp_file,
+    init_rmdrive(file_txt = temp_file,
                  file_info = file_info)
     
     if (isTRUE(hide_chunks)) {
       
       start_process("Removing chunks...")
       
-      hide_chunk(file_text = temp_file,
+      hide_chunk(file_txt = temp_file,
                  local_path = file_info$path)
       
       finish_process(paste("Chunks removed from", emph_file(file)))
@@ -174,11 +174,11 @@ update_file <- function(file,
       start_process("Removing chunks...")
       
       # create .rmdrive folder with info about chunks
-      init_rmdrive(file_text = temp_file,
+      init_rmdrive(file_txt = temp_file,
                    file_info = file_info)
       
       if (isTRUE(hide_chunks)) {
-        hide_chunk(file_text = temp_file,
+        hide_chunk(file_txt = temp_file,
                    local_path = file_info$path)
         
         finish_process("Chunks removed!")
