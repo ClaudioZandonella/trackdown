@@ -51,6 +51,7 @@ quote_label = function(x) {
 #'   \item{name} of the chunk
 #'   \item{options} of the chunk
 #'   \item{starts} the line number of the chunk header
+#'   \item{ends} the line number of the chunk end
 #'   \item{index} integer index to identify the chunk
 #' }
 #' Note that in case of "rnw" extension the language is always NA. NULL is
@@ -178,7 +179,8 @@ digest_chunk_header <- function(chunk_header_index,
                                 info_patterns){
   # parse the chunk header
   chunk_info <- parse_chunk_header(
-    lines[chunk_header_index], info_patterns)
+    chunk_header = lines[chunk_header_index], 
+    info_patterns = info_patterns)
 
   return(chunk_info)
 }

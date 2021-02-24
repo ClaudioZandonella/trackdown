@@ -29,7 +29,7 @@ recommended.}
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 
 \item{hide_chunks}{logical value indicating whether to remove code chunks
-from the text document. Placeholders of  type "[[chunck_<name>]]" are
+from the text document. Placeholders of  type "[[chunck-<name>]]" are
 displayed instead.}
 
 \item{upload_report}{logical value indicating whether to upload an

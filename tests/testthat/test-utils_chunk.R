@@ -26,14 +26,14 @@ test_that("file info are correct", {
   ex_rmd <- list(chunk_header_start = "^```(\\s*$|\\{)",
                  chunk_header_end = "\\}\\s*$",
                  chunk_end = "^```\\s*$",
-                 file_header_start = "^---",
-                 file_header_end = "^---",
+                 file_header_start = "^---\\s*$",
+                 file_header_end = "^---\\s*$",
                  extension = "rmd")
   ex_rnw <- list(chunk_header_start = "^<<",
                  chunk_header_end = ">>=.*$",
                  chunk_end = "^@\\s*$",
-                 file_header_start = "^\\\\documentclass{",
-                 file_header_end = "^\\\\begin{document}",
+                 file_header_start = "^\\\\documentclass\\{",
+                 file_header_end = "^\\\\begin\\{document\\}",
                  extension = "rnw")
   
   expect_identical(get_extension_patterns("rmd"), ex_rmd)
@@ -61,6 +61,26 @@ test_that("get the correct extract_chunk", {
   expect_null(extract_chunk(lines_no_chunk, info_patterns_rmd))
   expect_null(extract_chunk(lines_no_chunk, info_patterns_rnw))
   
+})
+
+#----    extract_header    ----
+
+test_that("get the correct extract_header", {
+  # rmd
+  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  info_patterns_rmd <- get_extension_patterns(extension = "rmd")
+  expect_snapshot_output(extract_header(lines_rmd, info_patterns_rmd))
+  
+  # rnw
+  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  info_patterns_rnw <- get_extension_patterns(extension = "rnw")
+  expect_snapshot_output(extract_header(lines_rnw, info_patterns_rnw))
+  
+  # no chunks
+  lines_no_chunk <- c("A file with no chunks")
+  expect_error(extract_header(lines_no_chunk, info_patterns_rmd))
+  expect_error(extract_header(lines_no_chunk, info_patterns_rnw))
+
 })
 
 #----

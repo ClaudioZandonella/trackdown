@@ -27,3 +27,17 @@
     6 NA       sql    ", eval=FA~     71    73     6 "<<sql, eval=FALSE>>~ [[chunk-~
     7 NA       <NA>   ""              75    77     7 "<<>>=\n# A void cod~ [[chunk-~
 
+# get the correct extract_header
+
+    # A tibble: 1 x 4
+      starts  ends header_text                                        name_tag      
+       <int> <int> <chr>                                              <chr>         
+    1      1     6 "---\ntitle: \"Reviewdown Test\"\nauthor: \"revie~ [[Document-he~
+
+---
+
+    # A tibble: 1 x 4
+      starts  ends header_text                                        name_tag      
+       <int> <int> <chr>                                              <chr>         
+    1      3    29 "\\documentclass{article}  \n\\usepackage[T1] {fo~ [[Document-he~
+
