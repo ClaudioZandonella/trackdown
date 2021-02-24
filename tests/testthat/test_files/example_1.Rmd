@@ -23,7 +23,7 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
+```{r, pressure, echo=FALSE}
 plot(pressure)
 ```
 
@@ -49,9 +49,14 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 A void code
 ```
 
+```{}
+Another void code
+```
+
+```
+Still another void code
+```
+
 ```a really strange inline block ```
 
 End of the document
- 
- 
-

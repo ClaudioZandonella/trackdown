@@ -10,10 +10,19 @@ test_that("get the correct quote_label", {
   
   expect_match(quote_label("r chunck_name, eval = FALSE"), 
                "'r chunck_name', eval = FALSE")
+  expect_match(quote_label("r, chunck_name, eval = FALSE"), 
+               "'r, chunck_name', eval = FALSE")
+  expect_match(quote_label("r chunck_name"), 
+               "'r chunck_name'")
+  expect_match(quote_label("r, chunck_name"), 
+               "'r, chunck_name'")
   expect_match(quote_label("r, eval = FALSE"), 
                "'r', eval = FALSE")
   expect_match(quote_label("r eval = FALSE"), 
                "r eval = FALSE")
+  expect_match(quote_label("r"), "'r'")
+  expect_match(quote_label("eval = FALSE"), "eval = FALSE")
+  expect_match(quote_label(""), "")
 })
 
 #----    transform_params    ----
@@ -27,13 +36,25 @@ test_that("get the correct transform_params", {
                    tibble::tibble(language = "r",
                                   name = "chunck_name",
                                   options = ", eval = FALSE"))
+  expect_identical(transform_params(params = "r, chunck_name, eval = FALSE", extension = "rmd"), 
+                   tibble::tibble(language = "r",
+                                  name = "chunck_name",
+                                  options = ", eval = FALSE"))
   # language, no name and options
   expect_identical(transform_params(params = "r eval = FALSE", extension = "rmd"), 
                    tibble::tibble(language = "r",
                                   name = NA,
                                   options = ", eval = FALSE"))
+  expect_identical(transform_params(params = "r, eval = FALSE", extension = "rmd"), 
+                   tibble::tibble(language = "r",
+                                  name = NA,
+                                  options = ", eval = FALSE"))
   # language, name and no options
   expect_identical(transform_params(params = "r chunck_name", extension = "rmd"), 
+                   tibble::tibble(language = "r",
+                                  name = "chunck_name",
+                                  options = ""))
+  expect_identical(transform_params(params = "r, chunck_name", extension = "rmd"), 
                    tibble::tibble(language = "r",
                                   name = "chunck_name",
                                   options = ""))

@@ -11,16 +11,23 @@
 # function from knitr r-package
 # https://github.com/yihui/knitr/blob/2b3e617a700f6d236e22873cfff6cbc3568df568/R/parser.R#L148
 
-# quote the chunk label if necessary
+# quote the chunk label if necessaryme issues
+# Adapted to solve so
 
 quote_label = function(x) {
-  x = gsub('^\\s*,?', '', x)
+  x <-  gsub('^\\s*,?', '', x)
   if (grepl('^\\s*[^\'"](,|\\s*$)', x)) {
-    # <<a,b=1>>= ---> <<'a',b=1>>=
-    x = gsub('^\\s*([^\'"])(,|\\s*$)', "'\\1'\\2", x)
+    if(grepl('^\\s*[^\'"],\\s*[^=]*(,|\\s*$)', x)){
+      # "r, chucnk_name" ---> "'r chucnk_name'"
+      x <- gsub('^\\s*([^\'"]),(\\s*[^=]*)(,|\\s*$)', "'\\1,\\2'\\3", x)
+    } else {
+      # <<a,b=1>>= ---> <<'a',b=1>>=
+      x = gsub('^\\s*([^\'"])(,|\\s*$)', "'\\1'\\2", x)
+    }
+
   } else if (grepl('^\\s*[^\'"](,|[^=]*(,|\\s*$))', x)) {
     # <<abc,b=1>>= ---> <<'abc',b=1>>=
-    x = gsub('^\\s*([^\'"][^=]*)(,|\\s*$)', "'\\1'\\2", x)
+    x <-  gsub('^\\s*([^\'"][^=]*)(,|\\s*$)', "'\\1'\\2", x)
   }
   x
 }
@@ -56,8 +63,10 @@ quote_label = function(x) {
 
 get_chunk_info <- function(lines, info_patterns){
   
-  # find which lines are chunk starts
+  # find which lines are chunk starts and chuck ends
   chunk_header_indices <- which(grepl(info_patterns$chunck_header_start, lines))
+  # finde which lines are chuck ends
+  chunk_end_indices <- which(grepl(info_patterns$chunck_end, lines))
 
   # null if no chunks
   if(length(chunk_header_indices) == 0){
@@ -227,7 +236,7 @@ parse_label_rmd <- function(label, params){
     name_chunck <-  NA
     options <-  params
   } else {
-  language_name <- sub(" ", "\\/", label[[1]])
+  language_name <- sub(",?\\s+", "\\/", label[[1]])
   language_name <- unlist(strsplit(language_name, "\\/"))
   
   language <-  trimws(language_name[1])
