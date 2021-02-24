@@ -73,7 +73,7 @@ upload_file <- function(file,
     
     # create .rmdrive folder with info about chunks
     init_rmdrive(file_text = temp_file,
-                 local_path = file_info$path)
+                 file_info = file_info)
     
     if (isTRUE(hide_chunks)) {
       
@@ -148,7 +148,7 @@ update_file <- function(file,
   gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
   
   # check whether file on Google Drive exists
-  dribble <- get_dribble(gfile, path, team_drive)
+  dribble <- get_dribble_info(gfile, path, team_drive)
   check_gfile(dribble)
   
   # check whether user really wants to replace file in Google Drive
@@ -175,7 +175,7 @@ update_file <- function(file,
       
       # create .rmdrive folder with info about chunks
       init_rmdrive(file_text = temp_file,
-                   local_path = file_info$path)
+                   file_info = file_info)
       
       if (isTRUE(hide_chunks)) {
         hide_chunk(file_text = temp_file,
@@ -190,7 +190,7 @@ update_file <- function(file,
         knit_report(local_path = file_info$path) 
         
         # check if the file pdf report is already present
-        dribble_report <- get_dribble(paste0(gfile, "_report.pdf"), 
+        dribble_report <- get_dribble_info(paste0(gfile, "_report.pdf"), 
                                       path = path, 
                                       team_drive = team_drive) 
     
@@ -272,7 +272,7 @@ download_file <- function(file,
   gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
   
   # check whether file on Google Drive exists
-  dribble <- get_dribble(gfile, path, team_drive)
+  dribble <- get_dribble_info(gfile, path, team_drive)
   check_gfile(dribble)
   
   # download file from Google Drive
@@ -364,7 +364,7 @@ final_file <- function(file,
   gfile <- basename(file)
   
   # get dribble of the parent
-  path <- get_dribble(path)
+  path <- get_dribble_info(path)
   
   # check whether local file exists
   local_path <-  dirname(file)

@@ -83,7 +83,7 @@ extract_chunk <- function(text_lines, info_patterns){
 
 # Extract yaml header
 
-extract_yaml <- function(text_lines, collapse = TRUE){
+extract_yaml <- function(text_lines, info_patterns, collapse = TRUE){
   
   yaml_index <- which(text_lines == "---") # chunk start
   
@@ -122,7 +122,7 @@ init_rmdrive <- function(file_text, file_info){
   saveRDS(chunk_info, file = file.path(file_info$path, ".rmdrive", "chunk_info.rds"))
   
   # Extract and save Yaml header
-  yaml_header <- extract_yaml(text_lines = text_lines, extension = file_info$extension) 
+  yaml_header <- extract_yaml(text_lines = text_lines, info_patterns = info_patterns) 
   saveRDS(yaml_header, file = file.path(file_info$path, ".rmdrive","yaml_header.rds"))
   
   #message(paste("Document setup completed!\n"))
