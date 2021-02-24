@@ -43,4 +43,24 @@ test_that("file info are correct", {
 
 })
 
+#----    extract_chunk    ----
+
+test_that("get the correct extract_chunk", {
+  # rmd
+  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  info_patterns_rmd <- get_extension_patterns(extension = "rmd")
+  expect_snapshot_output(extract_chunk(lines_rmd, info_patterns_rmd))
+  
+  # rnw
+  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  info_patterns_rnw <- get_extension_patterns(extension = "rnw")
+  expect_snapshot_output(extract_chunk(lines_rnw, info_patterns_rnw))
+  
+  # no chunks
+  lines_no_chunk <- c("A file with no chunks")
+  expect_null(extract_chunk(lines_no_chunk, info_patterns_rmd))
+  expect_null(extract_chunk(lines_no_chunk, info_patterns_rnw))
+  
+})
+
 #----

@@ -87,7 +87,17 @@ get_chunk_range <- function(lines, info_patterns){
 #'   extension, returned by get_extension_patterns() function
 #' 
 #' @noRd
-#' @return TODO
+#' @return  a tibble with \itemize{
+#'   \item{language} of the chunk
+#'   \item{name} of the chunk
+#'   \item{options} of the chunk
+#'   \item{starts} the line number of the chunk header
+#'   \item{index} integer index to identify the chunk
+#'   \item{chunk_text} the chunk from header to end (included)
+#'   \item{name_tag} the name used as tag in the text
+#' }
+#' Note that in case of "rnw" extension the language is always NA. NULL is
+#' returned if no chunk was available.
 #' 
 #' @examples 
 #'   # rmd
@@ -108,18 +118,22 @@ extract_chunk <- function(text_lines, info_patterns){
   # return NULL if no chunk was available
   if(is.null(chunk_info)) return(NULL)
   
+  index_seq <- seq_len(nrow(chunk_info))
   # Extract chunk from header to end (included) and add '\n' to separate lines
-  chunk_text <- vapply(seq_along(nrow(chunk_info)), function(i){
+  chunk_text <- vapply(index_seq, function(i){
     paste(text_lines[chunk_info$starts[i]:chunk_info$ends[i]], 
           collapse = "\n")
   }, FUN.VALUE = character(1)) 
   
   # create chunk name to use as tag in the text (solve problem of chunk with non name)
-  name_tag <- vapply(seq_along(chunk_info), function(i){
+  name_tag <- vapply(index_seq, function(i){
     ifelse(is.na(chunk_info$name[i]),
            yes = paste0("[[", "chunk-", i, "]]"),
            no = paste0("[[", "chunk-", chunk_info$name[i], "]]"))
   }, FUN.VALUE = character(1))
+  
+  # swap '_' to "-" solve issues LaTeX
+  name_tag <- sub("_","-", name_tag)
   
   # add to chunk info 
   chunk_info$chunk_text <- chunk_text
