@@ -30,19 +30,19 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ```{r, echo=FALSE, warning=FALSE}
-# R Chunck with no name but multiple options (using ,)
+# R chunk with no name but multiple options (using ,)
 ```
 
 ```{r echo=FALSE}
-# R Chunck with no name but options (not using,)
+# R chunk with no name but options (not using,)
 ```
 
-```{r, chunck_name}
-# wrong R Chunck with , and name is parsed as argument
+```{r, chunk_name}
+# wrong R chunk with , and name is parsed as argument
 ```
 
 ```{sql, eval=FALSE}
-/*A sql chunck Chunck with no name but options*/
+/*A sql chunk chunk with no name but options*/
 ```
 
 ```{eval = TRUE}

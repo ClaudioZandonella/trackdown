@@ -4,7 +4,7 @@
 
 
 # Utility from namer R-package https://github.com/lockedata/namer
-# changes were made to allow parsing chuncks for Rmd files as well as Rnw files
+# changes were made to allow parsing chunks for Rmd files as well as Rnw files
 
 #----    quote_label    ----
 
@@ -38,7 +38,7 @@ quote_label = function(x) {
 # https://github.com/lockedata/namer/blob/master/R/utils.R#L72
 # adapted to consider rmd and rnw
 
-#' Get chunck info
+#' Get chunk info
 #' 
 #' helper to create a data.frame of chunk info
 #'
@@ -47,12 +47,14 @@ quote_label = function(x) {
 #'   extension, returned by get_extension_patterns() function
 #'
 #' @return  a tibble with \itemize{
-#'   \item{language} of the chunck
-#'   \item{name} of the chunck
-#'   \item{options} of the chunck
-#'   \item{starts} the line number of the chunck header
+#'   \item{language} of the chunk
+#'   \item{name} of the chunk
+#'   \item{options} of the chunk
+#'   \item{starts} the line number of the chunk header
+#'   \item{index} integer index to identify the chunk
 #' }
-#' Note that in case of "rnw" extension the language is always NA
+#' Note that in case of "rnw" extension the language is always NA. NULL is
+#' returned if no chunk was available.
 #' @noRd
 #'
 #' @examples
@@ -70,21 +72,22 @@ quote_label = function(x) {
 get_chunk_info <- function(lines, info_patterns){
   
   # find which lines are chunk starts and chuck ends
-  chuncks_range <- get_chunck_range(lines, info_patterns)
+  chunks_range <- get_chunk_range(lines, info_patterns)
 
   # null if no chunks
-  if(length(chuncks_range$starts) == 0){
+  if(length(chunks_range$starts) == 0){
     return(NULL)
   }
   # parse these chunk headers
-  res <- purrr::map_df(chuncks_range$starts,
+  res <- purrr::map_df(chunks_range$starts,
                        digest_chunk_header,
                        lines,
                        info_patterns)
   
-  # return also chunck start/end line indexes
-  res$starts <- chuncks_range$starts
-  res$ends <- chuncks_range$ends
+  # return also chunk start/end line indexes
+  res$starts <- chunks_range$starts
+  res$ends <- chunks_range$ends
+  res$index <- seq(length.out = nrow(res))
   
   return(res)
 }
@@ -94,18 +97,18 @@ get_chunk_info <- function(lines, info_patterns){
 # function from namer r-package
 # https://github.com/lockedata/namer/blob/master/R/utils.R#L35
 
-#' Parse chunck header
+#' Parse chunk header
 #' 
 #' from a chunk header to a tibble with language, name, option, option values
 #' 
-#' @param chunk_header a string with the chunck header
+#' @param chunk_header a string with the chunk header
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
 #' @return  a tibble with \itemize{
-#'   \item{language} of the chunck
-#'   \item{name} of the chunck
-#'   \item{options} of the chunck
+#'   \item{language} of the chunk
+#'   \item{name} of the chunk
+#'   \item{options} of the chunk
 #' }
 #' Note that in case of "rnw" extension the language is always NA
 #' @noRd
@@ -125,8 +128,8 @@ get_chunk_info <- function(lines, info_patterns){
 parse_chunk_header <- function(chunk_header, info_patterns){
   
   # remove boundaries 
-  chunk_header <- gsub(info_patterns$chunck_header_start, "", chunk_header)
-  chunk_header <- gsub(info_patterns$chunck_header_end, "", chunk_header)
+  chunk_header <- gsub(info_patterns$chunk_header_start, "", chunk_header)
+  chunk_header <- gsub(info_patterns$chunk_header_end, "", chunk_header)
 
   # parse each part
   transform_params(chunk_header, extension = info_patterns$extension)
@@ -139,7 +142,7 @@ parse_chunk_header <- function(chunk_header, info_patterns){
 # https://github.com/lockedata/namer/blob/master/R/utils.R#L45
 # adapted to consider rmd and rnw
 
-#' Digest chunck header
+#' Digest chunk header
 #' 
 #' 
 #' @param chunk_header_index integer indicating the line index of the chunch
@@ -149,9 +152,9 @@ parse_chunk_header <- function(chunk_header, info_patterns){
 #'   extension, returned by get_extension_patterns() function
 #'
 #' @return  a tibble with \itemize{
-#'   \item{language} of the chunck
-#'   \item{name} of the chunck
-#'   \item{options} of the chunck
+#'   \item{language} of the chunk
+#'   \item{name} of the chunk
+#'   \item{options} of the chunk
 #' }
 #' Note that in case of "rnw" extension the language is always NA
 #' @noRd
@@ -160,13 +163,13 @@ parse_chunk_header <- function(chunk_header, info_patterns){
 #'   # rmd
 #'   lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
 #'   info_patterns <- get_extension_patterns(extension = "rmd")
-#'   chunk_header_index <- which(grepl(info_patterns$chunck_header_start, lines))[1]
+#'   chunk_header_index <- which(grepl(info_patterns$chunk_header_start, lines))[1]
 #'   digest_chunk_header(chunk_header_index, lines, info_patterns)
 #'   
 #'   # rnw
 #'   lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
-#'   chunk_header_index <- which(grepl(info_patterns$chunck_header_start, lines))[1]
+#'   chunk_header_index <- which(grepl(info_patterns$chunk_header_start, lines))[1]
 #'   digest_chunk_header(chunk_header_index, lines, info_patterns)
 #'   
 
@@ -190,13 +193,13 @@ digest_chunk_header <- function(chunk_header_index,
 #' 
 #' not elegant, given a part of a header, transform it into the row of a tibble
 #' 
-#' @param params a string indicating the content of a chunck header
+#' @param params a string indicating the content of a chunk header
 #' @param extension a indicating the extension of the file ("rmd" or "rnw")
 #'
 #' @return  a tibble with \itemize{
-#'   \item{language} of the chunck
-#'   \item{name} of the chunck
-#'   \item{options} of the chunck
+#'   \item{language} of the chunk
+#'   \item{name} of the chunk
+#'   \item{options} of the chunk
 #' }
 #' Note that in case of "rnw" extension the language is always NA
 #' @noRd
@@ -237,21 +240,21 @@ transform_params <- function(params, extension){
 parse_label_rmd <- function(label, params){
   
   if(length(label) < 1 || (!is.null(names(label)[1]) && names(label)[1]!= "")){
-    # chunck with no language e no name only options
+    # chunk with no language e no name only options
     language <-  NA
-    name_chunck <-  NA
+    name_chunk <-  NA
     options <-  params
   } else {
   language_name <- sub(",?\\s+", "\\/", label[[1]])
   language_name <- unlist(strsplit(language_name, "\\/"))
   
   language <-  trimws(language_name[1])
-  name_chunck <- ifelse(length(language_name) == 1L, NA, trimws(language_name[2]))
+  name_chunk <- ifelse(length(language_name) == 1L, NA, trimws(language_name[2]))
   options <-  sub(label[[1]], "", params)
   }
   
   tibble::tibble(language = language,
-                 name = name_chunck,
+                 name = name_chunk,
                  options = options)
 }
 
@@ -261,17 +264,17 @@ parse_label_rmd <- function(label, params){
 parse_label_rnw <- function(label, params){
   
   if(length(label) < 1 || (!is.null(names(label)[1]) && names(label)[1]!= "")){ 
-    # empty chunck  (e.g., <<>>=) or 
-    # chunck with arguments but not name (e.g., <<eval = TRUE>>=)
-    name_chunck <- NA
+    # empty chunk  (e.g., <<>>=) or 
+    # chunk with arguments but not name (e.g., <<eval = TRUE>>=)
+    name_chunk <- NA
     options <- params
-  } else { # chunck with name
-    name_chunck <- trimws(label[1])
+  } else { # chunk with name
+    name_chunk <- trimws(label[1])
     options <- sub(label[[1]], "", params)
   }
   
   tibble::tibble(language = NA,
-                 name = name_chunck,
+                 name = name_chunk,
                  options = options)
 }
 

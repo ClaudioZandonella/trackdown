@@ -23,7 +23,7 @@
 #'   recommended.
 #' @param team_drive character. The name of a Google Team Drive (optional).
 #' @param hide_chunks logical value indicating whether to remove code chunks
-#'   from the text document. Placeholders of  type "[[chunck_<name>]]" are
+#'   from the text document. Placeholders of  type "[[chunck-<name>]]" are
 #'   displayed instead.
 #' @param  upload_report logical value indicating whether to upload an
 #'   additional pdf file with the chunks output (e.g., figures and tables). Note

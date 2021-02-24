@@ -60,16 +60,16 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 <<echo=FALSE, warning=FALSE>>=
-# R Chunck with no name but multiple options (using ,)
+# R chunk with no name but multiple options (using ,)
 @
 
 <<echo=FALSE>>= # a really evil comment
-# R Chunck with no name but options (not using,)
+# R chunk with no name but options (not using,)
 @
 
 
 <<sql, eval=FALSE>>=
-/*A  wrong sql chunck Chunck with no name but options*/
+/*A  wrong sql chunk chunk with no name but options*/
 @
 
 <<>>=

@@ -21,19 +21,19 @@ mkdir_rmdrive <- function(local_path, folder_name = ".rmdrive"){
   
 }
 
-#----    get_chunck_range    ----
+#----    get_chunk_range    ----
 
-#' Get chuncks start and end lines
+#' Get chunks start and end lines
 #' 
-#' Get chuncks start and end lines
+#' Get chunks start and end lines
 #'
 #' @param lines a character vector with the text lines of the file  
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
 #' @return  a tibble with \itemize{
-#'   \item{starts} the line number of the chunck header
-#'   \item{ends} the line number of the chunck end
+#'   \item{starts} the line number of the chunk header
+#'   \item{ends} the line number of the chunk end
 #' }
 #' @noRd
 #'
@@ -41,19 +41,19 @@ mkdir_rmdrive <- function(local_path, folder_name = ".rmdrive"){
 #'   # rmd
 #'   lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
 #'   info_patterns <- get_extension_patterns(extension = "rmd")
-#'   get_chunck_range(lines, info_patterns)
+#'   get_chunk_range(lines, info_patterns)
 #'   
 #'   # rnw
 #'   lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
-#'   get_chunck_range(lines, info_patterns)
+#'   get_chunk_range(lines, info_patterns)
 #' 
 
-get_chunck_range <- function(lines, info_patterns){
+get_chunk_range <- function(lines, info_patterns){
   
   if(info_patterns$extension == "rmd"){
-    # solve issue of chuncks without language and '{}'
-    # check for chunck of types '```{...}' or '```'
+    # solve issue of chunks without language and '{}'
+    # check for chunk of types '```{...}' or '```'
     index <- which(grepl("^```(\\s*$|\\{)", lines))
     
     if(length(index)>0){
@@ -66,13 +66,13 @@ get_chunck_range <- function(lines, info_patterns){
   
   } else if(info_patterns$extension == "rnw"){
     # find which lines are chunk starts and chuck ends
-    header_indices <- which(grepl(info_patterns$chunck_header_start, lines))
+    header_indices <- which(grepl(info_patterns$chunk_header_start, lines))
     # finde which lines are chuck ends
-    end_indices <- which(grepl(info_patterns$chunck_end, lines))
+    end_indices <- which(grepl(info_patterns$chunk_end, lines))
   }
   
   if(any(header_indices>end_indices))
-    stop("There are some issues in th eidentification of chunck start/end line indexes")
+    stop("There are some issues in th eidentification of chunk start/end line indexes")
   
   return(tibble::tibble(starts = header_indices,
                         ends = end_indices))
@@ -88,50 +88,42 @@ get_chunck_range <- function(lines, info_patterns){
 #' 
 #' @noRd
 #' @return TODO
+#' 
+#' @examples 
+#'   # rmd
+#'   text_lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   info_patterns <- get_extension_patterns(extension = "rmd")
+#'   get_chunk_range(lines, info_patterns)
+#'   
+#'   # rnw
+#'   text_lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
+#'   info_patterns <- get_extension_patterns(extension = "rnw")
+#'   get_chunk_range(lines, info_patterns)
 #'
 
 extract_chunk <- function(text_lines, info_patterns){
   
   chunk_info <- get_chunk_info(lines = text_lines, info_patterns = info_patterns)
   
-  # Extract Chunk
+  # return NULL if no chunk was available
+  if(is.null(chunk_info)) return(NULL)
   
-  line_start_chunck <- which(grepl(info_patterns$chunck_header_start, 
-                                   text_lines))
+  # Extract chunk from header to end (included) and add '\n' to separate lines
+  chunk_text <- vapply(seq_along(nrow(chunk_info)), function(i){
+    paste(text_lines[chunk_info$starts[i]:chunk_info$ends[i]], 
+          collapse = "\n")
+  }, FUN.VALUE = character(1)) 
   
-  # The start index is odd and the end is even
-  starts <- line_start_chunck[seq(1, length(line_start_chunck), 2)] # chunk start
-  ends <- line_start_chunck[seq(2, length(line_start_chunck), 2)] # chunk ends
-  
-  
-  # Check if chunk without language exist
-  
-  if(nrow(chunk_info) != length(starts)) {
-    
-    extra_starts <- setdiff(starts, chunk_info$starts) # check missing starts
-    
-    # add empty rows to chunk table
-    chunk_info[(nrow(chunk_info)+1):(nrow(chunk_info) + length(extra_starts)), ] <- NA
-    
-    chunk_info$starts <- ifelse(is.na(chunk_info$starts), extra_starts, chunk_info$starts) # replace starts
-    
-    chunk_info <- chunk_info[order(chunk_info$starts), ] # reorder chunk info
-    
-  }
-  
-  chunk_info$ends <- ends
-  
-  chunk_info$index <- seq(length.out = nrow(chunk_info))
-  
-  chunk_info$chunk_text <- sapply(seq_along(starts), function(i){
-    paste(text_lines[starts[i]:ends[i]], collapse = "\n")
-  }) # extract chunk and apply a \n
-  
-  chunk_info$chunk_name_file <- sapply(seq_along(chunk_info$name), function(i){
+  # create chunk name to use as tag in the text (solve problem of chunk with non name)
+  name_tag <- vapply(seq_along(chunk_info), function(i){
     ifelse(is.na(chunk_info$name[i]),
-           yes = paste0("[[", "chunk_", i, "]]"),
-           no = paste0("[[", "chunk_", chunk_info$name[i], "]]"))
-  })
+           yes = paste0("[[", "chunk-", i, "]]"),
+           no = paste0("[[", "chunk-", chunk_info$name[i], "]]"))
+  }, FUN.VALUE = character(1))
+  
+  # add to chunk info 
+  chunk_info$chunk_text <- chunk_text
+  chunk_info$name_tag <- name_tag
 
   return(chunk_info)
 }
@@ -190,14 +182,14 @@ init_rmdrive <- function(file_txt, file_info){
 #' Get extensions pattern
 #' 
 #' Given the extension (rmd or rnw), return a list with the regex patterns for
-#' the chunck header (start and end), chunk end , and file header (start/end).
+#' the chunk header (start and end), chunk end , and file header (start/end).
 #' 
 #' @param extension 
 #'
 #' @return a list with the regex pattern that identify \itemize{
-#' \item{chunck_header_start} the start of the first line of a chunck
-#' \item{chunck_header_end} the end of the first line of a chunck
-#' \item{chunck_end} the end line of a chunck
+#' \item{chunk_header_start} the start of the first line of a chunk
+#' \item{chunk_header_end} the end of the first line of a chunk
+#' \item{chunk_end} the end line of a chunk
 #' \item{file_header_start} the start line of the file header
 #' \item{file_header_end} the end line of the file header
 #' \item{extension} the extension type (rmd or rnw)
@@ -213,17 +205,17 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
   extension <- match.arg(extension)
   
   if (extension == "rmd"){     # ```{*}   ```
-    res <- list(chunck_header_start = "^```(\\s*$|\\{)",
-                chunck_header_end = "\\}\\s*$",
-                chunck_end = "^```\\s*$",
+    res <- list(chunk_header_start = "^```(\\s*$|\\{)",
+                chunk_header_end = "\\}\\s*$",
+                chunk_end = "^```\\s*$",
                 file_header_start = "^---",
                 file_header_end = "^---",
                 extension = extension)
     
   } else if (extension == "rnw"){  # <<*>>=   @
-    res <- list(chunck_header_start = "^<<",
-                chunck_header_end = ">>=.*$",
-                chunck_end = "^@\\s*$",
+    res <- list(chunk_header_start = "^<<",
+                chunk_header_end = ">>=.*$",
+                chunk_end = "^@\\s*$",
                 file_header_start = "^\\\\documentclass{",
                 file_header_end = "^\\\\begin{document}",
                 extension = extension)
