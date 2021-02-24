@@ -4,7 +4,6 @@
 
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
-
 #----    quote_label    ----
 
 test_that("get the correct quote_label", {
@@ -16,49 +15,6 @@ test_that("get the correct quote_label", {
   expect_match(quote_label("r eval = FALSE"), 
                "r eval = FALSE")
 })
-
-# #----    parse_label_rmd    ----
-# 
-# test_that("get the correct parse_label_rmd", {
-#   
-#   # langugae and name
-#   expect_identical(parse_label_rmd(c("r", "chunck_name")), 
-#                    tibble::tibble(language = "r",
-#                                   name = "chunck_name"))
-#   # only language
-#   expect_identical(parse_label_rmd(c("r")), 
-#                    tibble::tibble(language = "r",
-#                                   name = NA))
-# })
-# 
-# #----    parse_label_rnw    ----
-# 
-# test_that("get the correct parse_label_rnw", {
-#   
-#   label <- list("chunck_name",
-#                 eval = FALSE)
-#   
-#   # name and options
-#   expect_identical(parse_label_rnw(label, params = "chunck_name, eval = FALSE"), 
-#                    tibble::tibble(language = NA,
-#                                   name = "chunck_name",
-#                                   options = ", eval = FALSE"))
-#   # no name and options
-#   expect_identical(parse_label_rnw(label[2], params = "eval = FALSE"), 
-#                    tibble::tibble(language = NA,
-#                                   name = NA,
-#                                   options = "eval = FALSE"))
-#   # name and no options
-#   expect_identical(parse_label_rnw(label[1], params = "chunck_name"), 
-#                    tibble::tibble(language = NA,
-#                                   name = "chunck_name",
-#                                   options = ""))
-#   # no name and no options
-#   expect_identical(parse_label_rnw(list(), params = ""), 
-#                    tibble::tibble(language = NA,
-#                                   name = NA,
-#                                   options = ""))
-# })
 
 #----    transform_params    ----
 
@@ -119,6 +75,20 @@ test_that("get the correct transform_params", {
                    tibble::tibble(language = NA,
                                   name = NA,
                                   options = ""))
+})
+
+#----    get_chunk_info    ----
+
+test_that("get the correct get_chunk_info", {
+  # rmd
+  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  info_patterns_rmd <- get_extension_patterns(extension = "rmd")
+  expect_snapshot_output(get_chunk_info(lines_rmd, info_patterns_rmd))
+  
+  # rnw
+  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  info_patterns_rnw <- get_extension_patterns(extension = "rnw")
+  expect_snapshot_output(get_chunk_info(lines_rnw, info_patterns_rnw))
 })
 
 #----
