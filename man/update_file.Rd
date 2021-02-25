@@ -9,8 +9,8 @@ update_file(
   gfile = NULL,
   path = "rmdrive",
   team_drive = NULL,
-  hide_chunks = FALSE,
-  upload_report = FALSE
+  hide_code = FALSE,
+  upload_output = FALSE
 )
 }
 \arguments{
@@ -28,13 +28,14 @@ recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 
-\item{hide_chunks}{logical value indicating whether to remove code chunks
-from the text document. Placeholders of  type "[[chunck-<name>]]" are
+\item{hide_code}{logical value indicating whether to remove code from the
+text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
 displayed instead.}
 
-\item{upload_report}{logical value indicating whether to upload an
-additional pdf file with the chunks output (e.g., figures and tables). Note
-that this require the time to compile the document.}
+\item{upload_output}{default NULL, specify the path to
+the output to upload together with the other file. PDF are directly
+uploaded, HTML are first converted into PDF if Chrome is available or as
+HTML.}
 }
 \description{
 Replaces the content of an existing file in Google Drive with the contents of

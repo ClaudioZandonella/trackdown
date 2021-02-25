@@ -32,12 +32,20 @@
     # A tibble: 1 x 4
       starts  ends header_text                                        name_tag      
        <int> <int> <chr>                                              <chr>         
-    1      1     6 "---\ntitle: \"Reviewdown Test\"\nauthor: \"revie~ [[Document-he~
+    1      1     6 "---\ntitle: \"Reviewdown Test\"\nauthor: \"revie~ [[document-he~
 
 ---
 
     # A tibble: 1 x 4
       starts  ends header_text                                        name_tag      
        <int> <int> <chr>                                              <chr>         
-    1      3    29 "\\documentclass{article}  \n\\usepackage[T1] {fo~ [[Document-he~
+    1      3    29 "\\documentclass{article}  \n\\usepackage[T1] {fo~ [[document-he~
+
+# get the correct hide_code
+
+    [1] "[[document-header]]\n\n[[chunk-setup]]\n\n## R Markdown\n\nThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.\n\nWhen you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\n[[chunk-cars]]\n\n## Including Plots\n\nYou can also embed plots, for example:\n\n[[chunk-pressure]]\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n\n[[chunk-4]]\n\n[[chunk-5]]\n\n[[chunk-chunk-name]]\n\n[[chunk-7]]\n\n[[chunk-8]]\n\n[[chunk-9]]\n\n[[chunk-10]]\n\n```a really strange inline block ```\n\nEnd of the document"
+
+---
+
+    [1] "\n%----    Basic packages    ----%\n[[document-header]]\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         Title           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\\maketitle\n\n%----------------------------------------------------------------------------------%\n%--------------------------         Introduction         --------------------------%\n%----------------------------------------------------------------------------------%\n\n\\section{R and \\LaTeX}\n\nThis is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}.\n\nWhen you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\n[[chunk-cars]]\n\n\\section{Including Plots}\n\nYou can also embed plots, for example:\n\n[[chunk-pressure]]\n\nNote that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.\n\n[[chunk-4]]\n\n[[chunk-5]]\n\n[[chunk-sql]]\n\n[[chunk-7]]\n\nEnd of the document\n\n\\end{document}"
 

@@ -22,13 +22,13 @@
 #'   \code{NULL} to upload directly at the root level, although it is not
 #'   recommended.
 #' @param team_drive character. The name of a Google Team Drive (optional).
-#' @param hide_chunks logical value indicating whether to remove code chunks
-#'   from the text document. Placeholders of  type "[[chunck-<name>]]" are
+#' @param hide_code logical value indicating whether to remove code from the
+#'   text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
 #'   displayed instead.
-#' @param  upload_report logical value indicating whether to upload an
-#'   additional pdf file with the chunks output (e.g., figures and tables). Note
-#'   that this require the time to compile the document.
-#'
+#' @param  upload_output default NULL, specify the path to
+#'   the output to upload together with the other file. PDF are directly
+#'   uploaded, HTML are first converted into PDF if Chrome is available or as
+#'   HTML.
 #' @return NULL
 #' @export
 #'
@@ -36,8 +36,8 @@ upload_file <- function(file,
                         gfile = NULL,
                         path = "rmdrive",
                         team_drive = NULL,
-                        hide_chunks = FALSE,
-                        upload_report = FALSE) {
+                        hide_code = FALSE,
+                        upload_output = NULL) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
@@ -67,43 +67,27 @@ upload_file <- function(file,
   temp_file <- file.path(file_info$path, 
                          paste0(".temp-", file_info$file_basename, ".txt"))
   file.copy(file, temp_file, overwrite = T)
+  # read document lines
+  document <- readLines(temp_file, warn = FALSE)
   
-  # We need to extract chunks in both cases
-  if(isTRUE(hide_chunks) || isTRUE(upload_report)){
+  # hide code
+  if(isTRUE(hide_code)){
     
-    # create .rmdrive folder with info about chunks
-    init_rmdrive(file_txt = temp_file,
-                 file_info = file_info)
+    # create .reviewdown folder with info about chunks and header
+    init_reviewdown(document = document,
+                    file_info = file_info)
     
-    if (isTRUE(hide_chunks)) {
-      
-      start_process("Removing chunks...")
-      
-      hide_chunk(file_txt = temp_file,
-                 local_path = file_info$path)
-      
-      finish_process(paste("Chunks removed from", emph_file(file)))
-    }
+    start_process("Removing code...")
     
-    if (isTRUE(upload_report)) {
-      
-      # function to knit a temporary report named .report_temp.Rmd
-      
-      knit_report(local_path = file_info$path) 
-      
-      googledrive::drive_upload(
-        media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
-        path = dribble$parent,
-        name = paste0(gfile, "_report.pdf"),
-        type = "pdf",
-        verbose = F
-      )
-      
-      finish_process(paste(emph_file(file), "pdf report uploaded!"))
-      
-      file.remove(file.path(file_info$path,".report_temp.Rmd"))
-    }
+    document <- hide_code(document = document,
+                          file_info = file_info)
+    
+    finish_process(paste("Code removed from", emph_file(file_info$file_name)))
   }
+  
+  # Add instructions
+  document <- add_instructions(document)
+  cat(document, file = temp_file)
   
   start_process("Uploading main file to Google Drive...")
   
@@ -116,6 +100,25 @@ upload_file <- function(file,
     verbose = F
   )
   invisible(file.remove(temp_file))
+  
+  if (isTRUE(upload_output)) {
+    
+    # function to knit a temporary report named .report_temp.Rmd
+    start_process("Uploading output to Google Drive...")
+    knit_report(local_path = file_info$path) 
+    
+    googledrive::drive_upload(
+      media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
+      path = dribble$parent,
+      name = paste0(gfile, "_report.pdf"),
+      type = "pdf",
+      verbose = F
+    )
+    
+    finish_process(paste(emph_file(file), "pdf report uploaded!"))
+    
+    file.remove(file.path(file_info$path,".report_temp.Rmd"))
+  }
   
   finish_process(paste(emph_file(file), "uploaded!"))
 }
@@ -137,8 +140,8 @@ update_file <- function(file,
                         gfile = NULL,
                         path = "rmdrive",
                         team_drive = NULL,
-                        hide_chunks = FALSE,
-                        upload_report = FALSE) {
+                        hide_code = FALSE,
+                        upload_output = FALSE) {
   
   # check whether local file exists and get file info
   check_file(file)
@@ -167,24 +170,26 @@ update_file <- function(file,
     # create .temp-file to upload
     temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".txt"))
     file.copy(file, temp_file, overwrite = T)
+    # read document lines
+    document <- readLines(temp_file, warn = FALSE)
     
     # We need to extract chunks in both cases
-    if(isTRUE(hide_chunks) || isTRUE(upload_report)){
+    if(isTRUE(hide_code) || isTRUE(upload_output)){
       
       start_process("Removing chunks...")
       
-      # create .rmdrive folder with info about chunks
-      init_rmdrive(file_txt = temp_file,
-                   file_info = file_info)
+      # create .reviewdown folder with info about chunks
+      init_reviewdown(document = document,
+                      file_info = file_info)
       
-      if (isTRUE(hide_chunks)) {
-        hide_chunk(file_txt = temp_file,
-                   local_path = file_info$path)
+      if (isTRUE(hide_code)) {
+        hide_code(document = document,
+                  local_path = file_info$path)
         
         finish_process("Chunks removed!")
       }
       
-      if (isTRUE(upload_report)) {
+      if (isTRUE(upload_output)) {
         
         # knit uploaded pdf named .report_temp.Rmd
         knit_report(local_path = file_info$path) 
@@ -202,7 +207,7 @@ update_file <- function(file,
           
           # upload local file to Google Drive
           googledrive::drive_upload(
-            media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
+            media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
             path = path,
             name = paste0(gfile, "_report.pdf"),
             type = "pdf",
@@ -216,7 +221,7 @@ update_file <- function(file,
           # update local file to Google Drive
           googledrive::drive_update(
             file = dribble_report,
-            media = file.path(file_info$path, ".rmdrive/report_temp.pdf"),
+            media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
             verbose = F
           )
           

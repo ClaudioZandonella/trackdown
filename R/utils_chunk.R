@@ -2,17 +2,17 @@
 ####    Utils for chunk extraction    ####
 ##########################################
 
-#----    mkdir_rmdrive    ----
+#----    mkdir_reviewdown    ----
 
-#' Create .rmdrive folder if missing
+#' Create .reviewdown folder if missing
 #'
 #' @param local_path string indicating the path where to create the folder
-#' @param folder_name string indicating the folder name, default ".rmdrive"
+#' @param folder_name string indicating the folder name, default ".reviewdown"
 #' 
 #' @return NULL
 #' @noRd
 #'
-mkdir_rmdrive <- function(local_path, folder_name = ".rmdrive"){
+mkdir_reviewdown <- function(local_path, folder_name = ".reviewdown"){
   
   drk_rmdrive <- paste(local_path, folder_name, sep = "/")
   if(!dir.exists(drk_rmdrive)){
@@ -195,49 +195,86 @@ extract_header <- function(text_lines, info_patterns){
     starts = header_start,
     ends = header_end,
     header_text = paste(text_lines[header_start:header_end], collapse = "\n"),
-    name_tag = "[[Document-header]]")
+    name_tag = "[[document-header]]")
   
   return(res)
 }
 
+#----    get_file_metadata    ----
 
-#----    init_rmdrive    ----
+#' Get File Metadata
+#' 
+#' Save valuable info that can help to restore chunk and header
+#'
+#' @param file_info list with file info returned from get_file_info() function
+#'
+#' @return a tibble with \itemize{
+#'   \item{file_name} name of the file with extension
+#'   \item{file_path} path to the file
+#'   \item{extension} file extension
+#'   \item{google_id} google id initialized at ""
+#'   \item{name_chunk_info} name of the object where chunk info are saved
+#'   \item{name_header_info} name of the object where header info are saved
+#' }
+#' @noRd
+#'
+#' @examples
+#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   get_file_metadata(file_info)
+#' 
 
-#' Init rmdrive
+get_file_metadata <- function(file_info){
+  tibble::tibble(file_name = file_info$file_name,
+                 file_path = file_info$path,
+                 extension = file_info$extension,
+                 google_id = "",
+                 name_chunk_info = paste0(file_info$file_name,"-chunk_info.rds"),
+                 name_header_info = paste0(file_info$file_name,"-header_info.rds"))
+  
+}
+#----    init_reviewdown    ----
+
+#' Init reviewdown
 #' 
-#' Create .rmdrive folder with info about chunks 
+#' Create .reviewdown folder with info about chunks 
 #' 
-#' @param file_txt sting indicating the path to the txt file
+#' @param document character vector with the lines of the document 
 #' @param file_info list with file info returned from get_file_info() function
 #'   
 #' @noRd
 #' 
 #' @examples 
 #'   # rmd
-#'   file_txt <- "tests/testthat/test_files/example_1_rmd.txt"
+#'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
 #'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   init_reviewdown(document, file_info)
 #'   
 #'   # rnw
-#'   file_txt <- "tests/testthat/test_files/example_1_rnw.txt"
+#'   document <- readLines("tests/testthat/test_files/example_1_rnw.txt")
 #'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rnw")
+#'   init_reviewdown(document, file_info)
+#'   
+#'   # remove files
+#'   ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
+#'   file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
+#'   file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
 #' 
 
-init_rmdrive <- function(file_txt, file_info){
-  # create .rmdrive folder 
-  mkdir_rmdrive(local_path = file_info$path) 
+init_reviewdown <- function(document, file_info){
+  # create .reviewdown folder 
+  mkdir_reviewdown(local_path = file_info$path) 
   
   info_patterns <- get_extension_patterns(extension = file_info$extension)
     
-  # read file lines
-  text_lines <- readLines(file_txt, warn = F)
-  
   # Extract and save code chunks
-  chunk_info <- extract_chunk(text_lines = text_lines, info_patterns = info_patterns)
-  saveRDS(chunk_info, file = file.path(file_info$path, ".rmdrive", "chunk_info.rds"))
+  chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
+  saveRDS(chunk_info, file = file.path(file_info$path, ".reviewdown", 
+                                       paste0(file_info$file_name,"-chunk_info.rds")))
   
   # Extract and save header
-  header_info <- extract_header(text_lines = text_lines, info_patterns = info_patterns) 
-  saveRDS(header_info, file = file.path(file_info$path, ".rmdrive","header_info.rds"))
+  header_info <- extract_header(text_lines = document, info_patterns = info_patterns) 
+  saveRDS(header_info, file = file.path(file_info$path, ".reviewdown",
+                                        paste0(file_info$file_name,"-header_info.rds")))
   
   #message(paste("Document setup completed!\n"))
 }
@@ -249,7 +286,7 @@ init_rmdrive <- function(file_txt, file_info){
 #' Given the extension (rmd or rnw), return a list with the regex patterns for
 #' the chunk header (start and end), chunk end , and file header (start/end).
 #' 
-#' @param extension 
+#' @param extension string indicating the file extension ("rmd" or "rnw")
 #'
 #' @return a list with the regex pattern that identify \itemize{
 #' \item{chunk_header_start} the start of the first line of a chunk
@@ -290,40 +327,75 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 }
 
 
-#----    hide_chunk    ----
+#----    hide_code    ----
 
-# remove chunks from .rmd file
-# TODO remove also YAML ??
+#' Remove code
+#'
+#' Remove code from the document (chunks and header). Placeholders of  type
+#' "[[chunk-<name>]]"/"[[Document-header]]" are displayed instead.
+#'
+#' @param document character vector with the lines of the document 
+#' @param file_info list with file info returned from get_file_info() function
+#'
+#' @return a string with the content of the document (with code removed)
+#' @noRd
+#'
+#' @examples
+#'   # rmd
+#'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   init_reviewdown(document, file_info)
+#'   hide_code(document, file_info)
+#'   
+#'   # rnw
+#'   document <- readLines("tests/testthat/test_files/example_1_rnw.txt")
+#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rnw")
+#'   init_reviewdown(document, file_info)
+#'   hide_code(document, file_info)
+#'   
+#'   # remove files
+#'   ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
+#'   file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
+#'   file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
+#' 
 
-hide_chunk <- function(file_txt, local_path){
-  
-  # read file
-  paper <- readLines(file_txt, warn = F)
+hide_code <- function(document, file_info){
   
   # get saved chunks info
-  chunk_info <- readRDS(file = file.path(local_path, ".rmdrive","chunk_info.rds"))
+  chunk_info <- readRDS(file.path(file_info$path, ".reviewdown",
+                                  paste0(file_info$file_name, "-chunk_info.rds")))
   
-  # replace chunks in file
+  # replace chunks in file with tag
   for(i in seq_along(chunk_info$index)){
-    paper[chunk_info$starts[i]:chunk_info$ends[i]] <- NA # chunk space as NA
-    
-    if(is.na(chunk_info$name[i])){
-      paper[chunk_info$starts[i]] <- paste0("[[chunk_", i, "]]") # rename empty name chunks
-    }else{
-      paper[chunk_info$starts[i]] <- paste0("[[", "chunk_", chunk_info$name[i], "]]")
-    }
+    document[chunk_info$starts[i]:chunk_info$ends[i]] <- NA # chunk space as NA
+    document[chunk_info$starts[i]] <- chunk_info$name_tag[i] # set chunk tag
   }
   
-  paper <- paper[!is.na(paper)] # remove extra space named as NA
+  
+  # get saved header info
+  header_info <- readRDS(file.path(file_info$path, ".reviewdown",
+                                   paste0(file_info$file_name, "-header_info.rds")))
+  
+  # replace chunks in file with tag
+  document[header_info$starts:header_info$ends] <- NA # header space as NA
+  document[header_info$starts] <- header_info$name_tag # set header tag
+  
+  # remove extra space named as NA
+  document <- document[!is.na(document)] 
   
   # sanitize paper
-  paper <- paper %>% 
+  document <- document %>% 
     paste(collapse = "\n") %>% 
     stringr::str_replace_all("\n\n\n", "\n\n")
   
-  cat(paper, file = file_txt)
+  return(document)
 }
 
+#----    add_instructions    ----
+
+add_instructions <- function(document){
+  return(document)
+}
 #----    restore_chunk    ----
 
 # add chunk at the placeholder position
@@ -334,7 +406,7 @@ restore_chunk <- function(local_file){
   local_path <-  dirname(local_file)
   local_file <- basename(local_file)
   
-  chunk_info <- readRDS(file = file.path(local_path,".rmdrive","chunk_info.rds"))
+  chunk_info <- readRDS(file = file.path(local_path,".reviewdown","chunk_info.rds"))
   temp_paper <- readLines(local_file, warn = F)
   
   index <- which(startsWith(temp_paper, "[[chunk")) # chunk index
@@ -401,8 +473,8 @@ repair_chunks <- function(temp_paper, chunk_info, index){
 knit_report <- function(local_path){
   
   # get saved chunks info
-  chunk_info <- readRDS(file = file.path(local_path, ".rmdrive","chunk_info.rds"))
-  yaml_header <- readRDS(file = file.path(local_path, ".rmdrive","yaml_header.rds"))
+  chunk_info <- readRDS(file = file.path(local_path, ".reviewdown","chunk_info.rds"))
+  yaml_header <- readRDS(file = file.path(local_path, ".reviewdown","yaml_header.rds"))
   
   setup_chunk <- chunk_info[stringr::str_detect(chunk_info$name, stringr::regex('setup', ignore_case = T)), ]
   
@@ -417,7 +489,7 @@ knit_report <- function(local_path){
   
   rmarkdown::render(file.path(local_path, ".report_temp.Rmd"), 
                     output_format = "pdf_document", 
-                    output_file = ".rmdrive/report_temp.pdf",
+                    output_file = ".reviewdown/report_temp.pdf",
                     quiet = T)
 }
 
