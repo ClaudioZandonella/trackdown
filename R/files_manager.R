@@ -34,7 +34,7 @@
 #'
 upload_file <- function(file,
                         gfile = NULL,
-                        path = "rmdrive",
+                        path = "reviewdown",
                         team_drive = NULL,
                         hide_code = FALSE,
                         upload_output = NULL) {
@@ -78,15 +78,15 @@ upload_file <- function(file,
                     file_info = file_info)
     
     start_process("Removing code...")
-    
     document <- hide_code(document = document,
                           file_info = file_info)
-    
     finish_process(paste("Code removed from", emph_file(file_info$file_name)))
   }
   
-  # Add instructions
-  document <- add_instructions(document)
+  # Format document to a single string
+  document <- format_document(document, 
+                              extension = file_info$extension, 
+                              hide_code = hide_code)
   cat(document, file = temp_file)
   
   start_process("Uploading main file to Google Drive...")
@@ -101,7 +101,7 @@ upload_file <- function(file,
   )
   invisible(file.remove(temp_file))
   
-  if (isTRUE(upload_output)) {
+  if (!is.null(upload_output)) {
     
     # function to knit a temporary report named .report_temp.Rmd
     start_process("Uploading output to Google Drive...")

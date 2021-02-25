@@ -1,6 +1,7 @@
 ###################################
 ####    test Matrix Weights    ####
 ###################################
+file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
 #----    Message Utils    ----
 
@@ -46,7 +47,26 @@ test_that("check if file exists", {
   expect_error(check_file(20), "file has to be a single string")
 })
 
+#----    get_instructions    ----
 
+test_that("check get_instructions", {
+  expect_snapshot_output(get_instructions(extension = "rmd", hide_code = TRUE))
+  expect_snapshot_output(get_instructions(extension = "rmd", hide_code = FALSE))
+  expect_snapshot_output(get_instructions(extension = "rnw", hide_code = TRUE))
+  expect_snapshot_output(get_instructions(extension = "rnw", hide_code = FALSE))
+})
+
+#----    format_document    ----
+
+test_that("check format_document", {
+  document <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  expect_snapshot_output(format_document(document,
+                                         extension = "rmd", hide_code = FALSE))
+  
+  document <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  expect_snapshot_output(format_document(document,
+                                         extension = "rnw", hide_code = TRUE))
+})
 #----
 
 

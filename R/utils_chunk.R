@@ -232,6 +232,7 @@ get_file_metadata <- function(file_info){
                  name_header_info = paste0(file_info$file_name,"-header_info.rds"))
   
 }
+
 #----    init_reviewdown    ----
 
 #' Init reviewdown
@@ -337,7 +338,7 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 #' @param document character vector with the lines of the document 
 #' @param file_info list with file info returned from get_file_info() function
 #'
-#' @return a string with the content of the document (with code removed)
+#' @return a vector with the content of the document (with code removed)
 #' @noRd
 #'
 #' @examples
@@ -383,19 +384,9 @@ hide_code <- function(document, file_info){
   # remove extra space named as NA
   document <- document[!is.na(document)] 
   
-  # sanitize paper
-  document <- document %>% 
-    paste(collapse = "\n") %>% 
-    stringr::str_replace_all("\n\n\n", "\n\n")
-  
   return(document)
 }
 
-#----    add_instructions    ----
-
-add_instructions <- function(document){
-  return(document)
-}
 #----    restore_chunk    ----
 
 # add chunk at the placeholder position

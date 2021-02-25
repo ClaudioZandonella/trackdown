@@ -200,6 +200,76 @@ get_file_info <- function(file){
               file_basename = file_basename))
 }
 
+#----    get_instructions    ----
+
+#' Add Instructions
+#' 
+#' Add instruction on top of document to explain reviewdown
+#'
+#' @param extension string indicating the file extension
+#' @param hide_code logical value indicating whether the code was from the
+#'   text document
+#'
+#' @return a string with the instructions 
+#' @noRD
+#'
+#' @examples
+#'   get_instructions("rmd", TRUE)
+#' 
+
+get_instructions <- function(extension, hide_code){
+  
+  language <- switch(extension,
+                     "rmd" = "Markdown",
+                     "rnw" = "LaTeX")
+  
+  placeholder <- switch(hide_code,
+                        "TRUE" = 'Please avoid do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]',
+                        "FALSE" = NULL)
+  
+  instructions <- c(
+    "#----Reviewdown Instructions----#",
+    sprintf("This is not a common Document. The Document includes proper formatted %s syntax and R code. Please be aware and responsible in making corrections as you could brake the code. Limit change to plain text and avoid to the specific command.",
+            language),
+    placeholder,
+    "Once the review is terminated accept all changes: Tools -> Review suggested edits -> Accept all.",
+    "You do not need to remove these lines they will be automatically removed.",
+    "#----End Instructions----#")
+  
+  return(instructions)
+}
+
+#----    format_document    ----
+
+#' Format the document as a single string
+#'
+#' @param document a vector with the content of the document
+#' @param extension string indicating the file extension
+#' @param hide_code logical value indicating whether the code was from the
+#'   text document
+#'
+#' @return a string with the content of the document 
+#' @noRd 
+#'
+#' @examples
+#'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   format_document(document, extension = "rmd", hide_code = FALSE)
+#'   
+
+format_document <- function(document, extension, hide_code){
+  
+  # Add instructions
+  document <- c(get_instructions(extension = extension, 
+                                 hide_code = hide_code), document)
+  
+  # sanitize paper
+  document <- document %>% 
+    paste(collapse = "\n") %>% 
+    stringr::str_replace_all("\n\n\n", "\n\n")
+  
+  return(document)
+}
+
 #----
 
 
