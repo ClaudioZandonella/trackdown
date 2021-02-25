@@ -7,7 +7,7 @@
 upload_file(
   file,
   gfile = NULL,
-  path = "rmdrive",
+  path = "reviewdown",
   team_drive = NULL,
   hide_code = FALSE,
   upload_output = NULL

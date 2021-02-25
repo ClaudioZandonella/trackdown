@@ -211,7 +211,7 @@ get_file_info <- function(file){
 #'   text document
 #'
 #' @return a string with the instructions 
-#' @noRD
+#' @noRd
 #'
 #' @examples
 #'   get_instructions("rmd", TRUE)
