@@ -1,3 +1,4 @@
+# Check test coverage
 on:
   push:
     branches:
