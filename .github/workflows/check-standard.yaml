@@ -33,6 +33,7 @@ jobs:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      REVIEWDOWN_PASSWORD: ${{ secrets.REVIEWDOWN_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v2
@@ -68,8 +69,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          install.packages(c("remotes"))
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+          remotes::install_cran("covr")
         shell: Rscript {0}
 
 
@@ -79,6 +82,10 @@ jobs:
         run: |
           options(crayon.enabled = TRUE)
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+        shell: Rscript {0}
+        
+      - name: Test coverage
+        run: |covr::codecov()
         shell: Rscript {0}
 
       - name: Upload check results
