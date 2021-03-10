@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rmdrive <img src="man/figures/rmdrive_hex.png" align="right" width ="150" height="165"/>
+# trackdown
 
-rmdrive provides easy functions to move rmd files to googledrive for
-synchronous collaboration, then return it back to a local .Rmd for
-knitting.
+trackdown provides easy functions to move rmd and rmw files to
+googledrive for synchronous collaboration, then return it back to a
+local .Rmd/.Rmw for knitting.
 
 # Installation
 
@@ -13,8 +13,8 @@ This package is not on CRAN. To use this package please run the
 following code:
 
 ``` r
-devtools::install_github("ekothe/rmdrive")
-library(rmdrive)
+devtools::install_github("ekothe/trackdown")
+library(trackdown)
 ```
 
 # How to use
@@ -30,8 +30,7 @@ A typical workflow where this package is useful is when:
 Let’s assume there is an existing google doc that you want to bring to
 your desktop as an R Markdown file. This function will firstly prompt
 you to authenticate, and then it will download the google doc into your
-current working directory as an Rmd
-file:
+current working directory as an Rmd file:
 
 ``` r
 download_rmd(file = "my-r-markdown-file-name",  # do not include the .Rmd 
@@ -41,8 +40,7 @@ download_rmd(file = "my-r-markdown-file-name",  # do not include the .Rmd
 Now let’s imagine you do some work on your Rmd, write some code, etc. At
 some point you’ll be ready to update the Google doc so your non-R-using
 co-authors can see what you’ve done. This line of code will update the
-existing Google doc with the changes you made to the Rmd
-file:
+existing Google doc with the changes you made to the Rmd file:
 
 ``` r
 update_rmd(file = "my-r-markdown-file-name",    # do not include the .Rmd 
