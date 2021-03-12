@@ -1,6 +1,6 @@
 library("vcr") # *Required* as vcr is set up on loading
 
-# get_auth_credentials()
+get_auth_credentials()
 
 invisible(vcr::vcr_configure(
   dir = vcr::vcr_test_path("fixtures"),
