@@ -1,4 +1,4 @@
-Package: reviewdown
+Package: trackdown
 Title: Functions for Collaborative Editing of RMarkdown files on Google Drive
 Version: 0.0.0.9000
 Authors@R: as.person(c(

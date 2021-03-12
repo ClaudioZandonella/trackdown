@@ -14,7 +14,7 @@ test_that("get the correct path dribble", {
   vcr::use_cassette("get_path_dribble_test_1", {
     dribble_path_1 <- get_path_dribble(path = "reading_folder")
   })
-  expect_equal(dribble_path_1$id, "1nDVAOBmr7ZOs_ZaYVdFHVS8ykomvpoX6")
+  expect_equal(dribble_path_1$id, "1Ow7GM1dLfu31eygq9Dc8tG6b5IMdD2mr")
 
   # multiple folders
   vcr::use_cassette("get_path_dribble_test_2", {
@@ -26,7 +26,7 @@ test_that("get the correct path dribble", {
   vcr::use_cassette("get_path_dribble_test_3", {
     dribble_path_3 <- get_path_dribble(path = "reading_folder/my_folder/foo_folder")
   })
-  expect_equal(dribble_path_3$id, "10ZvYoaEj2-LfHHgs_pNP_PRBMutbtEjw")
+  expect_equal(dribble_path_3$id, "1iRRUiG-IqA8KGvFVyrQWSUQgJJ7i8xYm")
   
   # not available folder create new folder
   vcr::use_cassette("get_path_dribble_test_4", {
@@ -66,18 +66,18 @@ test_that("get the correct dribble", {
     dribble_info_1 <- get_dribble_info(gfile = "Hello-World")
   })
   expect_match(dribble_info_1$file$id, 
-               "1oMlCklPxsFZQxK57FDfxCWh91yVaA6Ds09Mbw-pUpeg")
+               "1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag")
   expect_match(dribble_info_1$parent$id, 
-               "0AFEWMwVgJC6fUk9PVA")
+               "0APbXnIs35pMSUk9PVA")
   
   # file in folder
   vcr::use_cassette("get_dribble_info_2", {
     dribble_info_2 <- get_dribble_info(gfile = "Hello-World", path = "reading_folder")
   })
   expect_match(dribble_info_2$file$id, 
-               "1bFedZvePPRIWnZ8hi_Tdrj7CBZFv6ksbJItHO3ZYRec")
+               "1LJzwht6qXjws_UK3qWChe5InC-IIXwDjrPYvqU05mYE")
   expect_match(dribble_info_2$parent$id, 
-               "1nDVAOBmr7ZOs_ZaYVdFHVS8ykomvpoX6")
+               "1Ow7GM1dLfu31eygq9Dc8tG6b5IMdD2mr")
 })
 
 #----    get_parent_dribble()    ----

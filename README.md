@@ -1,19 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# reviewdown
+# trackdown
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ClaudioZandonella/reviewdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ClaudioZandonella/reviewdown/actions/workflows/check-standard.yaml)
+[![R-CMD-check](https://github.com/ekothe/rmdrive/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/rmdrive/actions/workflows/check-standard.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/ClaudioZandonella/reviewdown/branch/develop/graph/badge.svg)](https://codecov.io/gh/ClaudioZandonella/reviewdown?branch=develop)
+coverage](https://codecov.io/gh/ekothe/rmdrive/branch/develop/graph/badge.svg)](https://codecov.io/gh/ekothe/rmdrive?branch=develop)
 <!-- badges: end -->
 
-`reviewdown` builds up from the ideas provided by `rmdrive` r-package
-<https://github.com/ekothe/rmdrive>, which offers functions to copy
-`.Rmd` files to Google Drive for synchronous collaborative editing, then
-return them back to a local `.Rmd` file for rendering.
+`trackdown` is the revised update of `rmdrive`
 
 # Installation
 
@@ -21,11 +18,11 @@ This package is not on CRAN. To install it, please run the following
 code:
 
 ``` r
-remotes::install_github("ClaudioZandonella/reviewdown", 
+remotes::install_github("ekothe/rmdrive", 
                         ref = "develop")
 ```
 
-# Old instructions from rmdrive
+# Old instructions (TODO update instructions)
 
 # How to use
 

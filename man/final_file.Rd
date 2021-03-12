@@ -4,15 +4,15 @@
 \alias{final_file}
 \title{Upload final compiled document on Google Drive}
 \usage{
-final_file(file, path = "rmdrive", team_drive = NULL)
+final_file(file, path = "trackdown", team_drive = NULL)
 }
 \arguments{
 \item{file}{character. The path (without file extension) of a local `.Rmd`
 file.}
 
 \item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
-By default files are uploaded in the folder "rmdrive". To specify another
-folder the full path is required (e.g., "rmdrive/my_folder"). Use
+By default files are uploaded in the folder "trackdown". To specify another
+folder the full path is required (e.g., "trackdown/my_folder"). Use
 \code{NULL} to upload directly at the root level, although it is not
 recommended.}
 

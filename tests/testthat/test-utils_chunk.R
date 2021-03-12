@@ -4,12 +4,12 @@
 
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
-#----    mkdir_reviewdown    ----
+#----    mkdir_trackdown    ----
 
 test_that("check a folder 'My_new_folder' is created", {
   
   ls_files_0 <- list.files(pattern = "^My_new_folder$", file_path)
-  mkdir_reviewdown(local_path = file_path, folder_name = "My_new_folder")
+  mkdir_trackdown(local_path = file_path, folder_name = "My_new_folder")
   ls_files_1 <- list.files(pattern = "^My_new_folder$", file_path)
   file.remove(paste0(file_path, "My_new_folder"))
   
@@ -99,14 +99,14 @@ test_that("get the correct hide_code", {
   expect_snapshot_output(hide_code(document, file_info))
   
   # tests
-  ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
+  ls_files_1 <- list.files(paste0(file_path, ".trackdown"))
   expect_identical(length(ls_files_1), 4L)
   expect_true(all(c("example_1.Rmd-chunk_info.rds", "example_1.Rmd-header_info.rds",
                     "example_1.Rnw-chunk_info.rds", "example_1.Rnw-header_info.rds") %in% ls_files_1))
   
   # remove files
-  file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
-  file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
+  file.remove(paste0(file_path, ".trackdown/",ls_files_1))
+  file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
 })
 
 #----

@@ -8,7 +8,7 @@
 #'
 #' Uploads a local file to Google Drive as a plain text document. Will
 #' only upload the file if it doesn't already exist in the chosen location. By
-#' default files are uploaded in the folder "rmdrive", if is not available on
+#' default files are uploaded in the folder "trackdown", if is not available on
 #' Google Drive, permission to create is required to the user. To update an
 #' existing file \code{\link{update_file}}.
 #'
@@ -17,8 +17,8 @@
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
 #' @param path character. (Sub)directory in My Drive or a Team Drive (optional).
-#'   By default files are uploaded in the folder "rmdrive". To specify another
-#'   folder the full path is required (e.g., "rmdrive/my_folder"). Use
+#'   By default files are uploaded in the folder "trackdown". To specify another
+#'   folder the full path is required (e.g., "trackdown/my_folder"). Use
 #'   \code{NULL} to upload directly at the root level, although it is not
 #'   recommended.
 #' @param team_drive character. The name of a Google Team Drive (optional).
@@ -34,7 +34,7 @@
 #'
 upload_file <- function(file,
                         gfile = NULL,
-                        path = "reviewdown",
+                        path = "trackdown",
                         team_drive = NULL,
                         hide_code = FALSE,
                         path_output = NULL) {
@@ -175,7 +175,7 @@ upload_file <- function(file,
   #   }
   #   
   #   googledrive::drive_upload(
-  #     media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
+  #     media = file.path(file_info$path, ".trackdown/report_temp.pdf"),
   #     path = dribble$parent,
   #     name = paste0(gfile, "_report.pdf"),
   #     type = "pdf",
@@ -205,10 +205,10 @@ upload_file <- function(file,
 #'
 update_file <- function(file,
                         gfile = NULL,
-                        path = "rmdrive",
+                        path = "trackdown",
                         team_drive = NULL,
                         hide_code = FALSE,
-                        upload_output = FALSE) {
+                        path_output = FALSE) {
   
   # check whether local file exists and get file info
   check_file(file)
@@ -241,13 +241,13 @@ update_file <- function(file,
     document <- readLines(temp_file, warn = FALSE)
     
     # We need to extract chunks in both cases
-    if(isTRUE(hide_code) || isTRUE(upload_output)){
+    if(isTRUE(hide_code) || isTRUE(path_output)){
       
       start_process("Removing chunks...")
       
-      # create .reviewdown folder with info about chunks
-      init_reviewdown(document = document,
-                      file_info = file_info)
+      # create .trackdown folder with info about chunks
+      init_trackdown(document = document,
+                     file_info = file_info)
       
       if (isTRUE(hide_code)) {
         hide_code(document = document,
@@ -256,7 +256,7 @@ update_file <- function(file,
         finish_process("Chunks removed!")
       }
       
-      if (isTRUE(upload_output)) {
+      if (isTRUE(path_output)) {
         
         # knit uploaded pdf named .report_temp.Rmd
         knit_report(local_path = file_info$path) 
@@ -274,7 +274,7 @@ update_file <- function(file,
           
           # upload local file to Google Drive
           googledrive::drive_upload(
-            media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
+            media = file.path(file_info$path, ".trackdown/report_temp.pdf"),
             path = path,
             name = paste0(gfile, "_report.pdf"),
             type = "pdf",
@@ -288,7 +288,7 @@ update_file <- function(file,
           # update local file to Google Drive
           googledrive::drive_update(
             file = dribble_report,
-            media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
+            media = file.path(file_info$path, ".trackdown/report_temp.pdf"),
             verbose = F
           )
           
@@ -331,7 +331,7 @@ update_file <- function(file,
 #'
 download_file <- function(file,
                           gfile = NULL,
-                          path = "rmdrive",
+                          path = "trackdown",
                           team_drive = NULL,
                           restore_chunks = FALSE) {
   
@@ -397,7 +397,7 @@ download_file <- function(file,
 #'
 render_file <- function(file,
                         gfile = basename(file),
-                        path = "rmdrive",
+                        path = "trackdown",
                         team_drive = NULL,
                         restore_chunks = FALSE) {
   
@@ -428,7 +428,7 @@ render_file <- function(file,
 #' 
 
 final_file <- function(file,
-                       path = "rmdrive",
+                       path = "trackdown",
                        team_drive = NULL) {
   
   main_process(paste0("Uploading the final version of ", emph_file(local_file), "..."))

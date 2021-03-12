@@ -7,10 +7,10 @@
 update_file(
   file,
   gfile = NULL,
-  path = "rmdrive",
+  path = "trackdown",
   team_drive = NULL,
   hide_code = FALSE,
-  upload_output = FALSE
+  path_output = FALSE
 )
 }
 \arguments{
@@ -21,8 +21,8 @@ file.}
 file name).}
 
 \item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
-By default files are uploaded in the folder "rmdrive". To specify another
-folder the full path is required (e.g., "rmdrive/my_folder"). Use
+By default files are uploaded in the folder "trackdown". To specify another
+folder the full path is required (e.g., "trackdown/my_folder"). Use
 \code{NULL} to upload directly at the root level, although it is not
 recommended.}
 
@@ -32,7 +32,7 @@ recommended.}
 text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
 displayed instead.}
 
-\item{upload_output}{default NULL, specify the path to
+\item{path_output}{default NULL, specify the path to
 the output to upload together with the other file. PDF are directly
 uploaded, HTML are first converted into PDF if Chrome is available or as
 HTML.}

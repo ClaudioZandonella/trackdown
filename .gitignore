@@ -5,15 +5,9 @@
 .Ruserdata
 .rmdrive
 
-#----    folders    ----
-deprecated/
-test/
-.rmdrive/
-prova/
-
 #----    mac auxiliary files    ----
 .DS_Store
 
 #----    authentication token    ----
 .secrets
-!tests/testthat/.secrets
+

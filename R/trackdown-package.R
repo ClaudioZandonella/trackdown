@@ -1,17 +1,17 @@
-##########################
-####    reviewdown    ####
-##########################
+#########################
+####    trackdown    ####
+#########################
 
 #----    Package documentation    ----
 
-#' reviewdown
+#' trackdown
 #'
 #' Description of the package
 #'
 #' @importFrom utils tail
 #'
 #' @docType package
-#' @name reviewdown
+#' @name trackdown
 NULL
 
 

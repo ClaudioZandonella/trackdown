@@ -1,4 +1,4 @@
 library(testthat)
-library(reviewdown)
+library(trackdown)
 
-test_check("reviewdown")
+test_check("trackdown")

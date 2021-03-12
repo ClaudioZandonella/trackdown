@@ -2,21 +2,21 @@
 ####    Utils for chunk extraction    ####
 ##########################################
 
-#----    mkdir_reviewdown    ----
+#----    mkdir_trackdown    ----
 
-#' Create .reviewdown folder if missing
+#' Create .trackdown folder if missing
 #'
 #' @param local_path string indicating the path where to create the folder
-#' @param folder_name string indicating the folder name, default ".reviewdown"
+#' @param folder_name string indicating the folder name, default ".trackdown"
 #' 
 #' @return NULL
 #' @noRd
 #'
-mkdir_reviewdown <- function(local_path, folder_name = ".reviewdown"){
+mkdir_trackdown <- function(local_path, folder_name = ".trackdown"){
   
-  drk_rmdrive <- paste(local_path, folder_name, sep = "/")
-  if(!dir.exists(drk_rmdrive)){
-    dir.create(drk_rmdrive) # create the hidden folder for temp files
+  drk_trackdown <- paste(local_path, folder_name, sep = "/")
+  if(!dir.exists(drk_trackdown)){
+    dir.create(drk_trackdown) # create the hidden folder for temp files
   }
   
 }
@@ -306,26 +306,26 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 #'   hide_code(document, file_info)
 #'   
 #'   # remove files
-#'   ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
-#'   file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
-#'   file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
+#'   ls_files_1 <- list.files(paste0(file_path, ".trackdown"))
+#'   file.remove(paste0(file_path, ".trackdown/",ls_files_1))
+#'   file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
 #' 
 
 hide_code <- function(document, file_info){
   
-  # create .reviewdown folder to save info about chunks and header
-  mkdir_reviewdown(local_path = file_info$path) 
+  # create .trackdown folder to save info about chunks and header
+  mkdir_trackdown(local_path = file_info$path) 
   
   info_patterns <- get_extension_patterns(extension = file_info$extension)
   
   #---- Extract and save ----
   #code chunks
   chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
-  saveRDS(chunk_info, file = file.path(file_info$path, ".reviewdown", 
+  saveRDS(chunk_info, file = file.path(file_info$path, ".trackdown", 
                                        paste0(file_info$file_name,"-chunk_info.rds")))
   # header
   header_info <- extract_header(text_lines = document, info_patterns = info_patterns) 
-  saveRDS(header_info, file = file.path(file_info$path, ".reviewdown",
+  saveRDS(header_info, file = file.path(file_info$path, ".trackdown",
                                         paste0(file_info$file_name,"-header_info.rds")))
   
   #---- replace in file with tag ----
@@ -355,7 +355,7 @@ restore_chunk <- function(local_file){
   local_path <-  dirname(local_file)
   local_file <- basename(local_file)
   
-  chunk_info <- readRDS(file = file.path(local_path,".reviewdown","chunk_info.rds"))
+  chunk_info <- readRDS(file = file.path(local_path,".trackdown","chunk_info.rds"))
   temp_paper <- readLines(local_file, warn = F)
   
   index <- which(startsWith(temp_paper, "[[chunk")) # chunk index
@@ -422,8 +422,8 @@ repair_chunks <- function(temp_paper, chunk_info, index){
 knit_report <- function(local_path){
   
   # get saved chunks info
-  chunk_info <- readRDS(file = file.path(local_path, ".reviewdown","chunk_info.rds"))
-  yaml_header <- readRDS(file = file.path(local_path, ".reviewdown","yaml_header.rds"))
+  chunk_info <- readRDS(file = file.path(local_path, ".trackdown","chunk_info.rds"))
+  yaml_header <- readRDS(file = file.path(local_path, ".trackdown","yaml_header.rds"))
   
   setup_chunk <- chunk_info[stringr::str_detect(chunk_info$name, stringr::regex('setup', ignore_case = T)), ]
   
@@ -438,7 +438,7 @@ knit_report <- function(local_path){
   
   rmarkdown::render(file.path(local_path, ".report_temp.Rmd"), 
                     output_format = "pdf_document", 
-                    output_file = ".reviewdown/report_temp.pdf",
+                    output_file = ".trackdown/report_temp.pdf",
                     quiet = T)
 }
 

@@ -77,9 +77,10 @@ test_that("check format_document", {
 #----    eval_no_dribble    ----
 
 test_that("check eval_no_dribble", {
-  gfile <- "Hello-world"
-  dribble <- get_dribble_info(gfile = gfile, path = "reading_folder")
-  expect_error(eval_no_dribble(dribble$file, gfile))
+  # dribble_hello_world <- get_dribble_info(gfile = "Hello-world", path = "reading_folder")
+  # save(dribble_hello_world, file = paste0(file_path, "dribble_hello_world.rda"))
+  load(paste0(file_path, "dribble_hello_world.rda"))
+  expect_error(eval_no_dribble(dribble_hello_world$file, "Hello-world"))
 })
 #----
 
