@@ -5,6 +5,7 @@ on:
       # - main
       - master
       - develop
+      - credentials
   # pull_request:
   #   branches:
   #     - main
