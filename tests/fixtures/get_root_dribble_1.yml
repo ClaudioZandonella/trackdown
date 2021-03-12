@@ -23,7 +23,7 @@ http_interactions:
       content-length: '1389'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Wed, 10 Mar 2021 15:47:23 GMT
+      date: Fri, 12 Mar 2021 15:13:46 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -147,7 +147,7 @@ http_interactions:
            "webViewLink": "https://docs.google.com/document/d/1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag/edit?usp=drivesdk",
            "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
            "hasThumbnail": true,
-           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&v=3&s=AMedNnoAAAAAYEkGK3d-7DRDjfwEiByv61xzXVpDXVIB&sz=s220",
+           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&v=3&s=AMedNnoAAAAAYEuhSrw5Ciaxj1W3_9oxNgWrnq0Jf_jf&sz=s220",
            "thumbnailVersion": "3",
            "viewedByMe": true,
            "viewedByMeTime": "2021-03-10T09:02:59.300Z",
@@ -317,7 +317,7 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2021-03-10 15:47:24 GMT
+  recorded_at: 2021-03-12 15:13:46 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: get
@@ -343,7 +343,7 @@ http_interactions:
       content-length: '748'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Wed, 10 Mar 2021 15:47:24 GMT
+      date: Fri, 12 Mar 2021 15:13:46 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -440,5 +440,5 @@ http_interactions:
          "quotaBytesUsed": "0",
          "isAppAuthorized": false
         }
-  recorded_at: 2021-03-10 15:47:24 GMT
+  recorded_at: 2021-03-12 15:13:46 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
