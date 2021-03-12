@@ -28,19 +28,26 @@
 
 get_auth_credentials <- function(){
   if (gargle:::secret_can_decrypt("trackdown")) {
+    file_path <- ifelse(interactive(), "tests/testthat/", "")
+    
     token_name <- gargle:::secret_read("trackdown", "trackdown-testing-name")
     
     token_name <- token_name[!token_name=='00']
     token_name <- rawToChar(token_name)
     
-    file.rename(from = "secrets/secret_credentials",
-                to = paste0("secrets/", token_name))
+    file.rename(from = paste0(file_path, "secrets/secret_credentials"),
+                to = paste0(file_path, "secrets/", token_name))
     
-    googledrive::drive_auth(email = "trackdown.rpackage@gmail.com",
-                            cache = "secrets")
+    # set options 
+    options(
+      gargle_oauth_cache = paste0(file_path, "secrets"),
+      gargle_oauth_email = "trackdown.rpackage@gmail.com"
+    )
     
-    file.rename(from = paste0("secrets/", token_name),
-                to = "secrets/secret_credentials")
+    googledrive::drive_auth()
+    
+    file.rename(from = paste0(file_path, "secrets/", token_name),
+                to = paste0(file_path, "secrets/secret_credentials"))
   }
 }
 
