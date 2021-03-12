@@ -9,50 +9,76 @@ local .Rmd/.Rmw for knitting.
 
 # Installation
 
-This package is not on CRAN. To use this package please run the
-following code:
+This package is not on CRAN. To install it, please run the following
+code:
 
 ``` r
-devtools::install_github("ekothe/trackdown")
+devtools::install_github("ekothe/trackdown",
+                         ref = "develop")
 library(trackdown)
 ```
 
+# Old instructions (TODO update instructions)
+
 # How to use
 
-A typical workflow where this package is useful is when:
+While the functions in this package can accommodate different workflows,
+it has been designed with the following workflow in mind:
 
-  - you have a google doc that you or someone else has started  
-  - you want to turn it into an R Markdown file so you can write R code
-    in there, or simply work on it in your preferred editor  
-  - you want to keep the R Markdown file in sync with the Google doc
-    while you and others work on them together
+1.  The main contributor to a data science project (the first author in
+    an academic context) develops the analysis code and writes a first
+    draft of the manuscript associated with the project on their local
+    computer using, e.g., RStudio.
+2.  When the project reaches a state in which the main contributor would
+    like to facilitate feedback from other contributors to the project,
+    they
+      - share the project by giving contributors access to the
+        associated Git repository.
+      - upload the fist draft of the manuscript to a shared Google Drive
+        document using `rmdrive::upload_rmd()`.
+3.  All contributors review and edit the manuscript draft by using
+    ‘Suggesting’ mode and comments in Google Drive
+4.  If contributors would like to render a version of the manuscript
+    including their suggestions, they
+    1.  temporarily [accept all
+        suggestions](https://support.google.com/docs/answer/6033474?co=GENIE.Platform%3DDesktop&hl=en).
+    2.  use `rmdrive::render_rmd()` to render the changed script
+        manuscript locally.
+    3.  use `Undo` in Google Drive to show changes as suggestions again.
+5.  After all contributors have finished their review, the main
+    contributor resolves all comments and accepts/rejects suggestions in
+    Google Drive, using `rmdrive::render_rmd()` intermittently to render
+    the changed manuscript locally.
+6.  The main contributor downloads the final manuscript containing all
+    changes using `rmdrive::download_rmd()` and commits it to the Git
+    repository.
+7.  If, at a later point, the main contributor adds more substantive
+    changes to the manuscript and would like the contributors to review
+    the manuscript again, they can upload the newest local version to
+    the same Google Drive document used before using
+    `rmdrive::update_rmd()` and go through the above steps again.
 
-Let’s assume there is an existing google doc that you want to bring to
-your desktop as an R Markdown file. This function will firstly prompt
-you to authenticate, and then it will download the google doc into your
-current working directory as an Rmd file:
+# Documentation
+
+The package has 4 main functions:
+
+  - `upload_rmd()` uploads a local `.Rmd` file to Google Drive
+  - `update_rmd()` uploads a local `.Rmd` file to an already existing
+    file in Google Drive
+  - `download_rmd()` downloads a file from Google Drive and saves it as
+    a local `.Rmd` file if its content has changed
+  - `render_rmd()` executes `download_rmd()` and renders the resulting
+    `.Rmd` file using `rmarkdown::render()`
+
+All functions have the same four arguments to specify which local `.Rmd`
+file and Google Drives file to operate on (demonstrated here with
+`upload_rmd()`:
 
 ``` r
-download_rmd(file = "my-r-markdown-file-name",  # do not include the .Rmd 
-             gfile = "My google doc filename")  # name of google doc file
+rmdrive::upload_rmd(
+  file       = "path/to/local-rmd-file"   # specifies the local `.Rmd` file (without extension)
+  gfile      = "google-drive-file"        # specifies the name of the file on Google Drive (optional; defaults to `basename(file)`)
+  path       = "folder/sub-folder"        # specifies a folder in Google Drive (optional; if not specified, the home directory of My Drive or the Team Drive is used)
+  team_drive = "Team Drive Name"          # specifies the name of Team Drive (optional; if not specified, My Drive is used)
+)
 ```
-
-Now let’s imagine you do some work on your Rmd, write some code, etc. At
-some point you’ll be ready to update the Google doc so your non-R-using
-co-authors can see what you’ve done. This line of code will update the
-existing Google doc with the changes you made to the Rmd file:
-
-``` r
-update_rmd(file = "my-r-markdown-file-name",    # do not include the .Rmd 
-           gfile = "My google doc filename")  # name of google doc file
-```
-
-You can run that line often while editing, similar to `git commit` (it
-does take about 5-10 seconds to complete the update). Imagine now that
-some time passes and your co-author has updated the Google doc while
-you’ve been doing other things, and you want to update your local Rmd
-with their changes.
-
-Note that code blocks are not decorated like we see them in RStudio or
-knitted output. Plus the code is not run as it moves from Rmd to Google
-doc, so you will not see any output from the code in your Google doc.

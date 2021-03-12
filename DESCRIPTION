@@ -1,12 +1,34 @@
 Package: trackdown
-Title: Functions for Using Google Drive with RMarkdown and Sweave
+Title: Functions for Using Collaborative Editing with RMarkdown and Sweave in Google Drive
 Version: 0.0.0.9000
-Authors@R: person("Emily", "Kothe", email = "emily.kothe@deakin.edu.au", role = c("aut", "cre"))
-Description: Provides functions for sending a .Rmd file to google drive, and retrieving it after editing. 
-Depends: R (>= 3.5.1)
-License: What license is it under?
+Authors@R: as.person(c(
+    "Emily Kothe <emily.kothe@deakin.edu.au> [aut, cre]", 
+    "Janosch Linkersdörfer <linkersdoerfer@mailbox.org> [aut]",
+    "new authors [aut]"
+  ))
+Description: Provides functions for uploading local .Rmd files to Google Drive
+  as well as downloading and rendering .Rmd files edited on Google Drive.
+Depends: R (>= 3.5)
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: 
-    googledrive
-RoxygenNote: 6.1.0
+Imports:
+    cli,
+    devtools,
+    dplyr,
+    googledrive,
+    magrittr,
+    pagedown,
+    purrr,
+    rmarkdown,
+    stringr,
+    tibble,
+    tools
+RoxygenNote: 7.1.1
+Suggests: 
+    gargle,
+    sodium,
+    testthat (>= 3.0.0),
+    vcr,
+    covr
+Config/testthat/edition: 3
