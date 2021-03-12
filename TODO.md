@@ -28,3 +28,13 @@
 - problems when chunks have not the `{}` syntax like simply writing raw code to not evaluate
 
 - problems about restoring the first or last chunk
+
+
+
+########
+
+
+#
+
+- example_1.Rmd uploaded **as < add name gfile>**!
+- evaluate if get_root_id works also for team_drive (in case bind the two conditions)

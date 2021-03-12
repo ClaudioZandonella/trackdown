@@ -50,22 +50,36 @@ test_that("check if file exists", {
 #----    get_instructions    ----
 
 test_that("check get_instructions", {
-  expect_snapshot_output(get_instructions(extension = "rmd", hide_code = TRUE))
-  expect_snapshot_output(get_instructions(extension = "rmd", hide_code = FALSE))
-  expect_snapshot_output(get_instructions(extension = "rnw", hide_code = TRUE))
-  expect_snapshot_output(get_instructions(extension = "rnw", hide_code = FALSE))
+  # Rmd
+  file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
+  expect_snapshot_output(get_instructions(file_info = file_info, hide_code = TRUE))
+  expect_snapshot_output(get_instructions(file_info = file_info, hide_code = FALSE))
+  
+  # Rnw
+  file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
+  expect_snapshot_output(get_instructions(file_info = file_info, hide_code = TRUE))
+  expect_snapshot_output(get_instructions(file_info = file_info, hide_code = FALSE))
 })
 
 #----    format_document    ----
 
 test_that("check format_document", {
   document <- readLines(paste0(file_path, "example_1_rmd.txt"))
-  expect_snapshot_output(format_document(document,
-                                         extension = "rmd", hide_code = FALSE))
+  file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
+  expect_snapshot_output(format_document(document, file_info = file_info, 
+                                         hide_code = FALSE))
   
   document <- readLines(paste0(file_path, "example_1_rmd.txt"))
-  expect_snapshot_output(format_document(document,
-                                         extension = "rnw", hide_code = TRUE))
+  expect_snapshot_output(format_document(document, file_info = file_info,
+                                         hide_code = TRUE))
+})
+
+#----    eval_no_dribble    ----
+
+test_that("check eval_no_dribble", {
+  gfile <- "Hello-world"
+  dribble <- get_dribble_info(gfile = gfile, path = "reading_folder")
+  expect_error(eval_no_dribble(dribble$file, gfile))
 })
 #----
 

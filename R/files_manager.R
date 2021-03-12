@@ -25,7 +25,7 @@
 #' @param hide_code logical value indicating whether to remove code from the
 #'   text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
 #'   displayed instead.
-#' @param  upload_output default NULL, specify the path to
+#' @param  path_output default NULL, specify the path to
 #'   the output to upload together with the other file. PDF are directly
 #'   uploaded, HTML are first converted into PDF if Chrome is available or as
 #'   HTML.
@@ -37,58 +37,62 @@ upload_file <- function(file,
                         path = "reviewdown",
                         team_drive = NULL,
                         hide_code = FALSE,
-                        upload_output = NULL) {
+                        path_output = NULL) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
-  # check whether local file exists and get file info
+  #---- check file ----
+  # check local file exists and get file info
   check_file(file)
   file_info <- get_file_info(file = file)
   
-  # check gfile name
+  # get dribble info and check there is no file with same name in drive 
   gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
-  
-  # get file and parent dribble info
   dribble <- get_dribble_info(gfile = gfile,
                               path = path, 
                               team_drive = team_drive)
+  eval_no_dribble(dribble$file, gfile)
   
   
-  if (nrow(dribble$file) > 0) {
-    stop(
-      "a file with this name already exists in GoogleDrive: ",
-      sQuote(gfile),
-      ". Did you mean to use `update_file()`?",
-      call. = FALSE
-    )
+  #---- check output ----
+  if (!is.null(path_output)) {
+    # check whether output exists and get file info
+    check_file(path_output)
+    output_info <- get_file_info(file = path_output)
+    # check output in drive
+    gfile_output <- paste0(gfile, "-output")
+    dribble_output <- get_dribble_info(gfile = gfile_output,
+                                       path = path, 
+                                       team_drive = team_drive)
+    eval_no_dribble(dribble_output$file, gfile_output)
   }
   
+  
+  #---- temp file ----
   # create .temp-file to upload
   temp_file <- file.path(file_info$path, 
                          paste0(".temp-", file_info$file_basename, ".txt"))
   file.copy(file, temp_file, overwrite = T)
+  
   # read document lines
   document <- readLines(temp_file, warn = FALSE)
   
-  # hide code
+  
+  #---- hide code ----
   if(isTRUE(hide_code)){
-    
-    # create .reviewdown folder with info about chunks and header
-    init_reviewdown(document = document,
-                    file_info = file_info)
-    
     start_process("Removing code...")
     document <- hide_code(document = document,
                           file_info = file_info)
     finish_process(paste("Code removed from", emph_file(file_info$file_name)))
   }
   
+  
+  #---- upload document ----
   # Format document to a single string
   document <- format_document(document, 
-                              extension = file_info$extension, 
+                              file_info = file_info, 
                               hide_code = hide_code)
   cat(document, file = temp_file)
-  
   start_process("Uploading main file to Google Drive...")
   
   # upload local file to Google Drive
@@ -101,24 +105,87 @@ upload_file <- function(file,
   )
   invisible(file.remove(temp_file))
   
-  if (!is.null(upload_output)) {
-    
-    # function to knit a temporary report named .report_temp.Rmd
-    start_process("Uploading output to Google Drive...")
-    knit_report(local_path = file_info$path) 
-    
-    googledrive::drive_upload(
-      media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
-      path = dribble$parent,
-      name = paste0(gfile, "_report.pdf"),
-      type = "pdf",
-      verbose = F
-    )
-    
-    finish_process(paste(emph_file(file), "pdf report uploaded!"))
-    
-    file.remove(file.path(file_info$path,".report_temp.Rmd"))
-  }
+  
+  #---- upload output ----
+  # if (!is.null(path_output)) {
+  #   start_process("Uploading output to Google Drive...")
+  #   
+  #   # check if the document is html and if chrome is installed
+  #   if (output_info$extension == "html" && !is.null(pagedown::find_chrome())){
+  #     
+  #     ####### to be continued
+  #     html2pdf <- utils::menu(c("Yes", "No"),
+  #                             title = paste("Transform HTML to PDF output before uploading?"))
+  #     
+  #     if(html2pdf == 1){
+  #       final_file <- pagedown::chrome_print(path_output)
+  #       
+  #       googledrive::drive_upload(
+  #         media = final_file,
+  #         path = dribble_output$parent,
+  #         name = paste0(gfile_output, ".pdf"),
+  #         type = "pdf",
+  #         verbose = F
+  #       )
+  #     } 
+  #     output_html2pdf()
+  #     if () return(NULL)
+  #     
+  #     
+  #     if (!is.null(pagedown::find_chrome())) {
+  #       
+  #       # print knitted html to pdf
+  #       final_file <-pagedown::chrome_print(path_output)
+  #       
+  #     } else {
+  #       cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
+  #     }
+  #   }
+  #   
+  #   if (nrow(dribble) < 1) { 
+  #     
+  #     googledrive::drive_upload(
+  #       media = file.path(local_path, basename(final_file)),
+  #       path = path,
+  #       name = basename(final_file),
+  #       verbose = F
+  #     )
+  #     
+  #     finish_process(paste(emph_file(file), "final version uploaded!"))
+  #     
+  #   } else{
+  #     
+  #     update_file <- utils::menu(c("Yes", "No"),
+  #                                title = paste("The", basename(final_file), "is already present on Google Drive. Do you want to update it?"))
+  #     
+  #     if (update_file == 1) {
+  #       
+  #       # update local file to Google Drive
+  #       googledrive::drive_update(
+  #         file = dribble,
+  #         media = file.path(local_path, basename(final_file)),
+  #         verbose = F
+  #       )
+  #       
+  #       finish_process(paste(emph_file(file), "final version updated!"))
+  #       
+  #     } else
+  #       
+  #       cli::cli_alert_warning("Updating aborted!")
+  #   }
+  #   
+  #   googledrive::drive_upload(
+  #     media = file.path(file_info$path, ".reviewdown/report_temp.pdf"),
+  #     path = dribble$parent,
+  #     name = paste0(gfile, "_report.pdf"),
+  #     type = "pdf",
+  #     verbose = F
+  #   )
+  #   
+  #   finish_process(paste(emph_file(file), "pdf report uploaded!"))
+  #   
+  #   file.remove(file.path(file_info$path,".report_temp.Rmd"))
+  # }
   
   finish_process(paste(emph_file(file), "uploaded!"))
 }

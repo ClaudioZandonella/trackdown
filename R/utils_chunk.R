@@ -104,12 +104,12 @@ get_chunk_range <- function(lines, info_patterns){
 #'   # rmd
 #'   text_lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
 #'   info_patterns <- get_extension_patterns(extension = "rmd")
-#'   get_chunk_range(lines, info_patterns)
+#'   extract_chunk(text_lines, info_patterns)
 #'   
 #'   # rnw
 #'   text_lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
-#'   get_chunk_range(lines, info_patterns)
+#'   extract_chunk(text_lines, info_patterns)
 #'
 
 extract_chunk <- function(text_lines, info_patterns){
@@ -233,53 +233,6 @@ get_file_metadata <- function(file_info){
   
 }
 
-#----    init_reviewdown    ----
-
-#' Init reviewdown
-#' 
-#' Create .reviewdown folder with info about chunks 
-#' 
-#' @param document character vector with the lines of the document 
-#' @param file_info list with file info returned from get_file_info() function
-#'   
-#' @noRd
-#' 
-#' @examples 
-#'   # rmd
-#'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
-#'   init_reviewdown(document, file_info)
-#'   
-#'   # rnw
-#'   document <- readLines("tests/testthat/test_files/example_1_rnw.txt")
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rnw")
-#'   init_reviewdown(document, file_info)
-#'   
-#'   # remove files
-#'   ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
-#'   file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
-#'   file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
-#' 
-
-init_reviewdown <- function(document, file_info){
-  # create .reviewdown folder 
-  mkdir_reviewdown(local_path = file_info$path) 
-  
-  info_patterns <- get_extension_patterns(extension = file_info$extension)
-    
-  # Extract and save code chunks
-  chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
-  saveRDS(chunk_info, file = file.path(file_info$path, ".reviewdown", 
-                                       paste0(file_info$file_name,"-chunk_info.rds")))
-  
-  # Extract and save header
-  header_info <- extract_header(text_lines = document, info_patterns = info_patterns) 
-  saveRDS(header_info, file = file.path(file_info$path, ".reviewdown",
-                                        paste0(file_info$file_name,"-header_info.rds")))
-  
-  #message(paste("Document setup completed!\n"))
-}
-
 #----    get_extension_patterns    ----
 
 #' Get extensions pattern
@@ -345,13 +298,11 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 #'   # rmd
 #'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
 #'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
-#'   init_reviewdown(document, file_info)
 #'   hide_code(document, file_info)
 #'   
 #'   # rnw
 #'   document <- readLines("tests/testthat/test_files/example_1_rnw.txt")
 #'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rnw")
-#'   init_reviewdown(document, file_info)
 #'   hide_code(document, file_info)
 #'   
 #'   # remove files
@@ -362,24 +313,31 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 
 hide_code <- function(document, file_info){
   
-  # get saved chunks info
-  chunk_info <- readRDS(file.path(file_info$path, ".reviewdown",
-                                  paste0(file_info$file_name, "-chunk_info.rds")))
+  # create .reviewdown folder to save info about chunks and header
+  mkdir_reviewdown(local_path = file_info$path) 
   
-  # replace chunks in file with tag
+  info_patterns <- get_extension_patterns(extension = file_info$extension)
+  
+  #---- Extract and save ----
+  #code chunks
+  chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
+  saveRDS(chunk_info, file = file.path(file_info$path, ".reviewdown", 
+                                       paste0(file_info$file_name,"-chunk_info.rds")))
+  # header
+  header_info <- extract_header(text_lines = document, info_patterns = info_patterns) 
+  saveRDS(header_info, file = file.path(file_info$path, ".reviewdown",
+                                        paste0(file_info$file_name,"-header_info.rds")))
+  
+  #---- replace in file with tag ----
+  # chunks
   for(i in seq_along(chunk_info$index)){
     document[chunk_info$starts[i]:chunk_info$ends[i]] <- NA # chunk space as NA
     document[chunk_info$starts[i]] <- chunk_info$name_tag[i] # set chunk tag
   }
-  
-  
-  # get saved header info
-  header_info <- readRDS(file.path(file_info$path, ".reviewdown",
-                                   paste0(file_info$file_name, "-header_info.rds")))
-  
-  # replace chunks in file with tag
+  # header
   document[header_info$starts:header_info$ends] <- NA # header space as NA
   document[header_info$starts] <- header_info$name_tag # set header tag
+  
   
   # remove extra space named as NA
   document <- document[!is.na(document)] 

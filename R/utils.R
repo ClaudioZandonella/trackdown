@@ -206,7 +206,7 @@ get_file_info <- function(file){
 #' 
 #' Add instruction on top of document to explain reviewdown
 #'
-#' @param extension string indicating the file extension
+#' @param file_info list with file info returned from get_file_info() function
 #' @param hide_code logical value indicating whether the code was from the
 #'   text document
 #'
@@ -214,26 +214,31 @@ get_file_info <- function(file){
 #' @noRd
 #'
 #' @examples
-#'   get_instructions("rmd", TRUE)
+#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   get_instructions(file_info, TRUE)
 #' 
 
-get_instructions <- function(extension, hide_code){
+get_instructions <- function(file_info, hide_code){
   
-  language <- switch(extension,
+  language <- switch(file_info$extension,
                      "rmd" = "Markdown",
                      "rnw" = "LaTeX")
   
-  placeholder <- switch(hide_code,
-                        "TRUE" = 'Please avoid do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]',
-                        "FALSE" = NULL)
+
+  placeholder1 <- switch(hide_code,
+                         "TRUE" = 'Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]',
+                         "FALSE" = NULL)
+  placeholder2 <- c(sprintf("FILE-NAME: %s",file_info$file_name),
+                    sprintf("HIDE-CODE: %s", hide_code))
   
   instructions <- c(
     "#----Reviewdown Instructions----#",
     sprintf("This is not a common Document. The Document includes proper formatted %s syntax and R code. Please be aware and responsible in making corrections as you could brake the code. Limit change to plain text and avoid to the specific command.",
             language),
-    placeholder,
+    placeholder1,
     "Once the review is terminated accept all changes: Tools -> Review suggested edits -> Accept all.",
-    "You do not need to remove these lines they will be automatically removed.",
+    "You must not modify or remove these lines, we will do it for you ;)",
+    placeholder2,
     "#----End Instructions----#")
   
   return(instructions)
@@ -244,7 +249,7 @@ get_instructions <- function(extension, hide_code){
 #' Format the document as a single string
 #'
 #' @param document a vector with the content of the document
-#' @param extension string indicating the file extension
+#' @param file_info list with file info returned from get_file_info() function
 #' @param hide_code logical value indicating whether the code was from the
 #'   text document
 #'
@@ -253,13 +258,14 @@ get_instructions <- function(extension, hide_code){
 #'
 #' @examples
 #'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
-#'   format_document(document, extension = "rmd", hide_code = FALSE)
+#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   format_document(document, file_info = file_info, hide_code = FALSE)
 #'   
 
-format_document <- function(document, extension, hide_code){
+format_document <- function(document, file_info, hide_code){
   
   # Add instructions
-  document <- c(get_instructions(extension = extension, 
+  document <- c(get_instructions(file_info = file_info, 
                                  hide_code = hide_code), document)
   
   # sanitize paper
@@ -268,6 +274,49 @@ format_document <- function(document, extension, hide_code){
     stringr::str_replace_all("\n\n\n", "\n\n")
   
   return(document)
+}
+
+#----    eval_no_dribble    ----
+
+#' Eval No Dribble
+#' 
+#' Stop if a file is already present in drive
+#'
+#' @param dribble dribble object of the files resulting from get_dribble_info()
+#'   function
+#' @param gfile string indicating the name of the gfile
+#'
+#' @return NULL
+#' @noRd
+#'
+#' @examples
+#' gfile <- "Hello-world"
+#' dribble <- get_dribble_info(gfile = gfile, path = "reading_folder")
+#' eval_no_dribble(dribble$file, gfile)
+#' 
+
+eval_no_dribble <- function(dribble, gfile){
+  if (nrow(dribble) > 0) {
+    stop(
+      "a file with this name already exists in GoogleDrive: ",
+      sQuote(gfile),
+      ". Did you mean to use `update_file()`?",
+      call. = FALSE
+    )
+  }
+}
+
+#----    output_html2pdf    ----
+
+output_html2pdf <- function(){
+
+  html2pdf <- utils::menu(c("Yes", "No"),
+                          title = paste("Transform HTML to PDF output before uploading?"))
+  
+  if(html2pdf == 1){
+    final_file <- pagedown::chrome_print(path_output)
+    
+  } 
 }
 
 #----

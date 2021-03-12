@@ -83,36 +83,6 @@ test_that("get the correct extract_header", {
 
 })
 
-#----    init_rmdrive    ----
-
-test_that("get the correct init_rmdrive", {
-  
-  # check initial status
-  ls_files_0 <- list.files(pattern = "^.reviewdown$", file_path)
-  
-  # rmd
-  document <- readLines(paste0(file_path, "example_1_rmd.txt"))
-  file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
-  init_reviewdown(document, file_info)
-  
-  # rnw
-  document <- readLines(paste0(file_path, "example_1_rnw.txt"))
-  file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
-  init_reviewdown(document, file_info)
-  
-  # check final status
-  ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
-  
-  # remove files
-  file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
-  file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
-  
-  expect_identical(length(ls_files_0), 0L)
-  expect_identical(length(ls_files_1), 4L)
-  expect_true(all(c("example_1.Rmd-chunk_info.rds", "example_1.Rmd-header_info.rds",
-                    "example_1.Rnw-chunk_info.rds", "example_1.Rnw-header_info.rds") %in% ls_files_1))
-  
-})
 
 #----    hide_code    ----
 
@@ -121,17 +91,20 @@ test_that("get the correct hide_code", {
   # rmd
   document <- readLines(paste0(file_path, "example_1_rmd.txt"))
   file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
-  init_reviewdown(document, file_info)
   expect_snapshot_output(hide_code(document, file_info))
   
   # rnw
   document <- readLines(paste0(file_path, "example_1_rnw.txt"))
   file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
-  init_reviewdown(document, file_info)
   expect_snapshot_output(hide_code(document, file_info))
   
-  # remove files
+  # tests
   ls_files_1 <- list.files(paste0(file_path, ".reviewdown"))
+  expect_identical(length(ls_files_1), 4L)
+  expect_true(all(c("example_1.Rmd-chunk_info.rds", "example_1.Rmd-header_info.rds",
+                    "example_1.Rnw-chunk_info.rds", "example_1.Rnw-header_info.rds") %in% ls_files_1))
+  
+  # remove files
   file.remove(paste0(file_path, ".reviewdown/",ls_files_1))
   file.remove(paste0(file_path, ".reviewdown"), recursive = TRUE)
 })
