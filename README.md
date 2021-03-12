@@ -3,6 +3,14 @@
 
 # trackdown
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
+
+<hr>
+
+<!-- badges: end -->
+
 trackdown provides easy functions to move rmd and rmw files to
 googledrive for synchronous collaboration, then return it back to a
 local .Rmd/.Rmw for knitting.
