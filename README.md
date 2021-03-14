@@ -5,7 +5,7 @@
 
 trackdown provides easy functions to move rmd and rmw files to
 googledrive for synchronous collaboration, then return it back to a
-local .Rmd/.Rmw for knitting.
+local .Rmd/.Rnw for knitting.
 
 # Installation
 
