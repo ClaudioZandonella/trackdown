@@ -1,0 +1,133 @@
+http_interactions:
+- request:
+    method: patch
+    uri: https://www.googleapis.com/upload/drive/v3/files/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo?supportsTeamDrives=TRUE&fields=%2A&uploadType=multipart
+    body:
+      encoding: ''
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/RtmpOLA3lQ/file1b466fc0f374",
+        type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/temp-output-example_1.pdf",
+        type = "application/pdf")
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
+        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
+        ma=2592000; v="46,43"
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      content-length: '2730'
+      content-type: application/json; charset=UTF-8
+      date: Tue, 30 Mar 2021 14:58:07 GMT
+      expires: Mon, 01 Jan 1990 00:00:00 GMT
+      pragma: no-cache
+      server: UploadServer
+      vary:
+      - Origin
+      - X-Origin
+      x-guploader-uploadid: ABg5-UwDw20dqkF5MJGKyehwMJTN1ikDPkSgbUG7tGFzVBObalOnQVNNLhdraRIJKjRWluYvarTYWAzO0ZEcPQv5E6DjDmPhBg
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+         "kind": "drive#file",
+         "id": "1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo",
+         "name": "old_output",
+         "mimeType": "application/pdf",
+         "starred": false,
+         "trashed": false,
+         "explicitlyTrashed": false,
+         "parents": [
+          "1CB3g50fT5m1LHMl3-lPiuoKd7v3jeYgb"
+         ],
+         "spaces": [
+          "drive"
+         ],
+         "version": "5",
+         "webContentLink": "https://drive.google.com/uc?id=1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo&export=download",
+         "webViewLink": "https://drive.google.com/file/d/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo/view?usp=drivesdk",
+         "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
+         "hasThumbnail": true,
+         "thumbnailLink": "https://lh3.googleusercontent.com/uE2egmyh9JnXdFxdbGrO0TgCoPl3pSiJY8GRZeuQOByz11baz915sriHLTAuNuxXVQP69v9vuzVRT84=s220",
+         "thumbnailVersion": "4",
+         "viewedByMe": false,
+         "createdTime": "2021-03-30T14:53:18.163Z",
+         "modifiedTime": "2021-03-30T14:58:07.034Z",
+         "modifiedByMeTime": "2021-03-30T14:58:07.034Z",
+         "modifiedByMe": true,
+         "owners": [
+          {
+           "kind": "drive#user",
+           "displayName": "trackdown rpackage",
+           "me": true,
+           "permissionId": "09109446299227804908",
+           "emailAddress": "trackdown.rpackage@gmail.com"
+          }
+         ],
+         "lastModifyingUser": {
+          "kind": "drive#user",
+          "displayName": "trackdown rpackage",
+          "me": true,
+          "permissionId": "09109446299227804908",
+          "emailAddress": "trackdown.rpackage@gmail.com"
+         },
+         "shared": false,
+         "ownedByMe": true,
+         "capabilities": {
+          "canAddChildren": false,
+          "canAddMyDriveParent": false,
+          "canChangeCopyRequiresWriterPermission": true,
+          "canChangeViewersCanCopyContent": true,
+          "canComment": true,
+          "canCopy": true,
+          "canDelete": true,
+          "canDownload": true,
+          "canEdit": true,
+          "canListChildren": false,
+          "canModifyContent": true,
+          "canMoveChildrenWithinDrive": false,
+          "canMoveItemIntoTeamDrive": true,
+          "canMoveItemOutOfDrive": true,
+          "canMoveItemWithinDrive": true,
+          "canReadRevisions": true,
+          "canRemoveChildren": false,
+          "canRemoveMyDriveParent": true,
+          "canRename": true,
+          "canShare": true,
+          "canTrash": true,
+          "canUntrash": true
+         },
+         "viewersCanCopyContent": true,
+         "copyRequiresWriterPermission": false,
+         "writersCanShare": true,
+         "permissions": [
+          {
+           "kind": "drive#permission",
+           "id": "09109446299227804908",
+           "type": "user",
+           "emailAddress": "trackdown.rpackage@gmail.com",
+           "role": "owner",
+           "displayName": "trackdown rpackage",
+           "deleted": false
+          }
+         ],
+         "permissionIds": [
+          "09109446299227804908"
+         ],
+         "originalFilename": "temp-output-example_1.pdf",
+         "fullFileExtension": "pdf",
+         "fileExtension": "",
+         "md5Checksum": "836c5dc5094a78612f67ded8b4853a8d",
+         "size": "146065",
+         "quotaBytesUsed": "146065",
+         "headRevisionId": "0B_bXnIs35pMSMWVsNW1oQjhobmFHUkVDYlZhRGN3MjBIUGw4PQ",
+         "isAppAuthorized": true
+        }
+  recorded_at: 2021-03-30 14:58:07 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4
