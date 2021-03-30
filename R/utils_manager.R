@@ -8,8 +8,8 @@
 #'
 #' Internal function to upload (or update) a local file to Google Drive as a
 #' plain text document. Local file information and Google Drive document
-#' information and have to be provided. Option \texttt{hide_code} allows to
-#' remove code chunks from the text document and option \texttt{update}
+#' information and have to be provided. Option \code{hide_code} allows to
+#' remove code chunks from the text document and option \code{update}
 #' indicates whether to update file in Google Drive.
 #'
 #' @param file character. The path (without file extension) of a local `.Rmd`
@@ -103,8 +103,8 @@ upload_document <- function(file, file_info,
 #'
 #' Internal function to upload (or update) a local file to Google Drive as a
 #' plain text document. Local file information and Google Drive document
-#' information and have to be provided. Option \texttt{hide_code} allows to
-#' remove code chunks from the text document and option \texttt{update}
+#' information and have to be provided. Option \code{hide_code} allows to
+#' remove code chunks from the text document and option \code{update}
 #' indicates whether to update file in Google Drive.
 #'
 #' @param path_output character. The path (without file extension) of a local

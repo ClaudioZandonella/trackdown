@@ -25,7 +25,7 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
       
-      - name: Install 
+      - name: Install libgit2
         run: brew install libgit2
 
       - name: Query dependencies

@@ -2,7 +2,7 @@
 % Please edit documentation in R/files_manager.R
 \name{upload_file}
 \alias{upload_file}
-\title{Upload file to Google Drive for collaborative editing}
+\title{Upload file to Google Drive for collaborative writing and editing}
 \usage{
 upload_file(
   file,
@@ -14,8 +14,7 @@ upload_file(
 )
 }
 \arguments{
-\item{file}{character. The path (without file extension) of a local `.Rmd`
-file.}
+\item{file}{character. The path of a local `.Rmd` or `Rnw` file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -29,18 +28,23 @@ recommended.}
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 
 \item{hide_code}{logical value indicating whether to remove code from the
-text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
-displayed instead.}
+text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
+are displayed instead.}
 
-\item{path_output}{default NULL, specify the path to
-the output to upload together with the other file. PDF are directly
-uploaded, HTML are first converted into PDF if Chrome is available or as
-HTML.}
+\item{path_output}{default NULL, specify the path to the output to upload
+together with the other file. PDF are directly uploaded, HTML are first
+converted into PDF if Chrome is available or as HTML.}
+}
+\value{
+a dribble of the uploaded file (and output if specified)
 }
 \description{
-Uploads a local file to Google Drive as a plain text document. Will
-only upload the file if it doesn't already exist in the chosen location. By
+Uploads a local file to Google Drive as a plain text document. Will only
+upload the file if it doesn't already exist in the chosen location. By
 default files are uploaded in the folder "trackdown", if is not available on
 Google Drive, permission to create is required to the user. To update an
-existing file \code{\link{update_file}}.
+existing file see \code{\link{update_file}}. It is possible to upload also
+the output (pdf or html) of the file specifying the \code{path_output}
+argument. In case of html files, if Chrome is available, users can decide to
+upload a pdf version of the html file.
 }

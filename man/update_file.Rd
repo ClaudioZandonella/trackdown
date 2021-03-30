@@ -14,8 +14,7 @@ update_file(
 )
 }
 \arguments{
-\item{file}{character. The path (without file extension) of a local `.Rmd`
-file.}
+\item{file}{character. The path of a local `.Rmd` or `Rnw` file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -29,13 +28,12 @@ recommended.}
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 
 \item{hide_code}{logical value indicating whether to remove code from the
-text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
-displayed instead.}
+text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
+are displayed instead.}
 
-\item{path_output}{default NULL, specify the path to
-the output to upload together with the other file. PDF are directly
-uploaded, HTML are first converted into PDF if Chrome is available or as
-HTML.}
+\item{path_output}{default NULL, specify the path to the output to upload
+together with the other file. PDF are directly uploaded, HTML are first
+converted into PDF if Chrome is available or as HTML.}
 }
 \description{
 Replaces the content of an existing file in Google Drive with the contents of

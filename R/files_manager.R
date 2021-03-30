@@ -4,16 +4,18 @@
 
 #----    upload_file    ----
 
-#' Upload file to Google Drive for collaborative editing
+#' Upload file to Google Drive for collaborative writing and editing
 #'
-#' Uploads a local file to Google Drive as a plain text document. Will
-#' only upload the file if it doesn't already exist in the chosen location. By
+#' Uploads a local file to Google Drive as a plain text document. Will only
+#' upload the file if it doesn't already exist in the chosen location. By
 #' default files are uploaded in the folder "trackdown", if is not available on
 #' Google Drive, permission to create is required to the user. To update an
-#' existing file \code{\link{update_file}}.
+#' existing file see \code{\link{update_file}}. It is possible to upload also
+#' the output (pdf or html) of the file specifying the \code{path_output}
+#' argument. In case of html files, if Chrome is available, users can decide to
+#' upload a pdf version of the html file.
 #'
-#' @param file character. The path (without file extension) of a local `.Rmd`
-#'   file.
+#' @param file character. The path of a local `.Rmd` or `Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
 #' @param path character. (Sub)directory in My Drive or a Team Drive (optional).
@@ -23,15 +25,17 @@
 #'   recommended.
 #' @param team_drive character. The name of a Google Team Drive (optional).
 #' @param hide_code logical value indicating whether to remove code from the
-#'   text document (chunks and header). Placeholders of  type "[[chunk-<name>]]" are
-#'   displayed instead.
-#' @param  path_output default NULL, specify the path to
-#'   the output to upload together with the other file. PDF are directly
-#'   uploaded, HTML are first converted into PDF if Chrome is available or as
-#'   HTML.
-#' @return NULL
+#'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
+#'   are displayed instead.
+#' @param  path_output default NULL, specify the path to the output to upload
+#'   together with the other file. PDF are directly uploaded, HTML are first
+#'   converted into PDF if Chrome is available or as HTML.
+#'   
+#' @return a dribble of the uploaded file (and output if specified)
+#' 
 #' @export
-#'
+#' 
+
 upload_file <- function(file,
                         gfile = NULL,
                         path = "trackdown",
@@ -68,26 +72,30 @@ upload_file <- function(file,
   }
   
   #---- upload document ----
-  upload_document(file = file, 
-                  file_info = file_info, 
-                  gfile = gfile, 
-                  dribble_document = dribble_document, 
-                  hide_code = hide_code, 
-                  update = FALSE)
+  res <- upload_document(
+    file = file, 
+    file_info = file_info, 
+    gfile = gfile, 
+    dribble_document = dribble_document, 
+    hide_code = hide_code, 
+    update = FALSE)
   
   #---- upload output ----
   if (!is.null(path_output)) {
-
-    upload_output(path_output = path_output,
-                  output_info = output_info, 
-                  gfile_output = gfile_output,
-                  dribble_output = dribble_output, 
-                  update = FALSE)
+    dribble_output <- upload_output(
+      path_output = path_output,
+      output_info = output_info, 
+      gfile_output = gfile_output,
+      dribble_output = dribble_output, 
+      update = FALSE)
     
+    res <- rbind(res, dribble_output)
   }
   
   #---- end ----
   finish_process("Process completed!")
+  
+  return(res)
 }
 
 #----    update_file    ----

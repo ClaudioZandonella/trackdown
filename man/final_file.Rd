@@ -7,8 +7,7 @@
 final_file(file, path = "trackdown", team_drive = NULL)
 }
 \arguments{
-\item{file}{character. The path (without file extension) of a local `.Rmd`
-file.}
+\item{file}{character. The path of a local `.Rmd` or `Rnw` file.}
 
 \item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
 By default files are uploaded in the folder "trackdown". To specify another

@@ -306,18 +306,6 @@ eval_no_dribble <- function(dribble, gfile){
   }
 }
 
-#----    output_html2pdf    ----
-
-output_html2pdf <- function(){
-
-  html2pdf <- utils::menu(c("Yes", "No"),
-                          title = paste("Transform HTML to PDF output before uploading?"))
-  
-  if(html2pdf == 1){
-    final_file <- pagedown::chrome_print(path_output)
-    
-  } 
-}
 
 #----
 
