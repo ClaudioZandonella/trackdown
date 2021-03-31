@@ -40,8 +40,9 @@ a dribble of the uploaded file (and output if specified)
 }
 \description{
 Replaces the content of an existing file in Google Drive with the contents of
-a local file. It is possible to upload also the output (pdf or html) of the
-file specifying the \code{path_output} argument.
+a local file. It is also possible to update (or upload if not already
+present) the output (pdf or html) of the file specifying the
+\code{path_output} argument.
 }
 \details{
 \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
