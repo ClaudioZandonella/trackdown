@@ -7,7 +7,7 @@
 upload_file(
   file,
   gfile = NULL,
-  path = "trackdown",
+  gpath = "trackdown",
   team_drive = NULL,
   hide_code = FALSE,
   path_output = NULL
@@ -19,7 +19,7 @@ upload_file(
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
+\item{gpath}{character. (Sub)directory in My Drive or a Team Drive (optional).
 By default files are uploaded in the folder "trackdown". To specify another
 folder the full path is required (e.g., "trackdown/my_folder"). Use
 \code{NULL} to upload directly at the root level, although it is not
@@ -32,8 +32,8 @@ text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 are displayed instead.}
 
 \item{path_output}{default NULL, specify the path to the output to upload
-together with the other file. PDF are directly uploaded, HTML are first
-converted into PDF if Chrome is available or as HTML.}
+together with the other file. PDF are directly uploaded, HTML can be first
+converted into PDF if Chrome is available.}
 }
 \value{
 a dribble of the uploaded file (and output if specified)

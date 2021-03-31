@@ -18,7 +18,7 @@
 #' @param file character. The path of a local `.Rmd` or `Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
-#' @param path character. (Sub)directory in My Drive or a Team Drive (optional).
+#' @param gpath character. (Sub)directory in My Drive or a Team Drive (optional).
 #'   By default files are uploaded in the folder "trackdown". To specify another
 #'   folder the full path is required (e.g., "trackdown/my_folder"). Use
 #'   \code{NULL} to upload directly at the root level, although it is not
@@ -28,8 +28,8 @@
 #'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 #'   are displayed instead.
 #' @param  path_output default NULL, specify the path to the output to upload
-#'   together with the other file. PDF are directly uploaded, HTML are first
-#'   converted into PDF if Chrome is available or as HTML.
+#'   together with the other file. PDF are directly uploaded, HTML can be first
+#'   converted into PDF if Chrome is available.
 #'   
 #' @return a dribble of the uploaded file (and output if specified)
 #' 
@@ -38,55 +38,46 @@
 
 upload_file <- function(file,
                         gfile = NULL,
-                        path = "trackdown",
+                        gpath = "trackdown",
                         team_drive = NULL,
                         hide_code = FALSE,
                         path_output = NULL) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
-  #---- check file ----
-  # check local file exists and get file info
-  check_file(file)
-  file_info <- get_file_info(file = file)
-  
-  # get dribble info and check there is no file with same name in drive 
-  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
-  dribble_document <- get_dribble_info(gfile = gfile,
-                                       path = path, 
-                                       team_drive = team_drive)
-  eval_no_dribble(dribble_document$file, gfile)
+  #---- check document info ----
+  document <- evaluate_file(file = file, 
+                            gfile = gfile, 
+                            gpath = gpath, 
+                            team_drive = team_drive, 
+                            test = "none")
   
   
-  #---- check output ----
+  #---- check output info----
   if (!is.null(path_output)) {
-    # check whether output exists and get file info
-    check_file(path_output)
-    output_info <- get_file_info(file = path_output)
-    # check output in drive
-    gfile_output <- paste0(gfile, "-output")
-    dribble_output <- get_dribble_info(gfile = gfile_output,
-                                       path = path, 
-                                       team_drive = team_drive)
-    eval_no_dribble(dribble_output$file, gfile_output)
+    output <- evaluate_file(file = path_output, 
+                            gfile = paste0(document$gfile, "-output"),  # name based on the correct gfile of the document
+                            gpath = gpath, 
+                            team_drive = team_drive, 
+                            test = "none")
   }
   
   #---- upload document ----
   res <- upload_document(
-    file = file, 
-    file_info = file_info, 
-    gfile = gfile, 
-    dribble_document = dribble_document, 
+    file = document$file, 
+    file_info = document$file_info, 
+    gfile = document$gfile, 
+    dribble_document = document$dribble_info, 
     hide_code = hide_code, 
     update = FALSE)
   
   #---- upload output ----
   if (!is.null(path_output)) {
     dribble_output <- upload_output(
-      path_output = path_output,
-      output_info = output_info, 
-      gfile_output = gfile_output,
-      dribble_output = dribble_output, 
+      path_output = output$file,
+      output_info = output$file_info, 
+      gfile_output = output$gfile,
+      dribble_output = output$dribble_info, 
       update = FALSE)
     
     res <- rbind(res, dribble_output)
@@ -108,15 +99,71 @@ upload_file <- function(file,
 #' \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 #'
 #' @inheritParams upload_file
+#' 
 #' @return NULL
 #' @export
 #'
 update_file <- function(file,
                         gfile = NULL,
-                        path = "trackdown",
+                        gpath = "trackdown",
                         team_drive = NULL,
                         hide_code = FALSE,
-                        path_output = FALSE) {
+                        path_output = NULL) {
+  
+  main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
+  
+  #---- check file ----
+  # check local file exists and get file info
+  check_file(file)
+  file_info <- get_file_info(file = file)
+  
+  # get dribble info and check there is no file with same name in drive 
+  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
+  dribble_file <- get_dribble_info(gfile = gfile,
+                                   path = path, 
+                                   team_drive = team_drive)
+  eval_no_dribble(dribble_file$file, gfile)
+  
+  
+  #---- check output ----
+  if (!is.null(path_output)) {
+    # check whether output exists and get file info
+    check_file(path_output)
+    output_info <- get_file_info(file = path_output)
+    # check output in drive
+    gfile_output <- paste0(gfile, "-output")
+    dribble_output <- get_dribble_info(gfile = gfile_output,
+                                       path = path, 
+                                       team_drive = team_drive)
+    eval_no_dribble(dribble_output$file, gfile_output)
+  }
+  
+  #---- upload document ----
+  res <- upload_document(
+    file = file, 
+    file_info = file_info, 
+    gfile = gfile, 
+    dribble_document = dribble_file, 
+    hide_code = hide_code, 
+    update = FALSE)
+  
+  #---- upload output ----
+  if (!is.null(path_output)) {
+    dribble_output <- upload_output(
+      path_output = path_output,
+      output_info = output_info, 
+      gfile_output = gfile_output,
+      dribble_output = dribble_output, 
+      update = FALSE)
+    
+    res <- rbind(res, dribble_output)
+  }
+  
+  #---- end ----
+  finish_process("Process completed!")
+  
+  return(res)
+  #-------
   
   # check whether local file exists and get file info
   check_file(file)
@@ -305,7 +352,7 @@ download_file <- function(file,
 #'
 render_file <- function(file,
                         gfile = basename(file),
-                        path = "trackdown",
+                        gpath = "trackdown",
                         team_drive = NULL,
                         restore_chunks = FALSE) {
   
@@ -313,7 +360,7 @@ render_file <- function(file,
   
   changed <- download_file(file = file, 
                            gfile = gfile, 
-                           path = path, 
+                           path = gpath, 
                            team_drive = team_drive,
                            restore_chunks =  restore_chunks)
   if (changed) {
@@ -336,7 +383,7 @@ render_file <- function(file,
 #' 
 
 final_file <- function(file,
-                       path = "trackdown",
+                       gpath = "trackdown",
                        team_drive = NULL) {
   
   main_process(paste0("Uploading the final version of ", emph_file(local_file), "..."))
@@ -344,7 +391,7 @@ final_file <- function(file,
   gfile <- basename(file)
   
   # get dribble of the parent
-  path <- get_dribble_info(path)
+  gpath <- get_dribble_info(gpath)
   
   # check whether local file exists
   local_path <-  dirname(file)
@@ -353,7 +400,7 @@ final_file <- function(file,
   
   # search for gfile_final
   
-  dribble <- googledrive::drive_find(q = c(paste0("'", path$id,"' in parents", collapse = " and "),
+  dribble <- googledrive::drive_find(q = c(paste0("'", gpath$id,"' in parents", collapse = " and "),
                                 paste0("name contains ", "'", gfile, "_final", "'")),
                           team_drive = team_drive)
   
@@ -380,7 +427,7 @@ final_file <- function(file,
     
     googledrive::drive_upload(
       media = file.path(local_path, basename(final_file)),
-      path = path,
+      path = gpath,
       name = basename(final_file),
       verbose = F
     )

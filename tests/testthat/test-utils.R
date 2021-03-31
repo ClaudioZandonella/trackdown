@@ -74,13 +74,24 @@ test_that("check format_document", {
                                          hide_code = TRUE))
 })
 
-#----    eval_no_dribble    ----
+#----    eval_dribble    ----
 
-test_that("check eval_no_dribble", {
+test_that("check eval_dribble", {
   # dribble_hello_world <- get_dribble_info(gfile = "Hello-world", path = "reading_folder")
   # save(dribble_hello_world, file = paste0(file_path, "dribble_hello_world.rda"))
   load(paste0(file_path, "dribble_hello_world.rda"))
-  expect_error(eval_no_dribble(dribble_hello_world$file, "Hello-world"))
+  
+  # test none
+  expect_error(eval_dribble(dribble_hello_world$file, "Hello-world"))
+  expect_error(eval_dribble(dribble_hello_world$file[-1, ], "Hello-world", NA))
+  
+  
+  expect_error(eval_dribble(dribble_hello_world$file[-1, ], "Hello-world", 
+                            test = "single"))
+  expect_error(eval_dribble(dribble_hello_world$file[c(1, 1), ], "Hello-world", 
+                            test = "single"))
+  expect_error(eval_dribble(dribble_hello_world$file, "Hello-world", 
+                            test = "single"), NA)
 })
 #----
 

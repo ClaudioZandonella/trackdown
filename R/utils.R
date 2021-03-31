@@ -276,7 +276,7 @@ format_document <- function(document, file_info, hide_code){
   return(document)
 }
 
-#----    eval_no_dribble    ----
+#----    eval_dribble    ----
 
 #' Eval No Dribble
 #' 
@@ -292,19 +292,36 @@ format_document <- function(document, file_info, hide_code){
 #' @examples
 #' gfile <- "Hello-world"
 #' dribble <- get_dribble_info(gfile = gfile, path = "reading_folder")
-#' eval_no_dribble(dribble$file, gfile)
+#' eval_dribble(dribble$file, gfile)
 #' 
 
-eval_no_dribble <- function(dribble, gfile){
-  if (nrow(dribble) > 0) {
-    stop(
-      "a file with this name already exists in GoogleDrive: ",
-      sQuote(gfile),
-      ". Did you mean to use `update_file()`?",
-      call. = FALSE
-    )
+eval_dribble <- function(dribble, gfile, test = c("none", "single")){
+  test <- match.arg(test)
+  
+  if(test == "none") {
+    if (nrow(dribble) > 0) {
+      stop(
+        "A file with this name already exists in GoogleDrive: ",
+        sQuote(gfile),
+        ". Did you mean to use `update_file()`?",
+        call. = FALSE
+      )
+    }
+  } else if (test == "single") {
+    if (nrow(dribble) > 1L) {
+        # multiple files
+        stop("More than one file with this name already exists in GoogleDrive: ",
+             sQuote(gfile),".",
+             call. = FALSE)
+      } else if (nrow(dribble) < 1L) {
+        # no files
+        stop("No file with this name exists in GoogleDrive: ",
+             sQuote(gfile),". Did you mean to use `upload_file()`?",
+             call. = FALSE)
+      }
+    }
   }
-}
+  
 
 
 #----

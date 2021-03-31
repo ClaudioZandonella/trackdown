@@ -9,6 +9,8 @@
 #' Given the gfile name, folder, and Team Drive, gets a list with the dribble
 #' ("Drive tibble") for the file and parent folder.
 #'
+#' @param gfile character. The name of a Google Drive file (defaults to local
+#'   file name).
 #' @param path character. (Sub)directory in My Drive or a Team Drive.
 #' @param team_drive character. The name of a Google Team Drive (optional).
 #' 

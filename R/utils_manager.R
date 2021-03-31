@@ -2,6 +2,68 @@
 ####    Utilities Manager   ####
 ################################
 
+
+#----    evaluate_file    ----
+#' Evaluate File local and Google Drive Information
+#'
+#' @param file character indicating the path to the local file (or output)
+#' @param gfile character indicating the name of a Google Drive file
+#' @param gpath character indicating the path in Google Drive
+#' @param team_drive character indicating the name of a Google Team Drive (optional)
+#' @param test character indicating whether to test for \code{"none"} line in
+#'   dribble or \code{single} line
+#'
+#' @return a list with relevant information 
+#'  \itemize{
+#'    \item{file - character indicating the path to the local file (or output)}
+#'    \item{file_info - list with file info returned from  get_file_info()
+#'    function}
+#'    \item{gfile - character indicating the corrected gfile naem for the file}
+#'    \item{dribble_info - list with dribble info of the file and parent
+#'    returned by get_dribble_info() function}
+#'  }
+#'  
+#' @noRd
+#'
+#' @examples
+#' # file
+#' file <- "tests/testthat/test_files/example_1.Rmd"
+#' 
+#' # output
+#' file <- "tests/testthat/test_files/example_1.pdf"
+#' 
+#' evaluate_file(file)
+#' 
+
+evaluate_file <- function(file, 
+                          gfile = NULL,
+                          gpath = "trackdown", 
+                          team_drive = NULL, 
+                          test = c("none", "single")){
+
+  test = match.arg(test)
+  
+  # check local file exists and get file info
+  check_file(file)
+  file_info <- get_file_info(file = file)
+  
+  # set correct gfile
+  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
+    
+  # get dribble info
+  dribble_info <- get_dribble_info(gfile = gfile,
+                                   path = gpath, 
+                                   team_drive = team_drive)
+  
+  # check there is no file (or a single file) with same name in drive
+  eval_dribble(dribble_info$file, gfile, test = test)
+  
+  return(list(file = file,
+              file_info = file_info,
+              gfile = gfile,
+              dribble_info = dribble_info))
+}
+
 #----    upload_document    ----
 
 #' Upload (or Update) a Document in Google Drive

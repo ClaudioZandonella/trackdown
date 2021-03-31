@@ -15,11 +15,11 @@ test_that("expect error form upload_file", {
   vcr::use_cassette("upload_file_test_1", {
     upload_file_1 <- tryCatch(
       upload_file(file = paste0(file_path, "example_1.Rmd"),
-                  gfile = "already_present_file", path = "writing_folder"),
+                  gfile = "already_present_file", gpath = "writing_folder"),
       error = function(e) e)
   })
   # expect message starting with
-  expect_true(grepl("^a file with this name already exists", upload_file_1$message))
+  expect_true(grepl("^A file with this name already exists", upload_file_1$message))
   
 })
 
@@ -30,7 +30,7 @@ test_that("expect correct upload document", {
   
   file
   gfile = NULL
-  path = "trackdown"
+  gpath = "trackdown"
   team_drive = NULL
   hide_code = FALSE
   path_output = NULL
@@ -38,7 +38,7 @@ test_that("expect correct upload document", {
   # upload Rmd file and html output
   vcr::use_cassette("upload_file_test_2", {
     dribble <- upload_file(file = paste0(file_path, "example_1.Rmd"),
-                           path = "writing_folder",
+                           gpath = "writing_folder",
                            hide_code = TRUE,
                            path_output = paste0(file_path, "example_1.html"))
     googledrive::drive_rm(dribble)
@@ -49,7 +49,7 @@ test_that("expect correct upload document", {
   # upload Rnw file and pdf output
   vcr::use_cassette("upload_file_test_3", {
     dribble <- upload_file(file = paste0(file_path, "example_1.Rnw"),
-                           path = "writing_folder",
+                           gpath = "writing_folder",
                            hide_code = TRUE,
                            path_output = paste0(file_path, "example_1.pdf"))
     googledrive::drive_rm(dribble)

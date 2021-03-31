@@ -4,6 +4,68 @@
 
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
+#----    evaluate_file    ----
+
+test_that("evaluate file correctly", {
+  skip_if_no_token()
+  skip_if_offline()
+  
+  file <- paste0(file_path,"example_1.Rmd")
+  file_info <- get_file_info(file)
+  
+  # # old_eval_file
+  # old_eval_file <- evaluate_file(file = file, gpath = "reading_folder", test = "single")
+  # save(old_eval_file, file = "tests/testthat/test_files/old_eval_file.rda")
+  load(paste0(file_path, "old_eval_file.rda"))
+  
+  
+  # error already existing file
+  vcr::use_cassette("evaluate_file_test_1", {
+    evaluate_file_1 <- tryCatch(
+      evaluate_file(file = file, gfile = "copy_example",
+                    gpath = "reading_folder", test = "none"),
+      error = function(e) e)
+  })
+  # expect message starting with
+  expect_true(grepl("^A file with this name already exists", evaluate_file_1$message))
+  
+  # error multiple existing file
+  vcr::use_cassette("evaluate_file_test_2", {
+    evaluate_file_2 <- tryCatch(
+      evaluate_file(file = file, gfile = "copy_example",
+                    gpath = "reading_folder", test = "single"),
+      error = function(e) e)
+  })
+  # expect message starting with
+  expect_true(grepl("^More than one file with this name ", evaluate_file_2$message))
+  
+  # error no existing file
+  vcr::use_cassette("evaluate_file_test_3", {
+    evaluate_file_3 <- tryCatch(
+      evaluate_file(file = file, gfile = "not_existing",
+                    gpath = "reading_folder", test = "single"),
+      error = function(e) e)
+  })
+  # expect message starting with
+  expect_true(grepl("^No file with this name exists ", evaluate_file_3$message))
+  
+  
+  
+  # get file evaluation
+  vcr::use_cassette("evaluate_file_test_4", {
+    new_eval_file <- evaluate_file(file = file, gpath = "reading_folder", 
+                                   test = "single")
+    
+  })
+  expect_equal(new_eval_file$file_info[-1], old_eval_file$file_info[-1])
+  expect_equal(new_eval_file$gfile, old_eval_file$gfile)
+  expect_equal(new_eval_file$dribble_info$file$id, 
+               old_eval_file$dribble_info$file$id)
+  expect_equal(new_eval_file$dribble_info$parent$id, 
+               old_eval_file$dribble_info$parent$id)
+  
+})
+
 #----    upload_document    ----
 
 test_that("upload the document correctly", {

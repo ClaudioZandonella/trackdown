@@ -7,7 +7,7 @@
 render_file(
   file,
   gfile = basename(file),
-  path = "trackdown",
+  gpath = "trackdown",
   team_drive = NULL,
   restore_chunks = FALSE
 )
@@ -18,7 +18,7 @@ render_file(
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).
+\item{gpath}{character. (Sub)directory in My Drive or a Team Drive (optional).
 By default files are uploaded in the folder "trackdown". To specify another
 folder the full path is required (e.g., "trackdown/my_folder"). Use
 \code{NULL} to upload directly at the root level, although it is not
