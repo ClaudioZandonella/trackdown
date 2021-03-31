@@ -32,19 +32,19 @@ check_file <- function(file) {
 #' @return NULL
 #' @noRd
 #'
-check_gfile <- function(dribble) {
-  if (nrow(dribble) == 0){
-    stop(
-      "file does not exists in GoogleDrive.",
-      call. = FALSE
-    )
-  } else if (nrow(dribble) > 1) {
-    stop(
-      "more than one file with this name exists in GoogleDrive.",
-      call. = FALSE
-    )
-  }
-}
+# check_gfile <- function(dribble) {
+#   if (nrow(dribble) == 0){
+#     stop(
+#       "file does not exists in GoogleDrive.",
+#       call. = FALSE
+#     )
+#   } else if (nrow(dribble) > 1) {
+#     stop(
+#       "more than one file with this name exists in GoogleDrive.",
+#       call. = FALSE
+#     )
+#   }
+# }
 
 
 #----    check_identity    ----
@@ -276,7 +276,7 @@ format_document <- function(document, file_info, hide_code){
   return(document)
 }
 
-#----    eval_dribble    ----
+#----    check_dribble    ----
 
 #' Eval No Dribble
 #' 
@@ -285,6 +285,8 @@ format_document <- function(document, file_info, hide_code){
 #' @param dribble dribble object of the files resulting from get_dribble_info()
 #'   function
 #' @param gfile string indicating the name of the gfile
+#' @param test string indicating whether to test no line in dribble ("none"),
+#'   single line in dribble ("single") or both condition accepted ("both")
 #'
 #' @return NULL
 #' @noRd
@@ -292,10 +294,10 @@ format_document <- function(document, file_info, hide_code){
 #' @examples
 #' gfile <- "Hello-world"
 #' dribble <- get_dribble_info(gfile = gfile, path = "reading_folder")
-#' eval_dribble(dribble$file, gfile)
+#' check_dribble(dribble$file, gfile)
 #' 
 
-eval_dribble <- function(dribble, gfile, test = c("none", "single")){
+check_dribble <- function(dribble, gfile, test = c("none", "single", "both")){
   test <- match.arg(test)
   
   if(test == "none") {
@@ -319,8 +321,16 @@ eval_dribble <- function(dribble, gfile, test = c("none", "single")){
              sQuote(gfile),". Did you mean to use `upload_file()`?",
              call. = FALSE)
       }
+  } else if (test == "both") {
+    if (nrow(dribble) > 1L) {
+      # multiple files
+      stop("More than one file with this name already exists in GoogleDrive: ",
+           sQuote(gfile),".",
+           call. = FALSE)
     }
   }
+}
+
   
 
 

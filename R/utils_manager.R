@@ -10,8 +10,8 @@
 #' @param gfile character indicating the name of a Google Drive file
 #' @param gpath character indicating the path in Google Drive
 #' @param team_drive character indicating the name of a Google Team Drive (optional)
-#' @param test character indicating whether to test for \code{"none"} line in
-#'   dribble or \code{single} line
+#' @param test character indicating whether to test no line in dribble ("none"),
+#'   single line in dribble ("single") or both condition accepted ("both")
 #'
 #' @return a list with relevant information 
 #'  \itemize{
@@ -39,7 +39,7 @@ evaluate_file <- function(file,
                           gfile = NULL,
                           gpath = "trackdown", 
                           team_drive = NULL, 
-                          test = c("none", "single")){
+                          test = c("none", "single", "both")){
 
   test = match.arg(test)
   
@@ -56,7 +56,7 @@ evaluate_file <- function(file,
                                    team_drive = team_drive)
   
   # check there is no file (or a single file) with same name in drive
-  eval_dribble(dribble_info$file, gfile, test = test)
+  check_dribble(dribble_info$file, gfile, test = test)
   
   return(list(file = file,
               file_info = file_info,
@@ -133,7 +133,7 @@ upload_document <- function(file, file_info,
   
   
   if(isTRUE(update)){
-    start_process("Updating document to Google Drive...")
+    start_process("Updating document with local changes  to Google Drive...")
     
     # Update document
     res <- googledrive::drive_update(
@@ -231,7 +231,7 @@ upload_output <- function(path_output, output_info,
   }
   
   if(isTRUE(update)){
-    start_process("Updating output to Google Drive...")
+    start_process("Updating output with local changes to Google Drive...")
     
     # Update output
     res <- googledrive::drive_update(

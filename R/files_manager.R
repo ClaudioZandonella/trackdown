@@ -10,7 +10,7 @@
 #' upload the file if it doesn't already exist in the chosen location. By
 #' default files are uploaded in the folder "trackdown", if is not available on
 #' Google Drive, permission to create is required to the user. To update an
-#' existing file see \code{\link{update_file}}. It is possible to upload also
+#' existing file see \code{\link{update_file}}. It is also possible to upload
 #' the output (pdf or html) of the file specifying the \code{path_output}
 #' argument. In case of html files, if Chrome is available, users can decide to
 #' upload a pdf version of the html file.
@@ -94,13 +94,15 @@ upload_file <- function(file,
 #' Updates file in Google Drive
 #'
 #' Replaces the content of an existing file in Google Drive with the contents of
-#'   a local file.
+#' a local file. It is also possible to update (or upload if not already
+#' present) the output (pdf or html) of the file specifying the
+#' \code{path_output} argument.
 #'
 #' \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 #'
 #' @inheritParams upload_file
 #' 
-#' @return NULL
+#' @return a dribble of the uploaded file (and output if specified)
 #' @export
 #'
 update_file <- function(file,
@@ -110,51 +112,60 @@ update_file <- function(file,
                         hide_code = FALSE,
                         path_output = NULL) {
   
-  main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
+  main_process(paste("Updating files to", cli::col_magenta("Google Drive")))
   
-  #---- check file ----
-  # check local file exists and get file info
-  check_file(file)
-  file_info <- get_file_info(file = file)
-  
-  # get dribble info and check there is no file with same name in drive 
-  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
-  dribble_file <- get_dribble_info(gfile = gfile,
-                                   path = path, 
-                                   team_drive = team_drive)
-  eval_no_dribble(dribble_file$file, gfile)
+  #---- check document info ----
+  document <- evaluate_file(file = file, 
+                            gfile = gfile, 
+                            gpath = gpath, 
+                            team_drive = team_drive, 
+                            test = "single")
   
   
-  #---- check output ----
+  #---- check output info----
   if (!is.null(path_output)) {
-    # check whether output exists and get file info
-    check_file(path_output)
-    output_info <- get_file_info(file = path_output)
-    # check output in drive
-    gfile_output <- paste0(gfile, "-output")
-    dribble_output <- get_dribble_info(gfile = gfile_output,
-                                       path = path, 
-                                       team_drive = team_drive)
-    eval_no_dribble(dribble_output$file, gfile_output)
+    output <- evaluate_file(file = path_output, 
+                            gfile = paste0(document$gfile, "-output"),  # name based on the correct gfile of the document
+                            gpath = gpath, 
+                            team_drive = team_drive, 
+                            test = "both")
+  }
+  
+  #---- check user ----
+  
+  # check whether user really wants to replace file in Google Drive
+  if(interactive()){
+    response <- utils::menu(
+      c("Yes", "No"),
+      title = paste("Updating the file in Google Drive will overwrite its current content.",
+                    "You might lose tracked changes. Do you want to proceed?"))
+    
+    if (response == 2L) {
+      sub_process("Process arrested")
+      return(NULL)
+    }
   }
   
   #---- upload document ----
   res <- upload_document(
-    file = file, 
-    file_info = file_info, 
-    gfile = gfile, 
-    dribble_document = dribble_file, 
+    file = document$file, 
+    file_info = document$file_info, 
+    gfile = document$gfile, 
+    dribble_document = document$dribble_info, 
     hide_code = hide_code, 
-    update = FALSE)
+    update = TRUE)
   
   #---- upload output ----
   if (!is.null(path_output)) {
+    update <- ifelse(nrow(output$dribble_info$file) > 0, 
+                     yes = TRUE, no = FALSE)
+    
     dribble_output <- upload_output(
-      path_output = path_output,
-      output_info = output_info, 
-      gfile_output = gfile_output,
-      dribble_output = dribble_output, 
-      update = FALSE)
+      path_output = output$file,
+      output_info = output$file_info, 
+      gfile_output = output$gfile,
+      dribble_output = output$dribble_info, 
+      update = update)
     
     res <- rbind(res, dribble_output)
   }
@@ -163,106 +174,6 @@ update_file <- function(file,
   finish_process("Process completed!")
   
   return(res)
-  #-------
-  
-  # check whether local file exists and get file info
-  check_file(file)
-  file_info <- get_file_info(file = file)
-  
-  # check gfile name
-  gfile <- ifelse(is.null(gfile), yes = file_info$file_basename, no = gfile)
-  
-  # check whether file on Google Drive exists
-  dribble <- get_dribble_info(gfile, path, team_drive)
-  check_gfile(dribble)
-  
-  # check whether user really wants to replace file in Google Drive
-  response <- utils::menu(
-    c("Yes", "No"),
-    title = paste(
-      "Updating the file in Google Drive will overwrite its current content.",
-      "You might lose tracked changes. Do you want to proceed?"
-    )
-  )
-  
-  if (response == 1) {
-    
-    main_process(paste("Uploading", emph_file(file), "with local changes..."))
-    
-    # create .temp-file to upload
-    temp_file <- file.path(file_info$path, paste0(".temp-", basename(file), ".txt"))
-    file.copy(file, temp_file, overwrite = T)
-    # read document lines
-    document <- readLines(temp_file, warn = FALSE)
-    
-    # We need to extract chunks in both cases
-    if(isTRUE(hide_code) || isTRUE(path_output)){
-      
-      start_process("Removing chunks...")
-      
-      # create .trackdown folder with info about chunks
-      init_trackdown(document = document,
-                     file_info = file_info)
-      
-      if (isTRUE(hide_code)) {
-        hide_code(document = document,
-                  local_path = file_info$path)
-        
-        finish_process("Chunks removed!")
-      }
-      
-      if (isTRUE(path_output)) {
-        
-        # knit uploaded pdf named .report_temp.Rmd
-        knit_report(local_path = file_info$path) 
-        
-        # check if the file pdf report is already present
-        dribble_report <- get_dribble_info(paste0(gfile, "_report.pdf"), 
-                                      path = path, 
-                                      team_drive = team_drive) 
-    
-        if(nrow(dribble_report) < 1){ 
-          
-          # get dribble of the parent
-          path <- get_parent_dribble(path = path, 
-                                     team_drive = team_drive)
-          
-          # upload local file to Google Drive
-          googledrive::drive_upload(
-            media = file.path(file_info$path, ".trackdown/report_temp.pdf"),
-            path = path,
-            name = paste0(gfile, "_report.pdf"),
-            type = "pdf",
-            verbose = F
-          )
-          
-          finish_process(paste(emph_file(file), "pdf report uploaded!"))
-          
-        } else{
-          
-          # update local file to Google Drive
-          googledrive::drive_update(
-            file = dribble_report,
-            media = file.path(file_info$path, ".trackdown/report_temp.pdf"),
-            verbose = F
-          )
-          
-          finish_process(paste(emph_file(file), "pdf report updated!"))
-        }
-        
-      file.remove(file.path(file_info$path, ".report_temp.Rmd"))
-      }
-    }
-    
-    # upload local file to Google Drive
-    googledrive::drive_update(file = dribble, 
-                              media = temp_file,
-                              verbose = F)
-    
-    invisible(file.remove(temp_file))
-  }
-  
-  finish_process(paste(emph_file(file), "updated!"))
 }
 
 #----    download_file    ----
@@ -382,76 +293,76 @@ render_file <- function(file,
 #' @export
 #' 
 
-final_file <- function(file,
-                       gpath = "trackdown",
-                       team_drive = NULL) {
-  
-  main_process(paste0("Uploading the final version of ", emph_file(local_file), "..."))
-  
-  gfile <- basename(file)
-  
-  # get dribble of the parent
-  gpath <- get_dribble_info(gpath)
-  
-  # check whether local file exists
-  local_path <-  dirname(file)
-  local_file <- paste0(basename(file), ".Rmd")
-  check_file(file.path(local_path, local_file))
-  
-  # search for gfile_final
-  
-  dribble <- googledrive::drive_find(q = c(paste0("'", gpath$id,"' in parents", collapse = " and "),
-                                paste0("name contains ", "'", gfile, "_final", "'")),
-                          team_drive = team_drive)
-  
-  start_process("Rendering document...")
-  
-  final_file <- rmarkdown::render(file.path(local_path, local_file),
-                                  output_file = paste0(basename(file), "_final"),
-                                  quiet = T)
-  
-  # check if the document is html and if chrome is installed
-  
-  if (stringr::str_detect(basename(final_file), ".html")){
-    if (!is.null(pagedown::find_chrome())) {
-      
-      # print knitted html to pdf
-      final_file <-pagedown::chrome_print(file.path(local_path, basename(final_file)))
-      
-    } else {
-      cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
-    }
-  }
-  
-  if (nrow(dribble) < 1) { 
-    
-    googledrive::drive_upload(
-      media = file.path(local_path, basename(final_file)),
-      path = gpath,
-      name = basename(final_file),
-      verbose = F
-    )
-    
-    finish_process(paste(emph_file(file), "final version uploaded!"))
-    
-  } else{
-    
-    update_file <- utils::menu(c("Yes", "No"),
-                title = paste("The", basename(final_file), "is already present on Google Drive. Do you want to update it?"))
-    
-    if (update_file == 1) {
-      
-      # update local file to Google Drive
-      googledrive::drive_update(
-        file = dribble,
-        media = file.path(local_path, basename(final_file)),
-        verbose = F
-      )
-      
-      finish_process(paste(emph_file(file), "final version updated!"))
-      
-    } else
-      
-      cli::cli_alert_warning("Updating aborted!")
-  }
-}
+# final_file <- function(file,
+#                        gpath = "trackdown",
+#                        team_drive = NULL) {
+#   
+#   main_process(paste0("Uploading the final version of ", emph_file(local_file), "..."))
+#   
+#   gfile <- basename(file)
+#   
+#   # get dribble of the parent
+#   gpath <- get_dribble_info(gpath)
+#   
+#   # check whether local file exists
+#   local_path <-  dirname(file)
+#   local_file <- paste0(basename(file), ".Rmd")
+#   check_file(file.path(local_path, local_file))
+#   
+#   # search for gfile_final
+#   
+#   dribble <- googledrive::drive_find(q = c(paste0("'", gpath$id,"' in parents", collapse = " and "),
+#                                 paste0("name contains ", "'", gfile, "_final", "'")),
+#                           team_drive = team_drive)
+#   
+#   start_process("Rendering document...")
+#   
+#   final_file <- rmarkdown::render(file.path(local_path, local_file),
+#                                   output_file = paste0(basename(file), "_final"),
+#                                   quiet = T)
+#   
+#   # check if the document is html and if chrome is installed
+#   
+#   if (stringr::str_detect(basename(final_file), ".html")){
+#     if (!is.null(pagedown::find_chrome())) {
+#       
+#       # print knitted html to pdf
+#       final_file <-pagedown::chrome_print(file.path(local_path, basename(final_file)))
+#       
+#     } else {
+#       cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
+#     }
+#   }
+#   
+#   if (nrow(dribble) < 1) { 
+#     
+#     googledrive::drive_upload(
+#       media = file.path(local_path, basename(final_file)),
+#       path = gpath,
+#       name = basename(final_file),
+#       verbose = F
+#     )
+#     
+#     finish_process(paste(emph_file(file), "final version uploaded!"))
+#     
+#   } else{
+#     
+#     update_file <- utils::menu(c("Yes", "No"),
+#                 title = paste("The", basename(final_file), "is already present on Google Drive. Do you want to update it?"))
+#     
+#     if (update_file == 1) {
+#       
+#       # update local file to Google Drive
+#       googledrive::drive_update(
+#         file = dribble,
+#         media = file.path(local_path, basename(final_file)),
+#         verbose = F
+#       )
+#       
+#       finish_process(paste(emph_file(file), "final version updated!"))
+#       
+#     } else
+#       
+#       cli::cli_alert_warning("Updating aborted!")
+#   }
+# }

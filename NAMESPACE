@@ -2,7 +2,6 @@
 
 export("%>%")
 export(download_file)
-export(final_file)
 export(render_file)
 export(update_file)
 export(upload_file)

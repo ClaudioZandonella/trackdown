@@ -35,9 +35,13 @@ are displayed instead.}
 together with the other file. PDF are directly uploaded, HTML can be first
 converted into PDF if Chrome is available.}
 }
+\value{
+a dribble of the uploaded file (and output if specified)
+}
 \description{
 Replaces the content of an existing file in Google Drive with the contents of
-  a local file.
+a local file. It is possible to upload also the output (pdf or html) of the
+file specifying the \code{path_output} argument.
 }
 \details{
 \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
