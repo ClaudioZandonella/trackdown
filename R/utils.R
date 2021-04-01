@@ -57,18 +57,37 @@ check_file <- function(file) {
 #' @return `TRUE` if files are identical, `FALSE` otherwise.
 #' @noRd
 #'
-check_identity <- function(local_path, local_file){
-  temp_file <- file.path(local_path, paste0(".temp-", local_file))
-  local_file <- file.path(local_path, local_file)
+check_identity <- function(temp_file, local_file){
   
   if (file.exists(local_file)){
     md5_file <- unname(tools::md5sum(local_file))
     md5_temp_file <- unname(tools::md5sum(temp_file))
-    md5_file == md5_temp_file
+    res <- md5_file == md5_temp_file
   } else {
-    FALSE
+    res <- FALSE
   }
+  
+  return(res)
 }
+
+#----    sanitize_document    ----
+
+#' Sanitize Rmd file downloaded from GoogleDrive
+#'
+#' Adds a final EOL and removes double linebreaks added when downloading file
+#' from GoogleDrive.
+#'
+#' @inheritParams upload_rmd 
+#' @return Sanitized file from Google Drive.
+#' @noRd
+#'
+sanitize_document <- function(file) {
+  file %>%
+    c("") %>%
+    paste(collapse = "\n") %>%
+    stringr::str_replace_all("\n\n\n", "\n\n")
+}
+
 
 #----    sanitize_gfile    ----
 
@@ -81,14 +100,15 @@ check_identity <- function(local_path, local_file){
 #' @return Sanitized file from Google Drive.
 #' @noRd
 #'
-sanitize_gfile <- function(gfile) {
-  temp <- readLines(gfile, warn = FALSE) %>%
-    c("") %>%
-    paste(collapse = "\n") %>%
-    stringr::str_replace_all("\n\n\n", "\n\n")
-  
-  cat(temp, file = gfile) # workaround for the writing problem (TO REVIEW)
-}
+
+# sanitize_gfile <- function(gfile) {
+#   temp <- readLines(gfile, warn = FALSE) %>%
+#     c("") %>%
+#     paste(collapse = "\n") %>%
+#     stringr::str_replace_all("\n\n\n", "\n\n")
+#   
+#   cat(temp, file = gfile) # workaround for the writing problem (TO REVIEW)
+# }
 
 #----    stop_quietly    ----
 
@@ -232,7 +252,7 @@ get_instructions <- function(file_info, hide_code){
                     sprintf("HIDE-CODE: %s", hide_code))
   
   instructions <- c(
-    "#----Reviewdown Instructions----#",
+    "#----Trackdown Instructions----#",
     sprintf("This is not a common Document. The Document includes proper formatted %s syntax and R code. Please be aware and responsible in making corrections as you could brake the code. Limit change to plain text and avoid to the specific command.",
             language),
     placeholder1,
@@ -268,10 +288,9 @@ format_document <- function(document, file_info, hide_code){
   document <- c(get_instructions(file_info = file_info, 
                                  hide_code = hide_code), document)
   
-  # sanitize paper
-  document <- document %>% 
-    paste(collapse = "\n") %>% 
-    stringr::str_replace_all("\n\n\n", "\n\n")
+  # sanitize document
+  document <- sanitize_document(document)
+    
   
   return(document)
 }
@@ -331,8 +350,118 @@ check_dribble <- function(dribble, gfile, test = c("none", "single", "both")){
   }
 }
 
-  
+#----    eval_instructions    ----
 
+#' Evaluate Docuemnt Instructions
+#' 
+#' Given the document (vector with the text lines) retrieve instructions indexes
+#' and the FILE-NAME and HIDE-CODE options
+#'
+#' @param document character vector with the lines of the document 
+#'
+#' @return a list with:
+#' \itemize{
+#'   \item{instruction_start - integer inidicating the instructions initial line}
+#'   \item{instruction_end - integer inidicating the instructions end line}
+#'   \item{file_name - character indicating the file name}
+#'   \item{hide_code - logical indicating whether code was removed}
+#' }
+#' 
+#' @noRd 
+#'
+#' @examples
+#' 
+#' document <- readLines("tests/testthat/test_files/example_instructions.txt", warn = FALSE)
+#' eval_instructions(document)
+#' 
+#' # no instructions delimiters
+#' eval_instructions(document[-1])
+#' 
+#' # no file_name
+#' eval_instructions(document[-6])
+#' 
+#' # no hide_code
+#' eval_instructions(document[-7])
+#' 
+
+eval_instructions <- function(document, file_name = NULL){
+  
+  # get instruction lines
+  instruction_start <- which(grepl("^#----Trackdown Instructions----#", document))
+  instruction_end <- which(grepl("^#----End Instructions----#", document))
+  
+  # test retrieve instructions
+  my_test <- length(c(instruction_start, instruction_end))
+  if (my_test!= 2L){
+    warning("Failed retrieving instructions delimiters.",
+            "Intructions delimiters at the beginning shuld not be removed.", call. = FALSE)
+    instruction <- document # search options in the whole document
+    instruction_start <- NULL
+    instruction_end <- NULL
+  } else {
+    instruction <- document[instruction_start:instruction_end]
+  }
+  
+  
+  # get file-name and hide-code options lines
+  line_file_name <- which(grepl("^FILE-NAME:", instruction)) 
+  line_hide_code <- which(grepl("^HIDE-CODE: ", instruction))
+  
+  # test retrieve FILE-NAME
+  if (length(line_file_name)!= 1L){
+    warning("Failed retrieving FILE-NAME, current file name is used instead.", call. = FALSE)
+    old_file_name <- file_name
+  } else {
+    old_file_name <- gsub("^FILE-NAME:\\s*(.*)\\s*","\\1", instruction[line_file_name])
+  }
+  
+  # test retrieve HIDE-CODE
+  if (length(line_hide_code)!= 1L){
+    warning("Failed retrieving HIDE-CODE. Considering presence of code tags instead.", call. = FALSE)
+    hide_code <- any(grepl("^\\[\\[(document-header|chunk-.*)\\]\\]", document))
+  } else {
+    hide_code <- as.logical(gsub("^HIDE-CODE:\\s*(.*)\\s*","\\1", instruction[line_hide_code]))
+  }
+  
+  res <- list(start = instruction_start,
+              end = instruction_end,
+              file_name = old_file_name,
+              hide_code = hide_code)
+  
+  return(res)
+}
+
+#----    load_code    ----
+
+#' Load Code from .trackdown Folder
+#'
+#' Try to load header_info or chunck_info from .trackdown Folder. Meaningful
+#' error message is returned if case of error or wanring
+#' 
+#' @param file_name character indicating the name of the file
+#' @param path character indicating the path where the folder ".trackdown" is located
+#' @param type character indicating the required code, header or chunk
+#'
+#' @return a dataframe with the loaded code info
+#' 
+#' @noRd
+#'
+
+load_code <- function(file_name, path, type = c("header", "chunk")){
+  
+  type <- match.arg(type)
+  
+  data_path <- file.path(path,".trackdown",paste0(file_name, "-", type, "_info.rds"))
+  
+  tryCatch({data <- readRDS(file = data_path)},
+    error = function(e) stop("Failed restoring code, ",
+                             data_path," is not available.", call. = FALSE),
+    warning = function(w) stop("Failed restoring code, ",
+                               data_path," is not available.", call. = FALSE)
+  )
+  
+  return(data)
+}
 
 #----
 

@@ -225,9 +225,11 @@ upload_output <- function(path_output, output_info,
       # remove temp-output on exit
       on.exit(invisible(file.remove(path_output)), add = TRUE)
       
-    } else {
-      cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
-    }
+    } # else {                                             # TODO decide to show messages
+  #     cli::cli_alert_danger("Uploading html file...")
+  #   }
+  # } else {
+  #   cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
   }
   
   if(isTRUE(update)){

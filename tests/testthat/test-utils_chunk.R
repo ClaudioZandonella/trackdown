@@ -98,15 +98,71 @@ test_that("get the correct hide_code", {
   file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
   expect_snapshot_output(hide_code(document, file_info))
   
-  # tests
-  ls_files_1 <- list.files(paste0(file_path, ".trackdown"))
-  expect_identical(length(ls_files_1), 4L)
-  expect_true(all(c("example_1.Rmd-chunk_info.rds", "example_1.Rmd-header_info.rds",
-                    "example_1.Rnw-chunk_info.rds", "example_1.Rnw-header_info.rds") %in% ls_files_1))
-  
-  # remove files
-  file.remove(paste0(file_path, ".trackdown/",ls_files_1))
-  file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
 })
 
+#----    restore_chunk    ----
+
+test_that("get that restore_chunk works properly", {
+  
+  #---- Rmd ----
+  document <- readLines(paste0(file_path, "restore_example_1.Rmd"), warn = FALSE)
+  chunk_info <- load_code("example_1.Rmd", path = file_path, type = "chunk")
+  index_header <- 9
+  
+  # complete
+  expect_snapshot_output(restore_chunk(document = document, chunk_info = chunk_info, 
+                                       index_header = index_header))
+  
+  # missing multiple chunks (1°,4°, 7°, 8°, last)
+  expect_snapshot_output(restore_chunk(document = document[-c(12, 39, 48, 51, 57)], 
+                                       chunk_info = chunk_info, index_header = index_header))
+  
+  
+  #---- Rnw ----
+  document <- readLines(paste0(file_path, "restore_example_1.Rnw"), warn = FALSE)
+  chunk_info <- load_code("example_1.Rnw", path = file_path, type = "chunk")
+  index_header <- 12
+  
+  # complete
+  expect_snapshot_output(restore_chunk(document = document, chunk_info = chunk_info, 
+                                       index_header = index_header))
+  
+  # missing multiple chunks (1°,3°,4°, 6°)
+  expect_snapshot_output(restore_chunk(document = document[-c(37, 52, 55, 61)], 
+                                       chunk_info = chunk_info, index_header = index_header))
+  
+})
+
+
+#----    restore_code    ----
+
+test_that("get that restore_code works properly", {
+  
+  #---- Rmd ----
+  file_name <- "example_1.Rmd"
+  document <- readLines(file.path(file_path, paste0("restore_", file_name)), warn = FALSE)
+  
+  # complete
+  expect_snapshot_output(restore_code(document = document, file_name = file_name, 
+                                      path = file_path))
+  
+  # missing multiple chunks (1°,4°, 7°, 8°, last)
+  expect_snapshot_output(restore_code(document = document[-c(12, 39, 48, 51, 57)], 
+                                      file_name = file_name, path = file_path))
+  
+  
+  #---- Rnw ----
+  file_name <- "example_1.Rnw"
+  document <- readLines(file.path(file_path, paste0("restore_", file_name)), warn = FALSE)
+  
+  # complete
+  expect_snapshot_output(restore_code(document = document, file_name = file_name, 
+                                      path = file_path))
+  
+  # missing multiple chunks (1°,3°,4°, 6°)
+  expect_snapshot_output(restore_code(document = document[-c(37, 52, 55, 61)], 
+                                      file_name = file_name, path = file_path))
+  
+})
 #----
+

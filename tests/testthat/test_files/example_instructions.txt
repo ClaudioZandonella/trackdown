@@ -1,0 +1,13 @@
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes proper formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could brake the code. Limit change to plain text and avoid to the specific command.
+Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]
+Once the review is terminated accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: example_1.Rmd
+HIDE-CODE: TRUE
+#----End Instructions----#
+[[document-header]]
+
+
+[[chunk-setup]]
+

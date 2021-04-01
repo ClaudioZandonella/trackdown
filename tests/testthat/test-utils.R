@@ -102,6 +102,41 @@ test_that("check check_dribble", {
                             test = "both"), NA)
   
 })
+
+#----    eval_instructions    ----
+
+test_that("check eval_instructions", {
+  
+  document <- readLines(paste0(file_path, "example_instructions.txt"), warn = FALSE)
+  
+  expect_snapshot_output(eval_instructions(document))
+  
+  # no instructions delimiters
+  expect_warning(eval_1 <- eval_instructions(document[-1]))
+  expect_snapshot_output(eval_1)
+  
+  # no file_name
+  expect_warning(eval_2 <- eval_instructions(document[-6]))
+  expect_snapshot_output(eval_2)
+  expect_warning(eval_3 <- eval_instructions(document[-6], file_name = "example_instructions.txt"))
+  expect_snapshot_output(eval_3)
+  
+  # no hide_code
+  expect_warning(eval_4 <- eval_instructions(document[-c(7,9)]))
+  expect_snapshot_output(eval_4)
+  expect_warning(eval_5 <- eval_instructions(document[-c(7,12)]))
+  expect_snapshot_output(eval_5)
+  expect_warning(eval_6 <- eval_instructions(document[-c(7, 9, 12)]))
+  expect_snapshot_output(eval_6)
+  
+})
+
+#----    load_code    ----
+
+test_that("check load_code", {
+  expect_error(load_code(file_name = "example_1.Rmd", path = "fake", 
+                         type = "header"), "^Failed restoring code.*")
+})
 #----
 
 

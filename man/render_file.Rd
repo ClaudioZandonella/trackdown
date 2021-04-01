@@ -8,8 +8,7 @@ render_file(
   file,
   gfile = basename(file),
   gpath = "trackdown",
-  team_drive = NULL,
-  restore_chunks = FALSE
+  team_drive = NULL
 )
 }
 \arguments{
@@ -25,9 +24,6 @@ folder the full path is required (e.g., "trackdown/my_folder"). Use
 recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
-
-\item{restore_chunks}{logical value indicating whether to restore code chunks
-in the document.}
 }
 \description{
 Renders file from GoogleDrive if there have been edits

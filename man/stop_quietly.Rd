@@ -2,14 +2,17 @@
 % Please edit documentation in R/utils.R
 \name{stop_quietly}
 \alias{stop_quietly}
-\title{Stop quietly}
+\title{Sanitize Rmd file downloaded from GoogleDrive}
 \usage{
 stop_quietly(text = NULL)
 }
 \arguments{
 \item{text}{a string indicating the message to display}
 }
+\value{
+Sanitized file from Google Drive.
+}
 \description{
-Stop a function without throwing an error.
-Function adapted from https://stackoverflow.com/a/42945293/12481476
+Adds a final EOL and removes double linebreaks added when downloading file
+from GoogleDrive.
 }

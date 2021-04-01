@@ -65,9 +65,9 @@ get_chunk_range <- function(lines, info_patterns){
     }
   
   } else if(info_patterns$extension == "rnw"){
-    # find which lines are chunk starts and chuck ends
+    # find which lines are chunk starts and chunk ends
     header_indices <- which(grepl(info_patterns$chunk_header_start, lines))
-    # finde which lines are chuck ends
+    # find which lines are chunk ends
     end_indices <- which(grepl(info_patterns$chunk_end, lines))
   }
   
@@ -200,39 +200,6 @@ extract_header <- function(text_lines, info_patterns){
   return(res)
 }
 
-#----    get_file_metadata    ----
-
-#' Get File Metadata
-#' 
-#' Save valuable info that can help to restore chunk and header
-#'
-#' @param file_info list with file info returned from get_file_info() function
-#'
-#' @return a tibble with \itemize{
-#'   \item{file_name} name of the file with extension
-#'   \item{file_path} path to the file
-#'   \item{extension} file extension
-#'   \item{google_id} google id initialized at ""
-#'   \item{name_chunk_info} name of the object where chunk info are saved
-#'   \item{name_header_info} name of the object where header info are saved
-#' }
-#' @noRd
-#'
-#' @examples
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
-#'   get_file_metadata(file_info)
-#' 
-
-get_file_metadata <- function(file_info){
-  tibble::tibble(file_name = file_info$file_name,
-                 file_path = file_info$path,
-                 extension = file_info$extension,
-                 google_id = "",
-                 name_chunk_info = paste0(file_info$file_name,"-chunk_info.rds"),
-                 name_header_info = paste0(file_info$file_name,"-header_info.rds"))
-  
-}
-
 #----    get_extension_patterns    ----
 
 #' Get extensions pattern
@@ -318,25 +285,26 @@ hide_code <- function(document, file_info){
   
   info_patterns <- get_extension_patterns(extension = file_info$extension)
   
-  #---- Extract and save ----
-  #code chunks
-  chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
-  saveRDS(chunk_info, file = file.path(file_info$path, ".trackdown", 
-                                       paste0(file_info$file_name,"-chunk_info.rds")))
-  # header
+  #---- header ----
+  # extract and save
   header_info <- extract_header(text_lines = document, info_patterns = info_patterns) 
   saveRDS(header_info, file = file.path(file_info$path, ".trackdown",
                                         paste0(file_info$file_name,"-header_info.rds")))
+  # replace
+  document[header_info$starts:header_info$ends] <- NA # header space as NA
+  document[header_info$starts] <- header_info$name_tag # set header tag
   
-  #---- replace in file with tag ----
-  # chunks
+  
+  #---- chunks  ----
+  # extract and save
+  chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
+  saveRDS(chunk_info, file = file.path(file_info$path, ".trackdown", 
+                                       paste0(file_info$file_name,"-chunk_info.rds")))
+  # replace
   for(i in seq_along(chunk_info$index)){
     document[chunk_info$starts[i]:chunk_info$ends[i]] <- NA # chunk space as NA
     document[chunk_info$starts[i]] <- chunk_info$name_tag[i] # set chunk tag
   }
-  # header
-  document[header_info$starts:header_info$ends] <- NA # header space as NA
-  document[header_info$starts] <- header_info$name_tag # set header tag
   
   
   # remove extra space named as NA
@@ -345,101 +313,157 @@ hide_code <- function(document, file_info){
   return(document)
 }
 
+#----    restore_file    ----
+
+restore_file <- function(temp_file, file_name, path){
+  
+  # read document lines
+  document <- readLines(temp_file, warn = FALSE)
+  
+  # eval instructions
+  instructions <- eval_instructions(document = document)
+  
+  # remove instructions if indexes are available
+  if(!is.null(instructions$start) & !is.null(instructions$end)){
+    document <- document[-c(instructions$start:instructions$end)]
+  }
+  
+  # restore code
+  if(isTRUE(instructions$hide_code)){
+    document <- restore_code(document = document,
+                             file_name = instructions$file_name,
+                             path = path)
+  }
+  
+  # sanitize document
+  document <- sanitize_document(document)
+  
+  cat(document, file = temp_file)
+  
+  return(invisible(document))
+}
+
+#----    restore_code    ----
+
+#' Restore Header and Chunks Code
+#' 
+#' Given the document, the co
+#'
+#' @param document character vector with the lines of the document 
+#' @param file_name character indicating the name of the file used to load code
+#'   info
+#' @param path character indicating the path to the file 
+#'
+#' @return character vector with the lines of the document 
+#' @noRd
+#'
+#' @examples
+#' # Rmd
+#' file_name <- "example_1.Rmd"
+#'                            
+#' # Rnw
+#' file_name <- "example_1.Rnw"
+#' 
+#' path <- "tests/testthat/test_files"
+#' document <- readLines(file.path(path, paste0("restore_", file_name)), warn = FALSE)
+#' restore_code(document, file_name, path)
+#' 
+
+restore_code <- function(document, file_name, path){
+  
+  # Check .trackdown folder is available
+  if(!dir.exists(file.path(path,".trackdown")))
+    stop(paste0("Failed restoring code. Folder .trackdown is not available in ", path))
+    
+  # load code info 
+  header_info <- load_code(file_name = file_name, path = path, type = "header")
+  chunk_info <- load_code(file_name = file_name, path = path, type = "chunk")
+  
+  #---- restore header ----
+  index_header <- which(grepl("^\\[\\[document-header\\]\\]", document))
+  
+  if(length(index_header) != 1L) stop("Failed retrieving header-tag")
+  document[index_header] <- header_info$header_text
+  
+  #---- restore chunks ----
+  document <- restore_chunk(document = document,
+                            chunk_info = chunk_info,
+                            index_header = index_header)
+  
+  return(document)
+  
+}
+
 #----    restore_chunk    ----
 
-# add chunk at the placeholder position
-# TODO consider also YAML_header
+#' Restore Chunk Code
+#'
+#' Given the document, chunck info and header line index, restore chunks in the
+#' document. Allow to fix possible missing chunk-tags in the document by adding
+#' them right after the previous matching chunk. In case the first one is
+#' missing, chunk is added after the header. Note that actual chuks restoring
+#' process starts from the end going backwards.
+#'
+#' @param document character vector with the lines of the document 
+#' @param chunk_info dataframe with the chunk infomation to restore previously
+#'   saved
+#' @param index_header integer indicating the line index of th header
+#'
+#' @return character vector with the lines of the document 
+#' @noRd
+#'
+#' @examples
+#' 
+#' # Rmd
+#' file <- "tests/testthat/test_files/restore_example_1.Rmd"
+#' chunk_info <- load_code("example_1.Rmd", path = "tests/testthat/test_files", 
+#'                           type = "chunk")
+#' index_header <- 9
+#' 
+#' # Rnw
+#' file <- "tests/testthat/test_files/restore_example_1.Rnw"
+#' chunk_info <- load_code("example_1.Rnw", path = "tests/testthat/test_files", 
+#'                           type = "chunk")
+#' index_header <- 12
+#' 
+#' document <- readLines(file, warn = FALSE)
+#' restore_chunk(document, chunk_info, index_header)
+#' 
 
-restore_chunk <- function(local_file){
+restore_chunk <- function(document, chunk_info, index_header){
   
-  local_path <-  dirname(local_file)
-  local_file <- basename(local_file)
   
-  chunk_info <- readRDS(file = file.path(local_path,".trackdown","chunk_info.rds"))
-  temp_paper <- readLines(local_file, warn = F)
+  index_chunks <- which(grepl("^\\[\\[chunk-.+\\]\\]", document))
+  # extract names [[chunk-*]] removing possible spaces
+  names_chunks <- gsub("^\\s*(\\[\\[chunk-.+\\]\\])\\s*","\\1", document[index_chunks])
   
-  index <- which(startsWith(temp_paper, "[[chunk")) # chunk index
+  match <- chunk_info$name_tag %in% names_chunks
   
-  if (length(index) < nrow(chunk_info)) {
-    temp_paper <- repair_chunks(temp_paper, chunk_info, index)
-  } else{
-    
-    for(i in seq_along(chunk_info$index)) {
-      temp_paper[index[i]] <- chunk_info$chunk_text[i]
+  
+  my_seq <- rev(seq_len(nrow(chunk_info))) # revers order start form las chunk
+  unmatched <- NULL
+  for (i in my_seq){
+    if(isFALSE(match[i])){
+      unmatched <- c(chunk_info$chunk_text[i], unmatched)
+      
+      # test if is the last remaining chunk
+      if(i == 1L){
+        document <- c(document[seq_len(index_header)], unmatched, 
+                      document[(index_header + 1):length(document)])
+        unmatched <- NULL
+      }
+      
+    } else {
+      # get correct index_chunk matching names in document
+      line_index <- index_chunks[names_chunks == chunk_info$name_tag[i]]
+      
+      # restore chunk together with previous unmatched chunks
+      document[line_index] <- paste0(c(chunk_info$chunk_text[i], unmatched),  collapse = "\n\n")
+      unmatched <- NULL # reset
     }
   }
   
-# sanitize paper
-  temp_paper <- temp_paper %>% 
-    c("") %>% 
-    paste(collapse = "\n") %>% 
-    stringr::str_remove_all("NA") %>% # remove NA
-    stringr::str_replace_all("\n\n\n", "\n\n") # remove extra spaces
-  
-  cat(temp_paper, file = local_file)
-  
-}
-
-#----    repair_chunks    ----
-
-# Repairs chunk if missing from the online file
-
-repair_chunks <- function(temp_paper, chunk_info, index){
-  
-  name <- stringr::str_extract(temp_paper, pattern = "\\[(.*?)\\]\\]") # extract available names
-  
-  name <- name[!is.na(name)] # clean
-  
-  name <- ifelse(chunk_info$chunk_name_file %in% name, chunk_info$chunk_name_file, NA)
-  
-  temp_yaml <- extract_yaml(temp_paper, collapse = F)
-  
-  end_yaml <- which(temp_yaml == "---")[2]
-  
-  count <- 0
-  index <- rev(index)
-  
-  for(i in nrow(chunk_info):1){
-    
-    if(is.na(name[i])) {
-      temp[index[count]] <- paste0(chunk_info$chunk_text[i], "\n\n", temp[index[count]])
-    }else{
-      count <- count + 1
-      temp[index[count]] <- chunk_info$chunk_text[i]
-    }
-    
-  }
-  
-  return(temp_paper)
-  
-}
-
-
-#----    knit_report    ----
-
-# knit_report report
-
-knit_report <- function(local_path){
-  
-  # get saved chunks info
-  chunk_info <- readRDS(file = file.path(local_path, ".trackdown","chunk_info.rds"))
-  yaml_header <- readRDS(file = file.path(local_path, ".trackdown","yaml_header.rds"))
-  
-  setup_chunk <- chunk_info[stringr::str_detect(chunk_info$name, stringr::regex('setup', ignore_case = T)), ]
-  
-  temp_chunk <- chunk_info[!stringr::str_detect(chunk_info$name, stringr::regex('setup', ignore_case = T)), ] # remove echo = F chunks
-  
-  temp_chunk <- paste0(paste("###", temp_chunk$name, "\n\n"), temp_chunk$chunk_text) %>% 
-    paste0(collapse = "\n\n")
-  
-  cat(yaml_header, temp_chunk, sep = "\n\n", file = file.path(local_path, ".report_temp.Rmd"))
-  
-  start_process("Compiling pdf report...")
-  
-  rmarkdown::render(file.path(local_path, ".report_temp.Rmd"), 
-                    output_format = "pdf_document", 
-                    output_file = ".trackdown/report_temp.pdf",
-                    quiet = T)
+  return(document)
 }
 
 #----

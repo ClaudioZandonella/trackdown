@@ -4,13 +4,7 @@
 \alias{download_file}
 \title{Downloads from Google Docs}
 \usage{
-download_file(
-  file,
-  gfile = NULL,
-  path = "trackdown",
-  team_drive = NULL,
-  restore_chunks = FALSE
-)
+download_file(file, gfile = NULL, gpath = "trackdown", team_drive = NULL)
 }
 \arguments{
 \item{file}{character. The path (without file extension) of a local `.Rmd`
@@ -19,12 +13,9 @@ file.}
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{path}{character. (Sub)directory in My Drive or a Team Drive (optional).}
+\item{gpath}{character. (Sub)directory in My Drive or a Team Drive (optional).}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
-
-\item{restore_chunks}{logical value indicating whether to restore code chunks
-in the document.}
 }
 \value{
 `TRUE` if file from Google Drive was saved, `FALSE` otherwise
