@@ -98,9 +98,17 @@ test_that("get the correct hide_code", {
   file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
   expect_snapshot_output(hide_code(document, file_info))
   
+  # tests
+  ls_files_1 <- list.files(paste0(file_path, ".trackdown"))
+  expect_identical(length(ls_files_1), 4L)
+  expect_true(all(c("example_1.Rmd-chunk_info.rds", "example_1.Rmd-header_info.rds",
+                    "example_1.Rnw-chunk_info.rds", "example_1.Rnw-header_info.rds") %in% ls_files_1))
+  
 })
 
 #----    restore_chunk    ----
+
+# Note that hunk info are created  in the hide_code test section and deleted at the end
 
 test_that("get that restore_chunk works properly", {
   
@@ -136,6 +144,8 @@ test_that("get that restore_chunk works properly", {
 
 #----    restore_code    ----
 
+# Note that hunk info are created  in the hide_code test section and deleted at the end
+
 test_that("get that restore_code works properly", {
   
   #---- Rmd ----
@@ -164,5 +174,12 @@ test_that("get that restore_code works properly", {
                                       file_name = file_name, path = file_path))
   
 })
+
+#---- remove flolder  .trackdown ----
+
+# remove files
+ls_files_1 <- list.files(paste0(file_path, ".trackdown"))
+file.remove(paste0(file_path, ".trackdown/",ls_files_1))
+file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
 #----
 

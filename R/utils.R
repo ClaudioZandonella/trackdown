@@ -22,31 +22,6 @@ check_file <- function(file) {
   }
 }
 
-#----    check_gfile    ----
-
-#' Check whether file exists in Google Drive
-#'
-#' Checks whether the specified file exists in Google Drive, stops otherwise.
-#'
-#' @inheritParams upload_rmd 
-#' @return NULL
-#' @noRd
-#'
-# check_gfile <- function(dribble) {
-#   if (nrow(dribble) == 0){
-#     stop(
-#       "file does not exists in GoogleDrive.",
-#       call. = FALSE
-#     )
-#   } else if (nrow(dribble) > 1) {
-#     stop(
-#       "more than one file with this name exists in GoogleDrive.",
-#       call. = FALSE
-#     )
-#   }
-# }
-
-
 #----    check_identity    ----
 
 #' Check file identity
@@ -88,27 +63,6 @@ sanitize_document <- function(file) {
     stringr::str_replace_all("\n\n\n", "\n\n")
 }
 
-
-#----    sanitize_gfile    ----
-
-#' Sanitize Rmd file downloaded from GoogleDrive
-#'
-#' Adds a final EOL and removes double linebreaks added when downloading file
-#' from GoogleDrive.
-#'
-#' @inheritParams upload_rmd 
-#' @return Sanitized file from Google Drive.
-#' @noRd
-#'
-
-# sanitize_gfile <- function(gfile) {
-#   temp <- readLines(gfile, warn = FALSE) %>%
-#     c("") %>%
-#     paste(collapse = "\n") %>%
-#     stringr::str_replace_all("\n\n\n", "\n\n")
-#   
-#   cat(temp, file = gfile) # workaround for the writing problem (TO REVIEW)
-# }
 
 #----    stop_quietly    ----
 
