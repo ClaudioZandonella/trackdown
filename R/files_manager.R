@@ -244,9 +244,6 @@ download_file <- function(file,
                          paste0(".temp-", document$file_info$file_name))
   file.rename(downloaded_file, temp_file)
   
-  # remove temp-file on exit
-  on.exit(invisible(file.remove(temp_file)), add = TRUE)
-  
   #---- restore file ----
   
   restore_file(temp_file = temp_file, 
@@ -257,11 +254,13 @@ download_file <- function(file,
   #---- compare and replace ----
   
   if (!check_identity(temp_file = temp_file, local_file = document$file)) {
-    file.rename(temp_file, document$file_info$file_name)
+    file.rename(temp_file, document$file)
     finish_process(paste(emph_file(file), "updated with online changes!"))
     changed = TRUE
   } else {
     cli::cli_alert_danger(paste("The local", emph_file(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
+    # remove temp-file
+    invisible(file.remove(temp_file))
     changed = FALSE
   }
   

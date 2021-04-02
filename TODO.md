@@ -38,3 +38,10 @@
 
 - example_1.Rmd uploaded **as < add name gfile>**!
 - evaluate if get_root_id works also for team_drive (in case bind the two conditions)
+
+
+## April 
+
+- change sarting point header rnw (from 1st line)
+- resore documen-header if missing at the top document
+- new line first-second chunk
