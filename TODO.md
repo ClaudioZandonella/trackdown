@@ -46,3 +46,4 @@
 - resore documen-header if missing at the top document
 - new line first-second chunk
 - unlink() instead of file.remove() within testing functions
+- substitute readLines() with readr::read_lines()

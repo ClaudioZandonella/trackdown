@@ -46,7 +46,7 @@ get_auth_credentials <- function(){
     
     googledrive::drive_auth()
     
-    file.rename(from = paste0(file_path, "secrets/", token_name),
+    file.rename(from = paste0(file_path, "secrets/", list.files(paste0(file_path, "secrets/"))),
                 to = paste0(file_path, "secrets/secret_credentials"))
   }
 }

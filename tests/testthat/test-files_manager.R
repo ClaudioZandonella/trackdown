@@ -51,9 +51,10 @@ test_that("expect correct upload document", {
   expect_equal(dribble$name, c("example_1", "example_1-output"))
   
   # remove files
-  ls_files <- list.files(paste0(file_path, ".trackdown"))
-  file.remove(paste0(file_path, ".trackdown/",ls_files))
-  file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
+  #ls_files <- list.files(paste0(file_path, ".trackdown")) delete
+  #file.remove(paste0(file_path, ".trackdown/",ls_files))
+  #file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
+  unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
   
 })
 
@@ -118,8 +119,9 @@ test_that("expect correct update document", {
   
   # remove files
   ls_files <- list.files(paste0(file_path, ".trackdown"))
-  file.remove(paste0(file_path, ".trackdown/",ls_files))
-  file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
+  #file.remove(paste0(file_path, ".trackdown/",ls_files))
+  #file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
+  unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
   
 })
 
