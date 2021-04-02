@@ -45,3 +45,4 @@
 - change sarting point header rnw (from 1st line)
 - resore documen-header if missing at the top document
 - new line first-second chunk
+- unlink() instead of file.remove() within testing functions
