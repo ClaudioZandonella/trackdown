@@ -45,5 +45,6 @@
 - change sarting point header rnw (from 1st line)
 - resore documen-header if missing at the top document
 - new line first-second chunk
-- unlink() instead of file.remove() within testing functions
-- substitute readLines() with readr::read_lines()
+- change documentation of download_document(). The input file is suggested without extension (`rmd`)
+- check what happens with `library(trackdown)`
+- trying a very complicated `rmd` document with a lot of chunks and text
