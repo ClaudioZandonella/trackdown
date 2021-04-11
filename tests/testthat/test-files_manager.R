@@ -49,10 +49,7 @@ test_that("expect correct upload document", {
   })
   expect_equal(nrow(dribble), 2)
   expect_equal(dribble$name, c("example_1", "example_1-output"))
-  
-  # remove files
-  unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
-  
+
 })
 
 
@@ -114,10 +111,44 @@ test_that("expect correct update document", {
   expect_equal(nrow(dribble), 2)
   expect_equal(dribble$name, c("update_example_2", "update_example_2-output"))
   
-  # remove files
-  unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
+})
+
+#----    download_file    ----
+
+test_that("expect correct download document", {
+  
+  skip_if_no_token()
+  skip_if_offline()
+  
+  # download Rmd file no changes
+  vcr::use_cassette("download_file_test_1", {
+    result <- download_file(file = paste0(file_path, "example_1.Rmd"),
+                            gfile = "rmd_example_1",
+                            gpath = "reading_folder",
+                            team_drive = NULL)
+  })
+  expect_false(result)
+  # 
+  # # download Rmd file with changes
+  # temp_file <- paste0(file_path, "changed_example_1.Rmd")
+  # old_file <- paste0(file_path, "example_1.Rmd")
+  # file.copy(from = old_file, to = temp_file, overwrite = TRUE)
+  # 
+  # vcr::use_cassette("download_file_test_2", {
+  #   result <- download_file(file = temp_file,
+  #                           gfile = "changed_rmd_example_1",
+  #                           gpath = "reading_folder",
+  #                           team_drive = NULL)
+  # })
+  # expect_true(result)
+  # 
+  # # remove files
+  # unlink(temp_file, recursive = TRUE)
   
 })
 
+#----    remove files    ----
+
+unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
 
 #----

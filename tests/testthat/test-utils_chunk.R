@@ -21,28 +21,19 @@ test_that("check a folder 'My_new_folder' is created", {
 
 })
 
-#----    get_extension_patterns    ----
+#----    get_chunk_range    ----
 
-test_that("file info are correct", {
+test_that("check get_chunk_range works correctly", {
   
-  ex_rmd <- list(chunk_header_start = "^```(\\s*$|\\{)",
-                 chunk_header_end = "\\}\\s*$",
-                 chunk_end = "^```\\s*$",
-                 file_header_start = "^---\\s*$",
-                 file_header_end = "^---\\s*$",
-                 extension = "rmd")
-  ex_rnw <- list(chunk_header_start = "^<<",
-                 chunk_header_end = ">>=.*$",
-                 chunk_end = "^@\\s*$",
-                 file_header_start = "^\\\\documentclass\\{",
-                 file_header_end = "^\\\\begin\\{document\\}",
-                 extension = "rnw")
+  # rmd
+  lines <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  info_patterns <- get_extension_patterns(extension = "rmd")
   
-  expect_identical(get_extension_patterns("rmd"), ex_rmd)
-  expect_identical(get_extension_patterns("rnw"), ex_rnw)
+  expect_true(nrow(get_chunk_range(lines[1:7], info_patterns)) == 0)
+ 
+  expect_error(get_chunk_range(c("```", lines[8:10]), info_patterns))
   
-  expect_error(get_extension_patterns("txt"))
-
+  
 })
 
 #----    extract_chunk    ----
@@ -86,6 +77,30 @@ test_that("get the correct extract_header", {
 })
 
 
+#----    get_extension_patterns    ----
+
+test_that("file info are correct", {
+  
+  ex_rmd <- list(chunk_header_start = "^```(\\s*$|\\{)",
+                 chunk_header_end = "\\}\\s*$",
+                 chunk_end = "^```\\s*$",
+                 file_header_start = "^---\\s*$",
+                 file_header_end = "^---\\s*$",
+                 extension = "rmd")
+  ex_rnw <- list(chunk_header_start = "^<<",
+                 chunk_header_end = ">>=.*$",
+                 chunk_end = "^@\\s*$",
+                 file_header_start = "^\\\\documentclass\\{",
+                 file_header_end = "^\\\\begin\\{document\\}",
+                 extension = "rnw")
+  
+  expect_identical(get_extension_patterns("rmd"), ex_rmd)
+  expect_identical(get_extension_patterns("rnw"), ex_rnw)
+  
+  expect_error(get_extension_patterns("txt"))
+  
+})
+
 #----    hide_code    ----
 
 test_that("get the correct hide_code", {
@@ -126,6 +141,9 @@ test_that("get that restore_chunk works properly", {
   # missing multiple chunks (1°,4°, 7°, 8°, last)
   expect_snapshot_output(restore_chunk(document = document[-c(12, 39, 48, 51, 57)], 
                                        chunk_info = chunk_info, index_header = index_header))
+  # missing multiple chunks (1°,4°, 7°, 8°, last)
+  expect_snapshot_output(restore_chunk(document = document[-c(12, 24,  39, 48, 51, 57)], 
+                                       chunk_info = chunk_info, index_header = index_header))
   
   
   #---- Rnw ----
@@ -152,7 +170,7 @@ test_that("get that restore_code works properly", {
   
   #---- Rmd ----
   file_name <- "example_1.Rmd"
-  document <- readLines(file.path(file_path, paste0("restore_", file_name)), warn = FALSE)
+  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE)
   
   # complete
   expect_snapshot_output(restore_code(document = document, file_name = file_name, 
@@ -162,10 +180,11 @@ test_that("get that restore_code works properly", {
   expect_snapshot_output(restore_code(document = document[-c(12, 39, 48, 51, 57)], 
                                       file_name = file_name, path = file_path))
   
-  skip_on_os(os = "windows") 
   #---- Rnw ----
+  skip_on_os(os = "windows") 
+  
   file_name <- "example_1.Rnw"
-  document <- readLines(file.path(file_path, paste0("restore_", file_name)), warn = FALSE)
+  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE)
   
   # complete
   expect_snapshot_output(restore_code(document = document, file_name = file_name, 
@@ -175,6 +194,38 @@ test_that("get that restore_code works properly", {
   expect_snapshot_output(restore_code(document = document[-c(37, 52, 55, 61)], 
                                       file_name = file_name, path = file_path))
   
+})
+
+#----    restore_file    ----
+
+test_that("get that restore_file works properly", {
+  
+  #---- Rmd ----
+  
+  file_name <- "example_1.Rmd"
+  temp_file <- paste0(file_path, "restore_", file_name)
+  new_temp_file <- paste0(file_path, "new_restore_", file_name)
+  file.copy(from = temp_file, to = new_temp_file, overwrite = TRUE)
+  
+  # complete
+  result <- restore_file(temp_file = new_temp_file, file_name = file_name, 
+                         path = file_path)
+  expect_snapshot_output(result)
+  
+  unlink(new_temp_file, recursive = TRUE)
+  
+  #---- Rnw ----
+  file_name <- "example_1.Rnw"
+  temp_file <- paste0(file_path, "restore_", file_name)
+  new_temp_file <- paste0(file_path, "new_restore_", file_name)
+  file.copy(from = temp_file, to = new_temp_file, overwrite = TRUE)
+  
+  # complete
+  result <- restore_file(temp_file = new_temp_file, file_name = file_name, 
+                         path = file_path)
+  expect_snapshot_output(result)
+  
+  unlink(new_temp_file, recursive = TRUE)
 })
 
 #---- remove flolder  .trackdown ----

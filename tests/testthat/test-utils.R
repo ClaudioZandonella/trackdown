@@ -3,6 +3,34 @@
 ###################################
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
+#----    check_file    ----
+
+test_that("check if file exists", {
+  # an existing file
+  expect_null(check_file("test_files/example_1.Rmd"))
+  # not existing file
+  expect_error(check_file(file = "I_dont_exist.txt"), 
+               'file does not exist: "I_dont_exist.txt"')
+  
+  # worng argumants type
+  expect_error(check_file(c("a", "b")), "file has to be a single string")
+  expect_error(check_file(20), "file has to be a single string")
+})
+
+
+#----    check_identity    ----
+test_that("check_identity works prorerly", {
+  rmd_file <- paste0(file_path, "example_1.Rmd")
+  rnw_file <- paste0(file_path, "example_1.Rnw")
+  
+  expect_true(check_identity(temp_file = rmd_file, local_file = rmd_file))
+  expect_true(check_identity(temp_file = rnw_file, local_file = rnw_file))
+  
+  expect_false(check_identity(temp_file = rmd_file, local_file = rnw_file))
+  expect_false(check_identity(temp_file = rnw_file, local_file = rmd_file))
+  expect_false(check_identity(temp_file = rnw_file, local_file = "anoter_path"))
+})
+
 #----    Message Utils    ----
 
 test_that("Message function work prorerly", {
@@ -31,20 +59,6 @@ test_that("file info are correct", {
   
   expect_error(get_file_info("my_file"), "file do not include extension")
   expect_error(get_file_info(20), "file has to be a single string")
-})
-
-#----    check_file    ----
-
-test_that("check if file exists", {
-  # an existing file
-  expect_null(check_file("test_files/example_1.Rmd"))
-  # not existing file
-  expect_error(check_file(file = "I_dont_exist.txt"), 
-               'file does not exist: "I_dont_exist.txt"')
-  
-  # worng argumants type
-  expect_error(check_file(c("a", "b")), "file has to be a single string")
-  expect_error(check_file(20), "file has to be a single string")
 })
 
 #----    get_instructions    ----
@@ -94,7 +108,7 @@ test_that("check check_dribble", {
                             test = "single"), NA)
   
   # both
-  expect_error(check_dribble(dribble_hello_world$file[c(1,1)], "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world$file[c(1,1), ], "Hello-world", 
                             test = "both"))
   expect_error(check_dribble(dribble_hello_world$file, "Hello-world", 
                             test = "both"), NA)
@@ -114,6 +128,8 @@ test_that("check eval_instructions", {
   # no instructions delimiters
   expect_warning(eval_1 <- eval_instructions(document[-1]))
   expect_snapshot_output(eval_1)
+  expect_warning(eval_1_bis <- eval_instructions(document[-8]))
+  expect_snapshot_output(eval_1_bis)
   
   # no file_name
   expect_warning(eval_2 <- eval_instructions(document[-6]))

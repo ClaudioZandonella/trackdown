@@ -136,8 +136,7 @@ update_file <- function(file,
   
   # check whether user really wants to replace file in Google Drive
   if(interactive()){
-    response <- utils::menu(
-      c("Yes", "No"),
+    response <- utils::menu(c("Yes", "No"),
       title = paste("Updating the file in Google Drive will overwrite its current content.",
                     "You might lose tracked changes. Do you want to proceed?"))
     
@@ -260,7 +259,7 @@ download_file <- function(file,
   } else {
     cli::cli_alert_danger(paste("The local", emph_file(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
     # remove temp-file
-    invisible(file.remove(temp_file))
+    invisible(unlink(temp_file))
     changed = FALSE
   }
   

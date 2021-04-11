@@ -347,7 +347,7 @@ eval_instructions <- function(document, file_name = NULL){
   # test retrieve instructions
   my_test <- length(c(instruction_start, instruction_end))
   if (my_test!= 2L){
-    warning("Failed retrieving instructions delimiters.",
+    warning("Failed retrieving instructions delimiters. ",
             "Intructions delimiters at the beginning shuld not be removed.", call. = FALSE)
     instruction <- document # search options in the whole document
     instruction_start <- NULL

@@ -14,21 +14,21 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     cli,
-    devtools,
     dplyr,
     googledrive,
     magrittr,
-    pagedown,
     purrr,
     rmarkdown,
     stringr,
-    tibble,
     tools
 RoxygenNote: 7.1.1
 Suggests: 
+    covr,
+    devtools,
     gargle,
+    pagedown,
     sodium,
     testthat (>= 3.0.0),
-    vcr,
-    covr
+    tibble,
+    vcr
 Config/testthat/edition: 3

@@ -103,6 +103,21 @@
 ---
 
     $start
+    NULL
+    
+    $end
+    NULL
+    
+    $file_name
+    [1] "example_1.Rmd"
+    
+    $hide_code
+    [1] TRUE
+    
+
+---
+
+    $start
     [1] 1
     
     $end

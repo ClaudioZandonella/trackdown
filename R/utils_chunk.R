@@ -250,7 +250,7 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 
 #----    hide_code    ----
 
-#' Remove code
+#' Remove Code
 #'
 #' Remove code from the document (chunks and header). Placeholders of  type
 #' "[[chunk-<name>]]"/"[[Document-header]]" are displayed instead.
@@ -315,13 +315,26 @@ hide_code <- function(document, file_info){
 
 #----    restore_file    ----
 
+#' Restore the Downloaded File with Code Info
+#'
+#' Restore placeholders of type "[[chunk-<name>]]"/"[[Document-header]]" 
+#' with the actual code and sanitize file.
+#'
+#' @param temp_file character indicating the path to the downloaded file
+#' @param file_name character indicating the current file name
+#' @param path character indicating the folder of the original file
+#'
+#' @return a single string with the content of the document
+#' @noRd
+#' 
+
 restore_file <- function(temp_file, file_name, path){
   
   # read document lines
   document <- readLines(temp_file, warn = FALSE)
   
   # eval instructions
-  instructions <- eval_instructions(document = document)
+  instructions <- eval_instructions(document = document, file_name = file_name)
   
   # remove instructions if indexes are available
   if(!is.null(instructions$start) & !is.null(instructions$end)){
@@ -440,7 +453,7 @@ restore_chunk <- function(document, chunk_info, index_header){
   match <- chunk_info$name_tag %in% names_chunks
   
   
-  my_seq <- rev(seq_len(nrow(chunk_info))) # revers order start form las chunk
+  my_seq <- rev(seq_len(nrow(chunk_info))) # revers order start form last chunk
   unmatched <- NULL
   for (i in my_seq){
     if(isFALSE(match[i])){
@@ -448,7 +461,8 @@ restore_chunk <- function(document, chunk_info, index_header){
       
       # test if is the last remaining chunk
       if(i == 1L){
-        document <- c(document[seq_len(index_header)], unmatched, 
+        document <- c(document[seq_len(index_header)], 
+                      paste0(unmatched, collapse = "\n\n"), 
                       document[(index_header + 1):length(document)])
         unmatched <- NULL
       }
