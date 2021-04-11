@@ -115,37 +115,40 @@ test_that("expect correct update document", {
 
 #----    download_file    ----
 
-test_that("expect correct download document", {
-  
-  skip_if_no_token()
-  skip_if_offline()
-  
-  # download Rmd file no changes
-  vcr::use_cassette("download_file_test_1", {
-    result <- download_file(file = paste0(file_path, "example_1.Rmd"),
-                            gfile = "rmd_example_1",
-                            gpath = "reading_folder",
-                            team_drive = NULL)
-  })
-  expect_false(result)
-  # 
-  # # download Rmd file with changes
-  # temp_file <- paste0(file_path, "changed_example_1.Rmd")
-  # old_file <- paste0(file_path, "example_1.Rmd")
-  # file.copy(from = old_file, to = temp_file, overwrite = TRUE)
-  # 
-  # vcr::use_cassette("download_file_test_2", {
-  #   result <- download_file(file = temp_file,
-  #                           gfile = "changed_rmd_example_1",
-  #                           gpath = "reading_folder",
-  #                           team_drive = NULL)
-  # })
-  # expect_true(result)
-  # 
-  # # remove files
-  # unlink(temp_file, recursive = TRUE)
-  
-})
+# test_that("expect correct download document", {
+#   
+#   skip_if_no_token()
+#   skip_if_offline()
+#   
+#   temp_file <- paste0(file_path, "changed_example_1.Rmd")
+#   old_file <- paste0(file_path, "example_1.Rmd")
+#   file.copy(from = old_file, to = temp_file, overwrite = TRUE)
+#   
+#   # download Rmd file no changes
+#   vcr::use_cassette("download_file_test_1", {
+#     result <- download_file(file = temp_file,
+#                             gfile = "rmd_example_1",
+#                             gpath = "reading_folder",
+#                             team_drive = NULL)
+#   })
+#   expect_false(result)
+# 
+#   # # download Rmd file with changes
+#   # file.copy(from = old_file, to = temp_file, overwrite = TRUE)
+#   # 
+#   # vcr::use_cassette("download_file_test_2", {
+#   #   result <- download_file(file = temp_file,
+#   #                           gfile = "changed_rmd_example_1",
+#   #                           gpath = "reading_folder",
+#   #                           team_drive = NULL)
+#   # })
+#   # expect_true(result)
+# 
+#   
+#   # remove files
+#   unlink(temp_file, recursive = TRUE)
+#   
+# })
 
 #----    remove files    ----
 
