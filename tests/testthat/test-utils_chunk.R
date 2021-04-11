@@ -162,7 +162,7 @@ test_that("get that restore_code works properly", {
   expect_snapshot_output(restore_code(document = document[-c(12, 39, 48, 51, 57)], 
                                       file_name = file_name, path = file_path))
   
-  
+  skip_on_os(os = "windows") 
   #---- Rnw ----
   file_name <- "example_1.Rnw"
   document <- readLines(file.path(file_path, paste0("restore_", file_name)), warn = FALSE)
