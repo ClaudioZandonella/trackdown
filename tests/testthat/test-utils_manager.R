@@ -104,9 +104,6 @@ test_that("upload the document correctly", {
   expect_equal(dribble_old$name, "old_example_1")
   
   # remove files
-  ls_files <- list.files(paste0(file_path, ".trackdown"))
-  #file.remove(paste0(file_path, ".trackdown/",ls_files))
-  #file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
   unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
 })
 

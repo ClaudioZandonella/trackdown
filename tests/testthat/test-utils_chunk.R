@@ -11,7 +11,8 @@ test_that("check a folder 'My_new_folder' is created", {
   ls_files_0 <- list.files(pattern = "^My_new_folder$", file_path)
   mkdir_trackdown(local_path = file_path, folder_name = "My_new_folder")
   ls_files_1 <- list.files(pattern = "^My_new_folder$", file_path)
-  #file.remove(paste0(file_path, "My_new_folder"))
+
+  # remove folder
   unlink(paste0(file_path, "My_new_folder"), recursive = TRUE)
   
   expect_identical(length(ls_files_0), 0L)
@@ -179,9 +180,6 @@ test_that("get that restore_code works properly", {
 #---- remove flolder  .trackdown ----
 
 # remove files
-ls_files_1 <- list.files(paste0(file_path, ".trackdown"))
-#(paste0(file_path, ".trackdown/",ls_files_1))
-#file.remove(paste0(file_path, ".trackdown"), recursive = TRUE)
 unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
 #----
 
