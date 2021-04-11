@@ -45,5 +45,14 @@
 - change sarting point header rnw (from 1st line)
 - resore documen-header if missing at the top document
 - new line first-second chunk
+<<<<<<< HEAD
 - messages (path drive)
 - document restore_file
+||||||| ffc9a63
+- unlink() instead of file.remove() within testing functions
+- substitute readLines() with readr::read_lines()
+=======
+- change documentation of download_document(). The input file is suggested without extension (`rmd`)
+- check what happens with `library(trackdown)`
+- trying a very complicated `rmd` document with a lot of chunks and text
+>>>>>>> 8f2718b9903e7111e5c0f4f46103aa7975245ba8
