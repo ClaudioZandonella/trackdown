@@ -99,7 +99,7 @@ test_that("expect correct update document", {
   expect_equal(nrow(dribble), 2)
   expect_equal(dribble$name, c("update_example", "update_example-output"))
   
-  # upload Rmd file and new pdf output
+  # update Rmd file and new pdf output
   vcr::use_cassette("update_file_test_4", {
     dribble <- update_file(file = paste0(file_path, "example_1.Rmd"),
                            gfile = "update_example_2",
@@ -115,40 +115,49 @@ test_that("expect correct update document", {
 
 #----    download_file    ----
 
-# test_that("expect correct download document", {
-#   
-#   skip_if_no_token()
-#   skip_if_offline()
-#   
-#   temp_file <- paste0(file_path, "changed_example_1.Rmd")
-#   old_file <- paste0(file_path, "example_1.Rmd")
-#   file.copy(from = old_file, to = temp_file, overwrite = TRUE)
-#   
-#   # download Rmd file no changes
-#   vcr::use_cassette("download_file_test_1", {
-#     result <- download_file(file = temp_file,
-#                             gfile = "rmd_example_1",
-#                             gpath = "reading_folder",
-#                             team_drive = NULL)
-#   })
-#   expect_false(result)
-# 
-#   # # download Rmd file with changes
-#   # file.copy(from = old_file, to = temp_file, overwrite = TRUE)
-#   # 
-#   # vcr::use_cassette("download_file_test_2", {
-#   #   result <- download_file(file = temp_file,
-#   #                           gfile = "changed_rmd_example_1",
-#   #                           gpath = "reading_folder",
-#   #                           team_drive = NULL)
-#   # })
-#   # expect_true(result)
-# 
-#   
-#   # remove files
-#   unlink(temp_file, recursive = TRUE)
-#   
-# })
+test_that("expect correct download document", {
+
+  skip_if_no_token()
+  skip_if_offline()
+  
+  # Unchaged file
+  temp_file <- paste0(file_path, "unchanged_example_1.Rmd")
+  old_file <- paste0(file_path, "example_1.Rmd")
+  file.copy(from = old_file, to = temp_file, overwrite = TRUE)
+  file.copy(from = "../vcr_files/.temp-unchanged_example_1.txt",
+            to = "test_files/.temp-unchanged_example_1.txt")
+
+  # download Rmd file no changes
+  vcr::use_cassette("download_file_test_1", {
+    result <- download_file(file = temp_file,
+                            gfile = "rmd_example_1",
+                            gpath = "reading_folder",
+                            team_drive = NULL)
+  })
+  expect_false(result)
+  
+  # remove files
+  unlink(temp_file, recursive = TRUE)
+
+  # download Rmd file with changes
+  temp_file <- paste0(file_path, "changed_example_1.Rmd")
+  file.copy(from = old_file, to = temp_file, overwrite = TRUE)
+  file.copy(from = "../vcr_files/.temp-changed_example_1.txt",
+            to = "test_files/.temp-changed_example_1.txt")
+
+  vcr::use_cassette("download_file_test_2", {
+    result <- download_file(file = temp_file,
+                            gfile = "changed_rmd_example_1",
+                            gpath = "reading_folder",
+                            team_drive = NULL)
+  })
+  expect_true(result)
+
+
+  # remove files
+  unlink(temp_file, recursive = TRUE)
+
+})
 
 #----    remove files    ----
 
