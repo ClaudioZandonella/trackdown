@@ -159,6 +159,34 @@ test_that("expect correct download document", {
 
 })
 
+#----    render_file    ----
+
+test_that("expect correct render_file", {
+  
+  skip_if_no_token()
+  skip_if_offline()
+  
+  # Unchanged file
+  temp_file <- paste0(file_path, "unchanged_example_1.Rmd")
+  old_file <- paste0(file_path, "example_1.Rmd")
+  file.copy(from = old_file, to = temp_file, overwrite = TRUE)
+  file.copy(from = "../vcr_files/.temp-unchanged_example_1.txt",
+            to = "test_files/.temp-unchanged_example_1.txt")
+  
+  # download Rmd file no changes
+  vcr::use_cassette("render_file_test_1", {
+    result <- render_file(file = temp_file,
+                          gfile = "rmd_example_1",
+                          gpath = "reading_folder",
+                          team_drive = NULL)
+  })
+  expect_false(result)
+  
+  # remove files
+  unlink(temp_file, recursive = TRUE)
+  
+})
+
 #----    remove files    ----
 
 unlink(paste0(file_path, ".trackdown"), recursive = TRUE)

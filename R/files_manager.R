@@ -291,11 +291,11 @@ render_file <- function(file,
                            gpath = gpath, 
                            team_drive = team_drive)
   if (changed) {
-    
-    rmarkdown::render(paste0(file, ".Rmd"), quiet = T)
-    
+    rmarkdown::render(file, quiet = T)
     finish_process(paste(emph_file(file), "donwloaded and rendered!"))
   }
+  
+  return(invisible(changed))
 }
 
 #----
