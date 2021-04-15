@@ -934,6 +934,6 @@ http_interactions:
     body:
       encoding: UTF-8
       file: yes
-      string: ../vcr_files/.temp-changed_example_1.txt
+      string: ../vcr_files/temp-changed_example_1.txt
   recorded_at: 2021-04-12 11:10:07 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

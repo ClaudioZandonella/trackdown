@@ -124,7 +124,7 @@ test_that("expect correct download document", {
   temp_file <- paste0(file_path, "unchanged_example_1.Rmd")
   old_file <- paste0(file_path, "example_1.Rmd")
   file.copy(from = old_file, to = temp_file, overwrite = TRUE)
-  file.copy(from = "../vcr_files/.temp-unchanged_example_1.txt",
+  file.copy(from = "../vcr_files/temp-unchanged_example_1.txt",
             to = "test_files/.temp-unchanged_example_1.txt")
 
   # download Rmd file no changes
@@ -142,7 +142,7 @@ test_that("expect correct download document", {
   # download Rmd file with changes
   temp_file <- paste0(file_path, "changed_example_1.Rmd")
   file.copy(from = old_file, to = temp_file, overwrite = TRUE)
-  file.copy(from = "../vcr_files/.temp-changed_example_1.txt",
+  file.copy(from = "../vcr_files/temp-changed_example_1.txt",
             to = "test_files/.temp-changed_example_1.txt")
 
   vcr::use_cassette("download_file_test_2", {
@@ -170,7 +170,7 @@ test_that("expect correct render_file", {
   temp_file <- paste0(file_path, "unchanged_example_1.Rmd")
   old_file <- paste0(file_path, "example_1.Rmd")
   file.copy(from = old_file, to = temp_file, overwrite = TRUE)
-  file.copy(from = "../vcr_files/.temp-unchanged_example_1.txt",
+  file.copy(from = "../vcr_files/temp-unchanged_example_1.txt",
             to = "test_files/.temp-unchanged_example_1.txt")
   
   # download Rmd file no changes
