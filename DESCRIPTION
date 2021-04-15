@@ -27,8 +27,10 @@ Suggests:
     covr,
     devtools,
     gargle,
+    knitr,
     sodium,
     testthat (>= 3.0.0),
     tibble,
     vcr
 Config/testthat/edition: 3
+VignetteBuilder: knitr

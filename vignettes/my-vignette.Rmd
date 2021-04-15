@@ -1,0 +1,83 @@
+---
+title: "Trackdown - R package for collaborative writing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+
+## Introduction
+
+The Package `trackdown` offers a simple solution to collaborative writing and editing of reproducible documents (`.Rmd` or `.Rnw`). Using trackdown, the local R Markdown or Sweave document is uploaded as plain-text in Google Drive allowing other colleagues to contribute to the prose using convenient features like tracking changes and comments. After integrating all authors’ contributions, the edited document is downloaded and rendered locally. 
+
+This smooth workflow allows taking advantage of the easily readable Markdown and LaTeX plain-text combined with the optimal and well-known text editing experience offered by Google Docs.
+
+Grammar check integrated services (e.g., Grammarly)
+
+## Main Functions
+
+The Package `trackdown` offers different functions to manage the writing and editing workflow:
+
+- `upload_file()` - upload a file for the first time to Google Drive
+- `upgrade_file()` - update the content of an existing file in Google Drive with the contents of a local file
+- `download_file()` - download edited version of a file from Google Drive updating the local version 
+- `render_file()` - download and render a file from Google Drive
+
+## Workflow Example
+
+We describe an hypothetical example of workflow. Actual worklow is obiously highly context dependent.
+
+When collaborating on your project, all code
+
+### hide code
+
+### upload output
+
+## Important Notes
+
+### Autentication
+
+### `.trackdown` folder
+
+### Corrupted Files
+
+
+### `upload_file()`
+
+The function `upload_file()` is used to upload the document for the first time to Google Drive. Function arguments and default values are reported below: 
+
+```{r}
+upload_file(file,
+            gfile = NULL,
+            gpath = "trackdown",
+            team_drive = NULL,
+            hide_code = FALSE,
+            path_output = NULL)
+```
+
+- `file` - a string indicating the path to the local `.Rmd` or `.Rnw` file
+- `gfile` - a string indicating the desired file name of the Google Drive file (with default value `NULL` to local file name is used)
+- `gpath` (Sub)directory in My Drive or a Team Drive (optional). By default files are uploaded in the folder "trackdown". To specify another folder the full path is required (e.g., "trackdown/my_folder")
+- `team_drive` - the name of a Google Team Drive (optional)
+- `hide_code` - logical value indicating whether to remove code from the text document (chunks and header); placeholders of type "[[chunk-<name>]]" are displayed instead
+- `path_output` - if desired, specify the path to the output (PDF or HTML file) to upload it together with the main document (`.Rmd` or `.Rnw` file)
+
+
+
+```{r setup}
+library(trackdown)
+```
+
+
+

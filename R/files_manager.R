@@ -15,7 +15,7 @@
 #' argument. In case of html files, if Chrome is available, users can decide to
 #' upload a pdf version of the html file.
 #'
-#' @param file character. The path of a local `.Rmd` or `Rnw` file.
+#' @param file character. The path of a local `.Rmd` or `.Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
 #' @param gpath character. (Sub)directory in My Drive or a Team Drive (optional).
@@ -27,7 +27,7 @@
 #' @param hide_code logical value indicating whether to remove code from the
 #'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 #'   are displayed instead.
-#' @param  path_output default NULL, specify the path to the output to upload
+#' @param  path_output default \code{NULL}, specify the path to the output to upload
 #'   together with the other file. PDF are directly uploaded, HTML can be first
 #'   converted into PDF if Chrome is available.
 #'   
@@ -180,16 +180,11 @@ update_file <- function(file,
 
 #' Downloads from Google Docs
 #'
-#' Downloads a text file from Google Drive and saves it as a local
-#'   file if the local file does not exist or differs from file in Google Drive.
+#' Download edited version of a file from Google Drive updating the local
+#' version with the new changes.
 #'
-#' @param file character. The path (without file extension) of a local `.Rmd`
-#'   file.
-#' @param gfile character. The name of a Google Drive file (defaults to local
-#'   file name).
-#' @param gpath character. (Sub)directory in My Drive or a Team Drive (optional).
-#' @param team_drive character. The name of a Google Team Drive (optional).
-#'   
+#' @inheritParams upload_file
+#'
 #' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise
 #' @export
 #' 
@@ -270,12 +265,14 @@ download_file <- function(file,
 
 #----    render_file    ----
 
-#' Render file from GoogleDrive
+#' Render file from Google Drive
 #'
-#' Renders file from GoogleDrive if there have been edits
+#' Renders file from Google Drive if there have been edits
 #' 
 #' @inheritParams upload_file
-#' @return NULL
+#' 
+#' @return `TRUE` if file from Google Drive was saved and rendered, `FALSE`
+#'   otherwise
 #' @export
 #'
 

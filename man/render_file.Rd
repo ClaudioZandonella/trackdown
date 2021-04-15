@@ -2,7 +2,7 @@
 % Please edit documentation in R/files_manager.R
 \name{render_file}
 \alias{render_file}
-\title{Render file from GoogleDrive}
+\title{Render file from Google Drive}
 \usage{
 render_file(
   file,
@@ -12,7 +12,7 @@ render_file(
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd` or `Rnw` file.}
+\item{file}{character. The path of a local `.Rmd` or `.Rnw` file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -25,6 +25,10 @@ recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 }
+\value{
+`TRUE` if file from Google Drive was saved and rendered, `FALSE`
+  otherwise
+}
 \description{
-Renders file from GoogleDrive if there have been edits
+Renders file from Google Drive if there have been edits
 }

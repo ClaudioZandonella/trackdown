@@ -7,13 +7,16 @@
 download_file(file, gfile = NULL, gpath = "trackdown", team_drive = NULL)
 }
 \arguments{
-\item{file}{character. The path (without file extension) of a local `.Rmd`
-file.}
+\item{file}{character. The path of a local `.Rmd` or `.Rnw` file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{gpath}{character. (Sub)directory in My Drive or a Team Drive (optional).}
+\item{gpath}{character. (Sub)directory in My Drive or a Team Drive (optional).
+By default files are uploaded in the folder "trackdown". To specify another
+folder the full path is required (e.g., "trackdown/my_folder"). Use
+\code{NULL} to upload directly at the root level, although it is not
+recommended.}
 
 \item{team_drive}{character. The name of a Google Team Drive (optional).}
 }
@@ -21,6 +24,6 @@ file name).}
 `TRUE` if file from Google Drive was saved, `FALSE` otherwise
 }
 \description{
-Downloads a text file from Google Drive and saves it as a local
-  file if the local file does not exist or differs from file in Google Drive.
+Download edited version of a file from Google Drive updating the local
+version with the new changes.
 }

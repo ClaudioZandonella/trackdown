@@ -14,7 +14,7 @@ upload_file(
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd` or `Rnw` file.}
+\item{file}{character. The path of a local `.Rmd` or `.Rnw` file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -31,7 +31,7 @@ recommended.}
 text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 are displayed instead.}
 
-\item{path_output}{default NULL, specify the path to the output to upload
+\item{path_output}{default \code{NULL}, specify the path to the output to upload
 together with the other file. PDF are directly uploaded, HTML can be first
 converted into PDF if Chrome is available.}
 }
