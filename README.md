@@ -7,6 +7,11 @@ trackdown provides easy functions to move rmd and rmw files to
 googledrive for synchronous collaboration, then return it back to a
 local .Rmd/.Rnw for knitting.
 
+
+# Important News
+
+`trackdown` is undergoing a complete revision. In the `master` branch, you can find the previous version of the package (formerly named `rmdrive`). In the `develop` branch, instead, you can find the new version that icludes support for `.Rmd` and `.Rnw` files and other new feature (e.g., hide chunks code). We are still working on the last aspects and on the package documentation but soon it will be ready.
+
 # Installation
 
 This package is not on CRAN. To use this package please run the
