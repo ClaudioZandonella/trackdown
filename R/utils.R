@@ -200,14 +200,14 @@ get_instructions <- function(file_info, hide_code){
   
 
   placeholder1 <- switch(hide_code,
-                         "TRUE" = 'Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]',
+                         "TRUE" = 'Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"',
                          "FALSE" = NULL)
   placeholder2 <- c(sprintf("FILE-NAME: %s",file_info$file_name),
                     sprintf("HIDE-CODE: %s", hide_code))
   
   instructions <- c(
     "#----Trackdown Instructions----#",
-    sprintf("This is not a common Document. The Document includes proper formatted %s syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to plain text and avoid modifing R code.",
+    sprintf("This is not a common Document. The Document includes proper formatted %s syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to plain text and avoid modifying R code.",
             language),
     placeholder1,
     "Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.",

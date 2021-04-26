@@ -395,8 +395,13 @@ restore_code <- function(document, file_name, path){
   #---- restore header ----
   index_header <- which(grepl("^\\[\\[document-header\\]\\]", document))
   
-  if(length(index_header) != 1L) stop("Failed retrieving header-tag") # TODO
-  document[index_header] <- header_info$header_text
+  if(length(index_header) != 1L) {
+    warning("Failed retrieving header-tag, code added at first line")
+    document <- c(header_info$header_text, document)
+  } else {
+    document[index_header] <- header_info$header_text
+  }
+  
   
   #---- restore chunks ----
   document <- restore_chunk(document = document,
