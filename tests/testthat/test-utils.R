@@ -153,6 +153,14 @@ test_that("check load_code", {
   expect_error(load_code(file_name = "example_1.Rmd", path = "fake", 
                          type = "header"), "^Failed restoring code.*")
 })
+
+#----    does_error    ----
+
+test_that("check does_error", {
+  expect_true(does_error(stop()))
+  expect_false(does_error(mean(1:5)))
+})
+
 #----
 
 

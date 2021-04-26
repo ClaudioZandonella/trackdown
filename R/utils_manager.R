@@ -207,7 +207,7 @@ upload_output <- function(path_output, output_info,
   if (output_info$extension == "html"){
     
     # check if pagedown is available and if chrome is installed
-    if(requireNamespace("pagedown", quietly = TRUE) && !is.null(pagedown::find_chrome())){
+    if(requireNamespace("pagedown", quietly = TRUE) && !does_error(pagedown::find_chrome())){
       
       if(interactive()){
         html2pdf <- utils::menu(c("Yes", "No"),

@@ -417,6 +417,27 @@ load_code <- function(file_name, path, type = c("header", "chunk")){
   return(data)
 }
 
+#----    does_error    ----
+
+#' Evaluate if Function returns error
+#'
+#' Function from https://adv-r.hadley.nz/conditions.html
+#' 
+#' @param expr expression to evaluate
+#'
+#' @return logical value
+#' @noRd
+#'
+
+does_error <- function(expr) {
+  tryCatch(
+    error = function(cnd) TRUE,
+    {
+      expr
+      FALSE
+    }
+  )
+}
 #----
 
 
