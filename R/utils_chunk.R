@@ -398,6 +398,7 @@ restore_code <- function(document, file_name, path){
   if(length(index_header) != 1L) {
     warning("Failed retrieving header-tag, code added at first line")
     document <- c(header_info$header_text, document)
+    index_header <- 1L
   } else {
     document[index_header] <- header_info$header_text
   }
