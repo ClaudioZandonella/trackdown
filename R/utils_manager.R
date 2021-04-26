@@ -203,33 +203,40 @@ upload_output <- function(path_output, output_info,
                           gfile_output, dribble_output, 
                           update = FALSE, .response = 2L){
   
-  # check if the document is html and if chrome is installed
-  if (output_info$extension == "html" && !is.null(pagedown::find_chrome())){
+  # check if the document is html 
+  if (output_info$extension == "html"){
     
-    if(interactive()){
-      html2pdf <- utils::menu(c("Yes", "No"),
-                              title = paste("Transform HTML to PDF output before uploading?"))
+    # check if pagedown is available and if chrome is installed
+    if(requireNamespace("pagedown", quietly = TRUE) && !is.null(pagedown::find_chrome())){
+      
+      if(interactive()){
+        html2pdf <- utils::menu(c("Yes", "No"),
+                                title = paste("Transform HTML to PDF output before uploading?"))
+      } else {
+        html2pdf <- .response
+      }
+      
+      if(html2pdf == 1L){
+        start_process("Converting output to pdf...")
+        
+        # convert html to pdf
+        path_output <- pagedown::chrome_print(path_output,
+                                              output = file.path(output_info$path,
+                                                                 paste0("temp-output-", output_info$file_basename, ".pdf")))
+        output_info <- get_file_info(file = path_output)
+        
+        # remove temp-output on exit
+        on.exit(invisible(file.remove(path_output)), add = TRUE)
+        
+      } # else {                                             # TODO decide which messages to show
+    #     cli::cli_alert_danger("Uploading html file...")
+    #   }
+    # } else {
+    #   cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
+  
     } else {
-      html2pdf <- .response
+      cli::cli_alert_info("Install package \"pagedown\" to automatically convert HTML to PDF output (Google Chrome is required)")
     }
-    
-    if(html2pdf == 1L){
-      start_process("Converting output to pdf...")
-      
-      # convert html to pdf
-      path_output <- pagedown::chrome_print(path_output,
-                                            output = file.path(output_info$path,
-                                                               paste0("temp-output-", output_info$file_basename, ".pdf")))
-      output_info <- get_file_info(file = path_output)
-      
-      # remove temp-output on exit
-      on.exit(invisible(file.remove(path_output)), add = TRUE)
-      
-    } # else {                                             # TODO decide to show messages
-  #     cli::cli_alert_danger("Uploading html file...")
-  #   }
-  # } else {
-  #   cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
   }
   
   if(isTRUE(update)){
