@@ -79,6 +79,7 @@ evaluate_file <- function(file,
 #' @param file_info list with file info returned from get_file_info() function
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
+#' @param gpath character indicating the (sub)directory in Google Drive.
 #' @param dribble_document A list with two dribble object regarding the gfile
 #'   and the parent item.
 #' @param hide_code logical value indicating whether to remove code from the
@@ -94,13 +95,14 @@ evaluate_file <- function(file,
 #' file <- "tests/testthat/test_files/example_1.Rmd"
 #' file_info <- get_file_info(file)
 #' gfile <- "example_1"
-#' dribble_document <- get_dribble_info(gfile = gfile, path = "examples")
+#' dribble_document <- get_dribble_info(gfile = gfile, path = "trackdown/examples")
 #' hide_code <- FALSE
-#' upload_document(file, file_info, gfile, dribble_document, hide_code, update = TRUE)
+#' upload_document(file, file_info, gfile, gpath = "trackdown/examples",
+#'                 dribble_document, hide_code, update = TRUE)
 #' 
 
 upload_document <- function(file, file_info, 
-                            gfile, dribble_document, 
+                            gfile, gpath, dribble_document, 
                             hide_code, update = FALSE){
   #---- temp file ----
   # create .temp-file to upload
@@ -141,7 +143,8 @@ upload_document <- function(file, file_info,
       file = dribble_document$file,
       verbose = F)
     
-    finish_process("Document updated!")
+    finish_process(paste("Document updated at",
+                         cli::col_blue(paste(gpath, gfile, sep = "/"))))
   } else {
     start_process("Uploading document to Google Drive...")
     
@@ -153,7 +156,8 @@ upload_document <- function(file, file_info,
       type = "document",
       verbose = F)
     
-    finish_process("Document uploaded!")
+    finish_process(paste("Document uploaded at",
+                         cli::col_blue(paste(gpath, gfile, sep = "/"))))
   }
   
   return(res)
@@ -174,6 +178,7 @@ upload_document <- function(file, file_info,
 #' @param output_info list with file info returned from get_file_info() function
 #' @param gfile_output character. The name of a Google Drive file (defaults to
 #'   local file name).
+#' @param gpath character indicating the (sub)directory in Google Drive.
 #' @param dribble_output A list with two dribble object regarding the gfile and
 #'   the parent item.
 #' @param update logical value indicating whether to update or upload the
@@ -193,14 +198,13 @@ upload_document <- function(file, file_info,
 #' 
 #' output_info <- get_file_info(path_output)
 #' gfile_output <- "example_1-output"
-#' dribble_output <- get_dribble_info(gfile = gfile_output, path = "examples")
-#' upload_output(path_output, output_info, gfile_output, dribble_output, 
-#'               update = FALSE)
-#'               
+#' dribble_output <- get_dribble_info(gfile = gfile_output, path = "trackdown/examples")
+#' upload_output(path_output, output_info, gfile_output, gpath = "trackdown/examples",
+#'               dribble_output, update = FALSE)
 #'
 
 upload_output <- function(path_output, output_info, 
-                          gfile_output, dribble_output, 
+                          gfile_output, gpath, dribble_output, 
                           update = FALSE, .response = 2L){
   
   # check if the document is html 
@@ -227,13 +231,8 @@ upload_output <- function(path_output, output_info,
         
         # remove temp-output on exit
         on.exit(invisible(file.remove(path_output)), add = TRUE)
-        
-      } # else {                                             # TODO decide which messages to show
-    #     cli::cli_alert_danger("Uploading html file...")
-    #   }
-    # } else {
-    #   cli::cli_alert_danger("Google Chrome is not installed, uploading html file...")
-  
+      }
+      
     } else {
       cli::cli_alert_info("Install package \"pagedown\" to automatically convert HTML to PDF output (Google Chrome is required)")
     }
@@ -248,7 +247,8 @@ upload_output <- function(path_output, output_info,
       file = dribble_output$file,
       verbose = FALSE)
     
-    finish_process("Output updated!")
+    finish_process(paste("Output updated at",
+                         cli::col_blue(paste(gpath, gfile_output, sep = "/"))))
   } else {
     start_process("Uploading output to Google Drive...")
     
@@ -260,7 +260,8 @@ upload_output <- function(path_output, output_info,
       type = output_info$extension,
       verbose = FALSE)
     
-    finish_process("Output uploaded!")
+    finish_process(paste("Output uploaded at",
+                         cli::col_blue(paste(gpath, gfile_output, sep = "/"))))
   }
   
   return(res)

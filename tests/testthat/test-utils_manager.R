@@ -71,6 +71,7 @@ test_that("evaluate file correctly", {
 test_that("upload the document correctly", {
   skip_if_no_token()
   skip_if_offline()
+  gpath <- "trackdown"
   
   file <- paste0(file_path,"example_1.Rmd")
   file_info <- get_file_info(file)
@@ -85,7 +86,8 @@ test_that("upload the document correctly", {
   # upload new file
   vcr::use_cassette("upload_document_test_1", {
     dribble_new <- upload_document(file = file, file_info = file_info, 
-                                   gfile = "new_example_1", dribble_document = dribble_document_old, 
+                                   gfile = "new_example_1", gpath = gpath,
+                                   dribble_document = dribble_document_old, 
                                    hide_code = FALSE, update = FALSE)
     
     googledrive::drive_rm(dribble_new)
@@ -96,7 +98,7 @@ test_that("upload the document correctly", {
   # update old file
   vcr::use_cassette("upload_document_test_2", {
     dribble_old <- upload_document(file = file, file_info = file_info, 
-                                   gfile = "old_example_1", 
+                                   gfile = "old_example_1", gpath = gpath,
                                    dribble_document = dribble_document_old, 
                                    hide_code = TRUE, update = TRUE)
     
@@ -112,6 +114,7 @@ test_that("upload the document correctly", {
 test_that("upload the output correctly", {
   skip_if_no_token()
   skip_if_offline()
+  gpath <- "trackdown"
   
   # html
   output_html <- paste0(file_path,"example_1.html")
@@ -130,7 +133,8 @@ test_that("upload the output correctly", {
   # upload new output html
   vcr::use_cassette("upload_output_test_1", {
     dribble_new <- upload_output(path_output = output_html, output_info = output_info_html, 
-                                 gfile_output = "new_output", dribble_output = dribble_output_old, 
+                                 gfile_output = "new_output", gpath = gpath,
+                                 dribble_output = dribble_output_old, 
                                  update = FALSE, .response = 2L)
 
     googledrive::drive_rm(dribble_new)
@@ -141,7 +145,8 @@ test_that("upload the output correctly", {
   # update old output
   vcr::use_cassette("upload_output_test_2", {
     dribble_old <- upload_output(path_output = output_html, output_info = output_info_html, 
-                                 gfile_output = "old_output", dribble_output = dribble_output_old, 
+                                 gfile_output = "old_output", gpath = gpath,
+                                 dribble_output = dribble_output_old, 
                                  update = TRUE, .response = 1L)
   })
   expect_equal(dribble_old$name, "old_output")

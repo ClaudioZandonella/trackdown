@@ -112,9 +112,8 @@ get_path_dribble <- function(path, team_drive = NULL, .response = 1){
                                          parent_dribble = dribble_folder, 
                                          team_drive = team_drive)
           
-          finish_process(paste(cli::col_magenta(paste0(
-            path[i:length(path)], "/", collapse = "")), 
-            "folder created on Google Drive!"))
+          finish_process(paste(cli::col_magenta(
+            paste0(path, "/", collapse = "")), "folder created on Google Drive!"))
           
           return(dribble)
         }

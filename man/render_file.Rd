@@ -30,5 +30,5 @@ recommended.}
   otherwise
 }
 \description{
-Renders file from Google Drive if there have been edits
+Render file from Google Drive if there have been edits
 }

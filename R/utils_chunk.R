@@ -396,7 +396,7 @@ restore_code <- function(document, file_name, path){
   index_header <- which(grepl("^\\[\\[document-header\\]\\]", document))
   
   if(length(index_header) != 1L) {
-    warning("Failed retrieving header-tag, code added at first line")
+    warning("Failed retrieving header-tag, code added at first line", call. = FALSE)
     document <- c(header_info$header_text, document)
     index_header <- 1L
   } else {

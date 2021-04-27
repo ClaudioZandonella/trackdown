@@ -161,6 +161,14 @@ test_that("check does_error", {
   expect_false(does_error(mean(1:5)))
 })
 
+#----    sanitize_path    ----
+
+test_that("check sanitize_path", {
+  expect_match(sanitize_path("my_path/foo/"), "my_path/foo")
+  expect_match(sanitize_path("my_path/foo"), "my_path/foo")
+  expect_null(sanitize_path(NULL))
+})
+
 #----
 
 

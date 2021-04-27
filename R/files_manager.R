@@ -45,6 +45,8 @@ upload_file <- function(file,
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
+  gpath <- sanitize_path(gpath) # remove possible final "/"
+  
   #---- check document info ----
   document <- evaluate_file(file = file, 
                             gfile = gfile, 
@@ -66,7 +68,8 @@ upload_file <- function(file,
   res <- upload_document(
     file = document$file, 
     file_info = document$file_info, 
-    gfile = document$gfile, 
+    gfile = document$gfile,
+    gpath = gpath,
     dribble_document = document$dribble_info, 
     hide_code = hide_code, 
     update = FALSE)
@@ -77,6 +80,7 @@ upload_file <- function(file,
       path_output = output$file,
       output_info = output$file_info, 
       gfile_output = output$gfile,
+      gpath = gpath,
       dribble_output = output$dribble_info, 
       update = FALSE)
     
@@ -115,6 +119,8 @@ update_file <- function(file,
   
   main_process(paste("Updating files to", cli::col_magenta("Google Drive")))
   
+  gpath <- sanitize_path(gpath) # remove possible final "/"
+  
   #---- check document info ----
   document <- evaluate_file(file = file, 
                             gfile = gfile, 
@@ -151,6 +157,7 @@ update_file <- function(file,
     file = document$file, 
     file_info = document$file_info, 
     gfile = document$gfile, 
+    gpath = gpath,
     dribble_document = document$dribble_info, 
     hide_code = hide_code, 
     update = TRUE)
@@ -164,6 +171,7 @@ update_file <- function(file,
       path_output = output$file,
       output_info = output$file_info, 
       gfile_output = output$gfile,
+      gpath = gpath,
       dribble_output = output$dribble_info, 
       update = update)
     
@@ -195,6 +203,8 @@ download_file <- function(file,
                           team_drive = NULL) {
   
   main_process(paste("Downloading", emph_file(file), "with online changes..."))
+  
+  gpath <- sanitize_path(gpath) # remove possible final "/"
   
   #---- check document info ----
   document <- evaluate_file(file = file, 
@@ -249,10 +259,10 @@ download_file <- function(file,
   
   if (!check_identity(temp_file = temp_file, local_file = document$file)) {
     file.rename(temp_file, document$file)
-    finish_process(paste(emph_file(file), "updated with online changes!"))
+    finish_process(paste(cli::col_blue(file), "updated with online changes!"))
     changed = TRUE
   } else {
-    cli::cli_alert_danger(paste("The local", emph_file(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
+    cli::cli_alert_danger(paste("The local", cli::col_blue(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
     # remove temp-file
     invisible(unlink(temp_file))
     changed = FALSE
@@ -267,7 +277,7 @@ download_file <- function(file,
 
 #' Render file from Google Drive
 #'
-#' Renders file from Google Drive if there have been edits
+#' Render file from Google Drive if there have been edits
 #' 
 #' @inheritParams upload_file
 #' 
@@ -281,7 +291,7 @@ render_file <- function(file,
                         gpath = "trackdown",
                         team_drive = NULL) {
   
-  
+  gpath <- sanitize_path(gpath) # remove possible final "/"
   
   changed <- download_file(file = file, 
                            gfile = gfile, 
@@ -289,7 +299,7 @@ render_file <- function(file,
                            team_drive = team_drive)
   if (changed) {
     rmarkdown::render(file, quiet = T)
-    finish_process(paste(emph_file(file), "donwloaded and rendered!"))
+    finish_process(paste(cli::col_blue(file), "donwloaded and rendered!"))
   }
   
   return(invisible(changed))

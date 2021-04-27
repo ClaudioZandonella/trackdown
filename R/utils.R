@@ -438,6 +438,29 @@ does_error <- function(expr) {
     }
   )
 }
+
+#----    sanitize_path    ----
+
+#' Sanitize Path
+#' 
+#' Remove last "/" from path if present
+#' 
+#' @param path a string indicating the path
+#'
+#' @return a string
+#' @noRd
+#'
+
+sanitize_path <- function(path){
+  if(is.null(path)){
+    res <- NULL
+  } else {
+    res <- gsub("/$", "", path)
+  }
+  
+  return(res)
+}
+
 #----
 
 
