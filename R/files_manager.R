@@ -54,6 +54,7 @@ upload_file <- function(file,
                             team_drive = team_drive, 
                             test = "none")
   
+  check_supported_documents(document$file_info)
   
   #---- check output info----
   if (!is.null(path_output)) {
@@ -128,6 +129,7 @@ update_file <- function(file,
                             team_drive = team_drive, 
                             test = "single")
   
+  check_supported_documents(document$file_info)
   
   #---- check output info----
   if (!is.null(path_output)) {
@@ -213,6 +215,7 @@ download_file <- function(file,
                             team_drive = team_drive, 
                             test = "single")
   
+  check_supported_documents(document$file_info)
   
   #---- check user ----
   
@@ -260,6 +263,7 @@ download_file <- function(file,
   if (!check_identity(temp_file = temp_file, local_file = document$file)) {
     file.rename(temp_file, document$file)
     finish_process(paste(cli::col_blue(file), "updated with online changes!"))
+    finish_process("Process completed!")
     changed = TRUE
   } else {
     cli::cli_alert_danger(paste("The local", cli::col_blue(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
@@ -269,7 +273,6 @@ download_file <- function(file,
   }
   
   #---- end ----
-  finish_process("Process completed!")
   return(invisible(changed)) # to retun a invisible TRUE/FALSE for rendering
 }
 

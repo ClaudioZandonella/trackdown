@@ -461,6 +461,27 @@ sanitize_path <- function(path){
   return(res)
 }
 
+#----    check_supported_documents    ----
+
+#' Check Supported Documents
+#' 
+#' Only .Rmd and .Rnw fiels are supported
+#' 
+#' @param file_info list with file info returned from get_file_info() function
+#'
+#' @return NULL
+#' @noRd
+#'
+#' @examples
+#' file_info <- get_file_info("my-report.txt")
+#' check_supported_documents(file_info)
+#' 
+
+check_supported_documents <- function(file_info){
+  if(!(file_info$extension %in% c("rmd", "rnw"))) # check supported files
+    stop(paste(file_info$file_name, "not supported file (only .Rmd or .Rnw)"))
+}
+
 #----
 
 

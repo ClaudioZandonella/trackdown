@@ -169,6 +169,15 @@ test_that("check sanitize_path", {
   expect_null(sanitize_path(NULL))
 })
 
+#----    check_supported_documents    ----
+
+test_that("check sanitize_path", {
+  
+  file_info <- get_file_info("my-report.txt")
+ 
+  expect_error(check_supported_documents(file_info))
+})
+
 #----
 
 
