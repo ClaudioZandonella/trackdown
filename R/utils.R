@@ -479,7 +479,8 @@ sanitize_path <- function(path){
 
 check_supported_documents <- function(file_info){
   if(!(file_info$extension %in% c("rmd", "rnw"))) # check supported files
-    stop(paste(file_info$file_name, "not supported file (only .Rmd or .Rnw)"))
+    stop(paste(file_info$file_name, "not supported file type (only .Rmd or .Rnw)"), 
+         call. = FALSE)
 }
 
 #----
