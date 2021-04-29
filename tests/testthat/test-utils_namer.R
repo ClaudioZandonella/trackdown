@@ -102,12 +102,12 @@ test_that("get the correct transform_params", {
 
 test_that("get the correct get_chunk_info", {
   # rmd
-  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
   info_patterns_rmd <- get_extension_patterns(extension = "rmd")
   expect_snapshot_output(get_chunk_info(lines_rmd, info_patterns_rmd))
   
   # rnw
-  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
   info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(get_chunk_info(lines_rnw, info_patterns_rnw))
   

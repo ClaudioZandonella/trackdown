@@ -26,7 +26,7 @@ test_that("check a folder 'My_new_folder' is created", {
 test_that("check get_chunk_range works correctly", {
   
   # rmd
-  lines <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  lines <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
   info_patterns <- get_extension_patterns(extension = "rmd")
   
   expect_true(nrow(get_chunk_range(lines[1:7], info_patterns)) == 0)
@@ -40,12 +40,12 @@ test_that("check get_chunk_range works correctly", {
 
 test_that("get the correct extract_chunk", {
   # rmd
-  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
   info_patterns_rmd <- get_extension_patterns(extension = "rmd")
   expect_snapshot_output(extract_chunk(lines_rmd, info_patterns_rmd))
   
   # rnw
-  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
   info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(extract_chunk(lines_rnw, info_patterns_rnw))
   
@@ -60,12 +60,12 @@ test_that("get the correct extract_chunk", {
 
 test_that("get the correct extract_header", {
   # rmd
-  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
   info_patterns_rmd <- get_extension_patterns(extension = "rmd")
   expect_snapshot_output(extract_header(lines_rmd, info_patterns_rmd))
   
   # rnw
-  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
   info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(extract_header(lines_rnw, info_patterns_rnw))
   
@@ -106,12 +106,12 @@ test_that("file info are correct", {
 test_that("get the correct hide_code", {
   
   # rmd
-  document <- readLines(paste0(file_path, "example_1_rmd.txt"))
+  document <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
   file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
   expect_snapshot_output(hide_code(document, file_info))
   
   # rnw
-  document <- readLines(paste0(file_path, "example_1_rnw.txt"))
+  document <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
   file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
   expect_snapshot_output(hide_code(document, file_info))
   
@@ -130,7 +130,7 @@ test_that("get the correct hide_code", {
 test_that("get that restore_chunk works properly", {
   
   #---- Rmd ----
-  document <- readLines(paste0(file_path, "restore_example_1.Rmd"), warn = FALSE)
+  document <- readLines(paste0(file_path, "restore_example_1.Rmd"), warn = FALSE, encoding = "UTF-8")
   chunk_info <- load_code("example_1.Rmd", path = file_path, type = "chunk")
   index_header <- 9
   
@@ -147,7 +147,7 @@ test_that("get that restore_chunk works properly", {
   
   
   #---- Rnw ----
-  document <- readLines(paste0(file_path, "restore_example_1.Rnw"), warn = FALSE)
+  document <- readLines(paste0(file_path, "restore_example_1.Rnw"), warn = FALSE, encoding = "UTF-8")
   chunk_info <- load_code("example_1.Rnw", path = file_path, type = "chunk")
   index_header <- 12
   
@@ -170,7 +170,7 @@ test_that("get that restore_code works properly", {
   
   #---- Rmd ----
   file_name <- "example_1.Rmd"
-  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE)
+  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE, encoding = "UTF-8")
   
   # complete
   expect_snapshot_output(restore_code(document = document, file_name = file_name, 
@@ -185,10 +185,9 @@ test_that("get that restore_code works properly", {
                               file_name = file_name, path = file_path))
   
   #---- Rnw ----
-  skip_on_os(os = "windows") 
   
   file_name <- "example_1.Rnw"
-  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE)
+  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE, encoding = "UTF-8")
   
   # complete
   expect_snapshot_output(restore_code(document = document, file_name = file_name, 
