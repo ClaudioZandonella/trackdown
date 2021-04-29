@@ -7,8 +7,6 @@ FILE-NAME: example_1.Rnw
 HIDE-CODE: TRUE
 #----End Instructions----#
 
-
-%----    Basic packages    ----%
 [[document-header]]
 
 

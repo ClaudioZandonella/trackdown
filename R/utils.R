@@ -74,6 +74,7 @@ sanitize_document <- function(file) {
 #' @param text a string indicating the message to display 
 #'
 #' @return NULL
+#' @noRd
 #'
 stop_quietly <- function(text = NULL) {
   opt <- options(show.error.messages = FALSE)
@@ -118,7 +119,7 @@ finish_process <- function(message){
 #' @name %>%
 #' @rdname operator_pipe
 #' @keywords internal
-#' @export
+#' @noRd
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL

@@ -184,7 +184,7 @@ extract_header <- function(text_lines, info_patterns){
     header_end <- header_index[2]
     
   } else if(info_patterns$extension == "rnw"){
-    header_start <- which(grepl(info_patterns$file_header_start, text_lines))
+    header_start <- 1 # which(grepl(info_patterns$file_header_start, text_lines))
     header_end <- which(grepl(info_patterns$file_header_end, text_lines))
     
     if(length(header_start) != 1 || length(header_end) != 1) 

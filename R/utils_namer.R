@@ -80,10 +80,12 @@ get_chunk_info <- function(lines, info_patterns){
     return(NULL)
   }
   # parse these chunk headers
-  res <- purrr::map_df(chunks_range$starts,
-                       digest_chunk_header,
-                       lines,
-                       info_patterns)
+  res <- lapply(chunks_range$starts, FUN = function(x){
+    digest_chunk_header(chunk_header_index = x, 
+                        lines = lines, 
+                        info_patterns = info_patterns)
+  })
+  res <- do.call("rbind", res)
   
   # return also chunk start/end line indexes
   res$starts <- chunks_range$starts

@@ -14,13 +14,12 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     cli,
-    dplyr,
     googledrive,
     magrittr,
-    purrr,
     readr,
     rmarkdown,
     stringr,
+    tibble,
     tools
 RoxygenNote: 7.1.1
 Suggests: 
@@ -31,7 +30,6 @@ Suggests:
     pagedown,
     sodium,
     testthat (>= 3.0.0),
-    tibble,
     vcr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
