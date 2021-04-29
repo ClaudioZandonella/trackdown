@@ -18,6 +18,7 @@ Imports:
     googledrive,
     magrittr,
     purrr,
+    readr,
     rmarkdown,
     stringr,
     tools

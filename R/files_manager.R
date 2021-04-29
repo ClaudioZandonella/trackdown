@@ -219,12 +219,12 @@ download_file <- function(file,
   
   #---- check user ----
   
-  # check whether user really wants to replace file in Google Drive
+  # check whether user really wants to download file from Google Drive
   if(interactive()){
     response <- utils::menu(
       c("Yes", "No"),
-      title = paste("Updating the file in Google Drive will overwrite its current content.",
-                    "You might lose tracked changes. Do you want to proceed?"))
+      title = paste("Downloading the file from Google Drive will overwrite local file.",
+                    "Do you want to proceed?"))
     
     if (response == 2L) {
       cli::cli_alert_danger("Process arrested")

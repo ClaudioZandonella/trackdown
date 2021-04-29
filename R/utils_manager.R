@@ -114,7 +114,7 @@ upload_document <- function(file, file_info,
   on.exit(invisible(file.remove(temp_file)), add = TRUE)
   
   # read document lines
-  document <- readLines(temp_file, warn = FALSE)
+  document <- readr::read_lines(temp_file)
   
   
   #---- hide code ----
