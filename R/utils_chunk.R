@@ -331,7 +331,7 @@ hide_code <- function(document, file_info){
 restore_file <- function(temp_file, file_name, path){
   
   # read document lines
-  document <- readr::read_lines(temp_file)
+  document <- readLines(temp_file, warn = FALSE, encoding = "UTF-8")
   
   # eval instructions
   instructions <- eval_instructions(document = document, file_name = file_name)

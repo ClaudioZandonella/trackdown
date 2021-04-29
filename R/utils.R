@@ -326,8 +326,8 @@ check_dribble <- function(dribble, gfile, test = c("none", "single", "both")){
 eval_instructions <- function(document, file_name = NULL){
   
   # get instruction lines
-  instruction_start <- which(grepl("^#----Trackdown Instructions----#", document))
-  instruction_end <- which(grepl("^#----End Instructions----#", document))
+  instruction_start <- which(grepl("#----Trackdown Instructions----#", document))
+  instruction_end <- which(grepl("#----End Instructions----#", document))
   
   # test retrieve instructions
   my_test <- length(c(instruction_start, instruction_end))
