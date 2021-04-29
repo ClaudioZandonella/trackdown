@@ -57,12 +57,10 @@ check_identity <- function(temp_file, local_file){
 #' @noRd
 #'
 sanitize_document <- function(file) {
-  file %>%
-    c("") %>%
-    paste(collapse = "\n") %>%
-    stringr::str_replace_all("\n\n\n", "\n\n")
+  file <- c(file, "")
+  res <- gsub("\n\n\n", "\n\n", paste(file, collapse = "\n"))
+  return(res)
 }
-
 
 #----    stop_quietly    ----
 
@@ -110,20 +108,6 @@ finish_process <- function(message){
   cli::cat_bullet(bullet = "tick", bullet_col = "green", message)
 }
 
-#----    pipe operator    ----
-
-#' pipe operator
-#'
-#' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
-#'
-#' @name %>%
-#' @rdname operator_pipe
-#' @keywords internal
-#' @noRd
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
 #----    get_file_info    ----
 
 #' Get file info
@@ -163,8 +147,8 @@ get_file_info <- function(file){
     stop("file do not include extension")
   
   # get extension as last element split "."
-  extension <- stringr::str_split(file_name, pattern = "\\.")[[1]] %>%
-    tail(n = 1)
+  extension <- strsplit(file_name, split = "\\.")[[1]]
+  extension <- tail(extension, n = 1)
   
   file_basename <- sub(pattern = paste0("\\.", extension), replacement = "",
                        file_name)

@@ -74,8 +74,8 @@ get_chunk_range <- function(lines, info_patterns){
   if(any(header_indices>end_indices))
     stop("There are some issues in the identification of chunk start/end line indexes")
   
-  return(tibble::tibble(starts = header_indices,
-                        ends = end_indices))
+  return(data.frame(starts = header_indices,
+                    ends = end_indices))
 }
 
 #----    extract_chunk    ----
@@ -191,7 +191,7 @@ extract_header <- function(text_lines, info_patterns){
       stop("There are some issues in the identification of the document header start/end line indexes")
   }
   
-  res <- tibble::tibble(
+  res <- data.frame(
     starts = header_start,
     ends = header_end,
     header_text = paste(text_lines[header_start:header_end], collapse = "\n"),

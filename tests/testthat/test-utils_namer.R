@@ -33,69 +33,69 @@ test_that("get the correct transform_params", {
   
   # language, name and options
   expect_identical(transform_params(params = "r chunk_name, eval = FALSE", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = "chunk_name",
-                                  options = ", eval = FALSE"))
+                   data.frame(language = "r",
+                              name = "chunk_name",
+                              options = ", eval = FALSE"))
   expect_identical(transform_params(params = "r, chunk_name, eval = FALSE", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = "chunk_name",
-                                  options = ", eval = FALSE"))
+                   data.frame(language = "r",
+                              name = "chunk_name",
+                              options = ", eval = FALSE"))
   # language, no name and options
   expect_identical(transform_params(params = "r eval = FALSE", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = NA,
-                                  options = ", eval = FALSE"))
+                   data.frame(language = "r",
+                              name = NA,
+                              options = ", eval = FALSE"))
   expect_identical(transform_params(params = "r, eval = FALSE", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = NA,
-                                  options = ", eval = FALSE"))
+                   data.frame(language = "r",
+                              name = NA,
+                              options = ", eval = FALSE"))
   # language, name and no options
   expect_identical(transform_params(params = "r chunk_name", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = "chunk_name",
-                                  options = ""))
+                   data.frame(language = "r",
+                              name = "chunk_name",
+                              options = ""))
   expect_identical(transform_params(params = "r, chunk_name", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = "chunk_name",
-                                  options = ""))
+                   data.frame(language = "r",
+                              name = "chunk_name",
+                              options = ""))
   # language, no name and no options
   expect_identical(transform_params(params = "r", extension = "rmd"), 
-                   tibble::tibble(language = "r",
-                                  name = NA,
-                                  options = ""))
+                   data.frame(language = "r",
+                              name = NA,
+                              options = ""))
   # no language, no name and options
   expect_identical(transform_params(params = "eval = FALSE", extension = "rmd"), 
-                   tibble::tibble(language = NA,
-                                  name = NA,
-                                  options = "eval = FALSE"))
+                   data.frame(language = NA,
+                              name = NA,
+                              options = "eval = FALSE"))
   # no language, no name and no options
   expect_identical(transform_params(params = "", extension = "rmd"), 
-                   tibble::tibble(language = NA,
-                                  name = NA,
-                                  options = ""))
+                   data.frame(language = NA,
+                              name = NA,
+                              options = ""))
   
   #---- rnw ----
   
   # name and options
   expect_identical(transform_params(params = "chunk_name, eval = FALSE", extension = "rnw"), 
-                   tibble::tibble(language = NA,
-                                  name = "chunk_name",
-                                  options = ", eval = FALSE"))
+                   data.frame(language = NA,
+                              name = "chunk_name",
+                              options = ", eval = FALSE"))
   # no name and options
   expect_identical(transform_params(params = "eval = FALSE", extension = "rnw"), 
-                   tibble::tibble(language = NA,
-                                  name = NA,
-                                  options = "eval = FALSE"))
+                   data.frame(language = NA,
+                              name = NA,
+                              options = "eval = FALSE"))
   # name and no options
   expect_identical(transform_params(params = "chunk_name", extension = "rnw"), 
-                   tibble::tibble(language = NA,
-                                  name = "chunk_name",
-                                  options = ""))
+                   data.frame(language = NA,
+                              name = "chunk_name",
+                              options = ""))
   # no name and no options
   expect_identical(transform_params(params = "", extension = "rnw"), 
-                   tibble::tibble(language = NA,
-                                  name = NA,
-                                  options = ""))
+                   data.frame(language = NA,
+                              name = NA,
+                              options = ""))
 })
 
 #----    get_chunk_info    ----

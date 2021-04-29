@@ -15,12 +15,8 @@ LazyData: true
 Imports:
     cli,
     googledrive,
-    magrittr,
     readr,
-    rmarkdown,
-    stringr,
-    tibble,
-    tools
+    rmarkdown
 RoxygenNote: 7.1.1
 Suggests: 
     covr,

@@ -178,6 +178,13 @@ test_that("check sanitize_path", {
   expect_error(check_supported_documents(file_info))
 })
 
+#----    sanitize_document    ----
+
+test_that("check sanitize_document", {
+  expect_match(sanitize_document(c("Line1\n", "Line2\n\n\n", "Line3\n\n\n Line4")),
+               "Line1\n\nLine2\n\n\nLine3\n\n Line4\n")
+})
+
 #----
 
 

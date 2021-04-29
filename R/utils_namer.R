@@ -257,9 +257,9 @@ parse_label_rmd <- function(label, params){
   options <-  sub(label[[1]], "", params)
   }
   
-  tibble::tibble(language = language,
-                 name = name_chunk,
-                 options = options)
+  data.frame(language = language,
+             name = name_chunk,
+             options = options)
 }
 
 
@@ -277,9 +277,9 @@ parse_label_rnw <- function(label, params){
     options <- sub(label[[1]], "", params)
   }
   
-  tibble::tibble(language = NA,
-                 name = name_chunk,
-                 options = options)
+  data.frame(language = NA,
+             name = name_chunk,
+             options = options)
 }
 
 #----

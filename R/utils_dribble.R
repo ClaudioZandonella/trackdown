@@ -64,7 +64,7 @@ get_dribble_info <- function(gfile, path = NULL, team_drive = NULL) {
 
 get_path_dribble <- function(path, team_drive = NULL, .response = 1){
   # get sequence of folders
-  path <- stringr::str_split(path, pattern = "/", simplify = TRUE)[1,]
+  path <- strsplit(path, split = "/")[[1]]
   
   # get folders id starting from root
   for (i in seq_along(path)){

@@ -1,45 +1,83 @@
 # get the correct extract_chunk
 
-    # A tibble: 10 x 8
-       language name   options     starts  ends index chunk_text           name_tag 
-       <chr>    <chr>  <chr>        <int> <int> <int> <chr>                <chr>    
-     1 r        setup  ", include~      8    10     1 "```{r setup, inclu~ [[chunk-~
-     2 r        cars   ""              18    20     2 "```{r cars}\nsumma~ [[chunk-~
-     3 r        press~ ", echo=FA~     26    28     3 "```{r, pressure, e~ [[chunk-~
-     4 r        <NA>   ", echo=FA~     32    34     4 "```{r, echo=FALSE,~ [[chunk-~
-     5 r        <NA>   ", echo=FA~     36    38     5 "```{r echo=FALSE}\~ [[chunk-~
-     6 r        chunk~ ""              40    42     6 "```{r, chunk_name}~ [[chunk-~
-     7 sql      <NA>   ", eval=FA~     44    46     7 "```{sql, eval=FALS~ [[chunk-~
-     8 <NA>     <NA>   "eval = TR~     48    50     8 "```{eval = TRUE}\n~ [[chunk-~
-     9 <NA>     <NA>   ""              52    54     9 "```{}\nAnother voi~ [[chunk-~
-    10 <NA>     <NA>   ""              56    58    10 "```\nStill another~ [[chunk-~
+       language       name                     options starts ends index
+    1         r      setup             , include=FALSE      8   10     1
+    2         r       cars                                 18   20     2
+    3         r   pressure                , echo=FALSE     26   28     3
+    4         r       <NA> , echo=FALSE, warning=FALSE     32   34     4
+    5         r       <NA>                , echo=FALSE     36   38     5
+    6         r chunk_name                                 40   42     6
+    7       sql       <NA>                , eval=FALSE     44   46     7
+    8      <NA>       <NA>                 eval = TRUE     48   50     8
+    9      <NA>       <NA>                                 52   54     9
+    10     <NA>       <NA>                                 56   58    10
+                                                                                          chunk_text
+    1                           ```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```
+    2                                                                ```{r cars}\nsummary(cars)\n```
+    3                                              ```{r, pressure, echo=FALSE}\nplot(pressure)\n```
+    4  ```{r, echo=FALSE, warning=FALSE}\n# R chunk with no name but multiple options (using ,)\n```
+    5                        ```{r echo=FALSE}\n# R chunk with no name but options (not using,)\n```
+    6                 ```{r, chunk_name}\n# wrong R chunk with , and name is parsed as argument\n```
+    7                      ```{sql, eval=FALSE}\n/*A sql chunk chunk with no name but options*/\n```
+    8                                                             ```{eval = TRUE}\nA void code\n```
+    9                                                                  ```{}\nAnother void code\n```
+    10                                                             ```\nStill another void code\n```
+                   name_tag
+    1       [[chunk-setup]]
+    2        [[chunk-cars]]
+    3    [[chunk-pressure]]
+    4           [[chunk-4]]
+    5           [[chunk-5]]
+    6  [[chunk-chunk-name]]
+    7           [[chunk-7]]
+    8           [[chunk-8]]
+    9           [[chunk-9]]
+    10         [[chunk-10]]
 
 ---
 
-    # A tibble: 7 x 8
-      language name   options     starts  ends index chunk_text            name_tag 
-      <lgl>    <chr>  <chr>        <int> <int> <int> <chr>                 <chr>    
-    1 NA       setup  ", include~     19    21     1 "<<setup, include=FA~ [[chunk-~
-    2 NA       cars   ""              48    50     2 "<<cars>>=\nsummary(~ [[chunk-~
-    3 NA       press~ ", echo=FA~     56    58     3 "<<pressure, echo=FA~ [[chunk-~
-    4 NA       <NA>   "echo=FALS~     62    64     4 "<<echo=FALSE, warni~ [[chunk-~
-    5 NA       <NA>   "echo=FALS~     66    68     5 "<<echo=FALSE>>= # a~ [[chunk-~
-    6 NA       sql    ", eval=FA~     71    73     6 "<<sql, eval=FALSE>>~ [[chunk-~
-    7 NA       <NA>   ""              75    77     7 "<<>>=\n# A void cod~ [[chunk-~
+      language     name                   options starts ends index
+    1       NA    setup           , include=FALSE     19   21     1
+    2       NA     cars                               48   50     2
+    3       NA pressure              , echo=FALSE     56   58     3
+    4       NA     <NA> echo=FALSE, warning=FALSE     62   64     4
+    5       NA     <NA>                echo=FALSE     66   68     5
+    6       NA      sql              , eval=FALSE     71   73     6
+    7       NA     <NA>                               75   77     7
+                                                                                       chunk_text
+    1                            <<setup, include=FALSE>>=\nknitr::opts_chunk$set(echo = TRUE)\n@
+    2                                                                 <<cars>>=\nsummary(cars)\n@
+    3                                                <<pressure, echo=FALSE>>=\nplot(pressure)\n@
+    4    <<echo=FALSE, warning=FALSE>>=\n# R chunk with no name but multiple options (using ,)\n@
+    5 <<echo=FALSE>>= # a really evil comment\n# R chunk with no name but options (not using,)\n@
+    6              <<sql, eval=FALSE>>=\n/*A  wrong sql chunk chunk with no name but options*/\n@
+    7                                                               <<>>=\n# A void code block\n@
+                name_tag
+    1    [[chunk-setup]]
+    2     [[chunk-cars]]
+    3 [[chunk-pressure]]
+    4        [[chunk-4]]
+    5        [[chunk-5]]
+    6      [[chunk-sql]]
+    7        [[chunk-7]]
 
 # get the correct extract_header
 
-    # A tibble: 1 x 4
-      starts  ends header_text                                        name_tag      
-       <int> <int> <chr>                                              <chr>         
-    1      1     6 "---\ntitle: \"Reviewdown Test\"\nauthor: \"revie~ [[document-he~
+      starts ends
+    1      1    6
+                                                                                            header_text
+    1 ---\ntitle: "Reviewdown Test"\nauthor: "reviewdown"\ndate: "2/3/2021"\noutput: html_document\n---
+                 name_tag
+    1 [[document-header]]
 
 ---
 
-    # A tibble: 1 x 4
-      starts  ends header_text                                        name_tag      
-       <dbl> <int> <chr>                                              <chr>         
-    1      1    29 "\n%----    Basic packages    ----%\n\\documentcl~ [[document-he~
+      starts ends
+    1      1   29
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              header_text
+    1 \n%----    Basic packages    ----%\n\\documentclass{article}  \n\\usepackage[T1] {fontenc} \t\t  % Font encoding\n\\usepackage [utf8] {inputenc}\t\t% Encoding for the document\n\\usepackage[a4paper,includeheadfoot,top=2.4cm, bottom=2cm, left=2.4cm, right=2.4cm]{geometry}  % margin settings\n\\usepackage[english]{babel}      \n\n\n%----    Other packages    ----%\n\\usepackage{tikz}       \n\\usepackage{graphicx}   % for including graphics\n\\usepackage{amsmath}    % for math equation\n\\usepackage{hyperref}    % ref between elements\n\n\n%%%%%%%%%%%%%%%%%%%%%%          Settings        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n<<setup, include=FALSE>>=\nknitr::opts_chunk$set(echo = TRUE)\n@\n\n\n\n% Document title info\n\\title{Reviewdown Test}\n\\author{reviewdown}\n% \\date{}\n\\begin{document}
+                 name_tag
+    1 [[document-header]]
 
 # get the correct hide_code
 
