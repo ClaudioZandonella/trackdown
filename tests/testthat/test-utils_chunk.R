@@ -64,14 +64,16 @@ test_that("get the correct extract_header", {
   info_patterns_rmd <- get_extension_patterns(extension = "rmd")
   expect_snapshot_output(extract_header(lines_rmd, info_patterns_rmd))
   
+  # no chunks
+  lines_no_chunk <- c("A file with no chunks")
+  expect_error(extract_header(lines_no_chunk, info_patterns_rmd))
+  
+  skip_on_os("windows") # due to bom utf-8
   # rnw
   lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
   info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(extract_header(lines_rnw, info_patterns_rnw))
-  
   # no chunks
-  lines_no_chunk <- c("A file with no chunks")
-  expect_error(extract_header(lines_no_chunk, info_patterns_rmd))
   expect_error(extract_header(lines_no_chunk, info_patterns_rnw))
 
 })
@@ -186,6 +188,7 @@ test_that("get that restore_code works properly", {
   
   #---- Rnw ----
   
+  skip_on_os("windows") # due to bom utf-8
   file_name <- "example_1.Rnw"
   document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE, encoding = "UTF-8")
   
