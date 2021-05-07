@@ -196,7 +196,7 @@ This feature is intended to help collaborators to evaluate the overall layout, f
 
 In the case of HTML files, `trackdown` can automatically convert them into PDFs before uploading if the `pagedown` package is available. The `pagedown` package is not installed as a dependency of `trackdown`, thus it has to be installed manually by the user if not already available. The function `pagedown::chrome_print()` will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.
 
-## Techincal Notes
+## Technical Notes
 
 In this section some technical aspects about the `trackdown` workflow are discussed.
 
