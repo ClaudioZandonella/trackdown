@@ -101,6 +101,7 @@ test_that("get the correct transform_params", {
 #----    get_chunk_info    ----
 
 test_that("get the correct get_chunk_info", {
+  
   # rmd
   lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
   info_patterns_rmd <- get_extension_patterns(extension = "rmd")

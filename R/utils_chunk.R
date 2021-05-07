@@ -178,7 +178,8 @@ extract_header <- function(text_lines, info_patterns){
     header_index <- which(grepl(info_patterns$file_header_start, text_lines))
     
     if(length(header_index) != 2) 
-      stop("There are some issues in the identification of YAML start/end line indexes")
+      stop("There are some issues in the identification of YAML start/end line indexes",
+           call. = FALSE)
     
     header_start <- header_index[1]
     header_end <- header_index[2]
@@ -188,7 +189,8 @@ extract_header <- function(text_lines, info_patterns){
     header_end <- which(grepl(info_patterns$file_header_end, text_lines))
     
     if(length(header_start) != 1 || length(header_end) != 1) 
-      stop("There are some issues in the identification of the document header start/end line indexes")
+      stop("There are some issues in the identification of the document header start/end line indexes",
+           .call = FALSE)
   }
   
   res <- data.frame(
@@ -386,7 +388,7 @@ restore_code <- function(document, file_name, path){
   
   # Check .trackdown folder is available
   if(!dir.exists(file.path(path,".trackdown")))
-    stop(paste0("Failed restoring code. Folder .trackdown is not available in ", path))
+    stop(paste0("Failed restoring code. Folder .trackdown is not available in ", path), call. = FALSE)
     
   # load code info 
   header_info <- load_code(file_name = file_name, path = path, type = "header")

@@ -38,44 +38,59 @@ test_that("check get_chunk_range works correctly", {
 
 #----    extract_chunk    ----
 
+# rmd
+lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
+info_patterns_rmd <- get_extension_patterns(extension = "rmd")
+
+# rnw
+lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
+info_patterns_rnw <- get_extension_patterns(extension = "rnw")
+
 test_that("get the correct extract_chunk", {
-  # rmd
-  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
-  info_patterns_rmd <- get_extension_patterns(extension = "rmd")
   expect_snapshot_output(extract_chunk(lines_rmd, info_patterns_rmd))
-  
-  # rnw
-  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
-  info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(extract_chunk(lines_rnw, info_patterns_rnw))
-  
+})
+
+test_that("get the correct extract_chunk no info", {
   # no chunks
   lines_no_chunk <- c("A file with no chunks")
   expect_null(extract_chunk(lines_no_chunk, info_patterns_rmd))
   expect_null(extract_chunk(lines_no_chunk, info_patterns_rnw))
-  
 })
 
 #----    extract_header    ----
 
+# rmd
+lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
+info_patterns_rmd <- get_extension_patterns(extension = "rmd")
+
+# rnw
+lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
+info_patterns_rnw <- get_extension_patterns(extension = "rnw")
+
+
 test_that("get the correct extract_header", {
-  # rmd
-  lines_rmd <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
-  info_patterns_rmd <- get_extension_patterns(extension = "rmd")
+  #rmd
   expect_snapshot_output(extract_header(lines_rmd, info_patterns_rmd))
-  
-  # no chunks
-  lines_no_chunk <- c("A file with no chunks")
-  expect_error(extract_header(lines_no_chunk, info_patterns_rmd))
   
   skip_on_os("windows") # due to bom utf-8
   # rnw
-  lines_rnw <- readLines(paste0(file_path, "example_1_rnw.txt"), encoding = "UTF-8")
-  info_patterns_rnw <- get_extension_patterns(extension = "rnw")
   expect_snapshot_output(extract_header(lines_rnw, info_patterns_rnw))
   # no chunks
   expect_error(extract_header(lines_no_chunk, info_patterns_rnw))
 
+})
+
+test_that("get the correct extract_header no chuncks", {
+  # no chunks
+  lines_no_chunk <- c("A file with no chunks")
+  expect_error(extract_header(lines_no_chunk, info_patterns_rmd), 
+               regexp = "There are some issues in the identification of YAML")
+  
+  skip_on_os("windows") # due to bom utf-8
+  # no chunks
+  expect_error(extract_header(lines_no_chunk, info_patterns_rnw),
+               regexp = "There are some issues in the identification of the document header")
 })
 
 
@@ -129,77 +144,84 @@ test_that("get the correct hide_code", {
 
 # Note that hunk info are created  in the hide_code test section and deleted at the end
 
+# rmd
+document_rmd <- readLines(paste0(file_path, "restore_example_1.Rmd"), warn = FALSE, encoding = "UTF-8")
+chunk_info_rmd <- load_code("example_1.Rmd", path = file_path, type = "chunk")
+index_header_rmd <- 9
+
+
 test_that("get that restore_chunk works properly", {
-  
   #---- Rmd ----
-  document <- readLines(paste0(file_path, "restore_example_1.Rmd"), warn = FALSE, encoding = "UTF-8")
-  chunk_info <- load_code("example_1.Rmd", path = file_path, type = "chunk")
-  index_header <- 9
-  
   # complete
-  expect_snapshot_output(restore_chunk(document = document, chunk_info = chunk_info, 
-                                       index_header = index_header))
+  expect_snapshot_output(restore_chunk(document = document_rmd, chunk_info = chunk_info_rmd, 
+                                       index_header = index_header_rmd))
   
   # missing multiple chunks (1°,4°, 7°, 8°, last)
-  expect_snapshot_output(restore_chunk(document = document[-c(12, 39, 48, 51, 57)], 
-                                       chunk_info = chunk_info, index_header = index_header))
-  # missing multiple chunks (1°,4°, 7°, 8°, last)
-  expect_snapshot_output(restore_chunk(document = document[-c(12, 24,  39, 48, 51, 57)], 
-                                       chunk_info = chunk_info, index_header = index_header))
-  
+  expect_snapshot_output(restore_chunk(document = document_rmd[-c(12, 39, 48, 51, 57)], 
+                                       chunk_info = chunk_info_rmd, index_header = index_header_rmd))
   
   #---- Rnw ----
-  document <- readLines(paste0(file_path, "restore_example_1.Rnw"), warn = FALSE, encoding = "UTF-8")
-  chunk_info <- load_code("example_1.Rnw", path = file_path, type = "chunk")
-  index_header <- 12
-  
+  document_rnw <- readLines(paste0(file_path, "restore_example_1.Rnw"), warn = FALSE, encoding = "UTF-8")
+  chunk_info_rnw <- load_code("example_1.Rnw", path = file_path, type = "chunk")
+  index_header_rnw <- 12
   # complete
-  expect_snapshot_output(restore_chunk(document = document, chunk_info = chunk_info, 
-                                       index_header = index_header))
-  
+  expect_snapshot_output(restore_chunk(document = document_rnw, chunk_info = chunk_info_rnw,
+                                       index_header = index_header_rnw))
+
   # missing multiple chunks (1°,3°,4°, 6°)
-  expect_snapshot_output(restore_chunk(document = document[-c(37, 52, 55, 61)], 
-                                       chunk_info = chunk_info, index_header = index_header))
-  
+  expect_snapshot_output(restore_chunk(document = document_rnw[-c(37, 52, 55, 61)],
+                                       chunk_info = chunk_info_rnw, index_header = index_header_rnw))
+
+})
+
+test_that("get that restore_chunk missing first 2 chuncks", {
+  # missing multiple chunks (1°,4°, 7°, 8°, last)
+  expect_snapshot_output(restore_chunk(document = document_rmd[-c(12, 24,  39, 48, 51, 57)], 
+                                       chunk_info = chunk_info_rmd, index_header = index_header_rmd))
 })
 
 
 #----    restore_code    ----
 
-# Note that hunk info are created  in the hide_code test section and deleted at the end
+# Note that chunk info are created  in the hide_code test section and deleted at the end
+
+#Rmd 
+file_name_rmd <- "example_1.Rmd"
+document_rmd <- readLines(paste0(file_path, paste0("restore_", file_name_rmd)), warn = FALSE, encoding = "UTF-8")
+
+#Rnw
+file_name_rnw <- "example_1.Rnw"
+document_rnw <- readLines(paste0(file_path, paste0("restore_", file_name_rnw)), warn = FALSE, encoding = "UTF-8")
 
 test_that("get that restore_code works properly", {
-  
   #---- Rmd ----
-  file_name <- "example_1.Rmd"
-  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE, encoding = "UTF-8")
-  
   # complete
-  expect_snapshot_output(restore_code(document = document, file_name = file_name, 
-                                      path = file_path))
+  expect_snapshot_output(restore_code(document = document_rmd, 
+                                      file_name = file_name_rmd, path = file_path))
   
   # missing multiple chunks (1°,4°, 7°, 8°, last)
-  expect_snapshot_output(restore_code(document = document[-c(12, 39, 48, 51, 57)], 
-                                      file_name = file_name, path = file_path))
-  
-  # missing header-tag
-  expect_warning(restore_code(document = document[-9], 
-                              file_name = file_name, path = file_path))
+  expect_snapshot_output(restore_code(document = document_rmd[-c(12, 39, 48, 51, 57)], 
+                                      file_name = file_name_rmd, path = file_path))
   
   #---- Rnw ----
   
   skip_on_os("windows") # due to bom utf-8
-  file_name <- "example_1.Rnw"
-  document <- readLines(paste0(file_path, paste0("restore_", file_name)), warn = FALSE, encoding = "UTF-8")
   
   # complete
-  expect_snapshot_output(restore_code(document = document, file_name = file_name, 
-                                      path = file_path))
+  expect_snapshot_output(restore_code(document = document_rnw, 
+                                      file_name = file_name_rnw, path = file_path))
   
   # missing multiple chunks (1°,3°,4°, 6°)
-  expect_snapshot_output(restore_code(document = document[-c(37, 52, 55, 61)], 
-                                      file_name = file_name, path = file_path))
+  expect_snapshot_output(restore_code(document = document_rnw[-c(37, 52, 55, 61)], 
+                                      file_name = file_name_rnw, path = file_path))
   
+})
+
+test_that("get that restore_code missing header-tag", {
+  # missing header-tag
+  expect_warning(restore_code(document = document_rmd[-9], 
+                              file_name = file_name_rmd, path = file_path),
+                 regexp = "Failed retrieving \\[\\[document-header\\]\\] placeholder")
 })
 
 #----    restore_file    ----
@@ -238,5 +260,15 @@ test_that("get that restore_file works properly", {
 
 # remove files
 unlink(paste0(file_path, ".trackdown"), recursive = TRUE)
+
+#---- restore_code test no .trackdown folder ----
+
+test_that("get that restore_code no .trackdown folder", {
+  # missing header-tag
+  expect_error(restore_code(document = document_rmd[-9], 
+                            file_name = file_name_rmd, path = file_path),
+               regexp = "Failed restoring code\\. Folder \\.trackdown")
+})
+
 #----
 

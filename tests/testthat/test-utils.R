@@ -36,10 +36,15 @@ test_that("check_identity works prorerly", {
 test_that("Message function work prorerly", {
   expect_snapshot_output(main_process("horizontal line"))
   expect_snapshot_output(emph_file("blue text"))
-  expect_snapshot_output(sub_process("a bullet item"))
   expect_snapshot_output(start_process("a colored bulled item"))
   expect_snapshot_output(finish_process("a ticked item"))
 })
+
+test_that("Message function work prorerly bullet", {
+  expect_snapshot(sub_process("a bullet item"))
+})
+
+
 
 #----    get_file_info    ----
 
@@ -119,33 +124,49 @@ test_that("check check_dribble", {
 
 #----    eval_instructions    ----
 
-test_that("check eval_instructions", {
-  
-  document <- readLines(paste0(file_path, "example_instructions.txt"), warn = FALSE, encoding = "UTF-8")
-  
+document <- readLines(paste0(file_path, "example_instructions.txt"), 
+                      warn = FALSE, encoding = "UTF-8")
+
+
+test_that("check eval_instructions full file", {
+  # full file 
   expect_snapshot_output(eval_instructions(document))
-  
+})
+
+test_that("check eval_instructions no instructions", {
   # no instructions delimiters
-  expect_warning(eval_1 <- eval_instructions(document[-1]))
+  expect_warning(eval_1 <- eval_instructions(document[-1]), 
+                 regexp = "Failed retrieving instructions delimiters")
   expect_snapshot_output(eval_1)
-  expect_warning(eval_1_bis <- eval_instructions(document[-8]))
+  expect_warning(eval_1_bis <- eval_instructions(document[-8]),
+                 regexp = "Failed retrieving instructions delimiters")
   expect_snapshot_output(eval_1_bis)
-  
+})
+
+test_that("check eval_instructions no file_name", {
   # no file_name
-  expect_warning(eval_2 <- eval_instructions(document[-6]))
+  expect_warning(eval_2 <- eval_instructions(document[-6]),
+                 regexp = "Failed retrieving FILE-NAME")
   expect_snapshot_output(eval_2)
-  expect_warning(eval_3 <- eval_instructions(document[-6], file_name = "example_instructions.txt"))
+  expect_warning(eval_3 <- eval_instructions(document[-6], file_name = "example_instructions.txt"),
+                 regexp = "Failed retrieving FILE-NAME")
   expect_snapshot_output(eval_3)
-  
+})
+
+test_that("check eval_instructions no hide_code", {
   # no hide_code
-  expect_warning(eval_4 <- eval_instructions(document[-c(7,9)]))
+  expect_warning(eval_4 <- eval_instructions(document[-c(7,9)]),
+                 regexp = "Failed retrieving HIDE-CODE")
   expect_snapshot_output(eval_4)
-  expect_warning(eval_5 <- eval_instructions(document[-c(7,12)]))
+  expect_warning(eval_5 <- eval_instructions(document[-c(7,12)]),
+                 regexp = "Failed retrieving HIDE-CODE")
   expect_snapshot_output(eval_5)
-  expect_warning(eval_6 <- eval_instructions(document[-c(7, 9, 12)]))
+  expect_warning(eval_6 <- eval_instructions(document[-c(7, 9, 12)]),
+                 regexp = "Failed retrieving HIDE-CODE")
   expect_snapshot_output(eval_6)
   
 })
+
 
 #----    load_code    ----
 

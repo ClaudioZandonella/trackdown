@@ -77,20 +77,21 @@ get_chunk_info <- function(lines, info_patterns){
 
   # null if no chunks
   if(length(chunks_range$starts) == 0){
-    return(NULL)
+    res <- NULL
+  } else {
+    # parse these chunk headers
+    res <- lapply(chunks_range$starts, FUN = function(x){
+      digest_chunk_header(chunk_header_index = x, 
+                          lines = lines, 
+                          info_patterns = info_patterns)
+    })
+    res <- do.call("rbind", res)
+    
+    # return also chunk start/end line indexes
+    res$starts <- chunks_range$starts
+    res$ends <- chunks_range$ends
+    res$index <- seq(length.out = nrow(res))
   }
-  # parse these chunk headers
-  res <- lapply(chunks_range$starts, FUN = function(x){
-    digest_chunk_header(chunk_header_index = x, 
-                        lines = lines, 
-                        info_patterns = info_patterns)
-  })
-  res <- do.call("rbind", res)
-  
-  # return also chunk start/end line indexes
-  res$starts <- chunks_range$starts
-  res$ends <- chunks_range$ends
-  res$index <- seq(length.out = nrow(res))
   
   return(res)
 }
