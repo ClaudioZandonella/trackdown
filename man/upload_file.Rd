@@ -33,7 +33,7 @@ are displayed instead.}
 
 \item{path_output}{default \code{NULL}, specify the path to the output to upload
 together with the other file. PDF are directly uploaded, HTML can be first
-converted into PDF if Chrome is available.}
+converted into PDF if package \code{pagedown} and Chrome are available.}
 }
 \value{
 a dribble of the uploaded file (and output if specified)
@@ -42,9 +42,9 @@ a dribble of the uploaded file (and output if specified)
 Uploads a local file to Google Drive as a plain text document. Will only
 upload the file if it doesn't already exist in the chosen location. By
 default files are uploaded in the folder "trackdown", if is not available on
-Google Drive, permission to create is required to the user. To update an
-existing file see \code{\link{update_file}}. It is also possible to upload
-the output (pdf or html) of the file specifying the \code{path_output}
-argument. In case of html files, if Chrome is available, users can decide to
-upload a pdf version of the html file.
+Google Drive, permission to create it is required to the user. To update an
+already existing file see \code{\link{update_file}}. It is also possible to
+upload the output (pdf or html) of the file specifying the \code{path_output}
+argument. In case of html files, if \code{pagedown} package and Chrome are
+available, users can decide to upload a pdf version of the html file.
 }

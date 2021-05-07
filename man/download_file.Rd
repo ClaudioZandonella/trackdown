@@ -27,3 +27,6 @@ recommended.}
 Download edited version of a file from Google Drive updating the local
 version with the new changes.
 }
+\details{
+\emph{Use with caution as local version of the fiel will be overwritten!}
+}

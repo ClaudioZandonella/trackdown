@@ -1,92 +1,128 @@
+trackdown - R package for collaborative writing and editing
+================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# trackdown
-
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
-
 <hr>
-
 <!-- badges: end -->
 
-trackdown provides easy functions to move rmd and rmw files to
-googledrive for synchronous collaboration, then return it back to a
-local .Rmd/.Rmw for knitting.
+The `trackdown` package offers a simple answer to collaborative writing
+and editing of R Markdown (or Sweave) documents. Using `trackdown`, the
+local `.Rmd` (or `.Rnw`) file is uploaded as plain-text in Google Drive
+where, thanks to the easily readable Markdown (or LaTeX) syntax and the
+well-known online interface offered by Google Docs, collaborators can
+easily contribute to the writing and editing of the document. After
+integrating all authors’ contributions, the final document can be
+downloaded and rendered locally.
 
-# Installation
+All the documentation is available at TODO.
 
-This package is not on CRAN. To install it, please run the following
-code:
+## Installation
+
+This package is not already available on CRAN. To install the
+development version from GitHub run the following code:
 
 ``` r
+# install.packages("devtools")
 devtools::install_github("ekothe/trackdown",
                          ref = "develop")
 library(trackdown)
 ```
 
-# Old instructions (TODO update instructions)
+## The trackdown Workflow
 
-# How to use
+When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is
+important to consider separately code and prose:
 
-While the functions in this package can accommodate different workflows,
-it has been designed with the following workflow in mind:
+-   **Code** - Collaborative code writing is done efficiently following
+    traditional **Git** workflow based on an online repository (e.g.,
+    GitHub or GitLab)
+-   **Prose** - Collaborative prose writing is done efficiently on
+    **Google Docs** where the familiar and simple online interface
+    allows multiple users to simultaneously write and edit the same
+    document
 
-1.  The main contributor to a data science project (the first author in
-    an academic context) develops the analysis code and writes a first
-    draft of the manuscript associated with the project on their local
-    computer using, e.g., RStudio.
-2.  When the project reaches a state in which the main contributor would
-    like to facilitate feedback from other contributors to the project,
-    they
-      - share the project by giving contributors access to the
-        associated Git repository.
-      - upload the fist draft of the manuscript to a shared Google Drive
-        document using `rmdrive::upload_rmd()`.
-3.  All contributors review and edit the manuscript draft by using
-    ‘Suggesting’ mode and comments in Google Drive
-4.  If contributors would like to render a version of the manuscript
-    including their suggestions, they
-    1.  temporarily [accept all
-        suggestions](https://support.google.com/docs/answer/6033474?co=GENIE.Platform%3DDesktop&hl=en).
-    2.  use `rmdrive::render_rmd()` to render the changed script
-        manuscript locally.
-    3.  use `Undo` in Google Drive to show changes as suggestions again.
-5.  After all contributors have finished their review, the main
-    contributor resolves all comments and accepts/rejects suggestions in
-    Google Drive, using `rmdrive::render_rmd()` intermittently to render
-    the changed manuscript locally.
-6.  The main contributor downloads the final manuscript containing all
-    changes using `rmdrive::download_rmd()` and commits it to the Git
-    repository.
-7.  If, at a later point, the main contributor adds more substantive
-    changes to the manuscript and would like the contributors to review
-    the manuscript again, they can upload the newest local version to
-    the same Google Drive document used before using
-    `rmdrive::update_rmd()` and go through the above steps again.
+Thus, the workflow main idea is very simple: upload the `.Rmd` (or
+`.Rnw`) document to Google Drive for collaborative prose writing in
+Google Docs and download the document locally to continue working on the
+code using Git. This iterative process of uploading to and downloading
+from Google Drive continues until the desired results are obtained. The
+workflow can be summarized as:
 
-# Documentation
+> Collaborative **code** writing using **Git** and Collaborative
+> **prose** writing on **Google Docs**
 
-The package has 4 main functions:
+### Functions
 
-  - `upload_rmd()` uploads a local `.Rmd` file to Google Drive
-  - `update_rmd()` uploads a local `.Rmd` file to an already existing
-    file in Google Drive
-  - `download_rmd()` downloads a file from Google Drive and saves it as
-    a local `.Rmd` file if its content has changed
-  - `render_rmd()` executes `download_rmd()` and renders the resulting
-    `.Rmd` file using `rmarkdown::render()`
+The package `trackdown` offers simple functions to manage the workflow:
 
-All functions have the same four arguments to specify which local `.Rmd`
-file and Google Drives file to operate on (demonstrated here with
-`upload_rmd()`:
+-   `upload_file()` - upload a file for the first time to Google Drive
+-   `update_file()` - update the content of an existing file in Google
+    Drive with the contents of a local file
+-   `download_file()` - download edited version of a file from Google
+    Drive updating the local version
+-   `render_file()` - download and render a file from Google Drive
 
-``` r
-rmdrive::upload_rmd(
-  file       = "path/to/local-rmd-file"   # specifies the local `.Rmd` file (without extension)
-  gfile      = "google-drive-file"        # specifies the name of the file on Google Drive (optional; defaults to `basename(file)`)
-  path       = "folder/sub-folder"        # specifies a folder in Google Drive (optional; if not specified, the home directory of My Drive or the Team Drive is used)
-  team_drive = "Team Drive Name"          # specifies the name of Team Drive (optional; if not specified, My Drive is used)
-)
-```
+### Special Features
+
+The Package `trackdown` offers special features to facilitate the
+collaborative writing and editing of a document on Google Docs. In
+particular, it is possible to:
+
+-   **Hide Code** - The header code (YAML or LaTeX settings) and code
+    chunks are removed from the document when uploaded to Google Drive
+    and automatically restored when downloaded. This prevents
+    collaborators from inadvertently making changes to the code that
+    might corrupt the file and it allows collaborators to focus only on
+    the plain text ignoring code jargon.
+-   **Upload Output** - The actual output (i.e., the resulting complied
+    document) can be uploaded in Google Drive together with the `.Rmd`
+    (or `.Rnw`) document. This helps collaborators to evaluate the
+    overall layout, figures and tables and it allows them to use
+    comments to propose and discuss suggestions.
+-   **Google Team Drive** - The documents can be uploaded on your
+    personal Google Drive or on a shared Google Team Drive to facilitate
+    collaboration.
+
+### Advantages of Google Docs
+
+Google Docs offers a familiar, intuitive, and free online interface that
+allows multiple users to simultaneously write and edit the same
+document. In Google Docs is it possible to:
+
+-   easily track changes
+-   add comments to propose and discuss suggestions
+-   check spelling and grammar errors (also using Grammarly)
+
+Moreover, Google Docs allows anyone to collaborate on the document as no
+programming experience is required, they only have to focus on the plain
+text ignoring code jargon.
+
+Note that Google account is not required for all collaborators (although
+recommended to access all Google Docs features). Only the person who
+manages the `trackdown` workflow requires a Google account to upload
+files in Google Drive. Other collaborators can be invited to contribute
+to the document using a shared link (See
+[Instructions](https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en&oco=0)).
+
+### Documentation and Vignettes
+
+All the documentation is available at TODO.
+
+To know more about the `trackdown` see:
+
+-   `vignette("trackdow-features")` - for detailed description of the
+    functions arguments and features
+-   `vignette("trackdow-workflow")` - for a workflow example and a
+    discussion about collaboration on prose and code
+-   `vignette("trackdow-tech-notes")` - for details regarding technical
+    aspects as authentication and file management
+
+## Contributing to `trackdown`
+
+## Citation
+
+To cite `trackdown` in publications use:
+
+A BibTeX entry for LaTeX users is

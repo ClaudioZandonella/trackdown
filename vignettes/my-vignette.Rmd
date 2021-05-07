@@ -1,8 +1,8 @@
 ---
-title: "Trackdown - R package for collaborative writing"
+title: "Trackdown - R package for collaborative writing and editing"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{Trackdown - R package for collaborative writing and editing}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,65 +19,255 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-The Package `trackdown` offers a simple solution to collaborative writing and editing of reproducible documents (`.Rmd` or `.Rnw`). Using trackdown, the local R Markdown or Sweave document is uploaded as plain-text in Google Drive allowing other colleagues to contribute to the prose using convenient features like tracking changes and comments. After integrating all authors’ contributions, the edited document is downloaded and rendered locally. 
+Literate programming combines prose and code chunks allowing the creation of high quality and reproducible documents. However, collaborative writing and editing have always been a bottleneck. Common version control systems such as Git are extremely powerful to collaborate on the code but less efficient and interactive for the narrative part of a document. Common word processor (e.g., Microsoft Word or Google Docs) offer a much smoother experience in terms of real-time editing and reviewing but analogous solutions  are missing for literate programming.
 
-This smooth workflow allows taking advantage of the easily readable Markdown and LaTeX plain-text combined with the optimal and well-known text editing experience offered by Google Docs.
+The `trackdown` package offers a simple answer to collaborative writing and editing of R Markdown (or Sweave) documents. Using `trackdown`, the local `.Rmd` (or `.Rnw`) file is uploaded as plain-text in Google Drive where, thanks to the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing of the document. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
 
-Grammar check integrated services (e.g., Grammarly)
+#### Advantages of Google Docs
 
-## Main Functions
+Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In Google Docs is it possible to:
 
-The Package `trackdown` offers different functions to manage the writing and editing workflow:
+- easily track changes
+- add comments to propose and discuss suggestions
+- check spelling and grammar errors (also using Grammarly)
+
+Moreover, Google Docs  allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the plain text ignoring code jargon.
+
+Note that Google account is not required for all collaborators (although recommended to access all Google Docs features). Only the person who manages the `trackdown` workflow requires a Google account to upload files in Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See [Instructions](https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en&oco=0)).
+
+## The trackdown Workflow
+
+When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is important to consider separately code and prose:
+
+- **Code** - Collaborative code writing is done efficiently following traditional **Git** workflow based on an online repository (e.g., GitHub or GitLab)
+- **Prose** - Collaborative prose writing is done efficiently on **Google Docs** where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document
+
+Thus, the workflow main idea is very simple: upload the `.Rmd` (or `.Rnw`) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
+
+> Collaborative **code** writing using **Git** and Collaborative **prose** writing on **Google Docs** 
+
+The package `trackdown` offers different functions to manage this workflow:
 
 - `upload_file()` - upload a file for the first time to Google Drive
-- `upgrade_file()` - update the content of an existing file in Google Drive with the contents of a local file
+- `update_file()` - update the content of an existing file in Google Drive with the contents of a local file
 - `download_file()` - download edited version of a file from Google Drive updating the local version 
 - `render_file()` - download and render a file from Google Drive
 
-## Workflow Example
+### Special trackdown Features
 
-We describe an hypothetical example of workflow. Actual worklow is obiously highly context dependent.
+The Package `trackdown` offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:
 
-When collaborating on your project, all code
+- **Hide Code** (See [hide_code](#hide-code)) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the plain text ignoring code jargon.
+- **Upload Output** (See [path_output](#path-output)) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.
+- **Google Team Drive** (See [team_drive](#team-drive)) - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.
 
-### hide code
 
-### upload output
+### Workflow Example
 
-## Important Notes
+Here a hypothetical workflow using `trackdown` is described as an example. The actual workflow depends on specific needs and conditions.
 
-### Autentication
+Suppose you want to collaborate with your colleagues on the writing of an R Markdown document. If you are the most experienced among your colleagues with R and in programming in general, it would be better if you manage and organize the workflow. 
 
-### `.trackdown` folder
+#### Upload File
+
+You create the initial document, for example `My-Report.Rmd`, and upload the file in Google Drive using the function `upload_file()`:
+
+```{r, echo = TRUE, eval = FALSE}
+trackdown::update_file(file = "Project-A/My-Report.Rmd")
+```
+
+In this way, the `My-Report.Rmd` file is uploaded from your local computer to your Google Drive. By default, the file is uploaded in Google Drive using the same name as the local file (without extension) in a folder named `tackdown/`. 
+
+Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the prose, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.
+
+#### Download File
+
+At some point, you will want to add some code to include figures, tables or results from the analyses. This must not be done directly in Google Docs, so first you are required to download the document.
+
+Before downloading the document from Google Drive, however, it is important that you accept all changes made to the document in Google Docs. You can simply select from the top menu “*Tools* > *Review suggested edits* > *Accept all*”. Now the edited version of the document can be downloaded from Google Drive using the function `download_file()`:
+
+```{r, echo = TRUE, eval = FALSE}
+trackdown::download_file(file = "Project-A/My-Report.Rmd")
+```
+
+Note that downloading the file from Google Drive will overwrite the local file.  
+
+#### Update File
+
+Once you added the required code chunks, further editing on the prose may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function `update_file()`:
+
+```{r, echo = TRUE, eval = FALSE}
+trackdown::update_file(file = "Project-A/My-Report.Rmd")
+```
+
+In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.
+
+
+#### Render File
+
+Once the document is finished and all changes have been accepted, you can download the document and automatically compile the document to obtain the actual output using the function `render_file()`:
+
+```{r, echo = TRUE, eval = FALSE}
+trackdown::render_file(file = "Project-A/My-Report.Rmd")
+```
+
+This function is simply a wrapper around `download_file()` that will call `rmarkdown::render()` once the document has been downloaded.
+
+#### A Quick Check
+
+Taking advantage of the "*Undo*" option available in Google Docs, it is possible to download the current document version at any time during the workflow without the need to accept permanently all suggested edits. You can:
+
+1. Select in Google Docs from the top menu “*Tools* > *Review suggested edits* > *Accept all*” to momentarily accept all changes
+2. Download the current version of the document using `download_file()` (or `render_file()`) function
+3. In Google Drive press "*Undo*" to restore the document to the previous state (i.e., before accepting all changes)
+
+In this way it is possible to check the current document and compile it locally at any time, without the need to accept permanently all suggested edits. Note, however, that is not possible to update the document in Google Drive with some local changes. This would overwrite the current content losing tracked changes.  
+
+### Collaboration Prose vs Code
+
+As stated above, when collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is important to consider separately code and prose. Collaborative code writing should be based on version control systems like Git, whereas collaborative prose writing is done more efficiently in Google Docs. Let's further discuss these two aspects:
+
+- **Code** - Collaborative code writing is better managed using version control systems like **Git**. Ideally, collaborators working on the code are experienced enough to organize the project in an online repository (e.g., GitHub or GitLab) and manage the workflow using Git. Writing or editing actual code on Google Docs, although possible, is strongly discouraged as it is no possible to run the code to check if it is correct. Thus, it is very easy to make several mistakes that would break the code. It is much better to write code in an appropriate IDE  (e.g., RStudio).
+
+- **Prose** - To facilitates the collaborative prose writing `trackdown` moves the whole process on **Google Docs**. Collaborators, however, should be aware that when the document is downloaded from Google Drive it is still considered as a `.Rmd` (or `.Rnw`) file. Thus, any formatted text (e.g., bold, italic, titles, font size, etc.) made in Google Docs will be lost. To effectively maintain text formatting options, they have to be specified using proper Markdown (or LaTeX) syntax. Collaborators with no experience in programming could find this too demanding. In this case, they might prefer to modify the text format using the common interface commands, leaving to their more experienced collaborators the task of *translating* the text formatting options into the appropriate Markdown (or LaTeX) commands.
+
+Overall, the workflow proposed by `trackdown` for collaborative writing of an R Markdown (or Sweave) document is an iterative process where the document is uploaded/updated to Google Drive for collaborative prose writing in Google Docs and downloaded locally for collaborative code writing using Git. 
+
+Note that the main limitations of this workflow are that it is not possible to simultaneously collaborate on the prose and the code included in the document. In this case, changes would be made on two different copies of the same document. Changes on the prose would be saved on the Google Drive copy of the document, whereas changes on the code would be saved on the local copy of the document. These two document versions can not be merged together but only overwritten, losing one of the two versions. However, minimal organization of the workflow into sequential steps will guarantee a smooth experience.
+
+
+## Arguments and Features
+
+All `trackdown` functions on some common arguments that are used to manage the workflow. In particular we have:
+
+```{r}
+*_file(file,
+       gfile = NULL,
+       gpath = "trackdown",
+       team_drive = NULL)
+```
+
+Moreover, when uploading or updating a file in Google Drive with `upload_file()` or `update_file()` respectively, two extra arguments are available:
+
+- `hide_code` - to hide the header code and code chunks from the document 
+- `path_output` - to upload the actual output (i.e., the resulting complied document) in Google Drive together with the .Rmd (or .Rnw) document
+
+In this section, all arguments of `trackdown` functions are introduced describing default settings and highlighting main features.
+
+#### `file` 
+
+A string indicating the path of the local `.Rmd` (or `.Rnw`) file. 
+
+All `trackdown` functions take as reference the local file to manage the workflow. Thus, `file` argument must always be specified both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.  
+
+#### `gfile`
+
+A string indicating the name of the file in Google Drive.
+
+By default (`NULL`), the name of the local file (without extension) is used as the name of the file in Google Drive. Specifying the `gfile` argument you can personalize the name of the file in Google Drive. In this case, remember to point out to correct file in Google Drive any time you update or download the file during your workflow.
+
+#### `gpath`
+
+A string indicating a directory in My Drive or in a Team Drive (optional).
+
+By default files are uploaded in the folder `"trackdown/"`. To specify another folder the full path is required (e.g., `"trackdown/my_folder/"`). If the  indicated folder is not already available on Google Drive, permission to create it is required to the user. Use `NULL` to upload directly at the root level, although it is not recommended.
+
+#### `team_drive` {#team-drive}
+
+A string indicating the name of a Google Team Drive (optional). 
+
+By default personal Google Drive  (i.e., My Drive) is used, but a specific Team Drive can be indicated to facilitate collaboration.
+
+#### `hide_code` {#hide-code}
+
+A logical value indicating whether the header code (YAML or LaTeX settings) and code chunks should be removed from the document when it is uploaded (or updated).
+
+This argument is available only for `upload_file()` and `update_file()` functions. Default the value is `FALSE`. Setting `TRUE`, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type "[[document-header]]" and "[[chunk-<name>]]" are displayed instead. 
+
+This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the plain text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified.
+
+#### `path_output` {#path-output}
+
+A string indicating the path of the output (i.e., the resulting compiled document).
+
+This argument is available only for `upload_file()` and `update_file()` functions. By default (`NULL`) no output is uploaded in Google Drive. If specified, the output (i.e., HTML or PDF file) is uploaded together with the main file. The output is named in Google Drive as the main file adding "-output" at the end (e.g., given the main file name "My-Report" the output is named "My-Report-output"). 
+
+This feature is intended to help collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions. Note that, in the case of PDF files, it is possible to add comments directly on the file in Google Drive. However, this is not possible with HTML files. 
+
+In the case of HTML files, `trackdown` can automatically convert them into PDFs before uploading if the `pagedown` package is available. The `pagedown` package is not installed as a dependency of `trackdown`, thus it has to be installed manually by the user if not already available. The function `pagedown::chrome_print()` will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.
+
+## Techincal Notes
+
+In this section some technical aspects about the `trackdown` workflow are discussed.
+
+### Trackdown Instructions
+
+When uploading (or updating) a file to Google Drive, `trackdown` adds some simple instructions and reminders on the top of the document. For example in the case of a file named `My-Report.Rmd` the following instructions are presented:
+
+```
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes proper formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to plain text and avoid modifying R code.
+Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: My-Report.Rmd
+HIDE-CODE: TRUE
+#----End Instructions----#
+```
+
+In particular, the shortcut to accept all changes is pointed out and the information about the name of the local file and the selected option for hiding the code are displayed. All these instructions are  automatically removed when the document is downloaded so they must not be modified.
+
+### Html 2 Pdf
+
+The `trackdown` package allows uploading the actual output (i.e., HTML or PDF file) together with the main file. This allows collaborators to evaluate the overall layout, figures and tables and to use comments to propose and discuss suggestions. However, only in the case of PDF files, collaborators can add comments directly on the file in Google Drive. Whereas, this is not possible with HTML files.
+
+In the case of HTML files, `trackdown` can automatically convert them into PDFs before uploading if the `pagedown` package is available. The `pagedown` package is not installed as a dependency of `trackdown`, thus it has to be installed manually by the user if not already available. The function `pagedown::chrome_print()` will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.
+
+### Authentication
+
+The `trackdown` package is based on `googledrive` package ([Official Documentation](https://googledrive.tidyverse.org/)) to manage files transfers to and from Google Drive. However, `googledrive` package requires authorization to view and manage your Drive files. The first time you use `trackdown`, you will be directed to a web browser, asked to sign in to your Google account, and to grant `googledrive` permission to operate on your behalf with Google Drive.
+
+Authentication is manged by `gargle` package ([Official Documentation](https://gargle.r-lib.org/index.html)). By default, user credentials are cached in a folder below your home directory, `~/.R/gargle/gargle-oauth`, from where they can be automatically refreshed, as necessary. Storage at the user level means the same token can be used across multiple projects and tokens are less likely to be synced to the cloud by accident. Note that if you are interacting with R from a web-based platform, like RStudio Server or Cloud, there will be a variant of this flow, known as out-of-band auth ("oob"). See help page of `googledrive::drive_auth()` for further information ([link](https://googledrive.tidyverse.org/reference/drive_auth.html)).
+
+It is possible to personalize `gargle` default settings adding options in the `.Rprofile` startup file. For example the preferred Google account and cache folder can be set with the code along these lines: 
+
+```{r}
+options(
+  gargle_oauth_email = "my_email@gmail.com",
+  gargle_oauth_cache = "/path/to/folder/that/does/not/sync/to/cloud"
+)
+```
+
+See `gargle` documentation for further information ([link](https://gargle.r-lib.org/reference/gargle_options.html)).
+
+### The `.trackdown` folder
+
+When uploading or updating a `.Rmd` (or `.Rnw`) file to Google Drive, it is possible to removed the header code (YAML or LaTeX settings) and code chunks specifying the argument `hide_code = TRUE`.
+
+All the content of the header code and of the code chunks is saved in a hidden folder named `.trackdown` that will be created in the same position of the `.Rmd` (or `.Rnw`) file. In particular, considering as an example the file `My-Report.Rmd`, two files will be created:
+
+- `My-Report.Rmd-header_info.rds` - containing information of the header code
+- `My-Report.Rmd-chunk_info.rds` - containing information of all code chunks
+
+These files are required to automatically restore header code and  all code chunks when the document is downloaded from Google Drive. Thus, it is important to do not delete or move the `.trackdown` hidden folder. This folder should always be in the same position of the `.Rmd` (or `.Rnw`) file.
+
+It is also recommended to track the `.trackdown` hidden folder with Git. This would give an extra chance to restore automatically (or manually) the code if the folder was deleted or modified by accident.
 
 ### Corrupted Files
 
+Editing an `.Rmd` (or `.Rnw`) file on Google Docs, it is very easy to introduce some syntax errors. This would break the code and it will no the possible to compile the document once downloaded locally. In particular, errors can be related to Markdown (or LaTeX) syntax or R code.
 
-### `upload_file()`
+-  **Markdown (or LaTeX) syntax** - Less expert collaborators are likely to introduce errors by editing the text of the document in Google Docs. Remember that any formatting to the text should be done using proper Markdown (or LaTeX) syntax. Any other formatting done in Google Docs (e.g., bold, italic, titles, font size, etc.) will be lost at download. Collaborators with no experience in programming could find this too demanding. In this case, they might prefer to modify the text format using the common interface commands, leaving to their more experienced collaborators the task of *translating* the text formatting options into the appropriate Markdown (or LaTeX) commands. Experienced collaborators, moreover, will easily fix possible syntax error that break the code also once the document is downloaded locally.
 
-The function `upload_file()` is used to upload the document for the first time to Google Drive. Function arguments and default values are reported below: 
+- **R code** - Any change to the R code should be avoided in Google Docs. Collaborative code writing is better done in an appropriate IDE (e.g., RStudio) using version control systems like Git. To prevent collaborators from inadvertently making changes to the code in Google Docs, it is possible to removed the header code (YAML or LaTeX settings) and code chunks specifying the argument `hide_code = TRUE`. This allows collaborators to focus only on the plain text ignoring code jargon. To guarantee correct code restoring, however, placeholders of type “[[document-header]]” and “[[chunk-<name>]]” must not be modified. If inadvertently removed, `trackdown` package will try to restore anyway the missing chunks placing them next to the last available placeholders. Unfortunately this process do not guarantees that the chucks position is the intended one. Experienced collaborators, however, can easily fix possible issues allowing the document to compile. 
 
-```{r}
-upload_file(file,
-            gfile = NULL,
-            gpath = "trackdown",
-            team_drive = NULL,
-            hide_code = FALSE,
-            path_output = NULL)
-```
-
-- `file` - a string indicating the path to the local `.Rmd` or `.Rnw` file
-- `gfile` - a string indicating the desired file name of the Google Drive file (with default value `NULL` to local file name is used)
-- `gpath` (Sub)directory in My Drive or a Team Drive (optional). By default files are uploaded in the folder "trackdown". To specify another folder the full path is required (e.g., "trackdown/my_folder")
-- `team_drive` - the name of a Google Team Drive (optional)
-- `hide_code` - logical value indicating whether to remove code from the text document (chunks and header); placeholders of type "[[chunk-<name>]]" are displayed instead
-- `path_output` - if desired, specify the path to the output (PDF or HTML file) to upload it together with the main document (`.Rmd` or `.Rnw` file)
+In all cases, using Git to track the `.Rmd` (or `.Rnw`) files (or better the whole project) is highly recommended. Git would allow to restore previous copies of the document in case of any issues. In the worst case scenario where for unknown reasons `trackdown` is not able to restore the code chunks, experienced collaborators can still use Git or the information saved in the `.trackdown` hidden folder to manually restore all corrupted or missing parts.  
 
 
 
-```{r setup}
-library(trackdown)
-```
+
+
+
 
 
 

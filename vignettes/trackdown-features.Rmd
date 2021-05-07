@@ -1,0 +1,94 @@
+---
+title: "trackdown Functions Arguments and Features"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{trackdown-features}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+The main idea behind the `trackdown` workflow is very simple: upload the `.Rmd` (or `.Rnw`) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git (See `vignette("trackdow-workflow")`). 
+
+To manage this workflow, the package `trackdown` offers different functions:
+
+- `upload_file()` - upload a file for the first time to Google Drive
+- `update_file()` - update the content of an existing file in Google Drive with the contents of a local file
+- `download_file()` - download edited version of a file from Google Drive updating the local version 
+- `render_file()` - download and render a file from Google Drive
+
+Moreover, the Package `trackdown` offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:
+
+- **Hide Code** (See [hide_code](#hide-code)) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the plain text ignoring code jargon.
+- **Upload Output** (See [path_output](#path-output)) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.
+- **Google Team Drive** (See [team_drive](#team-drive)) - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.
+
+## Arguments and Features
+
+All `trackdown` functions on some common arguments that are used to manage the workflow. In particular we have:
+
+```{r}
+*_file(file,
+       gfile = NULL,
+       gpath = "trackdown",
+       team_drive = NULL)
+```
+
+Moreover, when uploading or updating a file in Google Drive with `upload_file()` or `update_file()` respectively, two extra arguments are available:
+
+- `hide_code` - to hide the header code and code chunks from the document 
+- `path_output` - to upload the actual output (i.e., the resulting complied document) in Google Drive together with the .Rmd (or .Rnw) document
+
+In this section, all arguments of `trackdown` functions are introduced describing default settings and highlighting main features.
+
+#### `file` 
+
+A string indicating the path of the local `.Rmd` (or `.Rnw`) file. 
+
+All `trackdown` functions take as reference the local file to manage the workflow. Thus, `file` argument must always be specified both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.  
+
+#### `gfile`
+
+A string indicating the name of the file in Google Drive.
+
+By default (`NULL`), the name of the local file (without extension) is used as the name of the file in Google Drive. Specifying the `gfile` argument you can personalize the name of the file in Google Drive. In this case, remember to point out to correct file in Google Drive any time you update or download the file during your workflow.
+
+#### `gpath`
+
+A string indicating a directory in My Drive or in a Team Drive (optional).
+
+By default files are uploaded in the folder `"trackdown/"`. To specify another folder the full path is required (e.g., `"trackdown/my_folder/"`). If the  indicated folder is not already available on Google Drive, permission to create it is required to the user. Use `NULL` to upload directly at the root level, although it is not recommended.
+
+#### `team_drive` {#team-drive}
+
+A string indicating the name of a Google Team Drive (optional). 
+
+By default personal Google Drive  (i.e., My Drive) is used, but a specific Team Drive can be indicated to facilitate collaboration.
+
+#### `hide_code` {#hide-code}
+
+A logical value indicating whether the header code (YAML or LaTeX settings) and code chunks should be removed from the document when it is uploaded (or updated).
+
+This argument is available only for `upload_file()` and `update_file()` functions. Default the value is `FALSE`. Setting `TRUE`, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type "[[document-header]]" and "[[chunk-<name>]]" are displayed instead. 
+
+This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the plain text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified.
+
+#### `path_output` {#path-output}
+
+A string indicating the path of the output (i.e., the resulting compiled document).
+
+This argument is available only for `upload_file()` and `update_file()` functions. By default (`NULL`) no output is uploaded in Google Drive. If specified, the output (i.e., HTML or PDF file) is uploaded together with the main file. The output is named in Google Drive as the main file adding "-output" at the end (e.g., given the main file name "My-Report" the output is named "My-Report-output"). 
+
+This feature is intended to help collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions. Note that, in the case of PDF files, it is possible to add comments directly on the file in Google Drive. However, this is not possible with HTML files. 
+
+In the case of HTML files, `trackdown` can automatically convert them into PDFs before uploading if the `pagedown` package is available. The `pagedown` package is not installed as a dependency of `trackdown`, thus it has to be installed manually by the user if not already available. The function `pagedown::chrome_print()` will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.
+
+

@@ -16,3 +16,6 @@
 ^README\.Rmd$
 ^TODO\.md$
 ^\.github$
+^doc$
+^Meta$
+^vignettes/my-vignette\.Rmd$

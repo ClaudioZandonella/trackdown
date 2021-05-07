@@ -33,7 +33,7 @@ are displayed instead.}
 
 \item{path_output}{default \code{NULL}, specify the path to the output to upload
 together with the other file. PDF are directly uploaded, HTML can be first
-converted into PDF if Chrome is available.}
+converted into PDF if package \code{pagedown} and Chrome are available.}
 }
 \value{
 a dribble of the uploaded file (and output if specified)
@@ -42,7 +42,9 @@ a dribble of the uploaded file (and output if specified)
 Replaces the content of an existing file in Google Drive with the contents of
 a local file. It is also possible to update (or upload if not already
 present) the output (pdf or html) of the file specifying the
-\code{path_output} argument.
+\code{path_output} argument. In case of html files, if \code{pagedown}
+package and Chrome are available, users can decide to upload a pdf version of
+the html file.
 }
 \details{
 \emph{Use with caution as tracked changes in the Google Drive file will be lost!}

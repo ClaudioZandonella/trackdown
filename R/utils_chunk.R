@@ -184,7 +184,7 @@ extract_header <- function(text_lines, info_patterns){
     header_end <- header_index[2]
     
   } else if(info_patterns$extension == "rnw"){
-    header_start <- 1 # which(grepl(info_patterns$file_header_start, text_lines))
+    header_start <- 1 # which(grepl(info_patterns$file_header_start, text_lines)) # assume first line of the document
     header_end <- which(grepl(info_patterns$file_header_end, text_lines))
     
     if(length(header_start) != 1 || length(header_end) != 1) 
@@ -396,7 +396,7 @@ restore_code <- function(document, file_name, path){
   index_header <- which(grepl("^\\[\\[document-header\\]\\]", document))
   
   if(length(index_header) != 1L) {
-    warning("Failed retrieving header-tag, code added at first line", call. = FALSE)
+    warning("Failed retrieving [[document-header]] placeholder, code added at first line", call. = FALSE)
     document <- c(header_info$header_text, document)
     index_header <- 1L
   } else {
