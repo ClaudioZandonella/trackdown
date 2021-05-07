@@ -30,5 +30,7 @@ recommended.}
   otherwise
 }
 \description{
-Render file from Google Drive if there have been edits
+Render file from Google Drive if there have been edits\cr\cr
+To know more about the \code{trackdown} workflow and features see
+\code{\link{trackdown-package}} help page.
 }

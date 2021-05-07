@@ -10,7 +10,7 @@
 
 # devtools::build_vignettes()
 # devtools::build()  # Build package source
-# install.packages("../trackdown_0.0.0.9000.tar.gz", repos = NULL, type = "source") # Install source
+# renv::install("../trackdown_0.0.0.9000.tar.gz", repos = NULL, type = "source") # Install source
 # browseVignettes("trackdown")  # See vignette
 
 #----    Add to .Rbuildignore    ----

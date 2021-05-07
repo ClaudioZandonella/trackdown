@@ -47,6 +47,6 @@ already existing file see \code{\link{update_file}}. It is also possible to
 upload the output (pdf or html) of the file specifying the \code{path_output}
 argument. In case of html files, if \code{pagedown} package and Chrome are
 available, users can decide to upload a pdf version of the html file.\cr\cr
-To know more about the \code{trackdown} workflow see
-\code{\link{trackdown-package}}.
+To know more about the \code{trackdown} workflow and features see
+\code{\link{trackdown-package}} help page.
 }

@@ -56,17 +56,17 @@
 #' collaborative writing and editing of a document on Google Docs. In
 #' particular, it is possible to:
 #' \itemize{
-#'   \item{\strong{Hide Code}}{The header code (YAML or LaTeX settings) and
+#'   \item{\strong{Hide Code} - The header code (YAML or LaTeX settings) and
 #'   code chunks are removed from the document when uploaded to Google Drive and
 #'   automatically restored when downloaded. This prevents collaborators from
 #'   inadvertently making changes to the code that might corrupt the file and it
 #'   allows collaborators to focus only on the plain text ignoring code jargon.}
-#'   \item{\strong{Upload Output}}{The actual output (i.e., the resulting
+#'   \item{\strong{Upload Output} - The actual output (i.e., the resulting
 #'   complied document) can be uploaded in Google Drive together with the \code{.Rmd}
 #'   (or \code{.Rnw}) document. This helps collaborators to evaluate the overall
 #'   layout, figures and tables and it allows them to use comments to propose
 #'   and discuss suggestions.}
-#'   \item{\strong{Google Team Drive}}{The documents can be uploaded on your
+#'   \item{\strong{Google Team Drive} - The documents can be uploaded on your
 #'   personal Google Drive or on a shared Google Team Drive to facilitate
 #'   collaboration.}
 #'  }
@@ -95,18 +95,18 @@
 #'  
 #'  To know more about the \code{trackdown} see:
 #'  \itemize{
-#'   \item{\code{vignette("trackdow-features")}}{for detailed description of the
+#'   \item{\code{vignette("trackdow-features")} - for detailed description of the
 #'   functions arguments and features}
-#'   \item{\code{vignette("trackdow-workflow")}}{for a workflow example and a
+#'   \item{\code{vignette("trackdow-workflow")} - for a workflow example and a
 #'   discussion about collaboration on prose and code}
-#'   \item{\code{vignette("trackdow-tech-notes")}}{for details regarding
+#'   \item{\code{vignette("trackdow-tech-notes")} - for details regarding
 #'   technical aspects as authentication and file management}
 #'  }
 #'
 #' @importFrom utils tail
 #'
 #' @docType package
-#' @name trackdown
+#' @name trackdown-package
 NULL
 
 
