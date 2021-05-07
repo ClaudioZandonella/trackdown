@@ -90,7 +90,7 @@
 #'  Drive. Other collaborators can be invited to contribute to the document
 #'  using a shared link. See https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en&oco=0
 #'  
-#'  @section Documentation and Vignettes:
+#' @section Documentation and Vignettes:
 #'  All the documentation is available at TODO.
 #'  
 #'  To know more about the \code{trackdown} see:
