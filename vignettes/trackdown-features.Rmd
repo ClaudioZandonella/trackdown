@@ -65,7 +65,7 @@ By default (`NULL`), the name of the local file (without extension) is used as t
 
 A string indicating a directory in My Drive or in a Team Drive (optional).
 
-By default files are uploaded in the folder `"trackdown/"`. To specify another folder the full path is required (e.g., `"trackdown/my_folder/"`). If the  indicated folder is not already available on Google Drive, permission to create it is required to the user. Use `NULL` to upload directly at the root level, although it is not recommended.
+By default files are uploaded in the folder `"trackdown/"`. To specify another folder the full path is required (e.g., `"trackdown/my_folder/"`). If the indicated folder is not already available on Google Drive, permission to create it is required to the user. Use `NULL` to upload directly at the root level, although it is not recommended.
 
 #### `team_drive` {#team-drive}
 

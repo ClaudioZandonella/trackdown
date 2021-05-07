@@ -93,7 +93,7 @@ Taking advantage of the "*Undo*" option available in Google Docs, it is possible
 2. Download the current version of the document using `download_file()` (or `render_file()`) function
 3. In Google Drive press "*Undo*" to restore the document to the previous state (i.e., before accepting all changes)
 
-In this way it is possible to check the current document and compile it locally at any time, without the need to accept permanently all suggested edits. Note, however, that is not possible to update the document in Google Drive with some local changes. This would overwrite the current content losing tracked changes.  
+In this way, it is possible to check the current document and compile it locally at any time, without the need to accept permanently all suggested edits. Note, however, that is not possible to update the document in Google Drive with some local changes. This would overwrite the current content losing tracked changes.  
 
 ## Collaboration: Prose vs Code
 

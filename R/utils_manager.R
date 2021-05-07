@@ -41,7 +41,7 @@ evaluate_file <- function(file,
                           team_drive = NULL, 
                           test = c("none", "single", "both")){
 
-  test = match.arg(test)
+  test <-  match.arg(test)
   
   # check local file exists and get file info
   check_file(file)
@@ -108,7 +108,7 @@ upload_document <- function(file, file_info,
   # create .temp-file to upload
   temp_file <- file.path(file_info$path, 
                          paste0(".temp-", file_info$file_basename, ".txt"))
-  file.copy(file, temp_file, overwrite = T)
+  file.copy(file, temp_file, overwrite = TRUE)
   
   # remove temp-file on exit
   on.exit(invisible(file.remove(temp_file)), add = TRUE)
@@ -141,7 +141,7 @@ upload_document <- function(file, file_info,
     res <- googledrive::drive_update(
       media = temp_file,
       file = dribble_document$file,
-      verbose = F)
+      verbose = FALSE)
     
     finish_process(paste("Document updated at",
                          cli::col_blue(paste(gpath, gfile, sep = "/"))))
@@ -154,7 +154,7 @@ upload_document <- function(file, file_info,
       path = dribble_document$parent,
       name = gfile,
       type = "document",
-      verbose = F)
+      verbose = FALSE)
     
     finish_process(paste("Document uploaded at",
                          cli::col_blue(paste(gpath, gfile, sep = "/"))))

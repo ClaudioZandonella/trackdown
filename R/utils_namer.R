@@ -14,7 +14,7 @@
 # quote the chunk label if necessaryme issues
 # Adapted to solve so
 
-quote_label = function(x) {
+quote_label <-  function(x) {
   x <-  gsub('^\\s*,?', '', x)
   if (grepl('^\\s*[^\'"](,|\\s*$)', x)) {
     if(grepl('^\\s*[^\'"],\\s*[^=]*(,|\\s*$)', x)){
@@ -22,7 +22,7 @@ quote_label = function(x) {
       x <- gsub('^\\s*([^\'"]),(\\s*[^=]*)(,|\\s*$)', "'\\1,\\2'\\3", x)
     } else {
       # <<a,b=1>>= ---> <<'a',b=1>>=
-      x = gsub('^\\s*([^\'"])(,|\\s*$)', "'\\1'\\2", x)
+      x <-  gsub('^\\s*([^\'"])(,|\\s*$)', "'\\1'\\2", x)
     }
 
   } else if (grepl('^\\s*[^\'"](,|[^=]*(,|\\s*$))', x)) {

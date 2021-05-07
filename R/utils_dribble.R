@@ -90,7 +90,7 @@ get_path_dribble <- function(path, team_drive = NULL, .response = 1){
           "Folder ", sQuote(paste0(path, sep = "/",  collapse = "")),
           " does not exists in GoogleDrive.", " Do you want to create it?"))
       } else {
-        response = .response
+        response <-  .response
       }
       
       if (response == 2){
@@ -188,7 +188,7 @@ create_drive_folder <- function(name, parent_dribble = NULL, team_drive = NULL){
     #create folder using parent dribble (NULL if is not available)
     dribble_folder <- googledrive::drive_mkdir(name = name[i],
                                                path = parent_dribble,
-                                               verbose = F)
+                                               verbose = FALSE)
     
     # use folder id as parent for the next folder
     parent_dribble <- dribble_folder

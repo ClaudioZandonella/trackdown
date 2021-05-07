@@ -84,7 +84,7 @@
 #'  programming experience is required, they only have to focus on the plain
 #'  text ignoring code jargon.
 #'  
-#'  Note that Google account is not required for all collaborators (although
+#'  Note that a Google account is not required for all collaborators (although
 #'  recommended to access all Google Docs features). Only the person who manages
 #'  the \code{trackdown} workflow requires a Google account to upload files in Google
 #'  Drive. Other collaborators can be invited to contribute to the document

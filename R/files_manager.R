@@ -13,7 +13,9 @@
 #' already existing file see \code{\link{update_file}}. It is also possible to
 #' upload the output (pdf or html) of the file specifying the \code{path_output}
 #' argument. In case of html files, if \code{pagedown} package and Chrome are
-#' available, users can decide to upload a pdf version of the html file.
+#' available, users can decide to upload a pdf version of the html file.\cr\cr
+#' To know more about the \code{trackdown} workflow and features see
+#' \code{\link{trackdown-package}} help page.
 #' 
 #' @param file character. The path of a local `.Rmd` or `.Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
@@ -103,9 +105,11 @@ upload_file <- function(file,
 #' present) the output (pdf or html) of the file specifying the
 #' \code{path_output} argument. In case of html files, if \code{pagedown}
 #' package and Chrome are available, users can decide to upload a pdf version of
-#' the html file.
-#'
-#' \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
+#' the html file.\cr\cr
+#' \emph{Use with caution as tracked changes in the Google Drive file will be
+#' lost!}\cr\cr 
+#' To know more about the \code{trackdown} workflow and features see
+#' \code{\link{trackdown-package}} help page.
 #'
 #' @inheritParams upload_file
 #' 
@@ -193,9 +197,11 @@ update_file <- function(file,
 #' Downloads from Google Docs
 #'
 #' Download edited version of a file from Google Drive updating the local
-#' version with the new changes.
-#' 
-#' \emph{Use with caution as local version of the fiel will be overwritten!}
+#' version with the new changes.\cr\cr
+#' \emph{Use with caution as local version of the fiel will be
+#' overwritten!}\cr\cr 
+#' To know more about the \code{trackdown} workflow and features see
+#' \code{\link{trackdown-package}} help page.
 #'
 #' @inheritParams upload_file
 #'
@@ -250,7 +256,7 @@ download_file <- function(file,
     type = "text/plain",
     path = downloaded_file,
     overwrite = TRUE,
-    verbose = F
+    verbose = FALSE
   )
   temp_file <- file.path(document$file_info$path, 
                          paste0(".temp-", document$file_info$file_name))
@@ -269,12 +275,12 @@ download_file <- function(file,
     file.rename(temp_file, document$file)
     finish_process(paste(cli::col_blue(file), "updated with online changes!"))
     finish_process("Process completed!")
-    changed = TRUE
+    changed <- TRUE
   } else {
     cli::cli_alert_danger(paste("The local", cli::col_blue(file), "is identical with the Google Drive version", cli::col_red("Aborting...")))
     # remove temp-file
     invisible(unlink(temp_file))
-    changed = FALSE
+    changed <-  FALSE
   }
   
   #---- end ----
@@ -285,7 +291,9 @@ download_file <- function(file,
 
 #' Render file from Google Drive
 #'
-#' Render file from Google Drive if there have been edits
+#' Render file from Google Drive if there have been edits\cr\cr
+#' To know more about the \code{trackdown} workflow and features see
+#' \code{\link{trackdown-package}} help page.
 #' 
 #' @inheritParams upload_file
 #' 
@@ -306,7 +314,7 @@ render_file <- function(file,
                            gpath = gpath, 
                            team_drive = team_drive)
   if (changed) {
-    rmarkdown::render(file, quiet = T)
+    rmarkdown::render(file, quiet = TRUE)
     finish_process(paste(cli::col_blue(file), "donwloaded and rendered!"))
   }
   

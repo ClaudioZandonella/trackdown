@@ -44,8 +44,6 @@ a local file. It is also possible to update (or upload if not already
 present) the output (pdf or html) of the file specifying the
 \code{path_output} argument. In case of html files, if \code{pagedown}
 package and Chrome are available, users can decide to upload a pdf version of
-the html file.
-}
-\details{
+the html file.\cr\cr
 \emph{Use with caution as tracked changes in the Google Drive file will be lost!}
 }
