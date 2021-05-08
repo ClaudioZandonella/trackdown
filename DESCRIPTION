@@ -20,7 +20,7 @@ Authors@R:
     person(given = "Janosch",
            family = "Linkersdörfer",
            role = c("aut"),
-           email = "linkersdoerfer@mailbox.org",
+           email = "jlinkersdoerfer@ucsd.edu",
            comment = c(ORCID = "0000-0002-1577-1233")),
      person(given = "Mathew",
            family = "Ling",
