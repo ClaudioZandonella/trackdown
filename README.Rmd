@@ -34,7 +34,8 @@ This package is not already available on CRAN. To install the development versio
 ```{r}
 # install.packages("devtools")
 devtools::install_github("ekothe/trackdown",
-                         ref = "develop")
+                         ref = "develop",
+                         build_vignettes = TRUE)
 library(trackdown)
 ```
 

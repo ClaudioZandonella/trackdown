@@ -26,7 +26,8 @@ development version from GitHub run the following code:
 ``` r
 # install.packages("devtools")
 devtools::install_github("ekothe/trackdown",
-                         ref = "develop")
+                         ref = "develop",
+                         build_vignettes = TRUE)
 library(trackdown)
 ```
 
