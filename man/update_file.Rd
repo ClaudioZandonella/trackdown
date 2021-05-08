@@ -47,6 +47,6 @@ package and Chrome are available, users can decide to upload a pdf version of
 the html file.\cr\cr
 \emph{Use with caution as tracked changes in the Google Drive file will be
 lost!}\cr\cr 
-To know more about the \code{trackdown} workflow and features see
+To know more about \code{trackdown} workflow and features see
 \code{\link{trackdown-package}} help page.
 }

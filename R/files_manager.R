@@ -14,7 +14,7 @@
 #' upload the output (pdf or html) of the file specifying the \code{path_output}
 #' argument. In case of html files, if \code{pagedown} package and Chrome are
 #' available, users can decide to upload a pdf version of the html file.\cr\cr
-#' To know more about the \code{trackdown} workflow and features see
+#' To know more about \code{trackdown} workflow and features see
 #' \code{\link{trackdown-package}} help page.
 #' 
 #' @param file character. The path of a local `.Rmd` or `.Rnw` file.
@@ -108,7 +108,7 @@ upload_file <- function(file,
 #' the html file.\cr\cr
 #' \emph{Use with caution as tracked changes in the Google Drive file will be
 #' lost!}\cr\cr 
-#' To know more about the \code{trackdown} workflow and features see
+#' To know more about \code{trackdown} workflow and features see
 #' \code{\link{trackdown-package}} help page.
 #'
 #' @inheritParams upload_file
@@ -200,7 +200,7 @@ update_file <- function(file,
 #' version with the new changes.\cr\cr
 #' \emph{Use with caution as local version of the file will be
 #' overwritten!}\cr\cr 
-#' To know more about the \code{trackdown} workflow and features see
+#' To know more about \code{trackdown} workflow and features see
 #' \code{\link{trackdown-package}} help page.
 #'
 #' @inheritParams upload_file
@@ -292,7 +292,7 @@ download_file <- function(file,
 #' Render file from Google Drive
 #'
 #' Render file from Google Drive if there have been edits\cr\cr
-#' To know more about the \code{trackdown} workflow and features see
+#' To know more about \code{trackdown} workflow and features see
 #' \code{\link{trackdown-package}} help page.
 #' 
 #' @inheritParams upload_file

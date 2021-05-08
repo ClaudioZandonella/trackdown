@@ -28,6 +28,6 @@ Download edited version of a file from Google Drive updating the local
 version with the new changes.\cr\cr
 \emph{Use with caution as local version of the file will be
 overwritten!}\cr\cr 
-To know more about the \code{trackdown} workflow and features see
+To know more about \code{trackdown} workflow and features see
 \code{\link{trackdown-package}} help page.
 }

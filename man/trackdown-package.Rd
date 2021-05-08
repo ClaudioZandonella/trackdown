@@ -94,7 +94,7 @@ particular, it is possible to:
  recommended to access all Google Docs features). Only the person who manages
  the \code{trackdown} workflow requires a Google account to upload files in Google
  Drive. Other collaborators can be invited to contribute to the document
- using a shared link. See https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en&oco=0
+ using a shared link.
 }
 
 \section{Documentation and Vignettes}{

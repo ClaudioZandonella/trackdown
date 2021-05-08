@@ -31,6 +31,6 @@ recommended.}
 }
 \description{
 Render file from Google Drive if there have been edits\cr\cr
-To know more about the \code{trackdown} workflow and features see
+To know more about \code{trackdown} workflow and features see
 \code{\link{trackdown-package}} help page.
 }
