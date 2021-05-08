@@ -47,11 +47,11 @@ When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is importa
 
 Thus, the workflow main idea is very simple: upload the `.Rmd` (or `.Rnw`) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
 
-> Collaborative **code** writing using **Git** and Collaborative **prose** writing on **Google Docs** 
+> Collaborative **code** writing using **Git** and collaborative **prose** writing on **Google Docs** 
 
 ### Functions
 
-The package `trackdown` offers simple functions to manage the workflow:
+The package `trackdown` offers different functions to manage the workflow:
 
 - `upload_file()` - upload a file for the first time to Google Drive
 - `update_file()` - update the content of an existing file in Google Drive with the contents of a local file

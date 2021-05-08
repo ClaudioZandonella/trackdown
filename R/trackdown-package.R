@@ -37,7 +37,7 @@
 #'  can be summarized as:
 #'
 #'  \emph{Collaborative \strong{code} writing using \strong{Git} and
-#'  Collaborative \strong{prose} writing on \strong{Google Docs}}
+#'  collaborative \strong{prose} writing on \strong{Google Docs}}
 #'   
 #' @section Functions:
 #'  The package \code{trackdown} offers simple functions to manage the workflow:

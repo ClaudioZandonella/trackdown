@@ -50,12 +50,13 @@ code using Git. This iterative process of uploading to and downloading
 from Google Drive continues until the desired results are obtained. The
 workflow can be summarized as:
 
-> Collaborative **code** writing using **Git** and Collaborative
+> Collaborative **code** writing using **Git** and collaborative
 > **prose** writing on **Google Docs**
 
 ### Functions
 
-The package `trackdown` offers simple functions to manage the workflow:
+The package `trackdown` offers different functions to manage the
+workflow:
 
 -   `upload_file()` - upload a file for the first time to Google Drive
 -   `update_file()` - update the content of an existing file in Google

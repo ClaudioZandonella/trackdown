@@ -1,5 +1,5 @@
 Package: trackdown
-Title: Collaborative Writing and Editing of RMarkdown (or Sweave) Documents in Google Drive
+Title: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive
 Version: 0.0.0.9000
 Authors@R:
   c(person(given = "Emily",
@@ -25,13 +25,12 @@ Authors@R:
      person(given = "Mathew",
            family = "Ling",
            role = c("aut"),
-           email = "claudiozandonella@gmail.com",
+           email = "m.ling@deakin.edu.au",
            comment = c(ORCID = "0000-0002-0940-2538")))
 Description: Collaborative writing and editing of R Markdown (or Sweave) documents. The local .Rmd (or .Rnw) file is uploaded as plain-text in Google Drive where, thanks to the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing of the document. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
 Depends: R (>= 3.5)
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Imports:
     cli,
     googledrive,
