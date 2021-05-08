@@ -84,9 +84,9 @@ All the documentation is available at TODO.
 
 To know more about the `trackdown` see:
 
-- `vignette("trackdow-features")` - for detailed description of the functions arguments and features
-- `vignette("trackdow-workflow")` - for a workflow example and a discussion about collaboration on prose and code
-- `vignette("trackdow-tech-notes")` - for details regarding technical aspects as authentication and file management
+- `vignette("trackdown-features")` - for detailed description of the functions arguments and features
+- `vignette("trackdown-workflow")` - for a workflow example and a discussion about collaboration on prose and code
+- `vignette("trackdown-tech-notes")` - for details regarding technical aspects as authentication and file management
 
 ## Contributing to `trackdown`
 

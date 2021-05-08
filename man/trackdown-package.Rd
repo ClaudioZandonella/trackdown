@@ -37,7 +37,7 @@ locally.
  can be summarized as:
 
  \emph{Collaborative \strong{code} writing using \strong{Git} and
- Collaborative \strong{prose} writing on \strong{Google Docs}}
+ collaborative \strong{prose} writing on \strong{Google Docs}}
 }
 
 \section{Functions}{
@@ -103,11 +103,11 @@ particular, it is possible to:
  
  To know more about the \code{trackdown} see:
  \itemize{
-  \item{\code{vignette("trackdow-features")} - for detailed description of the
+  \item{\code{vignette("trackdown-features")} - for detailed description of the
   functions arguments and features}
-  \item{\code{vignette("trackdow-workflow")} - for a workflow example and a
+  \item{\code{vignette("trackdown-workflow")} - for a workflow example and a
   discussion about collaboration on prose and code}
-  \item{\code{vignette("trackdow-tech-notes")} - for details regarding
+  \item{\code{vignette("trackdown-tech-notes")} - for details regarding
   technical aspects as authentication and file management}
  }
 }

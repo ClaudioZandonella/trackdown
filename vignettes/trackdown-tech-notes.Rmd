@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 In this vignette, some technical aspects of the `trackdown` workflow are discussed.
 
+For a general overview of the package, see the `trackdown-package` help page or  `vignette("trackdown-workflow")` to know more about the workflow and `vignette("trackdown-features")` for a detailed description of function arguments and features. 
+
 ### Trackdown Instructions
 
 When uploading (or updating) a file to Google Drive, `trackdown` adds some simple instructions and reminders on the top of the document. For example in the case of a file named `My-Report.Rmd` the following instructions are presented:

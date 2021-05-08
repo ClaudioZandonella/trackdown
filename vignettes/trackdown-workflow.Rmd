@@ -34,6 +34,8 @@ The package `trackdown` offers different functions to manage this workflow:
 - `download_file()` - download edited version of a file from Google Drive updating the local version 
 - `render_file()` - download and render a file from Google Drive
 
+For a general overview of the package, see the `trackdown-package` help page or  `vignette("trackdown-features")` for a detailed description of function arguments and features and `vignette("trackdown-tech-notes")` for technical aspects. 
+
 ## Workflow Example
 
 Here a hypothetical workflow using `trackdown` is described as an example. The actual workflow depends on specific needs and conditions.
