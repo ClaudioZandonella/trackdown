@@ -4,6 +4,7 @@ trackdown - R package for collaborative writing and editing
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
 [![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
 <!-- badges: end -->
 
@@ -16,7 +17,8 @@ easily contribute to the writing and editing of the document. After
 integrating all authors’ contributions, the final document can be
 downloaded and rendered locally.
 
-All the documentation is available at TODO.
+All the documentation is available at
+<https://ekothe.github.io/trackdown/>.
 
 ## Installation
 
@@ -110,7 +112,8 @@ contribute to the document using a shared link (See
 
 ### Documentation and Vignettes
 
-All the documentation is available at TODO.
+All the documentation is available at
+<https://ekothe.github.io/trackdown/>.
 
 To know more about the `trackdown` see:
 

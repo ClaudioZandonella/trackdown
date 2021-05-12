@@ -91,7 +91,7 @@
 #'  using a shared link.
 #'  
 #' @section Documentation and Vignettes:
-#'  All the documentation is available at TODO.
+#'  All the documentation is available at \url{https://ekothe.github.io/trackdown/}.
 #'  
 #'  To know more about the \code{trackdown} see:
 #'  \itemize{

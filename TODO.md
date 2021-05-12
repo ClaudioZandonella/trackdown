@@ -53,3 +53,11 @@
 ## May
 
 - add "sharedWithMe" option to allow collaborators access shared files (https://github.com/tidyverse/googledrive/issues/154#issuecomment-317755269)
+
+
+## Future 
+
+- [] Add plug-in functions
+- [] gwet sharable links
+- [] support md and latex files
+

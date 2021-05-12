@@ -1,5 +1,5 @@
 ---
-title: "trackdown Technical Notes"
+title: "Technical Notes"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{trackdown-tech-notes}

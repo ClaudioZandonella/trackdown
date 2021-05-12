@@ -17,12 +17,13 @@ knitr::opts_chunk$set(
 ```
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
 [![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
 <!-- badges: end -->
 
 The `trackdown` package offers a simple answer to collaborative writing and editing of R Markdown (or Sweave) documents. Using `trackdown`, the local `.Rmd` (or `.Rnw`) file is uploaded as plain-text in Google Drive where, thanks to the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing of the document. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
 
-All the documentation is available at TODO.
+All the documentation is available at <https://ekothe.github.io/trackdown/>.
 
 ## Installation
 
@@ -78,7 +79,7 @@ Note that a Google account is not required for all collaborators (although recom
 
 ### Documentation and Vignettes
 
-All the documentation is available at TODO.
+All the documentation is available at <https://ekothe.github.io/trackdown/>.
 
 To know more about the `trackdown` see:
 

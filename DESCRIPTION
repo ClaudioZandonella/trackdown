@@ -47,5 +47,5 @@ Suggests:
 Config/testthat/edition: 3
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-URL: https://github.com/ekothe/trackdown
+URL: https://github.com/ekothe/trackdown, https://ekothe.github.io/trackdown/
 BugReports: https://github.com/ekothe/trackdown/issues
