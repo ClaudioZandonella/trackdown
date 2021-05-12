@@ -54,7 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/my-vignette.html">Trackdown - R package for collaborative writing and editing</a>
+      <a href="../articles/summary-vignette.html">Trackdown - R package for collaborative writing and editing</a>
     </li>
     <li>
       <a href="../articles/trackdown-features.html">Function Arguments and Features</a>
@@ -98,9 +98,9 @@
 
     
     
-<div id="the-workflow-idea" class="section level2">
+<div id="wf-idea" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-workflow-idea" class="anchor"></a>The Workflow Idea</h2>
+<a href="#wf-idea" class="anchor"></a>The Workflow Idea</h2>
 <p>When collaborating on the writing of a <code>.Rmd</code> (or <code>.Rnw</code>) document it is important to consider separately code and prose:</p>
 <ul>
 <li>
@@ -125,48 +125,48 @@
 </ul>
 <p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-features.html">vignette("trackdown-features")</a></code> for a detailed description of function arguments and features and <code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for technical aspects.</p>
 </div>
-<div id="workflow-example" class="section level2">
+<div id="wf-example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#workflow-example" class="anchor"></a>Workflow Example</h2>
+<a href="#wf-example" class="anchor"></a>Workflow Example</h2>
 <p>Here a hypothetical workflow using <code>trackdown</code> is described as an example. The actual workflow depends on specific needs and conditions.</p>
 <p>Suppose you want to collaborate with your colleagues on the writing of an R Markdown document. If you are the most experienced among your colleagues with R and in programming in general, it would be better if you manage and organize the workflow.</p>
-<div id="upload-file" class="section level4">
+<div id="ex-upload" class="section level4">
 <h4 class="hasAnchor">
-<a href="#upload-file" class="anchor"></a>Upload File</h4>
+<a href="#ex-upload" class="anchor"></a>Upload File</h4>
 <p>You create the initial document, for example <code>My-Report.Rmd</code>, and upload the file in Google Drive using the function <code><a href="../reference/upload_file.html">upload_file()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>In this way, the <code>My-Report.Rmd</code> file is uploaded from your local computer to your Google Drive. By default, the file is uploaded in Google Drive using the same name as the local file (without extension) in a folder named <code>tackdown/</code>.</p>
 <p>Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the prose, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.</p>
 </div>
-<div id="download-file" class="section level4">
+<div id="ex-download" class="section level4">
 <h4 class="hasAnchor">
-<a href="#download-file" class="anchor"></a>Download File</h4>
+<a href="#ex-download" class="anchor"></a>Download File</h4>
 <p>At some point, you will want to add some code to include figures, tables or results from the analyses. This must not be done directly in Google Docs, so first you are required to download the document.</p>
 <p>Before downloading the document from Google Drive, however, it is important that you accept all changes made to the document in Google Docs. You can simply select from the top menu “<em>Tools</em> &gt; <em>Review suggested edits</em> &gt; <em>Accept all</em>”. Now the edited version of the document can be downloaded from Google Drive using the function <code><a href="../reference/download_file.html">download_file()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/download_file.html">download_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>Note that downloading the file from Google Drive will overwrite the local file.</p>
 </div>
-<div id="update-file" class="section level4">
+<div id="ex-update" class="section level4">
 <h4 class="hasAnchor">
-<a href="#update-file" class="anchor"></a>Update File</h4>
+<a href="#ex-update" class="anchor"></a>Update File</h4>
 <p>Once you added the required code chunks, further editing on the prose may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function <code><a href="../reference/update_file.html">update_file()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.</p>
 </div>
-<div id="render-file" class="section level4">
+<div id="ex-render" class="section level4">
 <h4 class="hasAnchor">
-<a href="#render-file" class="anchor"></a>Render File</h4>
+<a href="#ex-render" class="anchor"></a>Render File</h4>
 <p>Once the document is finished and all changes have been accepted, you can download the document and automatically compile the document to obtain the actual output using the function <code><a href="../reference/render_file.html">render_file()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/render_file.html">render_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>This function is simply a wrapper around <code><a href="../reference/download_file.html">download_file()</a></code> that will call <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html">rmarkdown::render()</a></code> once the document has been downloaded.</p>
 </div>
-<div id="a-quick-check" class="section level4">
+<div id="ex-check" class="section level4">
 <h4 class="hasAnchor">
-<a href="#a-quick-check" class="anchor"></a>A Quick Check</h4>
+<a href="#ex-check" class="anchor"></a>A Quick Check</h4>
 <p>Taking advantage of the “<em>Undo</em>” option available in Google Docs, it is possible to download the current document version at any time during the workflow without the need to accept permanently all suggested edits. You can:</p>
 <ol style="list-style-type: decimal">
 <li>Select in Google Docs from the top menu “<em>Tools</em> &gt; <em>Review suggested edits</em> &gt; <em>Accept all</em>” to momentarily accept all changes</li>
@@ -176,9 +176,9 @@
 <p>In this way, it is possible to check the current document and compile it locally at any time, without the need to accept permanently all suggested edits. Note, however, that is not possible to update the document in Google Drive with some local changes. This would overwrite the current content losing tracked changes.</p>
 </div>
 </div>
-<div id="collaboration-prose-vs-code" class="section level2">
+<div id="collab" class="section level2">
 <h2 class="hasAnchor">
-<a href="#collaboration-prose-vs-code" class="anchor"></a>Collaboration: Prose vs Code</h2>
+<a href="#collab" class="anchor"></a>Collaboration: Prose vs Code</h2>
 <p>As stated above, when collaborating on the writing of a <code>.Rmd</code> (or <code>.Rnw</code>) document it is important to consider separately code and prose. Collaborative code writing should be based on version control systems like Git, whereas collaborative prose writing is done more efficiently in Google Docs. Let’s further discuss these two aspects:</p>
 <ul>
 <li><p><strong>Code</strong> - Collaborative code writing is better managed using version control systems like <strong>Git</strong>. Ideally, collaborators working on the code are experienced enough to organize the project in an online repository (e.g., GitHub or GitLab) and manage the workflow using Git. Writing or editing actual code on Google Docs, although possible, is strongly discouraged as it is no possible to run the code to check if it is correct. Thus, it is very easy to make several mistakes that would break the code. It is much better to write code in an appropriate IDE (e.g., RStudio).</p></li>

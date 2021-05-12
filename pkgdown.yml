@@ -2,9 +2,9 @@ pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  my-vignette: my-vignette.html
+  summary-vignette: summary-vignette.html
   trackdown-features: trackdown-features.html
   trackdown-tech-notes: trackdown-tech-notes.html
   trackdown-workflow: trackdown-workflow.html
-last_built: 2021-05-12T08:10Z
+last_built: 2021-05-12T09:54Z
 
