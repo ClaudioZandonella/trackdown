@@ -84,7 +84,7 @@ All the documentation is available at <https://ekothe.github.io/trackdown/>.
 
 To know more about the `trackdown` see:
 
-- `vignette("trackdown-features")` - for detailed description of the functions arguments and features
+- `vignette("trackdown-features")` - for detailed description of the function arguments and features
 - `vignette("trackdown-workflow")` - for a workflow example and a discussion about collaboration on prose and code
 - `vignette("trackdown-tech-notes")` - for details regarding technical aspects as authentication and file management
 

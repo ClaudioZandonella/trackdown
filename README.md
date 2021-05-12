@@ -121,7 +121,7 @@ All the documentation is available at
 To know more about the `trackdown` see:
 
 -   `vignette("trackdown-features")` - for detailed description of the
-    functions arguments and features
+    function arguments and features
 -   `vignette("trackdown-workflow")` - for a workflow example and a
     discussion about collaboration on prose and code
 -   `vignette("trackdown-tech-notes")` - for details regarding technical

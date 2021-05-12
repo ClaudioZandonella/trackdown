@@ -1,5 +1,5 @@
 ---
-title: "Functions Arguments and Features"
+title: "Function Arguments and Features"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{trackdown-features}

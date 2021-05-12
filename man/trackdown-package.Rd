@@ -104,7 +104,7 @@ particular, it is possible to:
  To know more about the \code{trackdown} see:
  \itemize{
   \item{\code{vignette("trackdown-features")} - for detailed description of the
-  functions arguments and features}
+  function arguments and features}
   \item{\code{vignette("trackdown-workflow")} - for a workflow example and a
   discussion about collaboration on prose and code}
   \item{\code{vignette("trackdown-tech-notes")} - for details regarding
