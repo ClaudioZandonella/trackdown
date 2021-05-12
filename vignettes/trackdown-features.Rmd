@@ -34,7 +34,7 @@ Moreover, the Package `trackdown` offers special features to facilitate the coll
 For a general overview of the package, see the `trackdown-package` help page or `vignette("trackdown-workflow")` to know more about the workflow and `vignette("trackdown-tech-notes")` for technical aspects. 
 
 
-## Arguments and Features
+## Arguments and Features {#arg-feat}
 
 All `trackdown` functions on some common arguments that are used to manage the workflow. In particular we have:
 
@@ -52,19 +52,19 @@ Moreover, when uploading or updating a file in Google Drive with `upload_file()`
 
 In this section, all arguments of `trackdown` functions are introduced describing default settings and highlighting main features.
 
-#### `file` 
+#### `file` {#file}
 
 A string indicating the path of the local `.Rmd` (or `.Rnw`) file. 
 
 All `trackdown` functions take as reference the local file to manage the workflow. Thus, `file` argument must always be specified both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.  
 
-#### `gfile`
+#### `gfile` {#gfile}
 
 A string indicating the name of the file in Google Drive.
 
 By default (`NULL`), the name of the local file (without extension) is used as the name of the file in Google Drive. Specifying the `gfile` argument you can personalize the name of the file in Google Drive. In this case, remember to point out to correct file in Google Drive any time you update or download the file during your workflow.
 
-#### `gpath`
+#### `gpath` {#gpath}
 
 A string indicating a directory in My Drive or in a Team Drive (optional).
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## The Workflow Idea
+## The Workflow Idea {#wf-idea}
 
 When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is important to consider separately code and prose:
 
@@ -36,13 +36,13 @@ The package `trackdown` offers different functions to manage this workflow:
 
 For a general overview of the package, see the `trackdown-package` help page or  `vignette("trackdown-features")` for a detailed description of function arguments and features and `vignette("trackdown-tech-notes")` for technical aspects. 
 
-## Workflow Example
+## Workflow Example {#wf-example}
 
 Here a hypothetical workflow using `trackdown` is described as an example. The actual workflow depends on specific needs and conditions.
 
 Suppose you want to collaborate with your colleagues on the writing of an R Markdown document. If you are the most experienced among your colleagues with R and in programming in general, it would be better if you manage and organize the workflow. 
 
-#### Upload File
+#### Upload File {#ex-upload}
 
 You create the initial document, for example `My-Report.Rmd`, and upload the file in Google Drive using the function `upload_file()`:
 
@@ -54,7 +54,7 @@ In this way, the `My-Report.Rmd` file is uploaded from your local computer to yo
 
 Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the prose, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.
 
-#### Download File
+#### Download File {#ex-download}
 
 At some point, you will want to add some code to include figures, tables or results from the analyses. This must not be done directly in Google Docs, so first you are required to download the document.
 
@@ -66,7 +66,7 @@ trackdown::download_file(file = "Project-A/My-Report.Rmd")
 
 Note that downloading the file from Google Drive will overwrite the local file.  
 
-#### Update File
+#### Update File {#ex-update}
 
 Once you added the required code chunks, further editing on the prose may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function `update_file()`:
 
@@ -77,7 +77,7 @@ trackdown::update_file(file = "Project-A/My-Report.Rmd")
 In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.
 
 
-#### Render File
+#### Render File {#ex-render}
 
 Once the document is finished and all changes have been accepted, you can download the document and automatically compile the document to obtain the actual output using the function `render_file()`:
 
@@ -87,7 +87,7 @@ trackdown::render_file(file = "Project-A/My-Report.Rmd")
 
 This function is simply a wrapper around `download_file()` that will call `rmarkdown::render()` once the document has been downloaded.
 
-#### A Quick Check
+#### A Quick Check {#ex-check}
 
 Taking advantage of the "*Undo*" option available in Google Docs, it is possible to download the current document version at any time during the workflow without the need to accept permanently all suggested edits. You can:
 
@@ -97,7 +97,7 @@ Taking advantage of the "*Undo*" option available in Google Docs, it is possible
 
 In this way, it is possible to check the current document and compile it locally at any time, without the need to accept permanently all suggested edits. Note, however, that is not possible to update the document in Google Drive with some local changes. This would overwrite the current content losing tracked changes.  
 
-## Collaboration: Prose vs Code
+## Collaboration: Prose vs Code {#collab}
 
 As stated above, when collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is important to consider separately code and prose. Collaborative code writing should be based on version control systems like Git, whereas collaborative prose writing is done more efficiently in Google Docs. Let's further discuss these two aspects:
 

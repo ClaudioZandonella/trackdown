@@ -20,7 +20,7 @@ In this vignette, some technical aspects of the `trackdown` workflow are discuss
 
 For a general overview of the package, see the `trackdown-package` help page or  `vignette("trackdown-workflow")` to know more about the workflow and `vignette("trackdown-features")` for a detailed description of function arguments and features. 
 
-### Trackdown Instructions
+### Trackdown Instructions {#instructions}
 
 When uploading (or updating) a file to Google Drive, `trackdown` adds some simple instructions and reminders on the top of the document. For example in the case of a file named `My-Report.Rmd` the following instructions are presented:
 
@@ -37,13 +37,13 @@ HIDE-CODE: TRUE
 
 In particular, the shortcut for accepting all changes is pointed out and the information about the name of the local file and the selected option for hiding the code is displayed. All these instructions are automatically removed when the document is downloaded so they must not be modified.
 
-### Html 2 Pdf
+### Html 2 Pdf {#Html2Pdf}
 
 The `trackdown` package allows uploading the actual output (i.e., HTML or PDF file) together with the main file. This allows collaborators to evaluate the overall layout, figures and tables and to use comments to propose and discuss suggestions. However, only in the case of PDF files, collaborators can add comments directly on the file in Google Drive. Whereas, this is not possible with HTML files.
 
 In the case of HTML files, `trackdown` can automatically convert them into PDFs before uploading if the `pagedown` package is available. The `pagedown` package is not installed as a dependency of `trackdown`, thus it has to be installed manually by the user if not already available. The function `pagedown::chrome_print()` will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.
 
-### Authentication
+### Authentication {#auth}
 
 The `trackdown` package is based on `googledrive` package ([Official Documentation](https://googledrive.tidyverse.org/)) to manage files transfers to and from Google Drive. However, `googledrive` package requires authorization to view and manage your Drive files. The first time you use `trackdown`, you will be directed to a web browser, asked to sign in to your Google account and to grant `googledrive` permission to operate on your behalf with Google Drive.
 
@@ -60,7 +60,7 @@ options(
 
 See `gargle` documentation for further information ([link](https://gargle.r-lib.org/reference/gargle_options.html)).
 
-### The `.trackdown` folder
+### The `.trackdown` folder {#hidden-folder}
 
 When uploading or updating a `.Rmd` (or `.Rnw`) file to Google Drive, it is possible to remove the header code (YAML or LaTeX settings) and code chunks specifying the argument `hide_code = TRUE`.
 
@@ -73,7 +73,7 @@ These files are required to automatically restore header code and all code chunk
 
 It is also recommended to track the `.trackdown` hidden folder with Git. This would give an extra chance to restore automatically (or manually) the code if the folder was deleted or modified by accident.
 
-### Corrupted Files
+### Corrupted Files {#corrupted}
 
 Editing an `.Rmd` (or `.Rnw`) file on Google Docs, it is very easy to introduce some syntax errors. This would break the code and it will no possible to compile the document once downloaded locally. In particular, errors can be related to Markdown (or LaTeX) syntax or R code.
 

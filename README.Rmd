@@ -26,7 +26,7 @@ The `trackdown` package offers a simple answer to collaborative writing and edit
 
 All the documentation is available at <https://ekothe.github.io/trackdown/>.
 
-## Installation
+## Installation {#install}
 
 This package is not already available on CRAN. To install the development version from GitHub run the following code:
 
@@ -38,7 +38,7 @@ remotes::install_github("ekothe/trackdown",
 library(trackdown)
 ```
 
-## The trackdown Workflow
+## The trackdown Workflow {#workflow}
 
 When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is important to consider separately code and prose:
 
@@ -49,7 +49,7 @@ Thus, the workflow main idea is very simple: upload the `.Rmd` (or `.Rnw`) docum
 
 > Collaborative **code** writing using **Git** and collaborative **prose** writing on **Google Docs** 
 
-### Functions
+### Functions {#funtions}
 
 The package `trackdown` offers different functions to manage the workflow:
 
@@ -58,7 +58,7 @@ The package `trackdown` offers different functions to manage the workflow:
 - `download_file()` - download edited version of a file from Google Drive updating the local version 
 - `render_file()` - download and render a file from Google Drive
 
-### Special Features
+### Special Features {#spec-feat}
 
 The Package `trackdown` offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:
 
@@ -66,7 +66,7 @@ The Package `trackdown` offers special features to facilitate the collaborative 
 - **Upload Output** - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.
 - **Google Team Drive** - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.
 
-### Advantages of Google Docs
+### Advantages of Google Docs {#google-docs}
 
 Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In Google Docs is it possible to:
 
@@ -78,7 +78,7 @@ Moreover, Google Docs  allows anyone to collaborate on the document as no progra
 
 Note that a Google account is not required for all collaborators (although recommended to access all Google Docs features). Only the person who manages the `trackdown` workflow requires a Google account to upload files in Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See [Instructions](https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en&oco=0)).
 
-### Documentation and Vignettes
+### Documentation and Vignettes {#doc-vignette}
 
 All the documentation is available at <https://ekothe.github.io/trackdown/>.
 
@@ -88,9 +88,9 @@ To know more about the `trackdown` see:
 - `vignette("trackdown-workflow")` - for a workflow example and a discussion about collaboration on prose and code
 - `vignette("trackdown-tech-notes")` - for details regarding technical aspects as authentication and file management
 
-## Contributing to `trackdown`
+## Contributing to `trackdown` {#contrib}
 
-## Citation
+## Citation {#cit}
 
 To cite `trackdown` in publications use:
 
