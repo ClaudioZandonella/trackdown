@@ -3,8 +3,8 @@ trackdown - R package for collaborative writing and editing
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
-<hr>
+
+[![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
 <!-- badges: end -->
 
 The `trackdown` package offers a simple answer to collaborative writing
@@ -24,8 +24,8 @@ This package is not already available on CRAN. To install the
 development version from GitHub run the following code:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("ekothe/trackdown",
+# install.packages("remotes")
+remotes::install_github("ekothe/trackdown",
                          ref = "develop",
                          build_vignettes = TRUE)
 library(trackdown)
