@@ -10,7 +10,9 @@ local .Rmd/.Rnw for knitting.
 
 # Important News
 
-`trackdown` is undergoing a complete revision. In the `master` branch, you can find the previous version of the package (formerly named `rmdrive`). In the `develop` branch, instead, you can find the new version that icludes support for `.Rmd` and `.Rnw` files and other new feature (e.g., hide chunks code). We are still working on the last aspects and on the package documentation but soon it will be ready.
+`trackdown` is undergoing a complete revision. In the `master` branch, you can find the previous version of the package (formerly named `rmdrive`). In the `develop` branch, instead, you can find the new version that icludes support for `.Rmd` and `.Rnw` files and other new feature (e.g., hide chunks code).
+
+You can find the documentation of the new version of the package at <https://ekothe.github.io/trackdown/>
 
 # Installation
 
