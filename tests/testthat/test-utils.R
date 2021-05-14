@@ -206,7 +206,18 @@ test_that("check sanitize_document", {
                "Line1\n\nLine2\n\n\nLine3\n\n Line4\n")
 })
 
+#----    get_os    ----
+
+test_that("get_os", {
+  expect_true({
+  os <- get_os()
+  os %in% c("unix", "windows")
+  })
+})
+
 #----
+
+
 
 
 
