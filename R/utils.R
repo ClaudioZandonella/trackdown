@@ -468,6 +468,20 @@ check_supported_documents <- function(file_info){
          call. = FALSE)
 }
 
-#----
+#----    get_os    ----
 
+#' Get the current operating system
+#' 
+#' @return the current os as string
+#' @noRd
+#'
+#' @examples
+#' os <- get_os()
+#' 
+
+get_os <- function(){
+  return(.Platform$OS.type)
+}
+
+#----
 
