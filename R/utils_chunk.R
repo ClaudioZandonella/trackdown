@@ -19,6 +19,13 @@ mkdir_trackdown <- function(local_path, folder_name = ".trackdown"){
     dir.create(drk_trackdown) # create the hidden folder for temp files
   }
   
+  os <- get_os() # get the current os
+  
+  if(os == "windows"){
+    shell(paste("attrib +h", drk_trackdown)) # make the directory hidden in windows
+  }
+  
+  
 }
 
 #----    get_chunk_range    ----
