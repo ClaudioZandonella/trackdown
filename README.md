@@ -20,9 +20,6 @@ easily contribute to the writing and editing of the document. After
 integrating all authors’ contributions, the final document can be
 downloaded and rendered locally.
 
-All the documentation is available at
-<https://ekothe.github.io/trackdown/>.
-
 ## Installation
 
 This package is not already available on CRAN. To install the
