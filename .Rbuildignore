@@ -1,2 +1,21 @@
+# Rproject files
 ^.*\.Rproj$
 ^\.Rproj\.user$
+
+# renv utils
+^renv$
+^renv\.lock$
+
+# Ci utils
+^\.secrets$
+^codecov\.yml$
+
+# other files
+^R/zz_CRAN_checks\.R$
+^LICENSE\.md$
+^README\.Rmd$
+^TODO\.md$
+^\.github$
+^doc$
+^Meta$
+^vignettes/my-vignette\.Rmd$

@@ -1,0 +1,171 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://www.googleapis.com/upload/drive/v3/files?supportsTeamDrives=TRUE&fields=%2A&uploadType=multipart
+    body:
+      encoding: ''
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmp6STsxb/file9881dc84749",
+        type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/.temp-example_1.txt",
+        type = "text/plain")
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
+        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
+        ma=2592000; v="46,43"
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      content-length: '3781'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 29 Apr 2021 14:34:58 GMT
+      expires: Mon, 01 Jan 1990 00:00:00 GMT
+      pragma: no-cache
+      server: UploadServer
+      vary:
+      - Origin
+      - X-Origin
+      x-guploader-uploadid: ABg5-UxI-glnK2VVrWNRyfZ2b3kQX8uULTCbALnYTK3xHy-msHowMGwkrwVNg1AIRauK9ERHiWyYIlCDuTj--Zangoc
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+         "kind": "drive#file",
+         "id": "1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE",
+         "name": "new_example_1",
+         "mimeType": "application/vnd.google-apps.document",
+         "starred": false,
+         "trashed": false,
+         "explicitlyTrashed": false,
+         "parents": [
+          "1CB3g50fT5m1LHMl3-lPiuoKd7v3jeYgb"
+         ],
+         "spaces": [
+          "drive"
+         ],
+         "version": "4",
+         "webContentLink": "https://drive.google.com/uc?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&export=download",
+         "webViewLink": "https://docs.google.com/document/d/1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE/edit?usp=drivesdk",
+         "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
+         "hasThumbnail": false,
+         "thumbnailVersion": "0",
+         "viewedByMe": true,
+         "viewedByMeTime": "2021-04-29T14:34:57.366Z",
+         "createdTime": "2021-04-29T14:34:55.396Z",
+         "modifiedTime": "2021-04-29T14:34:55.496Z",
+         "modifiedByMeTime": "2021-04-29T14:34:55.496Z",
+         "modifiedByMe": true,
+         "owners": [
+          {
+           "kind": "drive#user",
+           "displayName": "trackdown rpackage",
+           "me": true,
+           "permissionId": "09109446299227804908",
+           "emailAddress": "trackdown.rpackage@gmail.com"
+          }
+         ],
+         "lastModifyingUser": {
+          "kind": "drive#user",
+          "displayName": "trackdown rpackage",
+          "me": true,
+          "permissionId": "09109446299227804908",
+          "emailAddress": "trackdown.rpackage@gmail.com"
+         },
+         "shared": false,
+         "ownedByMe": true,
+         "capabilities": {
+          "canAddChildren": false,
+          "canAddMyDriveParent": false,
+          "canChangeCopyRequiresWriterPermission": true,
+          "canChangeViewersCanCopyContent": true,
+          "canComment": true,
+          "canCopy": true,
+          "canDelete": true,
+          "canDownload": true,
+          "canEdit": true,
+          "canListChildren": false,
+          "canModifyContent": true,
+          "canMoveChildrenWithinDrive": false,
+          "canMoveItemIntoTeamDrive": true,
+          "canMoveItemOutOfDrive": true,
+          "canMoveItemWithinDrive": true,
+          "canReadRevisions": true,
+          "canRemoveChildren": false,
+          "canRemoveMyDriveParent": true,
+          "canRename": true,
+          "canShare": true,
+          "canTrash": true,
+          "canUntrash": true
+         },
+         "viewersCanCopyContent": true,
+         "copyRequiresWriterPermission": false,
+         "writersCanShare": true,
+         "permissions": [
+          {
+           "kind": "drive#permission",
+           "id": "09109446299227804908",
+           "type": "user",
+           "emailAddress": "trackdown.rpackage@gmail.com",
+           "role": "owner",
+           "displayName": "trackdown rpackage",
+           "deleted": false
+          }
+         ],
+         "permissionIds": [
+          "09109446299227804908"
+         ],
+         "quotaBytesUsed": "0",
+         "isAppAuthorized": true,
+         "exportLinks": {
+          "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=rtf",
+          "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=odt",
+          "text/html": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=html",
+          "application/pdf": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=pdf",
+          "application/epub+zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=epub",
+          "application/zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=zip",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=docx",
+          "text/plain": "https://docs.google.com/feeds/download/documents/export/Export?id=1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE&exportFormat=txt"
+         }
+        }
+  recorded_at: 2021-04-29 14:34:59 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4
+- request:
+    method: delete
+    uri: https://www.googleapis.com/drive/v3/files/1L4QcQvRMH--mH1cyt5ZeEPMF8WdyO5SI7vuVC_JxyiE?supportsTeamDrives=TRUE
+    body:
+      encoding: ''
+      string: '{}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 204
+      category: Success
+      reason: No Content
+      message: 'Success: (204) No Content'
+    headers:
+      alt-svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
+        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
+        ma=2592000; v="46,43"
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      date: Thu, 29 Apr 2021 14:34:59 GMT
+      expires: Mon, 01 Jan 1990 00:00:00 GMT
+      pragma: no-cache
+      server: GSE
+      vary:
+      - Origin
+      - X-Origin
+    body:
+      encoding: UTF-8
+      file: no
+      string: ''
+  recorded_at: 2021-04-29 14:34:59 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

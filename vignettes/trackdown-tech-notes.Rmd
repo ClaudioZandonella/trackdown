@@ -1,0 +1,93 @@
+---
+title: "Technical Notes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{trackdown-tech-notes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  eval = FALSE,
+  comment = "#>"
+)
+```
+
+In this vignette, some technical aspects of the `trackdown` workflow are discussed.
+
+For a general overview of the package, see the `trackdown-package` help page or  `vignette("trackdown-workflow")` to know more about the workflow and `vignette("trackdown-features")` for a detailed description of function arguments and features. 
+
+### Trackdown Instructions {#instructions}
+
+When uploading (or updating) a file to Google Drive, `trackdown` adds some simple instructions and reminders on the top of the document. For example in the case of a file named `My-Report.Rmd` the following instructions are presented:
+
+```
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to plain text and avoid modifying R code.
+Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: My-Report.Rmd
+HIDE-CODE: TRUE
+#----End Instructions----#
+```
+
+In particular, the shortcut for accepting all changes is pointed out and the information about the name of the local file and the selected option for hiding the code is displayed. All these instructions are automatically removed when the document is downloaded so they must not be modified.
+
+### Html 2 Pdf {#Html2Pdf}
+
+The `trackdown` package allows uploading the actual output (i.e., HTML or PDF file) together with the main file. This allows collaborators to evaluate the overall layout, figures and tables and to use comments to propose and discuss suggestions. However, only in the case of PDF files, collaborators can add comments directly on the file in Google Drive. Whereas, this is not possible with HTML files.
+
+In the case of HTML files, `trackdown` can automatically convert them into PDFs before uploading if the `pagedown` package is available. The `pagedown` package is not installed as a dependency of `trackdown`, thus it has to be installed manually by the user if not already available. The function `pagedown::chrome_print()` will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.
+
+### Authentication {#auth}
+
+The `trackdown` package is based on `googledrive` package ([Official Documentation](https://googledrive.tidyverse.org/)) to manage files transfers to and from Google Drive. However, `googledrive` package requires authorization to view and manage your Drive files. The first time you use `trackdown`, you will be directed to a web browser, asked to sign in to your Google account and to grant `googledrive` permission to operate on your behalf with Google Drive.
+
+Authentication is managed by `gargle` package ([Official Documentation](https://gargle.r-lib.org/index.html)). By default, user credentials are cached in a folder below your home directory, `~/.R/gargle/gargle-oauth`, from where they can be automatically refreshed, as necessary. Storage at the user level means the same token can be used across multiple projects and tokens are less likely to be synced to the cloud by accident. Note that if you are interacting with R from a web-based platform, like RStudio Server or Cloud, there will be a variant of this flow, known as out-of-band auth ("oob"). See help page of `googledrive::drive_auth()` for further information ([link](https://googledrive.tidyverse.org/reference/drive_auth.html)).
+
+It is possible to personalize `gargle` default settings adding options in the `.Rprofile` startup file. For example the preferred Google account and cache folder can be set with the code along these lines: 
+
+```{r}
+options(
+  gargle_oauth_email = "my_email@gmail.com",
+  gargle_oauth_cache = "/path/to/folder/that/does/not/sync/to/cloud"
+)
+```
+
+See `gargle` documentation for further information ([link](https://gargle.r-lib.org/reference/gargle_options.html)).
+
+### The `.trackdown` folder {#hidden-folder}
+
+When uploading or updating a `.Rmd` (or `.Rnw`) file to Google Drive, it is possible to remove the header code (YAML or LaTeX settings) and code chunks specifying the argument `hide_code = TRUE`.
+
+All the content of the header code and the code chunks are saved in a hidden folder named `.trackdown` that will be created in the same position of the `.Rmd` (or `.Rnw`) file. In particular, considering as an example the file `My-Report.Rmd`, two files will be created:
+
+- `My-Report.Rmd-header_info.rds` - containing information of the header code
+- `My-Report.Rmd-chunk_info.rds` - containing information of all code chunks
+
+These files are required to automatically restore header code and all code chunks when the document is downloaded from Google Drive. Thus, it is important to not delete or move the `.trackdown` hidden folder. This folder should always be in the same position of the `.Rmd` (or `.Rnw`) file.
+
+It is also recommended to track the `.trackdown` hidden folder with Git. This would give an extra chance to restore automatically (or manually) the code if the folder was deleted or modified by accident.
+
+### Corrupted Files {#corrupted}
+
+Editing an `.Rmd` (or `.Rnw`) file on Google Docs, it is very easy to introduce some syntax errors. This would break the code and it will no possible to compile the document once downloaded locally. In particular, errors can be related to Markdown (or LaTeX) syntax or R code.
+
+-  **Markdown (or LaTeX) syntax** - Less expert collaborators are likely to introduce errors by editing the text of the document in Google Docs. Remember that any formatting to the text should be done using proper Markdown (or LaTeX) syntax. Any other formatting is done in Google Docs (e.g., bold, italic, titles, font size, etc.) will be lost at download. Collaborators with no experience in programming could find this too demanding. In this case, they might prefer to modify the text format using the common interface commands, leaving to their more experienced collaborators the task of *translating* the text formatting options into the appropriate Markdown (or LaTeX) commands. Experienced collaborators, moreover, will easily fix possible syntax errors that break the code also once the document is downloaded locally.
+
+- **R code** - Any change to the R code should be avoided in Google Docs. Collaborative code writing is better done in an appropriate IDE (e.g., RStudio) using version control systems like Git. To prevent collaborators from inadvertently making changes to the code in Google Docs, it is possible to removed the header code (YAML or LaTeX settings) and code chunks specifying the argument `hide_code = TRUE`. This allows collaborators to focus only on the plain text ignoring code jargon. To guarantee correct code restoring, however, placeholders of type “[[document-header]]” and “[[chunk-<name>]]” must not be modified. If inadvertently removed, `trackdown` package will try to restore anyway the missing chunks placing them next to the last available placeholders. Unfortunately, this process does not guarantee that chucks are placed in the expected position. Experienced collaborators, however, can easily fix possible issues allowing the document to compile. 
+
+In all cases, using Git to track the `.Rmd` (or `.Rnw`) files (or better the whole project) is highly recommended. Git would allow restoring previous copies of the document in case of any issues. In the worst-case scenario where for unknown reasons `trackdown` is not able to restore the code chunks, experienced collaborators can still use Git or the information saved in the `.trackdown` hidden folder to manually restore all corrupted or missing parts.  
+
+
+
+
+
+
+
+
+

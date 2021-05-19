@@ -1,4 +1,16 @@
+#----    R auxiliary files    -----
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+.rmdrive
+
+#----    mac auxiliary files    ----
+.DS_Store
+
+#----    authentication token    ----
+.secrets
+
+inst/doc
+doc
+Meta
