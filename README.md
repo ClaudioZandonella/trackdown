@@ -1,7 +1,8 @@
-trackdown - R package for collaborative writing and editing
-================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# trackdown - R package for collaborative writing and editing <img src="man/figures/logo.png" align="right" width="120" />
+
 <!-- badges: start -->
 
 [![Project Status: Active – The project has reached a stable, usable
@@ -11,6 +12,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
 <!-- badges: end -->
 
+## Overview
+
 The `trackdown` package offers a simple answer to collaborative writing
 and editing of R Markdown (or Sweave) documents. Using `trackdown`, the
 local `.Rmd` (or `.Rnw`) file is uploaded as plain-text in Google Drive
@@ -19,6 +22,9 @@ well-known online interface offered by Google Docs, collaborators can
 easily contribute to the writing and editing of the document. After
 integrating all authors’ contributions, the final document can be
 downloaded and rendered locally.
+
+All the documentation is available at
+<https://ekothe.github.io/trackdown/>.
 
 ## Installation
 
