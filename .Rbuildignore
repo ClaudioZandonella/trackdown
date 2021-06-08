@@ -21,3 +21,5 @@
 ^vignettes/my-vignette\.Rmd$
 ^vignette/summary-vignette\.Rmd$
 ^logo\.png$
+^CONTRIBUTING\.md$
+^CODE_OF_CONDUCT\.md$

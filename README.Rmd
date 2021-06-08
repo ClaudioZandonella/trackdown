@@ -95,6 +95,18 @@ To know more about the `trackdown` see:
 
 ## Contributing to `trackdown` {#contrib}
 
+The `trackdown` package is an ongoing project, surely there are many issues to fix and features to propose. Anyone is welcome to contribute to the development.
+
+Please note that this project is released under a [Contributor Code of Conduct](https://www.contributor-covenant.org/). By contributing to this project, you agree to abide by its terms. 
+
+See [Community guidelines](https://github.com/ekothe/trackdown/blob/develop/CONTRIBUTING.md) for further information.
+
+#### Future Plans
+
+- Improve compute time by parallelizing the code
+- Implement design analysis in the case of linear regression models
+
+
 ## Citation {#cit}
 
 To cite `trackdown` in publications use:
