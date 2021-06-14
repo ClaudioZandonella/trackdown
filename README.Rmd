@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 
 
-# trackdown - R package for collaborative writing and editing <img src="man/figures/logo.png" align="right" width="120" />
+# trackdown - R package for enhancing collaborative writing <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -53,6 +53,9 @@ When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is importa
 Thus, the workflow main idea is very simple: upload the `.Rmd` (or `.Rnw`) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
 
 > Collaborative **code** writing using **Git** and collaborative **prose** writing on **Google Docs** 
+
+<iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen></iframe>
+
 
 ### Functions {#funtions}
 

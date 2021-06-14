@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# trackdown - R package for collaborative writing and editing <img src="man/figures/logo.png" align="right" width="120" />
+# trackdown - R package for enhancing collaborative writing <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -61,6 +61,9 @@ workflow can be summarized as:
 
 > Collaborative **code** writing using **Git** and collaborative
 > **prose** writing on **Google Docs**
+
+<iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen>
+</iframe>
 
 ### Functions
 
