@@ -62,8 +62,14 @@ workflow can be summarized as:
 > Collaborative **code** writing using **Git** and collaborative
 > **prose** writing on **Google Docs**
 
-<iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen>
-</iframe>
+<!-- pakgdown code-->
+<!-- <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen></iframe> -->
+<!-- Github code -->
+<center>
+<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/">
+<img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;">
+</a>
+</center>
 
 ### Functions
 

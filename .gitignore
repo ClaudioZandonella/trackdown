@@ -5,6 +5,9 @@
 .Ruserdata
 .rmdrive
 
+#----    packgdown    ----
+pkgdown
+
 #----    mac auxiliary files    ----
 .DS_Store
 
