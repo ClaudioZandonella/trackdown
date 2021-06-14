@@ -1,7 +1,8 @@
-trackdown - R package for collaborative writing and editing
-================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# trackdown - R package for enhancing collaborative writing <img src="man/figures/logo.png" align="right" width="120" />
+
 <!-- badges: start -->
 
 [![Project Status: Active – The project has reached a stable, usable
@@ -11,6 +12,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
 <!-- badges: end -->
 
+## Overview
+
 The `trackdown` package offers a simple answer to collaborative writing
 and editing of R Markdown (or Sweave) documents. Using `trackdown`, the
 local `.Rmd` (or `.Rnw`) file is uploaded as plain-text in Google Drive
@@ -19,6 +22,9 @@ well-known online interface offered by Google Docs, collaborators can
 easily contribute to the writing and editing of the document. After
 integrating all authors’ contributions, the final document can be
 downloaded and rendered locally.
+
+All the documentation is available at
+<https://ekothe.github.io/trackdown/>.
 
 ## Installation
 
@@ -55,6 +61,15 @@ workflow can be summarized as:
 
 > Collaborative **code** writing using **Git** and collaborative
 > **prose** writing on **Google Docs**
+
+<!-- pakgdown code-->
+<!-- <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen></iframe> -->
+<!-- Github code -->
+<center>
+<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/">
+<img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;">
+</a>
+</center>
 
 ### Functions
 
@@ -125,6 +140,23 @@ To know more about the `trackdown` see:
     aspects as authentication and file management
 
 ## Contributing to `trackdown`
+
+The `trackdown` package is an ongoing project, surely there are many
+issues to fix and features to propose. Anyone is welcome to contribute
+to the development.
+
+Please note that this project is released under a [Contributor Code of
+Conduct](https://www.contributor-covenant.org/). By contributing to this
+project, you agree to abide by its terms.
+
+See [Community
+guidelines](https://github.com/ekothe/trackdown/blob/develop/CONTRIBUTING.md)
+for further information.
+
+#### Future Plans
+
+-   Improve compute time by parallelizing the code
+-   Implement design analysis in the case of linear regression models
 
 ## Citation
 

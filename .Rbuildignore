@@ -19,3 +19,9 @@
 ^doc$
 ^Meta$
 ^vignettes/my-vignette\.Rmd$
+^vignette/summary-vignette\.Rmd$
+^logo\.png$
+^video-thumbnail\.png$
+^CONTRIBUTING\.md$
+^CODE_OF_CONDUCT\.md$
+^pkgdown$
