@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The main idea behind the `trackdown` workflow is very simple: upload the `.Rmd` (or `.Rnw`) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git. 
+The main idea behind the `trackdown` workflow is very simple: upload the `.Rmd` (or `.Rnw`) document to Google Drive for collaborative writing of the narrative text in Google Docs and download the document locally to continue working on the code using Git. 
 
 To manage this workflow, the package `trackdown` offers different functions:
 
@@ -27,7 +27,7 @@ To manage this workflow, the package `trackdown` offers different functions:
 
 Moreover, the Package `trackdown` offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:
 
-- **Hide Code** (See [hide_code](#hide-code)) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the plain text ignoring code jargon.
+- **Hide Code** (See [hide_code](#hide-code)) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.
 - **Upload Output** (See [path_output](#path-output)) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.
 - **Google Team Drive** (See [team_drive](#team-drive)) - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.
 
@@ -74,7 +74,7 @@ By default files are uploaded in the folder `"trackdown/"`. To specify another f
 
 A string indicating the name of a Google Team Drive (optional). 
 
-By default personal Google Drive  (i.e., My Drive) is used, but a specific Team Drive can be indicated to facilitate collaboration.
+By default personal Google Drive (i.e., My Drive) is used, but a specific Team Drive can be indicated to facilitate collaboration.
 
 #### `hide_code` {#hide-code}
 
@@ -82,7 +82,7 @@ A logical value indicating whether the header code (YAML or LaTeX settings) and 
 
 This argument is available only for `upload_file()` and `update_file()` functions. Default the value is `FALSE`. Setting `TRUE`, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type "[[document-header]]" and "[[chunk-<name>]]" are displayed instead. 
 
-This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the plain text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified.
+This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the narrative text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified or removed.
 
 #### `path_output` {#path-output}
 
