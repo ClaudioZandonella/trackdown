@@ -110,11 +110,11 @@
 <li>
 <strong>Code</strong> - Collaborative code writing is done efficiently following traditional <strong>Git</strong> workflow based on an online repository (e.g., GitHub or GitLab)</li>
 <li>
-<strong>Prose</strong> - Collaborative prose writing is done efficiently on <strong>Google Docs</strong> where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document</li>
+<strong>Prose</strong> - Collaborative writing of the narrative text is done efficiently on <strong>Google Docs</strong> where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document</li>
 </ul>
 <p>Thus, the workflow main idea is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
 <blockquote>
-<p>Collaborative <strong>code</strong> writing using <strong>Git</strong> and collaborative <strong>prose</strong> writing on <strong>Google Docs</strong></p>
+<p>Collaborative <strong>code</strong> writing using <strong>Git</strong> and collaborative writing of <strong>narrative text</strong> on <strong>Google Docs</strong></p>
 </blockquote>
 <p>The package <code>trackdown</code> offers different functions to manage this workflow:</p>
 <ul>
@@ -141,7 +141,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>In this way, the <code>My-Report.Rmd</code> file is uploaded from your local computer to your Google Drive. By default, the file is uploaded in Google Drive using the same name as the local file (without extension) in a folder named <code>tackdown/</code>.</p>
-<p>Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the prose, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.</p>
+<p>Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the narrative text, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.</p>
 </div>
 <div id="ex-download" class="section level4">
 <h4 class="hasAnchor">
@@ -155,7 +155,7 @@
 <div id="ex-update" class="section level4">
 <h4 class="hasAnchor">
 <a href="#ex-update" class="anchor"></a>Update File</h4>
-<p>Once you added the required code chunks, further editing on the prose may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function <code><a href="../reference/update_file.html">update_file()</a></code>:</p>
+<p>Once you added the required code chunks, further editing on the narrative text may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function <code><a href="../reference/update_file.html">update_file()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.</p>
@@ -182,14 +182,14 @@
 </div>
 <div id="collab" class="section level2">
 <h2 class="hasAnchor">
-<a href="#collab" class="anchor"></a>Collaboration: Prose vs Code</h2>
-<p>As stated above, when collaborating on the writing of a <code>.Rmd</code> (or <code>.Rnw</code>) document it is important to consider separately code and prose. Collaborative code writing should be based on version control systems like Git, whereas collaborative prose writing is done more efficiently in Google Docs. Let’s further discuss these two aspects:</p>
+<a href="#collab" class="anchor"></a>Collaboration: Narrative Text vs Code</h2>
+<p>As stated above, when collaborating on the writing of a <code>.Rmd</code> (or <code>.Rnw</code>) document it is important to consider separately code and narrative text. Collaborative code writing should be based on version control systems like Git, whereas collaborative writing of the narrative text is done more efficiently in Google Docs. Let’s further discuss these two aspects:</p>
 <ul>
 <li><p><strong>Code</strong> - Collaborative code writing is better managed using version control systems like <strong>Git</strong>. Ideally, collaborators working on the code are experienced enough to organize the project in an online repository (e.g., GitHub or GitLab) and manage the workflow using Git. Writing or editing actual code on Google Docs, although possible, is strongly discouraged as it is no possible to run the code to check if it is correct. Thus, it is very easy to make several mistakes that would break the code. It is much better to write code in an appropriate IDE (e.g., RStudio).</p></li>
-<li><p><strong>Prose</strong> - To facilitates the collaborative prose writing <code>trackdown</code> moves the whole process on <strong>Google Docs</strong>. Collaborators, however, should be aware that when the document is downloaded from Google Drive it is still considered as a <code>.Rmd</code> (or <code>.Rnw</code>) file. Thus, any formatted text (e.g., bold, italic, titles, font size, etc.) made in Google Docs will be lost. To effectively maintain text formatting options, they have to be specified using proper Markdown (or LaTeX) syntax. Collaborators with no experience in programming could find this too demanding. In this case, they might prefer to modify the text format using the common interface commands, leaving to their more experienced collaborators the task of <em>translating</em> the text formatting options into the appropriate Markdown (or LaTeX) commands.</p></li>
+<li><p><strong>Narrative Text</strong> - To facilitates the collaborative writing of the narrative text, <code>trackdown</code> moves the whole process on <strong>Google Docs</strong>. Collaborators, however, should be aware that when the document is downloaded from Google Drive it is still considered as a <code>.Rmd</code> (or <code>.Rnw</code>) file. Thus, any formatted text (e.g., bold, italic, titles, font size, etc.) made in Google Docs will be lost. To effectively maintain text formatting options, they have to be specified using proper Markdown (or LaTeX) syntax. Collaborators with no experience in programming could find this too demanding. In this case, they might prefer to modify the text format using the common interface commands, leaving to their more experienced collaborators the task of <em>translating</em> the text formatting options into the appropriate Markdown (or LaTeX) commands.</p></li>
 </ul>
-<p>Overall, the workflow proposed by <code>trackdown</code> for collaborative writing of an R Markdown (or Sweave) document is an iterative process where the document is uploaded/updated to Google Drive for collaborative prose writing in Google Docs and downloaded locally for collaborative code writing using Git.</p>
-<p>Note that the main limitations of this workflow are that it is not possible to simultaneously collaborate on the prose and the code included in the document. In this case, changes would be made on two different copies of the same document. Changes on the prose would be saved on the Google Drive copy of the document, whereas changes on the code would be saved on the local copy of the document. These two document versions can not be merged together but only overwritten, losing one of the two versions. However, minimal organization of the workflow into sequential steps will guarantee a smooth experience.</p>
+<p>Overall, the workflow proposed by <code>trackdown</code> for collaborative writing of an R Markdown (or Sweave) document is an iterative process where the document is uploaded/updated to Google Drive for collaborative writing of the narrative text in Google Docs and downloaded locally for collaborative code writing using Git.</p>
+<p>Note that the main limitations of this workflow are that it is not possible to simultaneously collaborate on the narrative text and the code included in the document. In this case, changes would be made on two different copies of the same document. Changes on the narrative text would be saved on the Google Drive copy of the document, whereas changes on the code would be saved on the local copy of the document. These two document versions can not be merged together but only overwritten, losing one of the two versions. However, minimal organization of the workflow into sequential steps will guarantee a smooth experience.</p>
 </div>
   </div>
 

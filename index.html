@@ -110,7 +110,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ekothe/trackdown"</span>,
-                         ref <span class="op">=</span> <span class="st">"develop"</span>,
                          build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ekothe/trackdown">trackdown</a></span><span class="op">)</span></code></pre></div>
 </div>
@@ -122,14 +121,21 @@
 <li>
 <strong>Code</strong> - Collaborative code writing is done efficiently following traditional <strong>Git</strong> workflow based on an online repository (e.g., GitHub or GitLab)</li>
 <li>
-<strong>Prose</strong> - Collaborative prose writing is done efficiently on <strong>Google Docs</strong> where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document</li>
+<strong>Narrative Text</strong> - Collaborative writing of the narrative text is done efficiently on <strong>Google Docs</strong> where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document</li>
 </ul>
-<p>Thus, the workflow main idea is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
+<p>Thus, the workflow main idea is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative writing of the narrative text in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
 <blockquote>
-<p>Collaborative <strong>code</strong> writing using <strong>Git</strong> and collaborative <strong>prose</strong> writing on <strong>Google Docs</strong></p>
+<p>Collaborative <strong>code</strong> writing using <strong>Git</strong> and collaborative writing of <strong>narrative text</strong> on <strong>Google Docs</strong></p>
 </blockquote>
+<!-- pakgdown code-->
 <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen>
 </iframe>
+<!-- Github code -->
+<!-- <center> -->
+<!-- <a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank"> -->
+<!-- <img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;"> -->
+<!-- </a> -->
+<!-- </center> -->
 <div id="functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h3>
@@ -151,7 +157,7 @@
 <p>The Package <code>trackdown</code> offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:</p>
 <ul>
 <li>
-<strong>Hide Code</strong> - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the plain text ignoring code jargon.</li>
+<strong>Hide Code</strong> - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.</li>
 <li>
 <strong>Upload Output</strong> - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.</li>
 <li>
@@ -167,7 +173,7 @@
 <li>add comments to propose and discuss suggestions</li>
 <li>check spelling and grammar errors (also using Grammarly)</li>
 </ul>
-<p>Moreover, Google Docs allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the plain text ignoring code jargon.</p>
+<p>Moreover, Google Docs allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the narrative text ignoring code jargon.</p>
 <p>Note that a Google account is not required for all collaborators (although recommended to access all Google Docs features). Only the person who manages the <code>trackdown</code> workflow requires a Google account to upload files in Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0">Instructions</a>).</p>
 </div>
 <div id="documentation-and-vignettes" class="section level3">

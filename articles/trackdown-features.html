@@ -102,7 +102,7 @@
 
     
     
-<p>The main idea behind the <code>trackdown</code> workflow is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative prose writing in Google Docs and download the document locally to continue working on the code using Git.</p>
+<p>The main idea behind the <code>trackdown</code> workflow is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative writing of the narrative text in Google Docs and download the document locally to continue working on the code using Git.</p>
 <p>To manage this workflow, the package <code>trackdown</code> offers different functions:</p>
 <ul>
 <li>
@@ -117,7 +117,7 @@
 <p>Moreover, the Package <code>trackdown</code> offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:</p>
 <ul>
 <li>
-<strong>Hide Code</strong> (See <a href="#hide-code">hide_code</a>) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the plain text ignoring code jargon.</li>
+<strong>Hide Code</strong> (See <a href="#hide-code">hide_code</a>) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.</li>
 <li>
 <strong>Upload Output</strong> (See <a href="#path-output">path_output</a>) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.</li>
 <li>
@@ -174,7 +174,7 @@
 </h4>
 <p>A logical value indicating whether the header code (YAML or LaTeX settings) and code chunks should be removed from the document when it is uploaded (or updated).</p>
 <p>This argument is available only for <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. Default the value is <code>FALSE</code>. Setting <code>TRUE</code>, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type “[[document-header]]” and “[[chunk-<name>]]” are displayed instead.</name></p>
-<p>This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the plain text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified.</p>
+<p>This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the narrative text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified or removed.</p>
 </div>
 <div id="path-output" class="section level4">
 <h4 class="hasAnchor">
