@@ -66,7 +66,7 @@ workflow can be summarized as:
 <!-- <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen></iframe> -->
 <!-- Github code -->
 <center>
-<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/">
+<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank">
 <img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;">
 </a>
 </center>

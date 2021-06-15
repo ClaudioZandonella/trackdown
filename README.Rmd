@@ -61,7 +61,7 @@ Thus, the workflow main idea is very simple: upload the `.Rmd` (or `.Rnw`) docum
 <!-- Github code -->
 
 <center>
-<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/">
+<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank">
 <img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;">
 </a>
 </center>
