@@ -47,12 +47,32 @@ Suppose you want to collaborate with your colleagues on the writing of an R Mark
 You create the initial document, for example `My-Report.Rmd`, and upload the file in Google Drive using the function `upload_file()`:
 
 ```{r, echo = TRUE, eval = FALSE}
-trackdown::update_file(file = "Project-A/My-Report.Rmd")
+trackdown::update_file(file = "Path-to-file/My-Report.Rmd", hide_code = TRUE)
 ```
 
 In this way, the `My-Report.Rmd` file is uploaded from your local computer to your Google Drive. By default, the file is uploaded in Google Drive using the same name as the local file (without extension) in a folder named `tackdown/`. 
 
-Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the narrative text, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.
+Note that `trackdown` adds some simple instructions and reminders on the top of the document and, by specifying the argument `hide_code = TRUE` (default is `FALSE`), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" (See Figure below). This allows collaborators to focus only on the narrative text ignoring code jargon. 
+
+![](JOSS-fig.png){ width=100% }
+
+#### Collaborate
+
+After uploading your document on Google Drive, you can now share the link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. .
+
+Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In Google Docs it is possible to (See Figure below):
+
+- easily track changes
+- add comments to propose and discuss suggestions
+- check spelling and grammar errors (also using Grammarly)
+
+<center>
+![](JOSS-fig.png){ width=60% }
+</center>
+
+Moreover, Google Docs  allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the narrative text ignoring code jargon. Remember that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.
+
+Note that a Google account is not required for all collaborators (although recommended to access all Google Docs features). Only the person who manages the `trackdown` workflow requires a Google account to upload files in Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See [Instructions](https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&hl=en&oco=0)).
 
 #### Download File {#ex-download}
 
@@ -61,7 +81,7 @@ At some point, you will want to add some code to include figures, tables or resu
 Before downloading the document from Google Drive, however, it is important that you accept all changes made to the document in Google Docs. You can simply select from the top menu “*Tools* > *Review suggested edits* > *Accept all*”. Now the edited version of the document can be downloaded from Google Drive using the function `download_file()`:
 
 ```{r, echo = TRUE, eval = FALSE}
-trackdown::download_file(file = "Project-A/My-Report.Rmd")
+trackdown::download_file(file = "Path-to-file/My-Report.Rmd")
 ```
 
 Note that downloading the file from Google Drive will overwrite the local file.  
@@ -71,10 +91,10 @@ Note that downloading the file from Google Drive will overwrite the local file.
 Once you added the required code chunks, further editing on the narrative text may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function `update_file()`:
 
 ```{r, echo = TRUE, eval = FALSE}
-trackdown::update_file(file = "Project-A/My-Report.Rmd")
+trackdown::update_file(file = "Path-to-file/My-Report.Rmd", hide_code = TRUE)
 ```
 
-In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.
+In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. This iterative process of updating to and downloading from Google Drive continues until the desired results are obtained. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.
 
 
 #### Render File {#ex-render}
@@ -82,7 +102,7 @@ In this way, the document in Google Drive is updated with your latest changes. N
 Once the document is finished and all changes have been accepted, you can download the document and automatically compile the document to obtain the actual output using the function `render_file()`:
 
 ```{r, echo = TRUE, eval = FALSE}
-trackdown::render_file(file = "Project-A/My-Report.Rmd")
+trackdown::render_file(file = "Path-to-file/My-Report.Rmd")
 ```
 
 This function is simply a wrapper around `download_file()` that will call `rmarkdown::render()` once the document has been downloaded.

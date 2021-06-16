@@ -107,7 +107,7 @@ particular, it is possible to:
 
 Google Docs offers a familiar, intuitive, and free online interface that
 allows multiple users to simultaneously write and edit the same
-document. In Google Docs is it possible to:
+document. In Google Docs it is possible to:
 
 -   easily track changes
 -   add comments to propose and discuss suggestions
