@@ -1,4 +1,14 @@
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38DDQEVS94"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-38DDQEVS94');
+</script>
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # trackdown - R package for enhancing collaborative writing <img src="man/figures/logo.png" align="right" width="120" />

@@ -1,5 +1,8 @@
 ---
-output: github_document
+output: 
+  github_document:
+    includes:
+     in_header: GA_Script.html
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
