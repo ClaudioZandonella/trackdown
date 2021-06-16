@@ -80,7 +80,7 @@ By default personal Google Drive (i.e., My Drive) is used, but a specific Team D
 
 A logical value indicating whether the header code (YAML or LaTeX settings) and code chunks should be removed from the document when it is uploaded (or updated).
 
-This argument is available only for `upload_file()` and `update_file()` functions. Default the value is `FALSE`. Setting `TRUE`, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type "[[document-header]]" and "[[chunk-<name>]]" are displayed instead. 
+This argument is available only for `upload_file()` and `update_file()` functions. Default the value is `FALSE`. Setting `TRUE`, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" are displayed instead. 
 
 This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the narrative text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified or removed.
 
