@@ -1,42 +1,36 @@
 ---
-title: 'PRDA: An R package for Prospective and Retrospective Design Analysis'
+title: 'trackdown: An R Package for Enhancing Collaborative Writing'
 tags:
-  - R
-  - design analysis
-  - power analysis
-  - Type M error
-  - Type S error
-  - replicabiliyt
+  - R Markdown
+  - Literate Programming
+  - Reproducibility
+  - Collaborative Writing
+  - Collaborative Editing
+  - Workflow
 authors:
+  - name: Filippo Gambarota
+    orcid: 0000-0002-6666-1747
+    affiliation: 1
   - name: Claudio Zandonella Callegher
     orcid: 0000-0001-7721-6318
     affiliation: 1
-  - name: Giulia Bertoldo
-    orcid: 0000-0002-6960-3980
-    affiliation: 1
-  - name: Enrico Toffalini
-    orcid: 0000-0002-1404-5133
+  - name: Janosch Linkersdörfer
+    orcid: 0000-0002-1577-1233
+    affiliation: 2
+  - name: Mathew Ling
+    orcid: 0000-0002-0940-2538
     affiliation: 3
-  - name: Anna Vesely
-    orcid: 0000-0001-6696-2390
-    affiliation: 2
-  - name: Angela Andreella
-    orcid: 0000-0002-1141-3041
-    affiliation: 2
-  - name: Massimiliano Pastore
-    orcid: 0000-0002-7922-6365
-    affiliation: 1
-  - name: Gianmarco Altoè
+  - name: Emily Kothe
     orcid: 0000-0003-1154-9528
-    affiliation: 1
+    affiliation: 3
 affiliations:
  - name: Department of Developmental Psychology and Socialisation, University of Padova, Padova, Italy
    index: 1
- - name: Department of Statistical Sciences, University of Padova, Padova, Italy
+ - name: Center of Human Development, University of California, San Diego, USA
    index: 2
- - name: Department of General Psychology, University of Padova, Padova, Italy
+ - name: Misinformation Lab, Deakin University, Victoria, Australia
    index: 3
-date: "10 December, 2020"
+date: "16 June, 2021"
 bibliography: paper_JOSS.bib
 editor_options: 
   chunk_output_type: console
@@ -44,136 +38,82 @@ editor_options:
 
 
 
-
 # Summary
 
-*Design Analysis* was introduced by @gelmanPowerCalculationsAssessing2014 as an extension of Power Analysis. Traditional power analysis has a narrow focus on statistical significance. Design analysis, instead, evaluates together with power levels also other inferential risks (i.e., Type M error and Type S error), to assess estimates uncertainty under hypothetical replications of a study.
+Literate programming allows combining narrative text and code to produce elegant, high quality and reproducible documents. These are fundamental ingredients of modern open science fostering transparency and reproducibility of the scientific results. 
 
-Given an hypothetical value of effect size and study characteristics (i.e., sample size, statistical test directionality, significance level),
-*Type M error* (Magnitude, also known as Exaggeration Ratio) indicates the factor by which a statistically significant effect is on average exaggerated. *Type S error* (Sign), instead, indicates the probability of finding a statistically significant result in the opposite direction to the hypothetical effect.
+The main downside of literate programming, however, is the lack of appropriate tools for collaborative writing and editing of the document. In fact, producing a document with a literate programming approach requires programming skills which complicates the collaborative workflows considering different backgrounds among collaborators. Furthemore, common version control systems (e.g., Git) are extremely powerful to collaborate on the code but less efficient and interactive for the narrative part of a document. On the contrary, common word processors (e.g., Microsoft Word or Google Docs) offer a smoother experience in terms of real time editing and reviewing. 
 
-Although Type M error and Type S error depend directly on power level, they underline valuable information regarding estimates uncertainty that would otherwise be overlooked. This enhances researchers awareness about the inferential risks related to their studies and helps them in the interpretation of their results. However, design analysis is rarely applied in real research settings also for the lack of dedicated software.
-
-To know more about design analysis consider @gelmanPowerCalculationsAssessing2014 and @luNoteTypeErrors2018. While, for an introduction to design analysis with examples in psychology see @altoeEnhancingStatisticalInference2020 and  @bertoldoDesigningStudiesEvaluating2020.
-
+`trackdown` overcomes these issues combining the strengths of literate programming in R with the collaborative features offered by popular word processor Google Docs.
 
 # Statement of need 
 
-`PRDA` is an R package performing prospective or retrospective design analysis to evaluate inferential risks (i.e., power, Type M error, and Type S error) in a study considering Pearson's correlation between two variables or mean comparisons (one-sample, paired, two-sample, and Welch's *t*-test). *Prospective Design Analysis* is performed in the planning stage of a study to define the required sample size to obtain a given level of power. *Retrospective Design Analysis*, instead, is performed when the data have already been collected to evaluate the inferential risks associated with the study.
+`trackdown` is an R package offering a simple solution for collaborative writing and editing of R Markdown (or Sweave) documents. When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is important to consider separately code and narrative text:
 
-Another recent R package, `retrodesign` [@timmRetrodesignToolsType2019], allows conducting retrospective design analysis considering estimate of the unstandardized effect size (i.e., regression coefficient or mean difference) and standard error of the estimate. `PRDA` package, instead, considers standardized effect size (i.e., Pearson correlation coefficient or Cohen's *d*) and study sample size. These are more commonly used in research fields such as Psychology or Social Science, and therefore are implemented in `PRDA` to facilitate researchers' reasoning about design analysis. `PRDA`, additionally, offers the possibility to conduct a prospective design analysis and to account for the uncertainty about the hypothetical value of effect size. In fact, hypothetical effect size can be defined as a single value according to previous results in the literature or experts indications, or by specifying a distribution of plausible values.
+- **Code** - Collaborative code writing is done efficiently following traditional Git workflow based on an online repository (e.g., GitHub or GitLab)
+- **Narrative Text** - Collaborative writing of the narrative text is done efficiently on Google Docs where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document
 
-The package is available from GitHub (https://github.com/ClaudioZandonella/PRDA) and CRAN (https://CRAN.R-project.org/package=PRDA). Documentation about the package is available at https://claudiozandonella.github.io/PRDA/.
+`trackdown` uploads the local `.Rmd` (or `.Rnw`) file as plain-text in Google Drive where, thanks to the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing of the narrative text. After integrating all authors’ contributions, the document can be downloaded to continue collaborating on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
 
-# Examples
+> Collaborative code writing using Git and collaborative writing of narrative text on Google Docs 
 
-Imagine a study evaluating the relation a given personality trait (e.g., introversion) and math performance. Suppose that 20 participants were included in the study and results indicated a statistically significant correlation (e.g, $r = .55, p = .012$). The magnitude of the estimated correlation, however, is beyond what could be considered plausible in this field. 
+Also other R packages aiming to improve tracking changes and reviewing experience of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and annotatate HTML using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio addin for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] create a diff of two Rmarkdown, .Rnw or TeX files. These packages, however, are based on less efficient workflow and all of them, but `latexdiffr`, are no longer active projects. In particular, `trackdown` has the advantage of being based on Google Docs that offers a familiar, intuitive, and free online interface allowing multiple users to simultaneously write, edit, comment the same document. Moreover, `trackdown` does not even require collaborators to install R as all changes to the narrative text can be done directly on Google Docs, a great advantage for colleagues with no programming experience.
 
-## Retrospective design analysis
+The package is available from GitHub (https://github.com/ekothe/trackdown) 
+<!-- and CRAN (https://CRAN.R-project.org/package=trackdown) -->
+. Documentation about the package is available at https://ekothe.github.io/trackdown/.
 
-Suppose previous results in the literature indicate correlations in this area are more likely to be around $\rho = .25$. To evaluate the inferential risks associated with the study design, we can use the function `retrospective()`.
+# Workflow Example
 
+Suppose you want to collaborate with your colleagues on the writing of an R Markdown document. If you are the most experienced among your colleagues with R and in programming in general, it would be better if you manage and organize the workflow. 
 
-```r
-library(PRDA)
+## Upload File
 
-set.seed(2020) # set seed to make results reproducible
-
-retrospective(effect_size = .25, sample_n1 = 20, test_method = "pearson")
-```
-
-```
-## 
-## 	Design Analysis
-## 
-## Hypothesized effect:  rho = 0.25 
-## 
-## Study characteristics:
-##    test_method   sample_n1   sample_n2   alternative   sig_level   df
-##    pearson       20          NULL        two_sided     0.05        18
-## 
-## Inferential risks:
-##    power   typeM   typeS
-##    0.185   2.161   0.008
-## 
-## Critical value(s): rho  =  ± 0.444
-```
-
-In the output, we have the summary information about the hypothesized population effect, the study characteristics, and the inferential risks. We obtained a statistical power of almost 20% that is associated with a Type M error of around 2.2 and a Type S error of 0.01. That means, statistical significant results are on average an overestimation of 120% of the hypothesized population effect and there is a 1% probability of obtaining a statistically significant result in the opposite direction. To know more about function arguments and examples see the function documentation and vignette.
-
-### Effect size distribution
-
-Alternatively, if no precise information about hypothetical effect size is available, researchers could specify a distribution of values  to account for their uncertainty. For example, they might define a normal distribution with mean of .25 and standard deviation of .1, truncated between .10 and 40.
+You create the initial document, for example `My-Report.Rmd`, and upload the file in Google Drive using the function `upload_file()`:
 
 
 ```r
-retrospective(effect_size = function(n) rnorm(n, .25, .1), sample_n1 = 20,
-              test_method = "pearson", tl = .1, tu = .4, B = 1e3, 
-              display_message = FALSE)
+library(trackdown)
+update_file(file = "path-to-file/My-Report.Rmd", 
+            hide_code = TRUE)
 ```
 
-```
-## Truncation could require long computational time
-```
+In this way, the `My-Report.Rmd` file is uploaded from your local computer to your Google Drive. Note that `trackdown` adds some simple instructions and reminders on the top of the document and, by specifying the argument `hide_code = TRUE`, the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" (See \autoref{fig:example-upload}). This allows collaborators to focus only on the narrative text ignoring code jargon. 
 
-```
-## 
-## 	Design Analysis
-## 
-## Hypothesized effect:  rho ~ rnorm(n, 0.25, 0.1) [tl =  0.1 ; tu = 0.4 ]
-##    n_effect   Min.    1st Qu.   Median   Mean    3rd Qu.   Max.
-##    1000       0.101   0.197     0.25     0.252   0.308     0.4 
-## 
-## Study characteristics:
-##    test_method   sample_n1   sample_n2   alternative   sig_level   df
-##    pearson       20          NULL        two_sided     0.05        18
-## 
-## Inferential risks:
-##         Min.    1st Qu.   Median   Mean       3rd Qu.   Max. 
-## power   0.055   0.133     0.1880   0.203727   0.26600   0.449
-## typeM   1.407   1.785     2.1645   2.347745   2.70075   5.263
-## typeS   0.000   0.000     0.0060   0.017573   0.02300   0.246
-## 
-## Critical value(s): rho  =  ± 0.444
-```
+![When uploading a document from your local computer to your Google Drive, `trackdown` adds some instructions and reminders on the top of the document. Moreover, by specifying the argument `hide_code = TRUE`, the header code and code chunks are removed from the document displaying placeholders instead.\label{fig:example-upload}](JOSS-fig.png)
 
-Consequently this time we obtained a distribution of values for power, Type M error, and Type S error. Summary information are provided in the output.
+## Collaborate
 
-## Prospective design analysis
+After uploading your document on Google Drive, you can now share the link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In particular, in Google Docs you can: easily track changes; add comments to propose and discuss suggestions; check spelling and grammar errors (See \autoref{fig:example-edit}).
 
-Given the previous results, researchers might consider planning a replication study to obtain more reliable results. The function `prospective()` can be used to compute the sample size needed to obtain a given level of power (e.g., power = 80%).
+![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-upload}](JOSS-fig.png){ width=60% }
+
+## Download File {#ex-download}
+
+At some point, you may want to add some more code to include figures, tables or results from the analyses. This can not be done directly in Google Docs, so you are required to download the document. First accept all changes made to the document in Google Docs, than download the edited version of the document from Google Drive using the function `download_file()`:
 
 
 ```r
-prospective(effect_size = .25, power = .8, test_method = "pearson",
-            display_message = FALSE)
+download_file(file = "path-to-file/My-Report.Rmd")
 ```
 
-```
-## 
-## 	Design Analysis
-## 
-## Hypothesized effect:  rho = 0.25 
-## 
-## Study characteristics:
-##    test_method   sample_n1   sample_n2   alternative   sig_level   df 
-##    pearson       122         NULL        two_sided     0.05        120
-## 
-## Inferential risks:
-##    power   typeM   typeS
-##    0.796   1.12    0    
-## 
-## Critical value(s): rho  =  ± 0.178
+Note that downloading the file from Google Drive will overwrite the local file.  
+
+## Update File {#ex-update}
+
+Once you added the required code chunks, further editing on the narrative text may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function `update_file()`:
+
+
+```r
+update_file(file = "path-to-file/My-Report.Rmd", hide_code = TRUE)
 ```
 
-In the output, we have again the summary information about the hypothesized population effect, the study characteristics, and the inferential risks. To obtain a power of around 80% the required sample size is $n = 122$, the associated Type M error is around 1.10 and the Type S error is approximately 0. To know more about function arguments and examples see the function documentation and vignette.
+In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the narrative text. Note that updating the file in Google Drive will overwrite its current content.
 
-In `PRDA` there are no implemented functions to obtain graphical representations of the results. However, it is easy to access all the results and use them to create the plots according to your own needs and preferences. See vignettes for an example.
-
-
-
+This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained.
 
 # References
+
 
 
 

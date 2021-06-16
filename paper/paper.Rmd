@@ -81,13 +81,13 @@ update_file(file = "path-to-file/My-Report.Rmd",
 
 In this way, the `My-Report.Rmd` file is uploaded from your local computer to your Google Drive. Note that `trackdown` adds some simple instructions and reminders on the top of the document and, by specifying the argument `hide_code = TRUE`, the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" (See \autoref{fig:example-upload}). This allows collaborators to focus only on the narrative text ignoring code jargon. 
 
-![When uploading a document from your local computer to your Google Drive, `trackdown` adds some instructions and reminders on the top of the document. Moreover, by specifying the argument `hide_code = TRUE`, the header code and code chunks are removed from the document displaying placeholders instead\label{fig:example-upload}](JOSS-fig.png)
+![When uploading a document from your local computer to your Google Drive, `trackdown` adds some instructions and reminders on the top of the document. Moreover, by specifying the argument `hide_code = TRUE`, the header code and code chunks are removed from the document displaying placeholders instead.\label{fig:example-upload}](JOSS-fig.png)
 
 ## Collaborate
 
-After uploading your document on Google Drive, you can now share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In particular, in Google Docs you can: easily track changes; add comments to propose and discuss suggestions; check spelling and grammar errors (See \autoref{fig:example-edit}).
+After uploading your document on Google Drive, you can now share the link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In particular, in Google Docs you can: easily track changes; add comments to propose and discuss suggestions; check spelling and grammar errors (See \autoref{fig:example-edit}).
 
-![Example of collaboration in Google Docs using suggestions and comments\label{fig:example-upload}](JOSS-fig.png){ width=60% }
+![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-upload}](JOSS-fig.png){ width=60% }
 
 ## Download File {#ex-download}
 
