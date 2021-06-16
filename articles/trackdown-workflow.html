@@ -139,9 +139,26 @@
 <a href="#ex-upload" class="anchor"></a>Upload File</h4>
 <p>You create the initial document, for example <code>My-Report.Rmd</code>, and upload the file in Google Drive using the function <code><a href="../reference/upload_file.html">upload_file()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span>, hide_code <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>In this way, the <code>My-Report.Rmd</code> file is uploaded from your local computer to your Google Drive. By default, the file is uploaded in Google Drive using the same name as the local file (without extension) in a folder named <code>tackdown/</code>.</p>
-<p>Now you can share the link to the document in your Google Drive with your colleagues and invite them to collaborate on the writing of the narrative text, using the familiar Google Docs interface. Note that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.</p>
+<p>Note that <code>trackdown</code> adds some simple instructions and reminders on the top of the document and, by specifying the argument <code>hide_code = TRUE</code> (default is <code>FALSE</code>), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” (See Figure below). This allows collaborators to focus only on the narrative text ignoring code jargon.</p>
+<p><img src="JOSS-fig.png" style="width:100.0%"></p>
+</div>
+<div id="collaborate" class="section level4">
+<h4 class="hasAnchor">
+<a href="#collaborate" class="anchor"></a>Collaborate</h4>
+<p>After uploading your document on Google Drive, you can now share the link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. .</p>
+<p>Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In Google Docs it is possible to (See Figure below):</p>
+<ul>
+<li>easily track changes</li>
+<li>add comments to propose and discuss suggestions</li>
+<li>check spelling and grammar errors (also using Grammarly)</li>
+</ul>
+<center>
+<img src="JOSS-fig.png" style="width:60.0%">
+</center>
+<p>Moreover, Google Docs allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the narrative text ignoring code jargon. Remember that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.</p>
+<p>Note that a Google account is not required for all collaborators (although recommended to access all Google Docs features). Only the person who manages the <code>trackdown</code> workflow requires a Google account to upload files in Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0">Instructions</a>).</p>
 </div>
 <div id="ex-download" class="section level4">
 <h4 class="hasAnchor">
@@ -149,7 +166,7 @@
 <p>At some point, you will want to add some code to include figures, tables or results from the analyses. This must not be done directly in Google Docs, so first you are required to download the document.</p>
 <p>Before downloading the document from Google Drive, however, it is important that you accept all changes made to the document in Google Docs. You can simply select from the top menu “<em>Tools</em> &gt; <em>Review suggested edits</em> &gt; <em>Accept all</em>”. Now the edited version of the document can be downloaded from Google Drive using the function <code><a href="../reference/download_file.html">download_file()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/download_file.html">download_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/download_file.html">download_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>Note that downloading the file from Google Drive will overwrite the local file.</p>
 </div>
 <div id="ex-update" class="section level4">
@@ -157,15 +174,15 @@
 <a href="#ex-update" class="anchor"></a>Update File</h4>
 <p>Once you added the required code chunks, further editing on the narrative text may still be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function <code><a href="../reference/update_file.html">update_file()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
-<p>In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.</p>
+<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span>, hide_code <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>In this way, the document in Google Drive is updated with your latest changes. Now you and your colleagues can continue collaborating on the writing of the document. This iterative process of updating to and downloading from Google Drive continues until the desired results are obtained. Note that updating the file in Google Drive will overwrite its current content losing tracked changes.</p>
 </div>
 <div id="ex-render" class="section level4">
 <h4 class="hasAnchor">
 <a href="#ex-render" class="anchor"></a>Render File</h4>
 <p>Once the document is finished and all changes have been accepted, you can download the document and automatically compile the document to obtain the actual output using the function <code><a href="../reference/render_file.html">render_file()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/render_file.html">render_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Project-A/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/render_file.html">render_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>This function is simply a wrapper around <code><a href="../reference/download_file.html">download_file()</a></code> that will call <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html">rmarkdown::render()</a></code> once the document has been downloaded.</p>
 </div>
 <div id="ex-check" class="section level4">
