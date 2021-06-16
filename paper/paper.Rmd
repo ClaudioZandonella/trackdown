@@ -87,7 +87,7 @@ In this way, the `My-Report.Rmd` file is uploaded from your local computer to yo
 
 After uploading your document on Google Drive, you can now share the link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In particular, in Google Docs you can: easily track changes; add comments to propose and discuss suggestions; check spelling and grammar errors (See \autoref{fig:example-edit}).
 
-![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-upload}](JOSS-fig.png){ width=60% }
+![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-upload}](Example-edit.png){ width=100% }
 
 ## Download File {#ex-download}
 

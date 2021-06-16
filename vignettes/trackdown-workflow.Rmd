@@ -67,7 +67,7 @@ Google Docs offers a familiar, intuitive, and free online interface that allows 
 - check spelling and grammar errors (also using Grammarly)
 
 <center>
-![](JOSS-fig.png){ width=60% }
+![](Example-edit.png){ width=100% }
 </center>
 
 Moreover, Google Docs  allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the narrative text ignoring code jargon. Remember that working on the code part of the document should be avoided as it is not possible to run any code in Google Drive.
