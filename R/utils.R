@@ -192,7 +192,7 @@ get_instructions <- function(file_info, hide_code){
   
   instructions <- c(
     "#----Trackdown Instructions----#",
-    sprintf("This is not a common Document. The Document includes properly formatted %s syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to plain text and avoid modifying R code.",
+    sprintf("This is not a common Document. The Document includes properly formatted %s syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.",
             language),
     placeholder1,
     "Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.",

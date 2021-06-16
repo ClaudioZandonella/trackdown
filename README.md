@@ -34,7 +34,6 @@ development version from GitHub run the following code:
 ``` r
 # install.packages("remotes")
 remotes::install_github("ekothe/trackdown",
-                         ref = "develop",
                          build_vignettes = TRUE)
 library(trackdown)
 ```
@@ -42,25 +41,25 @@ library(trackdown)
 ## The trackdown Workflow
 
 When collaborating on the writing of a `.Rmd` (or `.Rnw`) document it is
-important to consider separately code and prose:
+important to consider separately code and narrative text:
 
 -   **Code** - Collaborative code writing is done efficiently following
     traditional **Git** workflow based on an online repository (e.g.,
     GitHub or GitLab)
--   **Prose** - Collaborative prose writing is done efficiently on
-    **Google Docs** where the familiar and simple online interface
-    allows multiple users to simultaneously write and edit the same
-    document
+-   **Narrative Text** - Collaborative writing of the narrative text is
+    done efficiently on **Google Docs** where the familiar and simple
+    online interface allows multiple users to simultaneously write and
+    edit the same document
 
 Thus, the workflow main idea is very simple: upload the `.Rmd` (or
-`.Rnw`) document to Google Drive for collaborative prose writing in
-Google Docs and download the document locally to continue working on the
-code using Git. This iterative process of uploading to and downloading
-from Google Drive continues until the desired results are obtained. The
-workflow can be summarized as:
+`.Rnw`) document to Google Drive for collaborative writing of the
+narrative text in Google Docs and download the document locally to
+continue working on the code using Git. This iterative process of
+uploading to and downloading from Google Drive continues until the
+desired results are obtained. The workflow can be summarized as:
 
-> Collaborative **code** writing using **Git** and collaborative
-> **prose** writing on **Google Docs**
+> Collaborative **code** writing using **Git** and collaborative writing
+> of **narrative text** on **Google Docs**
 
 <!-- pakgdown code-->
 <!-- <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen></iframe> -->
@@ -94,7 +93,7 @@ particular, it is possible to:
     and automatically restored when downloaded. This prevents
     collaborators from inadvertently making changes to the code that
     might corrupt the file and it allows collaborators to focus only on
-    the plain text ignoring code jargon.
+    the narrative text ignoring code jargon.
 -   **Upload Output** - The actual output (i.e., the resulting complied
     document) can be uploaded in Google Drive together with the `.Rmd`
     (or `.Rnw`) document. This helps collaborators to evaluate the
@@ -108,15 +107,15 @@ particular, it is possible to:
 
 Google Docs offers a familiar, intuitive, and free online interface that
 allows multiple users to simultaneously write and edit the same
-document. In Google Docs is it possible to:
+document. In Google Docs it is possible to:
 
 -   easily track changes
 -   add comments to propose and discuss suggestions
 -   check spelling and grammar errors (also using Grammarly)
 
 Moreover, Google Docs allows anyone to collaborate on the document as no
-programming experience is required, they only have to focus on the plain
-text ignoring code jargon.
+programming experience is required, they only have to focus on the
+narrative text ignoring code jargon.
 
 Note that a Google account is not required for all collaborators
 (although recommended to access all Google Docs features). Only the
@@ -135,7 +134,7 @@ To know more about the `trackdown` see:
 -   `vignette("trackdown-features")` - for detailed description of the
     function arguments and features
 -   `vignette("trackdown-workflow")` - for a workflow example and a
-    discussion about collaboration on prose and code
+    discussion about collaboration on narrative text and code
 -   `vignette("trackdown-tech-notes")` - for details regarding technical
     aspects as authentication and file management
 

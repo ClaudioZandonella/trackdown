@@ -17,27 +17,27 @@
 #'
 #' @section The trackdown Workflow:
 #'  When collaborating on the writing of a \code{.Rmd} (or \code{.Rnw}) document
-#'  it is important to consider separately code and prose:
+#'  it is important to consider separately code and narrative text:
 #'
 #'  \itemize{ 
 #'   \item{\strong{Code} - Collaborative code writing is done efficiently
 #'   following traditional \strong{Git} workflow based on an online repository
 #'   (e.g., GitHub or GitLab)}
-#'   \item{\strong{Prose} - Collaborative
-#'   prose writing is done efficiently on \strong{Google Docs} where the familiar
-#'   and simple online interface allows multiple users to simultaneously write
-#'   and edit the same document} 
+#'   \item{\strong{Narrative Text} - Collaborative writing of the narrative text
+#'   is done efficiently on \strong{Google Docs} where the familiar and simple
+#'   online interface allows multiple users to simultaneously write and edit the
+#'   same document}
 #'   }
 #'
 #'  Thus, the workflow main idea is very simple: upload the \code{.Rmd} (or
-#'  \code{.Rnw}) document to Google Drive for collaborative prose writing in
-#'  Google Docs and download the document locally to continue working on the
-#'  code using Git. This iterative process of uploading to and downloading from
-#'  Google Drive continues until the desired results are obtained. The workflow
-#'  can be summarized as:
+#'  \code{.Rnw}) document to Google Drive for collaborative writing of the
+#'  narrative text in Google Docs and download the document locally to continue
+#'  working on the code using Git. This iterative process of uploading to and
+#'  downloading from Google Drive continues until the desired results are
+#'  obtained. The workflow can be summarized as:
 #'
 #'  \emph{Collaborative \strong{code} writing using \strong{Git} and
-#'  collaborative \strong{prose} writing on \strong{Google Docs}}
+#'  collaborative writing of \strong{narrative text} on \strong{Google Docs}}
 #'   
 #' @section Functions:
 #'  The package \code{trackdown} offers simple functions to manage the workflow:
@@ -60,11 +60,13 @@
 #'   code chunks are removed from the document when uploaded to Google Drive and
 #'   automatically restored when downloaded. This prevents collaborators from
 #'   inadvertently making changes to the code that might corrupt the file and it
-#'   allows collaborators to focus only on the plain text ignoring code jargon.}
+#'   allows collaborators to focus only on the narrative text ignoring code
+#'   jargon.}
 #'   \item{\strong{Upload Output} - The actual output (i.e., the resulting
-#'   complied document) can be uploaded in Google Drive together with the \code{.Rmd}
-#'   (or \code{.Rnw}) document. This helps collaborators to evaluate the overall
-#'   layout, figures and tables and it allows them to use comments to propose
+#'   complied document) can be uploaded in Google Drive together with the
+#'   \code{.Rmd} (or \code{.Rnw}) document. This helps collaborators to evaluate
+#'   the overall layout, figures and tables and it allows them to use comments
+#'   to propose
 #'   and discuss suggestions.}
 #'   \item{\strong{Google Team Drive} - The documents can be uploaded on your
 #'   personal Google Drive or on a shared Google Team Drive to facilitate
@@ -81,7 +83,7 @@
 #'   \item{check spelling and grammar errors (also using Grammarly)}
 #'  }
 #'  Moreover, Google Docs  allows anyone to collaborate on the document as no
-#'  programming experience is required, they only have to focus on the plain
+#'  programming experience is required, they only have to focus on the narrative
 #'  text ignoring code jargon.
 #'  
 #'  Note that a Google account is not required for all collaborators (although
@@ -98,7 +100,7 @@
 #'   \item{\code{vignette("trackdown-features")} - for detailed description of the
 #'   function arguments and features}
 #'   \item{\code{vignette("trackdown-workflow")} - for a workflow example and a
-#'   discussion about collaboration on prose and code}
+#'   discussion about collaboration on narrative text and code}
 #'   \item{\code{vignette("trackdown-tech-notes")} - for details regarding
 #'   technical aspects as authentication and file management}
 #'  }
