@@ -202,16 +202,12 @@ create_drive_folder <- function(name, parent_dribble = NULL, team_drive = NULL){
 
 #' Get root dribble
 #'
-#' Gets drive id of the root folder. The id is obtained from the 'parents' field
-#' in the dribble object listing elements in the root directory. If no element
-#' is available in the root folder, id can not be retrieved, a dataframe with id
-#' = "root" is returned instead.
+#' Gets drive id of the root folder ("My Drive" or, optionally, a Google Team
+#'   Drive).
 #'
-#' @param team_drive character. The name of a Google Team Drive (optional).
+#' @param team_drive character. The name of a Google Team Drive (optional).#
 #'
-#' @return A dribble of object of the root folder. Note that a dataframe with id
-#'   = "root" is returned, instead, if no element was available in the root
-#'   folder.
+#' @return A dribble of object of the root folder.
 #' @noRd
 #' 
 #' @examples
@@ -220,15 +216,10 @@ create_drive_folder <- function(name, parent_dribble = NULL, team_drive = NULL){
 
 get_root_dribble <- function(team_drive = NULL){
   
-  # get elements with root as parent folder
-  dribble <- googledrive::drive_find(q = c("'root' in parents"),
-                                     team_drive = team_drive)
-  
-  if (nrow(dribble) > 0){
-    id_root <- googledrive::as_id(dribble$drive_resource[[1]]$parents[[1]])
-    dribble_root <- googledrive::as_dribble(id_root)
+  if (!is.null(team_drive)) {
+    dribble_root <- googledrive::team_drive_get(team_drive)
   } else {
-    dribble_root <- data.frame(id = "root")
+    dribble_root <- googledrive::drive_get("~/")
   }
   
   return(dribble_root)
