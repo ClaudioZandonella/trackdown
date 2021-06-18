@@ -145,13 +145,8 @@ get_parent_dribble <- function(path = NULL, team_drive = NULL, .response = 1){
     path <- get_path_dribble(path = path, 
                              team_drive = team_drive, 
                              .response = .response)
-    
-  } else if (is.null(path) & !is.null(team_drive)) {
-    # TODO evaluate if get_root_dribble works also for team_drive (in case bind the two conditions)
-    path <- googledrive::team_drive_get(team_drive)
-    
   } else {
-    path <- get_root_dribble()
+    path <- get_root_dribble(team_drive)
   }
   
   return(path)
