@@ -8,7 +8,7 @@ update_file(
   file,
   gfile = NULL,
   gpath = "trackdown",
-  team_drive = NULL,
+  shared_drive = NULL,
   hide_code = FALSE,
   path_output = NULL
 )
@@ -19,13 +19,14 @@ update_file(
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
 
-\item{gpath}{character. (Sub)directory in My Drive or a Team Drive (optional).
-By default files are uploaded in the folder "trackdown". To specify another
-folder the full path is required (e.g., "trackdown/my_folder"). Use
-\code{NULL} to upload directly at the root level, although it is not
-recommended.}
+\item{gpath}{character. (Sub)directory in My Drive or a shared drive
+(optional). By default files are uploaded in the folder "trackdown". To
+specify another folder the full path is required (e.g., 
+"trackdown/my_folder"). Use \code{NULL} to upload directly at the root
+level, although it is not recommended.}
 
-\item{team_drive}{character. The name of a Google Team Drive (optional).}
+\item{shared_drive}{character. The name of a Google Drive shared drive
+(optional).}
 
 \item{hide_code}{logical value indicating whether to remove code from the
 text document (chunks and header). Placeholders of type "[[chunk-<name>]]"

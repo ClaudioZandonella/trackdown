@@ -29,7 +29,7 @@ Moreover, the Package `trackdown` offers special features to facilitate the coll
 
 - **Hide Code** (See [hide_code](#hide-code)) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.
 - **Upload Output** (See [path_output](#path-output)) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.
-- **Google Team Drive** (See [team_drive](#team-drive)) - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.
+- **Use Google Drive shared drives** (See [shared_drive](#shared-drive)) - The documents can be uploaded on your personal Google Drive or on a shared drive to facilitate collaboration.
 
 For a general overview of the package, see the `trackdown-package` help page or `vignette("trackdown-workflow")` to know more about the workflow and `vignette("trackdown-tech-notes")` for technical aspects. 
 
@@ -38,11 +38,11 @@ For a general overview of the package, see the `trackdown-package` help page or 
 
 All `trackdown` functions on some common arguments that are used to manage the workflow. In particular we have:
 
-```{r}
+```
 *_file(file,
        gfile = NULL,
        gpath = "trackdown",
-       team_drive = NULL)
+       shared_drive = NULL)
 ```
 
 Moreover, when uploading or updating a file in Google Drive with `upload_file()` or `update_file()` respectively, two extra arguments are available:
@@ -66,15 +66,15 @@ By default (`NULL`), the name of the local file (without extension) is used as t
 
 #### `gpath` {#gpath}
 
-A string indicating a directory in My Drive or in a Team Drive (optional).
+A string indicating a directory in My Drive or in a shared drive (optional).
 
 By default files are uploaded in the folder `"trackdown/"`. To specify another folder the full path is required (e.g., `"trackdown/my_folder/"`). If the indicated folder is not already available on Google Drive, permission to create it is required to the user. Use `NULL` to upload directly at the root level, although it is not recommended.
 
-#### `team_drive` {#team-drive}
+#### `shared_drive` {#shared-drive}
 
-A string indicating the name of a Google Team Drive (optional). 
+A string indicating the name of a shared drive (optional). 
 
-By default personal Google Drive (i.e., My Drive) is used, but a specific Team Drive can be indicated to facilitate collaboration.
+By default personal Google Drive (i.e., My Drive) is used, but a specific shared drive can be indicated to facilitate collaboration.
 
 #### `hide_code` {#hide-code}
 

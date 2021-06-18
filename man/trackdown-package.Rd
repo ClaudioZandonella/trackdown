@@ -72,8 +72,8 @@ particular, it is possible to:
   the overall layout, figures and tables and it allows them to use comments
   to propose
   and discuss suggestions.}
-  \item{\strong{Google Team Drive} - The documents can be uploaded on your
-  personal Google Drive or on a shared Google Team Drive to facilitate
+  \item{\strong{Google Drive shared drive} - The documents can be uploaded on
+  your personal Google Drive or on a shared drive to facilitate
   collaboration.}
  }
 }

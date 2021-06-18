@@ -99,8 +99,8 @@ particular, it is possible to:
     (or `.Rnw`) document. This helps collaborators to evaluate the
     overall layout, figures and tables and it allows them to use
     comments to propose and discuss suggestions.
--   **Google Team Drive** - The documents can be uploaded on your
-    personal Google Drive or on a shared Google Team Drive to facilitate
+-   **Use Google Drive share drives** - The documents can be uploaded on
+    your personal Google Drive or on a shared drive to facilitate
     collaboration.
 
 ### Advantages of Google Docs

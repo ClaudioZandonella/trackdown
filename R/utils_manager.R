@@ -9,7 +9,8 @@
 #' @param file character indicating the path to the local file (or output)
 #' @param gfile character indicating the name of a Google Drive file
 #' @param gpath character indicating the path in Google Drive
-#' @param team_drive character indicating the name of a Google Team Drive (optional)
+#' @param shared_drive character. The name of a Google Drive shared drive
+#'   (optional).
 #' @param test character indicating whether to test no line in dribble ("none"),
 #'   single line in dribble ("single") or both condition accepted ("both")
 #'
@@ -38,7 +39,7 @@
 evaluate_file <- function(file, 
                           gfile = NULL,
                           gpath = "trackdown", 
-                          team_drive = NULL, 
+                          shared_drive = NULL, 
                           test = c("none", "single", "both")){
 
   test <-  match.arg(test)
@@ -53,7 +54,7 @@ evaluate_file <- function(file,
   # get dribble info
   dribble_info <- get_dribble_info(gfile = gfile,
                                    path = gpath, 
-                                   team_drive = team_drive)
+                                   shared_drive = shared_drive)
   
   # check there is no file (or a single file) with same name in drive
   check_dribble(dribble_info$file, gfile, test = test)

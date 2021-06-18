@@ -132,7 +132,7 @@ test_that("expect correct download document", {
     result <- download_file(file = temp_file,
                             gfile = "rmd_example_1",
                             gpath = "reading_folder",
-                            team_drive = NULL)
+                            shared_drive = NULL)
   })
   expect_false(result)
   
@@ -149,7 +149,7 @@ test_that("expect correct download document", {
     result <- download_file(file = temp_file,
                             gfile = "changed_rmd_example_1",
                             gpath = "reading_folder",
-                            team_drive = NULL)
+                            shared_drive = NULL)
   })
   expect_true(result)
 
@@ -178,7 +178,7 @@ test_that("expect correct render_file", {
     result <- render_file(file = temp_file,
                           gfile = "rmd_example_1",
                           gpath = "reading_folder",
-                          team_drive = NULL)
+                          shared_drive = NULL)
   })
   expect_false(result)
   

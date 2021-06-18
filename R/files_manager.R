@@ -20,12 +20,13 @@
 #' @param file character. The path of a local `.Rmd` or `.Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
-#' @param gpath character. (Sub)directory in My Drive or a Team Drive (optional).
-#'   By default files are uploaded in the folder "trackdown". To specify another
-#'   folder the full path is required (e.g., "trackdown/my_folder"). Use
-#'   \code{NULL} to upload directly at the root level, although it is not
-#'   recommended.
-#' @param team_drive character. The name of a Google Team Drive (optional).
+#' @param gpath character. (Sub)directory in My Drive or a shared drive
+#'   (optional). By default files are uploaded in the folder "trackdown". To
+#'   specify another folder the full path is required (e.g., 
+#'   "trackdown/my_folder"). Use \code{NULL} to upload directly at the root
+#'   level, although it is not recommended.
+#' @param shared_drive character. The name of a Google Drive shared drive
+#'   (optional).
 #' @param hide_code logical value indicating whether to remove code from the
 #'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 #'   are displayed instead.
@@ -41,7 +42,7 @@
 upload_file <- function(file,
                         gfile = NULL,
                         gpath = "trackdown",
-                        team_drive = NULL,
+                        shared_drive = NULL,
                         hide_code = FALSE,
                         path_output = NULL) {
   
@@ -53,7 +54,7 @@ upload_file <- function(file,
   document <- evaluate_file(file = file, 
                             gfile = gfile, 
                             gpath = gpath, 
-                            team_drive = team_drive, 
+                            shared_drive = shared_drive, 
                             test = "none")
   
   check_supported_documents(document$file_info)
@@ -63,7 +64,7 @@ upload_file <- function(file,
     output <- evaluate_file(file = path_output, 
                             gfile = paste0(document$gfile, "-output"),  # name based on the correct gfile of the document
                             gpath = gpath, 
-                            team_drive = team_drive, 
+                            shared_drive = shared_drive, 
                             test = "none")
   }
   
@@ -120,7 +121,7 @@ upload_file <- function(file,
 update_file <- function(file,
                         gfile = NULL,
                         gpath = "trackdown",
-                        team_drive = NULL,
+                        shared_drive = NULL,
                         hide_code = FALSE,
                         path_output = NULL) {
   
@@ -132,7 +133,7 @@ update_file <- function(file,
   document <- evaluate_file(file = file, 
                             gfile = gfile, 
                             gpath = gpath, 
-                            team_drive = team_drive, 
+                            shared_drive = shared_drive, 
                             test = "single")
   
   check_supported_documents(document$file_info)
@@ -142,7 +143,7 @@ update_file <- function(file,
     output <- evaluate_file(file = path_output, 
                             gfile = paste0(document$gfile, "-output"),  # name based on the correct gfile of the document
                             gpath = gpath, 
-                            team_drive = team_drive, 
+                            shared_drive = shared_drive, 
                             test = "both")
   }
   
@@ -213,7 +214,7 @@ update_file <- function(file,
 download_file <- function(file,
                           gfile = NULL,
                           gpath = "trackdown",
-                          team_drive = NULL) {
+                          shared_drive = NULL) {
   
   main_process(paste("Downloading", emph_file(file), "with online changes..."))
   
@@ -223,7 +224,7 @@ download_file <- function(file,
   document <- evaluate_file(file = file, 
                             gfile = gfile, 
                             gpath = gpath, 
-                            team_drive = team_drive, 
+                            shared_drive = shared_drive, 
                             test = "single")
   
   check_supported_documents(document$file_info)
@@ -305,14 +306,14 @@ download_file <- function(file,
 render_file <- function(file,
                         gfile = basename(file),
                         gpath = "trackdown",
-                        team_drive = NULL) {
+                        shared_drive = NULL) {
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
   
   changed <- download_file(file = file, 
                            gfile = gfile, 
                            gpath = gpath, 
-                           team_drive = team_drive)
+                           shared_drive = shared_drive)
   if (changed) {
     rmarkdown::render(file, quiet = TRUE)
     finish_process(paste(cli::col_blue(file), "donwloaded and rendered!"))

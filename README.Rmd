@@ -81,7 +81,7 @@ The Package `trackdown` offers special features to facilitate the collaborative 
 
 - **Hide Code**  - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.
 - **Upload Output** - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.
-- **Google Team Drive** - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.
+- **Use Google Drive share drives** - The documents can be uploaded on your personal Google Drive or on a shared drive to facilitate collaboration.
 
 ### Advantages of Google Docs {#google-docs}
 
