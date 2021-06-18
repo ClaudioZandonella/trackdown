@@ -35,7 +35,7 @@ get_dribble_info <- function(gfile, path = NULL, shared_drive = NULL) {
   file_dribble <- googledrive::drive_find(
     q = c(paste0("'", parent_dribble$id,"' in parents", collapse = " or "),
           paste0("name = '", gfile,"'")),
-    shared_drive = shared_drive)
+    team_drive = shared_drive)
   
   return(list(file = file_dribble,
               parent = parent_dribble))
@@ -81,7 +81,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
       q = c(paste0("'", dribble_folder$id,"' in parents", collapse = " or "), 
             "mimeType = 'application/vnd.google-apps.folder'",
             paste0("name = '", path[i],"'")),
-      shared_drive = shared_drive)
+      team_drive = shared_drive)
     
     # Check if path is available on drive
     if(nrow(dribble) < 1){
