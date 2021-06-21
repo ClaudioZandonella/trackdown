@@ -179,10 +179,6 @@ get_parent_dribble <- function(path = NULL, shared_drive = NULL, .response = 1){
 create_drive_folder <- function(name,
                                 parent_dribble = NULL,
                                 shared_drive = NULL){
-  
-  if(parent_dribble$id == "root"){
-    parent_dribble <- NULL
-  } 
     
   for (i in seq_along(name)){
     #create folder using parent dribble (NULL if is not available)

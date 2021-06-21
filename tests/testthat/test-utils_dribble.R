@@ -107,7 +107,6 @@ test_that("create drive folders correctly", {
   
   folder_names <- c("foo")
   load(paste0(file_path, "dribble_writing_folder.rda"))
-  parent_root <- data.frame(id = "root")
   
   # folder in another folder
   vcr::use_cassette("create_drive_folder_1", {
@@ -118,7 +117,7 @@ test_that("create drive folders correctly", {
   
   # folder in root
   vcr::use_cassette("create_drive_folder_2", {
-    drive_folder_2 <- create_drive_folder(name = folder_names[1], parent_dribble = parent_root)
+    drive_folder_2 <- create_drive_folder(name = folder_names[1], parent_dribble = NULL)
     googledrive::drive_rm(drive_folder_2)
   })
   expect_match(drive_folder_2$name, "foo")
