@@ -175,7 +175,7 @@ To know more about <code>trackdown</code> workflow and features see
   <span class='va'>file</span>,
   gfile <span class='op'>=</span> <span class='cn'>NULL</span>,
   gpath <span class='op'>=</span> <span class='st'>"trackdown"</span>,
-  team_drive <span class='op'>=</span> <span class='cn'>NULL</span>,
+  shared_drive <span class='op'>=</span> <span class='cn'>NULL</span>,
   hide_code <span class='op'>=</span> <span class='cn'>FALSE</span>,
   path_output <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
@@ -194,15 +194,16 @@ file name).</p></td>
     </tr>
     <tr>
       <th>gpath</th>
-      <td><p>character. (Sub)directory in My Drive or a Team Drive (optional).
-By default files are uploaded in the folder "trackdown". To specify another
-folder the full path is required (e.g., "trackdown/my_folder"). Use
-<code>NULL</code> to upload directly at the root level, although it is not
-recommended.</p></td>
+      <td><p>character. (Sub)directory in My Drive or a shared drive
+(optional). By default files are uploaded in the folder "trackdown". To
+specify another folder the full path is required (e.g., 
+"trackdown/my_folder"). Use <code>NULL</code> to upload directly at the root
+level, although it is not recommended.</p></td>
     </tr>
     <tr>
-      <th>team_drive</th>
-      <td><p>character. The name of a Google Team Drive (optional).</p></td>
+      <th>shared_drive</th>
+      <td><p>character. The name of a Google Drive shared drive
+(optional).</p></td>
     </tr>
     <tr>
       <th>hide_code</th>

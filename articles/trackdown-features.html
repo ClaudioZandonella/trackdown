@@ -127,17 +127,17 @@
 <li>
 <strong>Upload Output</strong> (See <a href="#path-output">path_output</a>) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.</li>
 <li>
-<strong>Google Team Drive</strong> (See <a href="#team-drive">team_drive</a>) - The documents can be uploaded on your personal Google Drive or on a shared Google Team Drive to facilitate collaboration.</li>
+<strong>Use Google Drive shared drives</strong> (See <a href="#shared-drive">shared_drive</a>) - The documents can be uploaded on your personal Google Drive or on a shared drive to facilitate collaboration.</li>
 </ul>
 <p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> to know more about the workflow and <code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for technical aspects.</p>
 <div id="arg-feat" class="section level2">
 <h2 class="hasAnchor">
 <a href="#arg-feat" class="anchor"></a>Arguments and Features</h2>
 <p>All <code>trackdown</code> functions on some common arguments that are used to manage the workflow. In particular we have:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span><span class="fu">_file</span>(file,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">gfile =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">gpath =</span> <span class="st">"trackdown"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">team_drive =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<pre><code>*_file(file,
+       gfile = NULL,
+       gpath = "trackdown",
+       shared_drive = NULL)</code></pre>
 <p>Moreover, when uploading or updating a file in Google Drive with <code><a href="../reference/upload_file.html">upload_file()</a></code> or <code><a href="../reference/update_file.html">update_file()</a></code> respectively, two extra arguments are available:</p>
 <ul>
 <li>
@@ -164,15 +164,15 @@
 <h4 class="hasAnchor">
 <a href="#gpath" class="anchor"></a><code>gpath</code>
 </h4>
-<p>A string indicating a directory in My Drive or in a Team Drive (optional).</p>
+<p>A string indicating a directory in My Drive or in a shared drive (optional).</p>
 <p>By default files are uploaded in the folder <code>"trackdown/"</code>. To specify another folder the full path is required (e.g., <code>"trackdown/my_folder/"</code>). If the indicated folder is not already available on Google Drive, permission to create it is required to the user. Use <code>NULL</code> to upload directly at the root level, although it is not recommended.</p>
 </div>
-<div id="team-drive" class="section level4">
+<div id="shared-drive" class="section level4">
 <h4 class="hasAnchor">
-<a href="#team-drive" class="anchor"></a><code>team_drive</code>
+<a href="#shared-drive" class="anchor"></a><code>shared_drive</code>
 </h4>
-<p>A string indicating the name of a Google Team Drive (optional).</p>
-<p>By default personal Google Drive (i.e., My Drive) is used, but a specific Team Drive can be indicated to facilitate collaboration.</p>
+<p>A string indicating the name of a shared drive (optional).</p>
+<p>By default personal Google Drive (i.e., My Drive) is used, but a specific shared drive can be indicated to facilitate collaboration.</p>
 </div>
 <div id="hide-code" class="section level4">
 <h4 class="hasAnchor">
