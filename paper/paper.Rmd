@@ -44,7 +44,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 Literate programming allows combining narrative text and code to produce elegant, high quality and reproducible documents. These are fundamental ingredients of modern open science fostering transparency and reproducibility of the scientific results. 
 
-The main downside of literate programming, however, is the lack of appropriate tools for collaborative writing and editing of the document. In fact, producing a document with a literate programming approach requires programming skills which complicates the collaborative workflows considering different backgrounds among collaborators. Furthermore, common version control systems (e.g., Git) are extremely powerful to collaborate on the code but less efficient and interactive for the narrative part of a document. On the contrary, common word processors (e.g., Microsoft Word or Google Docs) offer a smoother experience in terms of real time editing and reviewing. 
+The main downside of literate programming, however, is the lack of appropriate tools for collaborative writing and editing of the document. Producing a document with a literate programming approach requires programming skills which complicates the collaborative workflows considering different backgrounds among collaborators. Furthermore, common version control systems (e.g., Git) are extremely powerful to collaborate on the code but less efficient and interactive for the narrative part of a document. On the contrary, common word processors (e.g., Microsoft Word or Google Docs) offer a smoother experience in terms of real-time editing and reviewing. 
 
 `trackdown` overcomes these issues combining the strengths of literate programming in R with the collaborative features offered by popular word processor Google Docs.
 
@@ -59,7 +59,7 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) docume
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs**  
 
-Other R packages aiming to improve tracking changes and reviewing experience of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and annotatate HTML using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio addin for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] create a diff of two Rmarkdown, .Rnw or TeX files. These packages, however, are based on less efficient workflow and all of them, but `latexdiffr`, are no longer active projects. In particular, `trackdown` has the advantage of being based on Google Docs that offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. Moreover, `trackdown` allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text in Google Docs.
+Other R packages aiming to improve tracking changes and reviewing experience of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and annotate HTML using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio add-in for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] create a diff of two Rmarkdown, .Rnw or TeX files. These packages, however, are based on less efficient workflow and all of them, but `latexdiffr`, are no longer active projects. In particular, `trackdown` has the advantage of being based on Google Docs that offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. Moreover, `trackdown` allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text in Google Docs.
 
 The package is available on GitHub (https://github.com/ekothe/trackdown) 
 <!-- and CRAN (https://CRAN.R-project.org/package=trackdown) -->
@@ -85,13 +85,13 @@ By executing this command, the `My-Report.Rmd` file is uploaded from your local 
 
 ## Collaborate
 
-After uploading your document to Google Drive, you can now share a link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. In Google Docs it is possible to : track changes (incl. accepting/rejecting suggestions); add comments to suggest and discuss changes; check spelling and grammar errors (See \autoref{fig:example-edit}).
+After uploading your document to Google Drive, you can now share a link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. In Google Docs it is possible to: track changes (incl. accepting/rejecting suggestions); add comments to suggest and discuss changes; check spelling and grammar errors (See \autoref{fig:example-edit}).
 
 ![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-upload}](Example-edit.png){ width=100% }
 
 ## Download File {#ex-download}
 
-At some point, you will want to add some code to the document to include figures, tables, or analysis results. This should not be done in Google Docs, instead, you should first download the document. First accept/reject all changes made to the document in Google Docs, than download the edited version of the document from Google Drive using the function `download_file()`:
+At some point, you will want to add some code to the document to include figures, tables, or analysis results. This should not be done in Google Docs, instead, you should first download the document. Accept/reject all changes made to the document in Google Docs, then download the edited version of the document from Google Drive using the function `download_file()`:
 
 ```{r, echo = TRUE, eval = FALSE}
 download_file(file = "path-to-file/My-Report.Rmd")
@@ -113,7 +113,3 @@ By executing this command, the document in Google Drive is updated with your lat
 This iterative process of updating the file in Google Drive and downloading it locally continues until the desired results are obtained.
 
 # References
-
-
-
-
