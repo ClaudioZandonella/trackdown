@@ -97,22 +97,22 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="trackdown---r-package-for-enhancing-collaborative-writing-" class="section level1">
+<div id="trackdown---r-package-for-improving-collaborative-writing-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#trackdown---r-package-for-enhancing-collaborative-writing-" class="anchor"></a>trackdown - R package for enhancing collaborative writing <img src="reference/figures/logo.png" align="right" width="120">
+<a href="#trackdown---r-package-for-improving-collaborative-writing-" class="anchor"></a>trackdown - R package for improving collaborative writing <img src="reference/figures/logo.png" align="right" width="120">
 </h1></div>
 <!-- badges: start -->
 
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>The <code>trackdown</code> package offers a simple answer to collaborative writing and editing of R Markdown (or Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or <code>.Rnw</code>) file is uploaded as plain-text in Google Drive where, thanks to the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing of the document. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
+<p>The <code>trackdown</code> package offers a simple solution for collaborative writing and editing of R Markdown (or Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or <code>.Rnw</code>) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
 <p>All the documentation is available at <a href="https://ekothe.github.io/trackdown/" class="uri">https://ekothe.github.io/trackdown/</a>.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>This package is not already available on CRAN. To install the development version from GitHub run the following code:</p>
+<p>This package is not available on CRAN yet. To install the development version from GitHub, run the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ekothe/trackdown"</span>,
@@ -121,17 +121,17 @@
 </div>
 <div id="the-trackdown-workflow" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-trackdown-workflow" class="anchor"></a>The trackdown Workflow</h2>
-<p>When collaborating on the writing of a <code>.Rmd</code> (or <code>.Rnw</code>) document it is important to consider separately code and narrative text:</p>
+<a href="#the-trackdown-workflow" class="anchor"></a>The <code>trackdown</code> Workflow</h2>
+<p>During the collaborative writing/editing of an <code>.Rmd</code> (or <code>.Rnw</code>) document, it is important to employ different workflows for computer code and narrative text:</p>
 <ul>
 <li>
-<strong>Code</strong> - Collaborative code writing is done efficiently following traditional <strong>Git</strong> workflow based on an online repository (e.g., GitHub or GitLab)</li>
+<strong>Code</strong> - Collaborative code writing is done most efficiently by following a traditional <strong>Git</strong>-based workflow using an online repository (e.g., GitHub or GitLab).</li>
 <li>
-<strong>Narrative Text</strong> - Collaborative writing of the narrative text is done efficiently on <strong>Google Docs</strong> where the familiar and simple online interface allows multiple users to simultaneously write and edit the same document</li>
+<strong>Narrative Text</strong> - Collaborative writing of narrative text is done most efficiently using <strong>Google Docs</strong> which provides a familiar and simple online interface that allows multiple users to simultaneously write/edit the same document.</li>
 </ul>
-<p>Thus, the workflow main idea is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative writing of the narrative text in Google Docs and download the document locally to continue working on the code using Git. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
+<p>Thus, the workflow’s main idea is simple: Upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
 <blockquote>
-<p>Collaborative <strong>code</strong> writing using <strong>Git</strong> and collaborative writing of <strong>narrative text</strong> on <strong>Google Docs</strong></p>
+<p>Collaborative <strong>code</strong> writing using <strong>Git</strong> &amp; collaborative writing of <strong>narrative text</strong> using <strong>Google Docs</strong></p>
 </blockquote>
 <!-- pakgdown code-->
 <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen>
@@ -145,55 +145,55 @@
 <div id="functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h3>
-<p>The package <code>trackdown</code> offers different functions to manage the workflow:</p>
+<p><code>trackdown</code> offers different functions to manage the workflow:</p>
 <ul>
 <li>
-<code><a href="reference/upload_file.html">upload_file()</a></code> - upload a file for the first time to Google Drive</li>
+<code><a href="reference/upload_file.html">upload_file()</a></code> uploads a file for the first time to Google Drive.</li>
 <li>
-<code><a href="reference/update_file.html">update_file()</a></code> - update the content of an existing file in Google Drive with the contents of a local file</li>
+<code><a href="reference/update_file.html">update_file()</a></code> updates the content of an existing file in Google Drive with the contents of a local file.</li>
 <li>
-<code><a href="reference/download_file.html">download_file()</a></code> - download edited version of a file from Google Drive updating the local version</li>
+<code><a href="reference/download_file.html">download_file()</a></code> downloads the edited version of a file from Google Drive and updates the local version.</li>
 <li>
-<code><a href="reference/render_file.html">render_file()</a></code> - download and render a file from Google Drive</li>
+<code><a href="reference/render_file.html">render_file()</a></code> downloads a file from Google Drive and renders it locally.</li>
 </ul>
 </div>
 <div id="special-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#special-features" class="anchor"></a>Special Features</h3>
-<p>The Package <code>trackdown</code> offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:</p>
+<p><code>trackdown</code> offers additional features to facilitate the collaborative writing and editing of documents in Google Docs. In particular, it is possible to:</p>
 <ul>
 <li>
-<strong>Hide Code</strong> - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.</li>
+<strong>Hide Code:</strong> Code in the header of the document (YAML header or LaTeX preamble) and code chunks are removed from the document when uploading to Google Drive and are automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.</li>
 <li>
-<strong>Upload Output</strong> - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.</li>
+<strong>Upload Output:</strong> The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout including figures and tables and allows them to add comments to suggest and discuss changes.</li>
 <li>
-<strong>Use Google Drive share drives</strong> - The documents can be uploaded on your personal Google Drive or on a shared drive to facilitate collaboration.</li>
+<strong>Use Google Drive shared drives:</strong> The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.</li>
 </ul>
 </div>
 <div id="advantages-of-google-docs" class="section level3">
 <h3 class="hasAnchor">
 <a href="#advantages-of-google-docs" class="anchor"></a>Advantages of Google Docs</h3>
-<p>Google Docs offers a familiar, intuitive, and free online interface that allows multiple users to simultaneously write and edit the same document. In Google Docs it is possible to:</p>
+<p>Google Docs offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. In Google Docs it is possible to:</p>
 <ul>
-<li>easily track changes</li>
-<li>add comments to propose and discuss suggestions</li>
-<li>check spelling and grammar errors (also using Grammarly)</li>
+<li>track changes (incl. accepting/rejecting suggestions)</li>
+<li>add comments to suggest and discuss changes</li>
+<li>check spelling and grammar errors (potentially integrating third-party services like Grammarly)</li>
 </ul>
-<p>Moreover, Google Docs allows anyone to collaborate on the document as no programming experience is required, they only have to focus on the narrative text ignoring code jargon.</p>
-<p>Note that a Google account is not required for all collaborators (although recommended to access all Google Docs features). Only the person who manages the <code>trackdown</code> workflow requires a Google account to upload files in Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0">Instructions</a>).</p>
+<p>Moreover, Google Docs allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text.</p>
+<p>Note that not all collaborators have to have a Google account (although this is recommended to utilize all Google Docs features). Only the person who manages the <code>trackdown</code> workflow needs to have a Google account to upload files to Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0">Instructions</a>).</p>
 </div>
 <div id="documentation-and-vignettes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#documentation-and-vignettes" class="anchor"></a>Documentation and Vignettes</h3>
-<p>All the documentation is available at <a href="https://ekothe.github.io/trackdown/" class="uri">https://ekothe.github.io/trackdown/</a>.</p>
-<p>To know more about the <code>trackdown</code> see:</p>
+<p>All documentation is available at <a href="https://ekothe.github.io/trackdown/" class="uri">https://ekothe.github.io/trackdown/</a>.</p>
+<p>To know more about <code>trackdown</code>, please reference:</p>
 <ul>
 <li>
-<code><a href="articles/trackdown-features.html">vignette("trackdown-features")</a></code> - for detailed description of the function arguments and features</li>
+<code><a href="articles/trackdown-features.html">vignette("trackdown-features")</a></code> for a detailed description of the function arguments and features.</li>
 <li>
-<code><a href="articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> - for a workflow example and a discussion about collaboration on narrative text and code</li>
+<code><a href="articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> for a workflow example and discussion of how to collaborate on narrative text and code.</li>
 <li>
-<code><a href="articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> - for details regarding technical aspects as authentication and file management</li>
+<code><a href="articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for details regarding technical details like authentication and file management.</li>
 </ul>
 </div>
 </div>
@@ -201,23 +201,15 @@
 <h2 class="hasAnchor">
 <a href="#contributing-to-trackdown" class="anchor"></a>Contributing to <code>trackdown</code>
 </h2>
-<p>The <code>trackdown</code> package is an ongoing project, surely there are many issues to fix and features to propose. Anyone is welcome to contribute to the development.</p>
+<p>Development of the <code>trackdown</code> package is an ongoing project, surely there are many issues to fix and features to propose/add. Anyone is welcome to contribute to the development.</p>
 <p>Please note that this project is released under a <a href="https://www.contributor-covenant.org/">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 <p>See <a href="https://github.com/ekothe/trackdown/blob/develop/CONTRIBUTING.md">Community guidelines</a> for further information.</p>
-<div id="future-plans" class="section level4">
-<h4 class="hasAnchor">
-<a href="#future-plans" class="anchor"></a>Future Plans</h4>
-<ul>
-<li>Improve compute time by parallelizing the code</li>
-<li>Implement design analysis in the case of linear regression models</li>
-</ul>
-</div>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>To cite <code>trackdown</code> in publications use:</p>
-<p>A BibTeX entry for LaTeX users is</p>
+<p>The BibTeX entry is:</p>
 </div>
 </div>
   </div>

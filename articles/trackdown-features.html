@@ -108,32 +108,32 @@
 
     
     
-<p>The main idea behind the <code>trackdown</code> workflow is very simple: upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive for collaborative writing of the narrative text in Google Docs and download the document locally to continue working on the code using Git.</p>
-<p>To manage this workflow, the package <code>trackdown</code> offers different functions:</p>
+<p>The main idea behind the <code>trackdown</code> workflow is simple: Upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration.</p>
+<p>To manage this workflow, <code>trackdown</code> offers different functions:</p>
 <ul>
 <li>
-<code><a href="../reference/upload_file.html">upload_file()</a></code> - upload a file for the first time to Google Drive</li>
+<code><a href="../reference/upload_file.html">upload_file()</a></code> uploads a file for the first time to Google Drive.</li>
 <li>
-<code><a href="../reference/update_file.html">update_file()</a></code> - update the content of an existing file in Google Drive with the contents of a local file</li>
+<code><a href="../reference/update_file.html">update_file()</a></code> updates the content of an existing file in Google Drive with the contents of a local file.</li>
 <li>
-<code><a href="../reference/download_file.html">download_file()</a></code> - download edited version of a file from Google Drive updating the local version</li>
+<code><a href="../reference/download_file.html">download_file()</a></code> - downloads the edited version of a file from Google Drive and updates the local version.</li>
 <li>
-<code><a href="../reference/render_file.html">render_file()</a></code> - download and render a file from Google Drive</li>
+<code><a href="../reference/render_file.html">render_file()</a></code> - downloads a file from Google Drive and renders it locally.</li>
 </ul>
-<p>Moreover, the Package <code>trackdown</code> offers special features to facilitate the collaborative writing and editing of a document on Google Docs. In particular, it is possible to:</p>
+<p>Moreover, <code>trackdown</code> offers additional features to facilitate the collaborative writing and editing of documents in Google Docs. In particular, it is possible to:</p>
 <ul>
 <li>
-<strong>Hide Code</strong> (See <a href="#hide-code">hide_code</a>) - The header code (YAML or LaTeX settings) and code chunks are removed from the document when uploaded to Google Drive and automatically restored when downloaded. This prevents collaborators from inadvertently making changes to the code that might corrupt the file and it allows collaborators to focus only on the narrative text ignoring code jargon.</li>
+<strong>Hide Code</strong> (See <a href="#hide-code">hide_code</a>): Code in the header of a document (YAML header or LaTeX preamble) and code chunks are removed from the document when uploading to Google Drive and are automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.</li>
 <li>
-<strong>Upload Output</strong> (See <a href="#path-output">path_output</a>) - The actual output (i.e., the resulting complied document) can be uploaded in Google Drive together with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions.</li>
+<strong>Upload Output</strong> (See <a href="#path-output">path_output</a>): The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout including figures and tables and it allows them to add comments to suggest and discuss changes.</li>
 <li>
-<strong>Use Google Drive shared drives</strong> (See <a href="#shared-drive">shared_drive</a>) - The documents can be uploaded on your personal Google Drive or on a shared drive to facilitate collaboration.</li>
+<strong>Use Google Drive shared drives</strong> (See <a href="#shared-drive">shared_drive</a>): The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.</li>
 </ul>
-<p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> to know more about the workflow and <code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for technical aspects.</p>
+<p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> to know more about the workflow and <code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for an overview of technical details.</p>
 <div id="arg-feat" class="section level2">
 <h2 class="hasAnchor">
 <a href="#arg-feat" class="anchor"></a>Arguments and Features</h2>
-<p>All <code>trackdown</code> functions on some common arguments that are used to manage the workflow. In particular we have:</p>
+<p>All <code>trackdown</code> functions share some common arguments that are used to manage the workflow:</p>
 <pre><code>*_file(file,
        gfile = NULL,
        gpath = "trackdown",
@@ -141,56 +141,56 @@
 <p>Moreover, when uploading or updating a file in Google Drive with <code><a href="../reference/upload_file.html">upload_file()</a></code> or <code><a href="../reference/update_file.html">update_file()</a></code> respectively, two extra arguments are available:</p>
 <ul>
 <li>
-<code>hide_code</code> - to hide the header code and code chunks from the document</li>
+<code>hide_code</code> to hide the header code and code chunks from the document.</li>
 <li>
-<code>path_output</code> - to upload the actual output (i.e., the resulting complied document) in Google Drive together with the .Rmd (or .Rnw) document</li>
+<code>path_output</code> to upload the rendered output document to Google Drive in conjunction with the .Rmd (or .Rnw) document.</li>
 </ul>
-<p>In this section, all arguments of <code>trackdown</code> functions are introduced describing default settings and highlighting main features.</p>
+<p>In this section, all arguments of <code>trackdown</code> functions are introduced, describing default settings and highlighting main features.</p>
 <div id="file" class="section level4">
 <h4 class="hasAnchor">
 <a href="#file" class="anchor"></a><code>file</code>
 </h4>
 <p>A string indicating the path of the local <code>.Rmd</code> (or <code>.Rnw</code>) file.</p>
-<p>All <code>trackdown</code> functions take as reference the local file to manage the workflow. Thus, <code>file</code> argument must always be specified both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.</p>
+<p>All <code>trackdown</code> functions take as reference the local file to manage the workflow. Thus, the <code>file</code> argument is mandatory, both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.</p>
 </div>
 <div id="gfile" class="section level4">
 <h4 class="hasAnchor">
 <a href="#gfile" class="anchor"></a><code>gfile</code>
 </h4>
 <p>A string indicating the name of the file in Google Drive.</p>
-<p>By default (<code>NULL</code>), the name of the local file (without extension) is used as the name of the file in Google Drive. Specifying the <code>gfile</code> argument you can personalize the name of the file in Google Drive. In this case, remember to point out to correct file in Google Drive any time you update or download the file during your workflow.</p>
+<p>By default (<code>NULL</code>), the name of the local file (without extension) is used as the name of the file in Google Drive. By specifying the <code>gfile</code> argument one can personalize the name of the file in Google Drive. In this case, one has to remember to point to the correct file in Google Drive every time one updates or downloads the file during the collaborative writing process.</p>
 </div>
 <div id="gpath" class="section level4">
 <h4 class="hasAnchor">
 <a href="#gpath" class="anchor"></a><code>gpath</code>
 </h4>
 <p>A string indicating a directory in My Drive or in a shared drive (optional).</p>
-<p>By default files are uploaded in the folder <code>"trackdown/"</code>. To specify another folder the full path is required (e.g., <code>"trackdown/my_folder/"</code>). If the indicated folder is not already available on Google Drive, permission to create it is required to the user. Use <code>NULL</code> to upload directly at the root level, although it is not recommended.</p>
+<p>By default, files are uploaded to the folder <code>"trackdown/"</code> on Google Drive. To specify another folder, the full path is required (e.g., <code>"trackdown/my_folder/"</code>). If the indicated folder is not already available on Google Drive, the user is asked for permission to create it. One can use <code>NULL</code> to upload the file directly at the root level, although this is not recommended.</p>
 </div>
 <div id="shared-drive" class="section level4">
 <h4 class="hasAnchor">
 <a href="#shared-drive" class="anchor"></a><code>shared_drive</code>
 </h4>
 <p>A string indicating the name of a shared drive (optional).</p>
-<p>By default personal Google Drive (i.e., My Drive) is used, but a specific shared drive can be indicated to facilitate collaboration.</p>
+<p>By default, a personal Google Drive (i.e., My Drive) is used, but a shared drive can be specified to facilitate collaboration.</p>
 </div>
 <div id="hide-code" class="section level4">
 <h4 class="hasAnchor">
 <a href="#hide-code" class="anchor"></a><code>hide_code</code>
 </h4>
-<p>A logical value indicating whether the header code (YAML or LaTeX settings) and code chunks should be removed from the document when it is uploaded (or updated).</p>
-<p>This argument is available only for <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. Default the value is <code>FALSE</code>. Setting <code>TRUE</code>, the header code and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” are displayed instead.</p>
-<p>This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file. Moreover, this allows collaborators to focus only on the narrative text ignoring code jargon. Note that to guarantee correct code restoring, placeholders must not be modified or removed.</p>
+<p>A logical value indicating whether code in the header of the document (YAML header or LaTeX preamble) and code chunks should be removed from the document when it is uploaded (or updated).</p>
+<p>This argument is available only for the <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. By default, the value is set to <code>FALSE</code>. If set to <code>TRUE</code>, the code in the document header and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” are displayed instead.</p>
+<p>This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file and allows them to focus on the narrative text. Note that to guarantee correct code restoration, placeholders must not be modified or removed.</p>
 </div>
 <div id="path-output" class="section level4">
 <h4 class="hasAnchor">
 <a href="#path-output" class="anchor"></a><code>path_output</code>
 </h4>
-<p>A string indicating the path of the output (i.e., the resulting compiled document).</p>
-<p>This argument is available only for <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. By default (<code>NULL</code>) no output is uploaded in Google Drive. If specified, the output (i.e., HTML or PDF file) is uploaded together with the main file. The output is named in Google Drive as the main file adding “-output” at the end (e.g., given the main file name “My-Report” the output is named “My-Report-output”).</p>
-<p>This feature is intended to help collaborators to evaluate the overall layout, figures and tables and it allows them to use comments to propose and discuss suggestions (See Figure below). Note that, in the case of PDF files, it is possible to add comments directly on the file in Google Drive. However, this is not possible with HTML files.</p>
+<p>A string indicating the output path (i.e., the resulting rendered document).</p>
+<p>This argument is available only for the <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. By default (<code>NULL</code>), no output is uploaded to Google Drive. If specified, the output file (i.e., the rendered HTML or PDF file) is uploaded in conjunction with the main file. The output is named in Google Drive like the main file plus “-output” at the end (e.g., given a main file with the name “My-Report”, the output would be named “My-Report-output”).</p>
+<p>This feature is intended to help collaborators to evaluate the overall layout, including figures and tables, and allows them to add comments to propose and discuss changes (See Figure below). Note that, in the case of PDF files, it is possible to add comments directly to the file in Google Drive. However, this is not possible with HTML files.</p>
 <p><img src="edit-output.png" style="width:100.0%"></p>
-<p>In the case of HTML files, <code>trackdown</code> can automatically convert them into PDFs before uploading if the <code>pagedown</code> package is available. The <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, thus it has to be installed manually by the user if not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html">pagedown::chrome_print()</a></code> will be used to convert HTML into a PDF allowing collaborators to add comments directly on the file in Google Drive. Note that Google Chrome is required for this conversion operation.</p>
+<p>In the case of HTML files, <code>trackdown</code> can automatically convert them into PDFs before uploading them to Google Drive. This feature requires that the <code>pagedown</code> package is available. As the <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, it has to be installed manually by the user if it is not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html">pagedown::chrome_print()</a></code> is used to convert an HTML into a PDF. Note that Google Chrome has to be installed on the user’s system for this conversion operation.</p>
 </div>
 </div>
   </div>
