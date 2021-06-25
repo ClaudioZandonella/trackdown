@@ -159,4 +159,16 @@ for further information.
 
 To cite `trackdown` in publications use:
 
+Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch
+Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing
+and Editing of R Markdown (or Sweave) Documents in Google Drive.
+<https://github.com/ekothe/trackdown/>.
+
 The BibTeX entry is:
+
+    @Manual{,
+        title = {trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive},
+        author = {Emily Kothe and Claudio {Zandonella Callegher} and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
+        year = {2021},
+        url = {https://github.com/ekothe/trackdown/tree/develop},
+      }
