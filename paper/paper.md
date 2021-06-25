@@ -26,11 +26,11 @@ authors:
 affiliations:
  - name: Department of Developmental Psychology and Socialisation, University of Padova, Padova, Italy
    index: 1
- - name: Center of Human Development, University of California, San Diego, USA
+ - name: Center for Human Development, University of California, San Diego, USA
    index: 2
  - name: Misinformation Lab, Deakin University, Victoria, Australia
    index: 3
-date: "23 June, 2021"
+date: "25 June, 2021"
 bibliography: paper_JOSS.bib
 editor_options: 
   chunk_output_type: console
@@ -40,11 +40,11 @@ editor_options:
 
 # Summary
 
-Literate programming allows combining narrative text and code to produce elegant, high quality and reproducible documents. These are fundamental ingredients of modern open science fostering transparency and reproducibility of the scientific results. 
+Literate programming allows to combine narrative text and computer code to produce elegant, high quality, and reproducible documents. These are fundamental requirements of modern open science workflows fostering transparency and reproducibility of scientific results. 
 
-The main downside of literate programming, however, is the lack of appropriate tools for collaborative writing and editing of the document. Producing a document with a literate programming approach requires programming skills which complicates the collaborative workflows considering different backgrounds among collaborators. Furthermore, common version control systems (e.g., Git) are extremely powerful to collaborate on the code but less efficient and interactive for the narrative part of a document. On the contrary, common word processors (e.g., Microsoft Word or Google Docs) offer a smoother experience in terms of real-time editing and reviewing. 
+A major downside of literate programming, however, is the lack of tools for collaborative writing and editing. Producing a document following a literate programming approach requires programming skills which can complicate the collaboration with colleagues who lack those skills. Furthermore, while commonly used version control systems (e.g., Git) are extremely powerful for collaborating on the writing of computer code, they are less efficient and lack the interactivity needed for collaborating on the writing of the narrative part of a document. On the contrary, common word processors (e.g., Microsoft Word or Google Docs) offer a smoother experience in terms of real-time editing and reviewing. 
 
-`trackdown` overcomes these issues combining the strengths of literate programming in R with the collaborative features offered by popular word processor Google Docs.
+`trackdown` overcomes these issues by combining the strengths of literate programming in R with the collaborative features offered by the popular word processor Google Docs.
 
 # Statement of need 
 
@@ -57,7 +57,7 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) docume
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs**  
 
-Other R packages aiming to improve tracking changes and reviewing experience of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and annotate HTML using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio add-in for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] create a diff of two Rmarkdown, .Rnw or TeX files. These packages, however, are based on less efficient workflow and all of them, but `latexdiffr`, are no longer active projects. In particular, `trackdown` has the advantage of being based on Google Docs that offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. Moreover, `trackdown` allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text in Google Docs.
+Other R packages aiming to improve the user experience during the collaborative editing of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and add notes using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio add-in for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] creates a diff of two R Markdown, .Rnw or LaTeX files. However, these packages implement a less efficient writing/editing workflow and all of them, but `latexdiffr`, are no longer under active development. In particular, the `trackdown` workflow has the advantage of being based on Google Docs which offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. Moreover, `trackdown` allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text in Google Docs.
 
 The package is available on GitHub (https://github.com/ekothe/trackdown) 
 <!-- and CRAN (https://CRAN.R-project.org/package=trackdown) -->
@@ -80,7 +80,7 @@ update_file(file = "path-to-file/My-Report.Rmd",
 
 By executing this command, the `My-Report.Rmd` file is uploaded from your local computer to your Google Drive. Note that `trackdown` adds some simple instructions and reminders on top of the document and, by specifying the argument `hide_code = TRUE` (default is `FALSE`), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" (See \autoref{fig:example-upload}). This allows collaborators to focus on the narrative text. 
 
-![When uploading a document from your local computer to your Google Drive, `trackdown` adds some simple instructions and reminders on top of the document and, by specifying the argument `hide_code = TRUE` (default is `FALSE`), the header code (YAML) and code chunks are removed an substituted by placeholders.\label{fig:example-upload}](JOSS-fig.png)
+![When uploading a document from your local computer to your Google Drive, `trackdown` adds some simple instructions and reminders on top of the document and, by specifying the argument `hide_code = TRUE` (default is `FALSE`), the header code (YAML) and code chunks are removed and substituted by placeholders.\label{fig:example-upload}](JOSS-fig.png)
 
 ## Collaborate
 
@@ -90,7 +90,7 @@ After uploading your document to Google Drive, you can now share a link to the d
 
 ## Download File {#ex-download}
 
-At some point, you will want to add some code to the document to include figures, tables, or analysis results. This should not be done in Google Docs, instead, you should first download the document. Accept/reject all changes made to the document in Google Docs, then download the edited version of the document from Google Drive using the function `download_file()`:
+At some point, you will want to add some code to the document to include figures, tables, and/or analysis results. This should not be done in Google Docs, instead, you should first download the document. Accept/reject all changes made to the document in Google Docs, then download the edited version of the document from Google Drive using the function `download_file()`:
 
 
 ```r
@@ -109,7 +109,7 @@ update_file(file = "path-to-file/My-Report.Rmd",
             hide_code = TRUE)
 ```
 
-By executing this command, the document in Google Drive is updated with your latest local changes. Now you and your colleagues can continue collaborating on the writing of the document. Note that updating the file in Google Drive will overwrite its current content.
+By executing this command, the document in Google Drive is updated with your latest local changes. Now you and your colleagues can continue to collaborate on the writing of the document. Note that updating the file in Google Drive will overwrite its current content.
 
 This iterative process of updating the file in Google Drive and downloading it locally continues until the desired results are obtained.
 

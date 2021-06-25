@@ -47,7 +47,9 @@
 
 # rmarkdown::render(input = "paper/paper.Rmd",output_format = "html_document",
 #                   output_dir = "paper/", clean = FALSE)
-
+# file.remove("paper/paper.md")
+# file.remove("paper/paper.knit.md")
+# file.rename(from = "paper/paper.utf8.md", to = "paper/paper.md")
 
 #----
 
