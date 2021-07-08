@@ -167,8 +167,9 @@ and Editing of R Markdown (or Sweave) Documents in Google Drive.
 The BibTeX entry is:
 
     @Manual{,
-        title = {trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive},
-        author = {Emily Kothe and Claudio {Zandonella Callegher} and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
-        year = {2021},
-        url = {https://github.com/ekothe/trackdown/tree/develop},
-      }
+      title = {trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive},
+      author = {Emily Kothe and Claudio {Zandonella Callegher} and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
+      year = {2021},
+      note = {R package version 0.1.0},
+      url = {https://github.com/ekothe/trackdown},
+    }
