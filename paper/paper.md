@@ -30,7 +30,7 @@ affiliations:
    index: 2
  - name: Misinformation Lab, Deakin University, Victoria, Australia
    index: 3
-date: "25 June, 2021"
+date: "08 July, 2021"
 bibliography: paper_JOSS.bib
 editor_options: 
   chunk_output_type: console
@@ -53,9 +53,11 @@ A major downside of literate programming, however, is the lack of tools for coll
 - **Code** - Collaborative code writing is done most efficiently by following a traditional **Git**-based workflow using an online repository (e.g., GitHub or GitLab).
 - **Narrative Text** - Collaborative writing of narrative text is done most efficiently using **Google Docs** which provides a familiar and simple online interface that allows multiple users to simultaneously write/edit the same document.
 
-Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
+Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained (See \autoref{fig:trakdown-workflow}). The workflow can be summarized as:
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs**  
+
+![trackdown workflow, collaborative code writing is done locally using Git whereas collaborative writing of the narrative text is done online using Google Docs.\label{fig:trakdown-workflow}](trackdown-workflow.png)
 
 Other R packages aiming to improve the user experience during the collaborative editing of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and add notes using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio add-in for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] creates a diff of two R Markdown, .Rnw or LaTeX files. However, these packages implement a less efficient writing/editing workflow and all of them, but `latexdiffr`, are no longer under active development. In particular, the `trackdown` workflow has the advantage of being based on Google Docs which offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. Moreover, `trackdown` allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text in Google Docs.
 
@@ -86,7 +88,7 @@ By executing this command, the `My-Report.Rmd` file is uploaded from your local 
 
 After uploading your document to Google Drive, you can now share a link to the document with your colleagues and invite them to collaborate on the writing of the narrative text. Google Docs offers a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. In Google Docs it is possible to: track changes (incl. accepting/rejecting suggestions); add comments to suggest and discuss changes; check spelling and grammar errors (See \autoref{fig:example-edit}).
 
-![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-upload}](Example-edit.png){ width=100% }
+![Example of collaboration in Google Docs using suggestions and comments.\label{fig:example-edit}](Example-edit.png){ width=100% }
 
 ## Download File {#ex-download}
 

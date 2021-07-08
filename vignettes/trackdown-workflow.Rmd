@@ -27,6 +27,8 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) docume
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs** 
 
+![](trackdown-workflow.png){ width=100% }
+
 `trackdown` offers different functions to manage this workflow:
 
 - `upload_file()` uploads a file for the first time to Google Drive.
