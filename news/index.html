@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Updates file in Google Drive — update_file • trackdown</title>
+<title>Changelog • trackdown</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,17 +46,7 @@
 
 
 
-<meta property="og:title" content="Updates file in Google Drive — update_file" />
-<meta property="og:description" content="Replaces the content of an existing file in Google Drive with the contents of
-a local file. It is also possible to update (or upload if not already
-present) the output (pdf or html) of the file specifying the
-path_output argument. In case of html files, if pagedown
-package and Chrome are available, users can decide to upload a pdf version of
-the html file.
-Use with caution as tracked changes in the Google Drive file will be
-lost! 
-To know more about trackdown workflow and features see
-trackdown-package help page." />
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -86,7 +76,7 @@ trackdown-package help page." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -156,82 +146,52 @@ trackdown-package help page." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Updates file in Google Drive</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ekothe/trackdown/blob/master/R/files_manager.R'><code>R/files_manager.R</code></a></small>
-    <div class="hidden name"><code>update_file.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/ekothe/trackdown/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>Replaces the content of an existing file in Google Drive with the contents of
-a local file. It is also possible to update (or upload if not already
-present) the output (pdf or html) of the file specifying the
-<code>path_output</code> argument. In case of html files, if <code>pagedown</code>
-package and Chrome are available, users can decide to upload a pdf version of
-the html file.<br /><br />
-<em>Use with caution as tracked changes in the Google Drive file will be
-lost!</em><br /><br /> 
-To know more about <code>trackdown</code> workflow and features see
-<code><a href='trackdown-package.html'>trackdown-package</a></code> help page.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>update_file</span><span class='op'>(</span>
-  <span class='va'>file</span>,
-  gfile <span class='op'>=</span> <span class='cn'>NULL</span>,
-  gpath <span class='op'>=</span> <span class='st'>"trackdown"</span>,
-  shared_drive <span class='op'>=</span> <span class='cn'>NULL</span>,
-  hide_code <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  path_output <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>file</th>
-      <td><p>character. The path of a local `.Rmd` or `.Rnw` file.</p></td>
-    </tr>
-    <tr>
-      <th>gfile</th>
-      <td><p>character. The name of a Google Drive file (defaults to local
-file name).</p></td>
-    </tr>
-    <tr>
-      <th>gpath</th>
-      <td><p>character. (Sub)directory in My Drive or a shared drive
-(optional). By default files are uploaded in the folder "trackdown". To
-specify another folder the full path is required (e.g., 
-"trackdown/my_folder"). Use <code>NULL</code> to upload directly at the root
-level, although it is not recommended.</p></td>
-    </tr>
-    <tr>
-      <th>shared_drive</th>
-      <td><p>character. The name of a Google Drive shared drive
-(optional).</p></td>
-    </tr>
-    <tr>
-      <th>hide_code</th>
-      <td><p>logical value indicating whether to remove code from the
-text document (chunks and header). Placeholders of type "[[chunk-&lt;name&gt;]]"
-are displayed instead.</p></td>
-    </tr>
-    <tr>
-      <th>path_output</th>
-      <td><p>default <code>NULL</code>, specify the path to the output to upload
-together with the other file. PDF are directly uploaded, HTML can be first
-converted into PDF if package <code>pagedown</code> and Chrome are available.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a dribble of the uploaded file (and output if specified)</p>
-
+    <div id="trackdown-development-version" class="section level1">
+<h1 class="page-header" data-toc-text="development version">
+<a href="#trackdown-development-version" class="anchor"></a>trackdown (development version)</h1>
+<div id="trackdown-011" class="section level2">
+<h2 class="hasAnchor">
+<a href="#trackdown-011" class="anchor"></a>trackdown 0.1.1</h2>
+<p>Following the release of <code>googledrive</code> version 2.0.0 (<a href="https://www.tidyverse.org/blog/2021/07/googledrive-2-0-0/">link</a>), on which <code>trackdown</code> is based to interact with Google Drive, we updated the internal functions. In particular:</p>
+<ul>
+<li>Set googledrive (&gt;= 2.0.0) in the <code>Imports</code> field of the <code>DESCRIPTION</code> file.</li>
+<li>Substitute <code>team_drive_\*()</code> deprecated functions and <code>team_drive =</code> deprecated arguments with the new <code>shared_drive_*()</code> functions and <code>shared_drive =</code> argument in all the <code>googledrive</code> functions used internally by <code>trackdown</code>.</li>
+<li>Remove <code>verbose =</code> deprecated argument from the <code>googledrive</code> functions used internally by <code>trackdown</code>. Instead, the function <code><a href="https://googledrive.tidyverse.org/reference/googledrive-configuration.html">googledrive::local_drive_quiet()</a></code> is used.</li>
+<li>Update unit-tests</li>
+</ul>
+</div>
+<div id="trackdown-010" class="section level2">
+<h2 class="hasAnchor">
+<a href="#trackdown-010" class="anchor"></a>trackdown 0.1.0</h2>
+<p>Stable version after the full revision of the package previously named <code>rmdrive</code></p>
+<p>The workflow follows the same idea as before, but there are several new features and changes. The main ones are:</p>
+<ul>
+<li>
+<strong>File Supported</strong>: Both <code>.Rmd</code> and <code>.Rnw</code> documents are supported</li>
+<li>
+<strong>Hide Code</strong>: Code in the header of the document (YAML header or LaTeX preamble) and code chunks can be removed from the document when uploading to Google Drive and will be automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.</li>
+<li>
+<strong>Upload Output</strong>: The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout (including figures and tables) and allows them to add comments to suggest and discuss changes.</li>
+<li>
+<strong>API Speed</strong>: Now the upload to and download from Google Drive is faster.</li>
+<li>
+<strong>Documentation</strong>: Rich e detailed documentation is available at <a href="https://ekothe.github.io/trackdown/" class="uri">https://ekothe.github.io/trackdown/</a>
+</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
