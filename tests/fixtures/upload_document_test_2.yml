@@ -1,10 +1,10 @@
 http_interactions:
 - request:
     method: patch
-    uri: https://www.googleapis.com/upload/drive/v3/files/16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM?supportsTeamDrives=TRUE&fields=%2A&uploadType=multipart
+    uri: https://www.googleapis.com/upload/drive/v3/files/16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
     body:
       encoding: ''
-      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmpk9afs0/filee6747254667f",
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/RtmpKo85AJ/drive-update-meta4dcf41af11ba.json",
         type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/.temp-example_1.txt",
         type = "text/plain")
     headers:
@@ -21,16 +21,16 @@ http_interactions:
         ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
         ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      content-length: '3952'
+      content-length: '4424'
       content-type: application/json; charset=UTF-8
-      date: Mon, 21 Jun 2021 14:45:14 GMT
+      date: Fri, 09 Jul 2021 14:02:40 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: UploadServer
       vary:
       - Origin
       - X-Origin
-      x-guploader-uploadid: ABg5-Uy7OG0B7lBXyOviZQ4QtvJsqPlqmfEuwlyjhWuWOyyO58d4eKucXFfWjjiVHd-pi2nX4D-grBtTqZp4mfG-uy4
+      x-guploader-uploadid: ADPycdsfH1EBRSDWVXaJz5ZvW-JR-zYcK04Og-h36_o3P3wInH54B5D8fbKJJ8QEb-3Qs3eVn3H8FqH1gM-b9h1VuJw
     body:
       encoding: UTF-8
       file: no
@@ -49,23 +49,24 @@ http_interactions:
          "spaces": [
           "drive"
          ],
-         "version": "32",
+         "version": "43",
          "webContentLink": "https://drive.google.com/uc?id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&export=download",
          "webViewLink": "https://docs.google.com/document/d/16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM/edit?usp=drivesdk",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
          "hasThumbnail": true,
-         "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&v=10&s=AMedNnoAAAAAYNDCGizn-WIaRoPDViZyasoIH4vDYAUc&sz=s220",
-         "thumbnailVersion": "10",
+         "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&v=14&s=AMedNnoAAAAAYOhzINn1vEsczizHZVYj6EIUO8hTljnc&sz=s220",
+         "thumbnailVersion": "14",
          "viewedByMe": true,
-         "viewedByMeTime": "2021-04-29T14:35:00.639Z",
+         "viewedByMeTime": "2021-07-09T14:02:15.352Z",
          "createdTime": "2021-03-30T14:21:38.026Z",
-         "modifiedTime": "2021-06-21T14:45:12.858Z",
-         "modifiedByMeTime": "2021-06-21T14:45:12.858Z",
+         "modifiedTime": "2021-07-09T14:02:39.371Z",
+         "modifiedByMeTime": "2021-07-09T14:02:39.371Z",
          "modifiedByMe": true,
          "owners": [
           {
            "kind": "drive#user",
            "displayName": "trackdown rpackage",
+           "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
            "me": true,
            "permissionId": "09109446299227804908",
            "emailAddress": "trackdown.rpackage@gmail.com"
@@ -74,6 +75,7 @@ http_interactions:
          "lastModifyingUser": {
           "kind": "drive#user",
           "displayName": "trackdown rpackage",
+          "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
           "me": true,
           "permissionId": "09109446299227804908",
           "emailAddress": "trackdown.rpackage@gmail.com"
@@ -84,6 +86,7 @@ http_interactions:
           "canAddChildren": false,
           "canAddMyDriveParent": false,
           "canChangeCopyRequiresWriterPermission": true,
+          "canChangeSecurityUpdateEnabled": false,
           "canChangeViewersCanCopyContent": true,
           "canComment": true,
           "canCopy": true,
@@ -115,13 +118,15 @@ http_interactions:
            "emailAddress": "trackdown.rpackage@gmail.com",
            "role": "owner",
            "displayName": "trackdown rpackage",
+           "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
            "deleted": false
           }
          ],
          "permissionIds": [
           "09109446299227804908"
          ],
-         "quotaBytesUsed": "0",
+         "size": "1102",
+         "quotaBytesUsed": "1102",
          "isAppAuthorized": true,
          "exportLinks": {
           "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&exportFormat=rtf",
@@ -132,7 +137,11 @@ http_interactions:
           "application/zip": "https://docs.google.com/feeds/download/documents/export/Export?id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&exportFormat=zip",
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "https://docs.google.com/feeds/download/documents/export/Export?id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&exportFormat=docx",
           "text/plain": "https://docs.google.com/feeds/download/documents/export/Export?id=16OKPKhuiGkDujLyMi9rr2VEBYXGPS0cbKK39YTv4sgM&exportFormat=txt"
+         },
+         "linkShareMetadata": {
+          "securityUpdateEligible": false,
+          "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2021-06-21 14:45:14 GMT
+  recorded_at: 2021-07-09 14:02:40 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

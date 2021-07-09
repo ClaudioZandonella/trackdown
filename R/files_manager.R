@@ -88,7 +88,8 @@ upload_file <- function(file,
       dribble_output = output$dribble_info, 
       update = FALSE)
     
-    res <- rbind(res, dribble_output)
+    res[2, ] <- dribble_output
+    res <- googledrive::as_dribble(res)
   }
   
   #---- end ----
@@ -184,7 +185,8 @@ update_file <- function(file,
       dribble_output = output$dribble_info, 
       update = update)
     
-    res <- rbind(res, dribble_output)
+    res[2, ] <- dribble_output
+    res <- googledrive::as_dribble(res)
   }
   
   #---- end ----
@@ -251,14 +253,15 @@ download_file <- function(file,
   downloaded_file <- file.path(document$file_info$path,
                                paste0(".temp-", document$file_info$file_basename, ".txt"))
   
+  googledrive::local_drive_quiet() # suppress messages from googledrive
+  
   # download file from Google Drive
   googledrive::drive_download(
     file = document$dribble_info$file,
     type = "text/plain",
     path = downloaded_file,
-    overwrite = TRUE,
-    verbose = FALSE
-  )
+    overwrite = TRUE)
+  
   temp_file <- file.path(document$file_info$path, 
                          paste0(".temp-", document$file_info$file_name))
   file.rename(downloaded_file, temp_file)

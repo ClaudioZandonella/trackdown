@@ -1,6 +1,6 @@
 Package: trackdown
 Title: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive
-Version: 0.1.0
+Version: 0.1.1
 Authors@R:
     c(person(given = "Emily",
              family = "Kothe",
@@ -33,7 +33,7 @@ License: GPL-3
 Encoding: UTF-8
 Imports:
     cli,
-    googledrive,
+    googledrive (>= 2.0.0),
     rmarkdown
 Suggests: 
     covr,

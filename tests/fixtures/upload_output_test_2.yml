@@ -1,10 +1,10 @@
 http_interactions:
 - request:
     method: patch
-    uri: https://www.googleapis.com/upload/drive/v3/files/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo?supportsTeamDrives=TRUE&fields=%2A&uploadType=multipart
+    uri: https://www.googleapis.com/upload/drive/v3/files/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
     body:
       encoding: ''
-      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmpk9afs0/filee67459949194",
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmp4BT1sd/drive-update-meta4e0d11e35e27.json",
         type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/temp-output-example_1.pdf",
         type = "application/pdf")
     headers:
@@ -21,16 +21,16 @@ http_interactions:
         ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
         ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      content-length: '2732'
+      content-length: '3184'
       content-type: application/json; charset=UTF-8
-      date: Mon, 21 Jun 2021 14:45:23 GMT
+      date: Fri, 09 Jul 2021 14:04:09 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: UploadServer
       vary:
       - Origin
       - X-Origin
-      x-guploader-uploadid: ABg5-UwA2WT7xnzIwboX-mQ2X0tsmc5omaH_JrRCWuHUbwHrJKXxcDd4pYYTIbsmVi0tsgiVaVEsNbVOpzqARm6yMqg
+      x-guploader-uploadid: ADPycdtO9d_l7GvfwpySpyPBep6AF_XyUs1LYX8SQwbMhYV7oMrbk9lDG9DPKKkFfLKkhv1Obzxotq9VdgpCnriLRkk
     body:
       encoding: UTF-8
       file: no
@@ -49,22 +49,23 @@ http_interactions:
          "spaces": [
           "drive"
          ],
-         "version": "16",
+         "version": "22",
          "webContentLink": "https://drive.google.com/uc?id=1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo&export=download",
          "webViewLink": "https://drive.google.com/file/d/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo/view?usp=drivesdk",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
          "hasThumbnail": true,
-         "thumbnailLink": "https://lh3.googleusercontent.com/641YOCrMkNijM51sYtD5z7asI1J2tTLxKgcb2yVghkIpsmCmOhXXe63TTqOE4tW9N7Ko4PTrU_4AQ5k=s220",
-         "thumbnailVersion": "12",
+         "thumbnailLink": "https://lh3.googleusercontent.com/XhzwWUojXTUYLWZPvkfVwpJjkyACSR_CBD_jGU6761rkkLbAL7FBjapt5SU5tCnG_h0IUFKst-zBhsw=s220",
+         "thumbnailVersion": "18",
          "viewedByMe": false,
          "createdTime": "2021-03-30T14:53:18.163Z",
-         "modifiedTime": "2021-06-21T14:45:22.685Z",
-         "modifiedByMeTime": "2021-06-21T14:45:22.685Z",
+         "modifiedTime": "2021-07-09T14:04:08.801Z",
+         "modifiedByMeTime": "2021-07-09T14:04:08.801Z",
          "modifiedByMe": true,
          "owners": [
           {
            "kind": "drive#user",
            "displayName": "trackdown rpackage",
+           "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
            "me": true,
            "permissionId": "09109446299227804908",
            "emailAddress": "trackdown.rpackage@gmail.com"
@@ -73,6 +74,7 @@ http_interactions:
          "lastModifyingUser": {
           "kind": "drive#user",
           "displayName": "trackdown rpackage",
+          "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
           "me": true,
           "permissionId": "09109446299227804908",
           "emailAddress": "trackdown.rpackage@gmail.com"
@@ -83,6 +85,7 @@ http_interactions:
           "canAddChildren": false,
           "canAddMyDriveParent": false,
           "canChangeCopyRequiresWriterPermission": true,
+          "canChangeSecurityUpdateEnabled": false,
           "canChangeViewersCanCopyContent": true,
           "canComment": true,
           "canCopy": true,
@@ -114,6 +117,7 @@ http_interactions:
            "emailAddress": "trackdown.rpackage@gmail.com",
            "role": "owner",
            "displayName": "trackdown rpackage",
+           "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
            "deleted": false
           }
          ],
@@ -123,11 +127,15 @@ http_interactions:
          "originalFilename": "temp-output-example_1.pdf",
          "fullFileExtension": "pdf",
          "fileExtension": "",
-         "md5Checksum": "abfe4cbe8239e8391617b373c08355b7",
+         "md5Checksum": "3f697627cb5284b6bf7209a65a2ea1e2",
          "size": "146115",
          "quotaBytesUsed": "146115",
-         "headRevisionId": "0B_bXnIs35pMSTUhlRkpTZnRob2txN2s5OWVXa2VNN2lIT2wwPQ",
-         "isAppAuthorized": true
+         "headRevisionId": "0B_bXnIs35pMSUE8zMmh1clM5eDY5OEprY1h2ZFR2anQ5aHBnPQ",
+         "isAppAuthorized": true,
+         "linkShareMetadata": {
+          "securityUpdateEligible": false,
+          "securityUpdateEnabled": true
+         }
         }
-  recorded_at: 2021-06-21 14:45:23 GMT
+  recorded_at: 2021-07-09 14:04:09 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

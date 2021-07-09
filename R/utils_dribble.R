@@ -35,7 +35,7 @@ get_dribble_info <- function(gfile, path = NULL, shared_drive = NULL) {
   file_dribble <- googledrive::drive_find(
     q = c(paste0("'", parent_dribble$id,"' in parents", collapse = " or "),
           paste0("name = '", gfile,"'")),
-    team_drive = shared_drive)
+    shared_drive = shared_drive)
   
   return(list(file = file_dribble,
               parent = parent_dribble))
@@ -65,6 +65,7 @@ get_dribble_info <- function(gfile, path = NULL, shared_drive = NULL) {
 #' 
 
 get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
+  
   # get sequence of folders
   path <- strsplit(path, split = "/")[[1]]
   
@@ -81,7 +82,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
       q = c(paste0("'", dribble_folder$id,"' in parents", collapse = " or "), 
             "mimeType = 'application/vnd.google-apps.folder'",
             paste0("name = '", path[i],"'")),
-      team_drive = shared_drive)
+      shared_drive = shared_drive)
     
     # Check if path is available on drive
     if(nrow(dribble) < 1){
@@ -143,6 +144,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
 #' @noRd
 #' 
 get_parent_dribble <- function(path = NULL, shared_drive = NULL, .response = 1){
+  
   # get dribble of the parent folder
   if (!is.null(path)) {
     path <- get_path_dribble(path = path, 
@@ -161,7 +163,6 @@ get_parent_dribble <- function(path = NULL, shared_drive = NULL, .response = 1){
 #'
 #' Create a folder in Googledrive. 
 #' 
-#' !TODO! evaluate possible problems when using team_drive.
 #'
 #' @param name character vector indicating the sequence of folders to create.
 #' @param parent_dribble a dribble of the parent folder or NULL (default to indicate root).
@@ -179,12 +180,13 @@ get_parent_dribble <- function(path = NULL, shared_drive = NULL, .response = 1){
 create_drive_folder <- function(name,
                                 parent_dribble = NULL,
                                 shared_drive = NULL){
-    
+  
+  googledrive::local_drive_quiet() # suppress messages from googledrive
+  
   for (i in seq_along(name)){
     #create folder using parent dribble (NULL if is not available)
     dribble_folder <- googledrive::drive_mkdir(name = name[i],
-                                               path = parent_dribble,
-                                               verbose = FALSE)
+                                               path = parent_dribble)
     
     # use folder id as parent for the next folder
     parent_dribble <- dribble_folder
@@ -213,8 +215,10 @@ create_drive_folder <- function(name,
 
 get_root_dribble <- function(shared_drive = NULL){
   
+  googledrive::local_drive_quiet() # suppress messages from googledrive
+  
   if (!is.null(shared_drive)) {
-    dribble_root <- googledrive::team_drive_get(shared_drive)
+    dribble_root <- googledrive::shared_drive_get(shared_drive)
   } else {
     dribble_root <- googledrive::drive_get("~/")
   }

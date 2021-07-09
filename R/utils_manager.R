@@ -128,6 +128,9 @@ upload_document <- function(file, file_info,
   
   
   #---- upload document ----
+  
+  googledrive::local_drive_quiet() # suppress messages from googledrive
+  
   # Format document to a single string
   document <- format_document(document, 
                               file_info = file_info, 
@@ -141,8 +144,7 @@ upload_document <- function(file, file_info,
     # Update document
     res <- googledrive::drive_update(
       media = temp_file,
-      file = dribble_document$file,
-      verbose = FALSE)
+      file = dribble_document$file)
     
     finish_process(paste("Document updated at",
                          cli::col_blue(paste(gpath, gfile, sep = "/"))))
@@ -154,8 +156,7 @@ upload_document <- function(file, file_info,
       media = temp_file,
       path = dribble_document$parent,
       name = gfile,
-      type = "document",
-      verbose = FALSE)
+      type = "document")
     
     finish_process(paste("Document uploaded at",
                          cli::col_blue(paste(gpath, gfile, sep = "/"))))
@@ -239,14 +240,15 @@ upload_output <- function(path_output, output_info,
     }
   }
   
+  googledrive::local_drive_quiet() # suppress messages from googledrive
+  
   if(isTRUE(update)){
     start_process("Updating output with local changes to Google Drive...")
     
     # Update output
     res <- googledrive::drive_update(
       media = path_output,
-      file = dribble_output$file,
-      verbose = FALSE)
+      file = dribble_output$file)
     
     finish_process(paste("Output updated at",
                          cli::col_blue(paste(gpath, gfile_output, sep = "/"))))
@@ -258,8 +260,7 @@ upload_output <- function(path_output, output_info,
       media = path_output,
       path = dribble_output$parent,
       name = gfile_output,
-      type = output_info$extension,
-      verbose = FALSE)
+      type = output_info$extension)
     
     finish_process(paste("Output uploaded at",
                          cli::col_blue(paste(gpath, gfile_output, sep = "/"))))
