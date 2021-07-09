@@ -5,6 +5,7 @@ on:
       # - main
       - master
       - develop
+      - googledrive2
   # pull_request:
   #   branches:
   #     - main
