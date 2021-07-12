@@ -9,12 +9,12 @@ Authors@R:
              comment = c(ORCID = "0000-0003-1210-0554")),
       person(given = "Claudio",
              family = "Zandonella Callegher",
-             role = c("aut"),
+             role = "aut",
              email = "claudiozandonella@gmail.com",
              comment = c(ORCID = "0000-0001-7721-6318")),
       person(given = "Filippo",
              family = "Gambarota",
-             role = c("aut"),
+             role = "aut",
              email = "filippo.gambarota@gmail.com",
              comment = c(ORCID = "0000-0002-6666-1747")),
       person(given = "Janosch",
@@ -33,7 +33,7 @@ License: GPL-3
 Encoding: UTF-8
 Imports:
     cli,
-    googledrive (>= 2.0.0),
+    googledrive (> 1.0.1),
     rmarkdown
 Suggests: 
     covr,
