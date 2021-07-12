@@ -32,7 +32,7 @@ Depends: R (>= 3.5)
 License: GPL-3
 Encoding: UTF-8
 Imports:
-    cli,
+    cli (>= 3.0.0),
     googledrive (> 1.0.1),
     rmarkdown
 Suggests: 
