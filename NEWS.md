@@ -1,5 +1,15 @@
 # trackdown (development version)
 
+## trackdown 1.0.0
+
+Initial CRAN release
+
+Minor changes to fix cran checks:
+
+- `googledrive` dependency set to (> 1.0.1) and `cli` (>= 3.0.0)
+- use relative path to specify  `fixture` and `vcr_files` folders in unit-tests
+
+
 ## trackdown 0.1.1
 
 Following the release of `googledrive` version 2.0.0 ([link](https://www.tidyverse.org/blog/2021/07/googledrive-2-0-0/)), on which `trackdown` is based to interact with Google Drive, we updated the internal functions. In particular:

@@ -27,3 +27,4 @@
 ^pkgdown$
 ^_pkgdown\.yml$
 ^paper$
+^cran-comments\.md$
