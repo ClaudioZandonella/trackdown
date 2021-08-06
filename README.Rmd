@@ -99,6 +99,7 @@ All documentation is available at <https://claudiozandonella.github.io/trackdown
 
 To know more about `trackdown`, please reference:
 
+
 - `vignette("trackdown-features")` for a detailed description of the function arguments and features.
 - `vignette("trackdown-workflow")` for a workflow example and discussion of how to collaborate on narrative text and code.
 - `vignette("trackdown-tech-notes")` for details regarding technical details like authentication and file management.
