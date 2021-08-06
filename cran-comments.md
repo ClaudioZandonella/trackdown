@@ -16,8 +16,8 @@ There were no ERRORs or WARNINGs.
 There was 1 NOTE:
 
 > * checking CRAN incoming feasibility ... NOTE
-> Maintainer: 'Emily Kothe <emily.kothe@deakin.edu.au>'
-> 
+> Maintainer: 'Claudio Zandonella Callegher <claudiozandonella@gmail.com>'
+>
 > New submission
 
 This is my first submission.
