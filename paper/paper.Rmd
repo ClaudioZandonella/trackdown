@@ -21,7 +21,7 @@ authors:
     orcid: 0000-0002-0940-2538
     affiliation: 3
   - name: Emily Kothe
-    orcid: 0000-0003-1154-9528
+    orcid: 0000-0003-1210-0554
     affiliation: 3
 affiliations:
  - name: Department of Developmental Psychology and Socialisation, University of Padova, Padova, Italy
