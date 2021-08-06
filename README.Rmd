@@ -24,6 +24,7 @@ knitr::opts_chunk$set(
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml)
 [![codecov](https://codecov.io/gh/claudiozandonella/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/claudiozandonella/trackdown)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5167320.svg)](https://doi.org/10.5281/zenodo.5167320)
 <!-- badges: end -->
 
 ## Overview
@@ -119,7 +120,7 @@ To cite `trackdown` in publications use:
 Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch
   Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing and
   Editing of R Markdown (or Sweave) Documents in Google Drive.
-  https://github.com/claudiozandonella/trackdown/.
+  https://doi.org/10.5281/zenodo.5167320.
 
 The BibTeX entry is:
 
@@ -128,7 +129,8 @@ The BibTeX entry is:
   title = {trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive},
   author = {Emily Kothe and Claudio {Zandonella Callegher} and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
   year = {2021},
-  note = {R package version 0.1.0},
+  note = {R package version 1.0.0},
   url = {https://github.com/claudiozandonella/trackdown},
+  doi = {10.5281/zenodo.5167320},
 }
 ```
