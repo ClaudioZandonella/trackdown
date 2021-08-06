@@ -28,3 +28,5 @@
 ^_pkgdown\.yml$
 ^paper$
 ^cran-comments\.md$
+^CRAN-RELEASE$
+^man/figures/video-thumbnail\.png$
