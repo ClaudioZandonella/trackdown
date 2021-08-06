@@ -24,9 +24,6 @@ writing and editing process. After integrating all authors’
 contributions, the final document can be downloaded and rendered
 locally.
 
-All the documentation is available at
-<https://ekothe.github.io/trackdown/>.
-
 ## Installation
 
 This package is not available on CRAN yet. To install the development
@@ -130,7 +127,7 @@ invited to contribute to the document using a shared link (See
 
 ### Documentation and Vignettes
 
-All documentation is available at <https://ekothe.github.io/trackdown/>.
+All documentation is available at <https://ClaudioZandonella.github.io/trackdown/>.
 
 To know more about `trackdown`, please reference:
 
