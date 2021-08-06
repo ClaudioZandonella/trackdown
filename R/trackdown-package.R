@@ -96,7 +96,7 @@
 #'  contribute to the document using a shared link.
 #'  
 #' @section Documentation and Vignettes:
-#'  All the documentation is available at \url{https://ekothe.github.io/trackdown/}.
+#'  All the documentation is available at \url{https://claudiozandonella.github.io/trackdown/}.
 #'  
 #'  To know more about the \code{trackdown}, please reference:
 #'  \itemize{

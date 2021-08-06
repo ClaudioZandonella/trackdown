@@ -4,12 +4,12 @@ Version: 1.0.0
 Authors@R:
     c(person(given = "Emily",
              family = "Kothe",
-             role = c("aut", "cre"),
+             role = "aut",
              email = "emily.kothe@deakin.edu.au",
              comment = c(ORCID = "0000-0003-1210-0554")),
       person(given = "Claudio",
              family = "Zandonella Callegher",
-             role = "aut",
+             role = c("aut", "cre"),
              email = "claudiozandonella@gmail.com",
              comment = c(ORCID = "0000-0001-7721-6318")),
       person(given = "Filippo",
@@ -47,5 +47,5 @@ Suggests:
 Config/testthat/edition: 3
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-URL: https://github.com/ekothe/trackdown/, https://ekothe.github.io/trackdown/
-BugReports: https://github.com/ekothe/trackdown/issues
+URL: https://github.com/claudiozandonella/trackdown/, https://claudiozandonella.github.io/trackdown/
+BugReports: https://github.com/claudiozandonella/trackdown/issues

@@ -8,8 +8,8 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
-[![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
+[![R-CMD-check](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml)
+[![codecov](https://codecov.io/gh/claudiozandonella/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/claudiozandonella/trackdown)
 <!-- badges: end -->
 
 ## Overview
@@ -24,9 +24,6 @@ writing and editing process. After integrating all authors’
 contributions, the final document can be downloaded and rendered
 locally.
 
-All the documentation is available at
-<https://ekothe.github.io/trackdown/>.
-
 ## Installation
 
 This package is not available on CRAN yet. To install the development
@@ -34,7 +31,7 @@ version from GitHub, run the following code:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("ekothe/trackdown",
+remotes::install_github("claudiozandonella/trackdown",
                          build_vignettes = TRUE)
 library(trackdown)
 ```
@@ -130,7 +127,8 @@ invited to contribute to the document using a shared link (See
 
 ### Documentation and Vignettes
 
-All documentation is available at <https://ekothe.github.io/trackdown/>.
+All documentation is available at
+<https://claudiozandonella.github.io/trackdown/>.
 
 To know more about `trackdown`, please reference:
 
@@ -152,7 +150,7 @@ Conduct](https://www.contributor-covenant.org/). By contributing to this
 project, you agree to abide by its terms.
 
 See [Community
-guidelines](https://github.com/ekothe/trackdown/blob/develop/CONTRIBUTING.md)
+guidelines](https://github.com/claudiozandonella/trackdown/blob/develop/CONTRIBUTING.md)
 for further information.
 
 ## Citation
@@ -162,7 +160,7 @@ To cite `trackdown` in publications use:
 Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch
 Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing
 and Editing of R Markdown (or Sweave) Documents in Google Drive.
-<https://github.com/ekothe/trackdown/>.
+<https://github.com/claudiozandonella/trackdown/>.
 
 The BibTeX entry is:
 
@@ -171,5 +169,5 @@ The BibTeX entry is:
       author = {Emily Kothe and Claudio {Zandonella Callegher} and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
       year = {2021},
       note = {R package version 0.1.0},
-      url = {https://github.com/ekothe/trackdown},
+      url = {https://github.com/claudiozandonella/trackdown},
     }

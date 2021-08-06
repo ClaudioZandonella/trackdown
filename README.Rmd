@@ -22,15 +22,13 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ekothe/trackdown/actions/workflows/check-standard.yaml)
-[![codecov](https://codecov.io/gh/ekothe/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/ekothe/trackdown)
+[![R-CMD-check](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml)
+[![codecov](https://codecov.io/gh/claudiozandonella/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://codecov.io/gh/claudiozandonella/trackdown)
 <!-- badges: end -->
 
 ## Overview
 
 The `trackdown` package offers a simple solution for collaborative writing and editing of R Markdown (or Sweave) documents. Using `trackdown`, the local `.Rmd` (or `.Rnw`) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
-
-All the documentation is available at <https://ekothe.github.io/trackdown/>.
 
 ## Installation {#install}
 
@@ -38,7 +36,7 @@ This package is not available on CRAN yet. To install the development version fr
 
 ```{r}
 # install.packages("remotes")
-remotes::install_github("ekothe/trackdown",
+remotes::install_github("claudiozandonella/trackdown",
                          build_vignettes = TRUE)
 library(trackdown)
 ```
@@ -97,7 +95,7 @@ Note that not all collaborators have to have a Google account (although this is 
 
 ### Documentation and Vignettes {#doc-vignette}
 
-All documentation is available at <https://ekothe.github.io/trackdown/>.
+All documentation is available at <https://claudiozandonella.github.io/trackdown/>.
 
 To know more about `trackdown`, please reference:
 
@@ -111,7 +109,7 @@ Development of the `trackdown` package is an ongoing project, surely there are m
 
 Please note that this project is released under a [Contributor Code of Conduct](https://www.contributor-covenant.org/). By contributing to this project, you agree to abide by its terms. 
 
-See [Community guidelines](https://github.com/ekothe/trackdown/blob/develop/CONTRIBUTING.md) for further information.
+See [Community guidelines](https://github.com/claudiozandonella/trackdown/blob/develop/CONTRIBUTING.md) for further information.
 
 ## Citation {#cit}
 
@@ -120,7 +118,7 @@ To cite `trackdown` in publications use:
 Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch
   Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing and
   Editing of R Markdown (or Sweave) Documents in Google Drive.
-  https://github.com/ekothe/trackdown/.
+  https://github.com/claudiozandonella/trackdown/.
 
 The BibTeX entry is:
 
@@ -130,6 +128,6 @@ The BibTeX entry is:
   author = {Emily Kothe and Claudio {Zandonella Callegher} and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
   year = {2021},
   note = {R package version 0.1.0},
-  url = {https://github.com/ekothe/trackdown},
+  url = {https://github.com/claudiozandonella/trackdown},
 }
 ```
