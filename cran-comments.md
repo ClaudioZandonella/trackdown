@@ -1,3 +1,10 @@
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Reduced package size now less than 5 MB
+
+
 ## Test environments
 * win-builder
   - release R 4.1.0
