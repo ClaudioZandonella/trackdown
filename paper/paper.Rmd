@@ -63,9 +63,7 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) docume
 
 Other R packages aiming to improve the user experience during the collaborative editing of R Markdown (or Sweave) documents are available: `redoc` [@redoc] offers a two-way R Markdown-Microsoft Word workflow; `reviewer` [@reviewer] allows to evaluate differences between two rmarkdown files and add notes using the Hypothes.is service; `trackmd` [@trackmd] is an RStudio add-in for tracking changes in Markdown format; `latexdiffr` [@latexdiffr] creates a diff of two R Markdown, .Rnw or LaTeX files. However, these packages implement a less efficient writing/editing workflow and all of them, but `latexdiffr`, are no longer under active development. In particular, the `trackdown` workflow has the advantage of being based on Google Docs which offers users a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document. Moreover, `trackdown` allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text in Google Docs.
 
-The package is available on GitHub (https://github.com/claudiozandonella/trackdown) 
-<!-- and CRAN (https://CRAN.R-project.org/package=trackdown) -->
-. All the documentation is available at https://claudiozandonella.github.io/trackdown/.
+The package is available on CRAN (https://CRAN.R-project.org/package=trackdown) and GitHub (https://github.com/claudiozandonella/trackdown). All the documentation is available at https://claudiozandonella.github.io/trackdown/.
 
 # Workflow Example
 
