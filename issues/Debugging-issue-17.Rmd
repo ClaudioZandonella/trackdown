@@ -1,0 +1,71 @@
+---
+title: 'Debugging Issue #17'
+author: "trackdown"
+date: "8/26/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+if(!requireNamespace("trackdown")) stop("trackdown is required, plase install trackdown first")
+```
+## Isssue
+https://github.com/ClaudioZandonella/trackdown/issues/17
+
+### Uploading
+
+Identifying header code when uploading
+
+```{r}
+# !! add here the name of your Rmd document 
+name_your_file <- "YourReport.Rmd"  #  <---- !!change here!!
+file_info <- trackdown:::get_file_info(name_your_file)
+original_text <- readLines(name_your_file)
+```
+
+Check patterns used to retrieve document header and code chunks.
+
+```{r}
+info_patterns <- trackdown:::get_extension_patterns(extension = file_info$extension)
+info_patterns
+```
+
+Extract document header
+```{r}
+trackdown:::extract_header(original_text, info_patterns)
+```
+
+Check if header is correctly substituted
+
+```{r}
+# print first lines of the text to upload
+text_to_upload <- trackdown:::hide_code(original_text, file_info)[1:7]
+text_to_upload
+```
+
+Check text ready to upload
+
+```{r}
+# Print first 600 charcters to evalaute [[document-header]] absence/presence
+text_to_upload <- trackdown:::format_document(text_to_upload, file_info, hide_code = TRUE)
+substr(text_to_upload, start = 1, stop = 1000)
+```
+
+Cat document to your local compute
+```{r}
+cat(text_to_upload, file = "document-to-upload.txt")
+```
+
+a file named `document-to-upload.txt` will be created in the same folder as the current report. This file contains the text that will be uploaded to Google drive. Check if [[document-header]] tag is present
+
+```{r}
+readLines("document-to-upload.txt")[1:13]
+```
+
+remove created file `document-to-upload.txt`
+
+```{r}
+unlink("document-to-upload.txt")
+```
+
