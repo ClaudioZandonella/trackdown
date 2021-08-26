@@ -4,7 +4,7 @@ http_interactions:
     uri: https://www.googleapis.com/upload/drive/v3/files?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
     body:
       encoding: ''
-      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/RtmpKo85AJ/drive-upload-meta4dcf67061a65.json",
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/RtmpAy9QTY/drive-upload-meta7fd81679f075.json",
         type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/.temp-example_1.txt",
         type = "text/plain")
     headers:
@@ -23,21 +23,21 @@ http_interactions:
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-length: '4253'
       content-type: application/json; charset=UTF-8
-      date: Fri, 09 Jul 2021 14:02:38 GMT
+      date: Thu, 26 Aug 2021 17:16:37 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: UploadServer
       vary:
       - Origin
       - X-Origin
-      x-guploader-uploadid: ADPycdtlGa-W_quPMP9JndmPIVlShiNVBCSrEQVgfHcfm8tcejS8f-zRkMdJR--otOZ_1vtf4CXyx4xOKh5000fHNmU
+      x-guploader-uploadid: ADPycdu3d_JR8GJDm-leJ84ZLWMxPTOl6m4o_M_xIrNWle0-bY1651_GrhaNC3b-E-7ADU5FPgACKQHhxO3mNmmqhZZCWmgeGA
     body:
       encoding: UTF-8
       file: no
       string: |
         {
          "kind": "drive#file",
-         "id": "1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE",
+         "id": "16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw",
          "name": "new_example_1",
          "mimeType": "application/vnd.google-apps.document",
          "starred": false,
@@ -50,16 +50,16 @@ http_interactions:
           "drive"
          ],
          "version": "4",
-         "webContentLink": "https://drive.google.com/uc?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&export=download",
-         "webViewLink": "https://docs.google.com/document/d/1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE/edit?usp=drivesdk",
+         "webContentLink": "https://drive.google.com/uc?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&export=download",
+         "webViewLink": "https://docs.google.com/document/d/16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw/edit?usp=drivesdk",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
          "hasThumbnail": false,
          "thumbnailVersion": "0",
          "viewedByMe": true,
-         "viewedByMeTime": "2021-07-09T14:02:37.498Z",
-         "createdTime": "2021-07-09T14:02:35.507Z",
-         "modifiedTime": "2021-07-09T14:02:35.586Z",
-         "modifiedByMeTime": "2021-07-09T14:02:35.586Z",
+         "viewedByMeTime": "2021-08-26T17:16:37.090Z",
+         "createdTime": "2021-08-26T17:16:35.309Z",
+         "modifiedTime": "2021-08-26T17:16:35.420Z",
+         "modifiedByMeTime": "2021-08-26T17:16:35.420Z",
          "modifiedByMe": true,
          "owners": [
           {
@@ -128,25 +128,25 @@ http_interactions:
          "quotaBytesUsed": "1024",
          "isAppAuthorized": true,
          "exportLinks": {
-          "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=rtf",
-          "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=odt",
-          "text/html": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=html",
-          "application/pdf": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=pdf",
-          "application/epub+zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=epub",
-          "application/zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=zip",
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=docx",
-          "text/plain": "https://docs.google.com/feeds/download/documents/export/Export?id=1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE&exportFormat=txt"
+          "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=rtf",
+          "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=odt",
+          "text/html": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=html",
+          "application/pdf": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=pdf",
+          "application/epub+zip": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=epub",
+          "application/zip": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=zip",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=docx",
+          "text/plain": "https://docs.google.com/feeds/download/documents/export/Export?id=16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw&exportFormat=txt"
          },
          "linkShareMetadata": {
           "securityUpdateEligible": false,
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2021-07-09 14:02:38 GMT
+  recorded_at: 2021-08-26 17:16:38 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: delete
-    uri: https://www.googleapis.com/drive/v3/files/1HvZ5gE-TuQMUQo_eSNBow__JbmBA8QlfmLD5nQmg1bE?supportsAllDrives=TRUE
+    uri: https://www.googleapis.com/drive/v3/files/16zItuNxg5aQxb9jr3lYq2g8Qq012WHEJJ025DIr-Vjw?supportsAllDrives=TRUE
     body:
       encoding: ''
       string: '{}'
@@ -165,7 +165,7 @@ http_interactions:
         ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
         ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      date: Fri, 09 Jul 2021 14:02:38 GMT
+      date: Thu, 26 Aug 2021 17:16:38 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -176,5 +176,5 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: ''
-  recorded_at: 2021-07-09 14:02:38 GMT
+  recorded_at: 2021-08-26 17:16:38 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

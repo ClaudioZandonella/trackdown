@@ -1,7 +1,7 @@
-#----Trackdown Instructions----#
+﻿#----Trackdown Instructions----#
 This is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
-Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]
-Once the review is terminated accept all changes: Tools -> Review suggested edits -> Accept all.
+Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
 You must not modify or remove these lines, we will do it for you ;)
 FILE-NAME: example_1.Rmd
 HIDE-CODE: TRUE
@@ -58,6 +58,9 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 ```a really strange inline block ```
+
+
+[[chunk-11]]
 
 
 End of the document

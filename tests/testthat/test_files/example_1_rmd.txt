@@ -59,4 +59,8 @@ Still another void code
 
 ```a really strange inline block ```
 
+``` {r}
+a strange chuck header with space before {
+```
+
 End of the document

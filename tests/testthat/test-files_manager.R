@@ -115,7 +115,7 @@ test_that("expect correct update document", {
 
 #----    download_file    ----
 
-# Download_file tests depends on update_file tests as the .trackdown folder is required 
+# Download_file tests depends on update_file tests as the .trackdown folder is required
 
 test_that("expect correct download document", {
 

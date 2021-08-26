@@ -20,10 +20,10 @@ http_interactions:
         ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '1215'
+      content-length: '1212'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Fri, 09 Jul 2021 13:54:35 GMT
+      date: Thu, 26 Aug 2021 17:14:26 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -59,7 +59,7 @@ http_interactions:
            "webViewLink": "https://docs.google.com/document/d/1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag/edit?usp=drivesdk",
            "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
            "hasThumbnail": true,
-           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&v=3&s=AMedNnoAAAAAYOhxO_JUFbMF7qXXuP_acg1MLcfiEQjJ&sz=s220",
+           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&v=3&s=AMedNnoAAAAAYSfoEtkX1r96y9NxmerK8xo9E1jyQQQK&sz=s220",
            "thumbnailVersion": "3",
            "viewedByMe": true,
            "viewedByMeTime": "2021-03-10T09:02:59.300Z",
@@ -149,5 +149,5 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2021-07-09 13:54:35 GMT
+  recorded_at: 2021-08-26 17:14:26 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

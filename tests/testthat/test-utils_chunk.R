@@ -98,7 +98,7 @@ test_that("get the correct extract_header no chuncks", {
 
 test_that("file info are correct", {
   
-  ex_rmd <- list(chunk_header_start = "^```(\\s*$|\\{)",
+  ex_rmd <- list(chunk_header_start = "^```(\\s*$|\\s*\\{)",
                  chunk_header_end = "\\}\\s*$",
                  chunk_end = "^```\\s*$",
                  file_header_start = "^---\\s*$",
@@ -142,7 +142,7 @@ test_that("get the correct hide_code", {
 
 #----    restore_chunk    ----
 
-# Note that hunk info are created  in the hide_code test section and deleted at the end
+# Note that chunk info are created  in the hide_code test section and deleted at the end
 
 # rmd
 document_rmd <- readLines(paste0(file_path, "restore_example_1.Rmd"), warn = FALSE, encoding = "UTF-8")

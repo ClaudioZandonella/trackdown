@@ -21,10 +21,10 @@ http_interactions:
         ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '927'
+      content-length: '929'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Fri, 09 Jul 2021 13:55:56 GMT
+      date: Thu, 26 Aug 2021 17:14:28 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -40,7 +40,7 @@ http_interactions:
       string: |
         {
          "kind": "drive#file",
-         "id": "15nwdjZJOPnfKxPuu8f3eSeccIcikAZ7B",
+         "id": "1SIuBkgZ2QgYNt3FsmExyIirgH7QPOzl2",
          "name": "foo",
          "mimeType": "application/vnd.google-apps.folder",
          "starred": false,
@@ -53,14 +53,14 @@ http_interactions:
           "drive"
          ],
          "version": "1",
-         "webViewLink": "https://drive.google.com/drive/folders/15nwdjZJOPnfKxPuu8f3eSeccIcikAZ7B",
+         "webViewLink": "https://drive.google.com/drive/folders/1SIuBkgZ2QgYNt3FsmExyIirgH7QPOzl2",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder+48",
          "hasThumbnail": false,
          "thumbnailVersion": "0",
          "viewedByMe": false,
-         "createdTime": "2021-07-09T13:55:56.555Z",
-         "modifiedTime": "2021-07-09T13:55:56.555Z",
-         "modifiedByMeTime": "2021-07-09T13:55:56.555Z",
+         "createdTime": "2021-08-26T17:14:27.674Z",
+         "modifiedTime": "2021-08-26T17:14:27.674Z",
+         "modifiedByMeTime": "2021-08-26T17:14:27.674Z",
          "modifiedByMe": true,
          "owners": [
           {
@@ -133,11 +133,11 @@ http_interactions:
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2021-07-09 13:55:57 GMT
+  recorded_at: 2021-08-26 17:14:28 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: delete
-    uri: https://www.googleapis.com/drive/v3/files/15nwdjZJOPnfKxPuu8f3eSeccIcikAZ7B?supportsAllDrives=TRUE
+    uri: https://www.googleapis.com/drive/v3/files/1SIuBkgZ2QgYNt3FsmExyIirgH7QPOzl2?supportsAllDrives=TRUE
     body:
       encoding: ''
       string: '{}'
@@ -156,7 +156,7 @@ http_interactions:
         ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
         ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      date: Fri, 09 Jul 2021 13:55:57 GMT
+      date: Thu, 26 Aug 2021 17:14:28 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -167,5 +167,5 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: ''
-  recorded_at: 2021-07-09 13:55:57 GMT
+  recorded_at: 2021-08-26 17:14:28 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
