@@ -61,7 +61,7 @@ get_chunk_range <- function(lines, info_patterns){
   if(info_patterns$extension == "rmd"){
     # solve issue of chunks without language and '{}'
     # check for chunk of types '```{...}' or '```'
-    index <- which(grepl("^```(\\s*$|\\{)", lines))
+    index <- which(grepl(info_patterns$chunk_header_start, lines))
     
     if(length(index)>0){
       header_indices <- index[seq(1,length(index),2)]
@@ -237,7 +237,7 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
   extension <- match.arg(extension)
   
   if (extension == "rmd"){     # ```{*}   ```
-    res <- list(chunk_header_start = "^```(\\s*$|\\{)",
+    res <- list(chunk_header_start = "^```(\\s*$|\\s*\\{)",
                 chunk_header_end = "\\}\\s*$",
                 chunk_end = "^```\\s*$",
                 file_header_start = "^---\\s*$",
