@@ -1,5 +1,9 @@
 # trackdown (development version)
 
+## trackdown 1.0.1
+
+Fix issue [#17](https://github.com/ClaudioZandonella/trackdown/issues/17) and issue [#19](https://github.com/ClaudioZandonella/trackdown/issues/19)
+
 ## trackdown 1.0.0
 
 Initial CRAN release
