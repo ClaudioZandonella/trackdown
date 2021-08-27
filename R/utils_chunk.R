@@ -82,7 +82,8 @@ get_chunk_range <- function(lines, info_patterns){
     stop("There are some issues in the identification of chunk start/end line indexes")
   
   return(data.frame(starts = header_indices,
-                    ends = end_indices))
+                    ends = end_indices,
+                    stringsAsFactors = FALSE))
 }
 
 #----    extract_chunk    ----
@@ -204,7 +205,8 @@ extract_header <- function(text_lines, info_patterns){
     starts = header_start,
     ends = header_end,
     header_text = paste(text_lines[header_start:header_end], collapse = "\n"),
-    name_tag = "[[document-header]]")
+    name_tag = "[[document-header]]", 
+    stringsAsFactors = FALSE)
   
   return(res)
 }

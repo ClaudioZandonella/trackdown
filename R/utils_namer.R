@@ -260,7 +260,8 @@ parse_label_rmd <- function(label, params){
   
   data.frame(language = language,
              name = name_chunk,
-             options = options)
+             options = options, 
+             stringsAsFactors = FALSE)
 }
 
 
@@ -280,7 +281,8 @@ parse_label_rnw <- function(label, params){
   
   data.frame(language = NA,
              name = name_chunk,
-             options = options)
+             options = options, 
+             stringsAsFactors = FALSE)
 }
 
 #----
