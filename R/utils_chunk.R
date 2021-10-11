@@ -185,7 +185,7 @@ extract_header <- function(text_lines, info_patterns){
     # in rmd start and end header are the same
     header_index <- which(grepl(info_patterns$file_header_start, text_lines))
     
-    if(length(header_index) != 2) 
+    if(length(header_index) < 2) 
       stop("There are some issues in the identification of YAML start/end line indexes",
            call. = FALSE)
     
