@@ -49,7 +49,7 @@ Suppose you want to collaborate with your colleagues on the writing of an R Mark
 You create the initial document, for example `My-Report.Rmd`, and upload the file to Google Drive using the function `upload_file()`:
 
 ```{r, echo = TRUE, eval = FALSE}
-trackdown::update_file(file = "Path-to-file/My-Report.Rmd", hide_code = TRUE)
+trackdown::upload_file(file = "Path-to-file/My-Report.Rmd", hide_code = TRUE)
 ```
 
 By executing this command, the `My-Report.Rmd` file is uploaded from your local computer to your Google Drive. By default, the file is uploaded to Google Drive using the same name as the local file (without extension) and saved in a folder named `trackdown/`. 
