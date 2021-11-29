@@ -1,6 +1,7 @@
 ###################################
 ####    test Matrix Weights    ####
 ###################################
+
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
 #----    check_file    ----
