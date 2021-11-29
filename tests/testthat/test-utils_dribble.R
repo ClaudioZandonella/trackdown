@@ -12,33 +12,33 @@ test_that("get the correct path dribble", {
 
   # single folder
   vcr::use_cassette("get_path_dribble_test_1", {
-    dribble_path_1 <- get_path_dribble(path = "reading_folder")
+    dribble_path_1 <- get_path_dribble(path = "unit_tests/utils_dribble/single_folder")
   })
-  expect_match(dribble_path_1$id, "1Ow7GM1dLfu31eygq9Dc8tG6b5IMdD2mr")
+  expect_match(dribble_path_1$id, "1v6WVtchvz9mdbt6E3toTabsWFLPzVIrE")
 
-  # multiple folders
+  # duplicate folders
   vcr::use_cassette("get_path_dribble_test_2", {
-    dribble_path_2 <- get_path_dribble(path = "reading_folder/my_folder")
+    dribble_path_2 <- get_path_dribble(path = "unit_tests/utils_dribble/duplicate_folder")
   })
   expect_equal(nrow(dribble_path_2), 2)
 
   # correct subfolder
   vcr::use_cassette("get_path_dribble_test_3", {
-    dribble_path_3 <- get_path_dribble(path = "reading_folder/my_folder/foo_folder")
+    dribble_path_3 <- get_path_dribble(path = "unit_tests/utils_dribble/duplicate_folder/foo")
   })
-  expect_match(dribble_path_3$id, "1iRRUiG-IqA8KGvFVyrQWSUQgJJ7i8xYm")
+  expect_match(dribble_path_3$id, "1Fj7K-pm6eTrcCp3xejLTj--_jIWxgyrk")
 
   # not available folder create new folder
   vcr::use_cassette("get_path_dribble_test_4", {
-    dribble_path_4 <- get_path_dribble(path = "writing_folder/no_available_folder")
+    dribble_path_4 <- get_path_dribble(path = "unit_tests/utils_dribble/new_folder")
     googledrive::drive_rm(dribble_path_4)
   })
-  expect_match(dribble_path_4$name, "no_available_folder")
+  expect_match(dribble_path_4$name, "new_folder")
 
   # not available folder create error no unique parent folder
   vcr::use_cassette("get_path_dribble_test_5", {
     dribble_path_5 <- tryCatch(
-      get_path_dribble(path = "reading_folder/my_folder/no_available_folder"),
+      get_path_dribble(path = "unit_tests/utils_dribble/duplicate_folder/new_folder"),
       error = function(e) e)
   })
   # expect message start with "No unique parent folder"
@@ -47,15 +47,15 @@ test_that("get the correct path dribble", {
   # not available folder create process arrested
   vcr::use_cassette("get_path_dribble_test_6", {
     dribble_path_6 <- tryCatch(
-      get_path_dribble(path = "reading_folder/my_folder/no_available_folder", .response = 2),
+      get_path_dribble(path = "unit_tests/utils_dribble/new_folder", .response = 2),
       error = function(e) e)
   })
-  # expect message start with "No unique parent folder"
+  # expect message "Process arrested" from stop_quietly() function
   expect_equal(as.character(dribble_path_6$call), c("stop_quietly","Process arrested"))
 
 })
 
-#----    get_dribble_info()    ----
+#----    get_dribble_info    ----
 
 test_that("get the correct dribble", {
   skip_if_no_token()
@@ -72,15 +72,15 @@ test_that("get the correct dribble", {
 
   # file in folder
   vcr::use_cassette("get_dribble_info_2", {
-    dribble_info_2 <- get_dribble_info(gfile = "Hello-World", path = "reading_folder")
+    dribble_info_2 <- get_dribble_info(gfile = "Hello-World", path = "unit_tests/utils_dribble")
   })
   expect_match(dribble_info_2$file$id,
-               "1LJzwht6qXjws_UK3qWChe5InC-IIXwDjrPYvqU05mYE")
+               "1uSDAEc5qc7DsJ3t4ecgNffa8b6jyOW9aYWkXW2yTlcM")
   expect_match(dribble_info_2$parent$id,
-               "1Ow7GM1dLfu31eygq9Dc8tG6b5IMdD2mr")
+               "1_O-BKCU0o6cRab1AMM7730NRkqHH_X7d")
 })
 
-#----    get_parent_dribble()    ----
+#----    get_parent_dribble    ----
 
 test_that("get the correct parent dribble", {
   skip_if_no_token()
@@ -94,36 +94,37 @@ test_that("get the correct parent dribble", {
 
   # file in folder
   vcr::use_cassette("get_parent_dribble_2", {
-    parent_dribble_2 <- get_parent_dribble(path = "reading_folder")
+    parent_dribble_2 <- get_parent_dribble(path = "unit_tests/utils_dribble")
   })
-  expect_match(parent_dribble_2$name, "reading_folder")
+  expect_match(parent_dribble_2$name, "utils_dribble")
 })
 
-#----    create_drive_folder()    ----
+#----    create_drive_folder    ----
 
 test_that("create drive folders correctly", {
   skip_if_no_token()
   skip_if_offline()
 
   folder_names <- c("foo")
-  load(paste0(file_path, "dribble_writing_folder.rda"))
+  # load(paste0(file_path, "dribble_writing_folder.rda"))
 
   # folder in another folder
   vcr::use_cassette("create_drive_folder_1", {
-    drive_folder_1 <- create_drive_folder(name = folder_names, parent_dribble = dribble_writing_folder)
+    parent_dribble <- get_parent_dribble(path = "unit_tests/utils_dribble")
+    drive_folder_1 <- create_drive_folder(name = "new_folder", parent_dribble = parent_dribble)
     googledrive::drive_rm(drive_folder_1)
   })
-  expect_match(drive_folder_1$name, "foo")
+  expect_match(drive_folder_1$name, "new_folder")
 
   # folder in root
   vcr::use_cassette("create_drive_folder_2", {
-    drive_folder_2 <- create_drive_folder(name = folder_names[1], parent_dribble = NULL)
+    drive_folder_2 <- create_drive_folder(name = "new_folder", parent_dribble = NULL)
     googledrive::drive_rm(drive_folder_2)
   })
-  expect_match(drive_folder_2$name, "foo")
+  expect_match(drive_folder_2$name, "new_folder")
 })
 
-#----    get_root_dribble()    ----
+#----    get_root_dribble    ----
 
 test_that("get the correct root dribble", {
   skip_if_no_token()
@@ -136,5 +137,6 @@ test_that("get the correct root dribble", {
   expect_match(root_dribble_1$name, "My Drive")
 
 })
+
 
 #----

@@ -147,14 +147,14 @@ get_parent_dribble <- function(path = NULL, shared_drive = NULL, .response = 1){
   
   # get dribble of the parent folder
   if (!is.null(path)) {
-    path <- get_path_dribble(path = path, 
+    res <- get_path_dribble(path = path, 
                              shared_drive = shared_drive, 
                              .response = .response)
   } else {
-    path <- get_root_dribble(shared_drive)
+    res <- get_root_dribble(shared_drive)
   }
   
-  return(path)
+  return(res)
 }
 
 #----    create_drive_folder    ----
@@ -227,3 +227,4 @@ get_root_dribble <- function(shared_drive = NULL){
 }
 
 
+#----

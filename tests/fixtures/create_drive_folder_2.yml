@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.googleapis.com/drive/v3/files?orderBy=recency%20desc&q=%28name%20%3D%20%27foo%27%29%20and%20%28trashed%20%3D%20false%29&supportsAllDrives=TRUE&fields=%2A
+    uri: https://www.googleapis.com/drive/v3/files?orderBy=recency%20desc&q=%28name%20%3D%20%27new_folder%27%29%20and%20%28trashed%20%3D%20false%29&supportsAllDrives=TRUE&fields=%2A
     body:
       encoding: ''
       string: ''
@@ -15,15 +15,14 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
-        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
-        ma=2592000; v="46,43"
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
       content-length: '84'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Thu, 26 Aug 2021 17:14:28 GMT
+      date: Mon, 29 Nov 2021 10:13:07 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -42,14 +41,14 @@ http_interactions:
          "incompleteSearch": false,
          "files": []
         }
-  recorded_at: 2021-08-26 17:14:30 GMT
+  recorded_at: 2021-11-29 10:13:08 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: post
     uri: https://www.googleapis.com/drive/v3/files?supportsAllDrives=TRUE&fields=%2A
     body:
       encoding: ''
-      string: '{"mimeType":"application/vnd.google-apps.folder","name":"foo"}'
+      string: '{"mimeType":"application/vnd.google-apps.folder","name":"new_folder"}'
     headers:
       Accept: application/json, text/xml, application/xml, */*
       Content-Type: application/json
@@ -61,15 +60,14 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
-        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
-        ma=2592000; v="46,43"
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '918'
+      content-length: '938'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Thu, 26 Aug 2021 17:14:29 GMT
+      date: Mon, 29 Nov 2021 10:13:07 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -85,8 +83,8 @@ http_interactions:
       string: |
         {
          "kind": "drive#file",
-         "id": "1TdQ-Lg97vm3-FdW1iv5NZx_KQeqgTSgl",
-         "name": "foo",
+         "id": "1DmngZXRUoI1xj7hQORmz8LscrbzL2y-n",
+         "name": "new_folder",
          "mimeType": "application/vnd.google-apps.folder",
          "starred": false,
          "trashed": false,
@@ -98,14 +96,14 @@ http_interactions:
           "drive"
          ],
          "version": "1",
-         "webViewLink": "https://drive.google.com/drive/folders/1TdQ-Lg97vm3-FdW1iv5NZx_KQeqgTSgl",
+         "webViewLink": "https://drive.google.com/drive/folders/1DmngZXRUoI1xj7hQORmz8LscrbzL2y-n",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder+48",
          "hasThumbnail": false,
          "thumbnailVersion": "0",
          "viewedByMe": false,
-         "createdTime": "2021-08-26T17:14:29.160Z",
-         "modifiedTime": "2021-08-26T17:14:29.160Z",
-         "modifiedByMeTime": "2021-08-26T17:14:29.160Z",
+         "createdTime": "2021-11-29T10:13:07.595Z",
+         "modifiedTime": "2021-11-29T10:13:07.595Z",
+         "modifiedByMeTime": "2021-11-29T10:13:07.595Z",
          "modifiedByMe": true,
          "owners": [
           {
@@ -128,6 +126,7 @@ http_interactions:
          "shared": false,
          "ownedByMe": true,
          "capabilities": {
+          "canAcceptOwnership": false,
           "canAddChildren": true,
           "canAddMyDriveParent": false,
           "canChangeCopyRequiresWriterPermission": false,
@@ -164,7 +163,8 @@ http_interactions:
            "role": "owner",
            "displayName": "trackdown rpackage",
            "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
-           "deleted": false
+           "deleted": false,
+           "pendingOwner": false
           }
          ],
          "permissionIds": [
@@ -178,11 +178,11 @@ http_interactions:
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2021-08-26 17:14:30 GMT
+  recorded_at: 2021-11-29 10:13:08 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: delete
-    uri: https://www.googleapis.com/drive/v3/files/1TdQ-Lg97vm3-FdW1iv5NZx_KQeqgTSgl?supportsAllDrives=TRUE
+    uri: https://www.googleapis.com/drive/v3/files/1DmngZXRUoI1xj7hQORmz8LscrbzL2y-n?supportsAllDrives=TRUE
     body:
       encoding: ''
       string: '{}'
@@ -197,11 +197,10 @@ http_interactions:
       reason: No Content
       message: 'Success: (204) No Content'
     headers:
-      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
-        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
-        ma=2592000; v="46,43"
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      date: Thu, 26 Aug 2021 17:14:30 GMT
+      date: Mon, 29 Nov 2021 10:13:08 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -212,5 +211,5 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: ''
-  recorded_at: 2021-08-26 17:14:30 GMT
+  recorded_at: 2021-11-29 10:13:08 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

@@ -1,0 +1,5 @@
+Hello Word!
+
+Do not move this file, It is used in unit tests!
+
+See test-utils.R, unit test of check_file() function

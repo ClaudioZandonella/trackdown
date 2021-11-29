@@ -14,6 +14,8 @@ pkgdown
 #----    authentication token    ----
 .secrets
 
+R/personal_utils.R
+
 inst/doc
 doc
 Meta

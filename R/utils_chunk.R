@@ -198,7 +198,7 @@ extract_header <- function(text_lines, info_patterns){
     
     if(length(header_start) != 1 || length(header_end) != 1) 
       stop("There are some issues in the identification of the document header start/end line indexes",
-           .call = FALSE)
+           call. = FALSE)
   }
   
   res <- data.frame(

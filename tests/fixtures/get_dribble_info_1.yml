@@ -15,15 +15,14 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
-        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
-        ma=2592000; v="46,43"
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '1212'
+      content-length: '1255'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Thu, 26 Aug 2021 17:14:26 GMT
+      date: Mon, 29 Nov 2021 10:13:03 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -55,17 +54,17 @@ http_interactions:
            "spaces": [
             "drive"
            ],
-           "version": "7",
+           "version": "12",
            "webViewLink": "https://docs.google.com/document/d/1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag/edit?usp=drivesdk",
            "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
            "hasThumbnail": true,
-           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&v=3&s=AMedNnoAAAAAYSfoEtkX1r96y9NxmerK8xo9E1jyQQQK&sz=s220",
-           "thumbnailVersion": "3",
+           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&v=5&s=AMedNnoAAAAAYaTDz-8FsU2GjFQ3Bn7muK4GqIT0eDkm&sz=s220",
+           "thumbnailVersion": "5",
            "viewedByMe": true,
-           "viewedByMeTime": "2021-03-10T09:02:59.300Z",
+           "viewedByMeTime": "2021-11-29T10:00:04.665Z",
            "createdTime": "2021-03-10T09:02:49.123Z",
-           "modifiedTime": "2021-03-10T09:02:59.300Z",
-           "modifiedByMeTime": "2021-03-10T09:02:59.300Z",
+           "modifiedTime": "2021-11-29T10:00:04.665Z",
+           "modifiedByMeTime": "2021-11-29T10:00:04.665Z",
            "modifiedByMe": true,
            "owners": [
             {
@@ -88,6 +87,7 @@ http_interactions:
            "shared": false,
            "ownedByMe": true,
            "capabilities": {
+            "canAcceptOwnership": false,
             "canAddChildren": false,
             "canAddMyDriveParent": false,
             "canChangeCopyRequiresWriterPermission": true,
@@ -124,13 +124,15 @@ http_interactions:
              "role": "owner",
              "displayName": "trackdown rpackage",
              "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
-             "deleted": false
+             "deleted": false,
+             "pendingOwner": false
             }
            ],
            "permissionIds": [
             "09109446299227804908"
            ],
-           "quotaBytesUsed": "0",
+           "size": "1024",
+           "quotaBytesUsed": "1024",
            "isAppAuthorized": false,
            "exportLinks": {
             "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1wawg2T1bCeRTkYlrdoqbIXj59ASB_x2NZXz903yCCag&exportFormat=rtf",
@@ -149,5 +151,5 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2021-08-26 17:14:26 GMT
+  recorded_at: 2021-11-29 10:13:03 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

@@ -7,21 +7,21 @@ file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
 test_that("check if file exists", {
   # an existing file
-  expect_null(check_file("test_files/example_1.Rmd"))
+  expect_null(check_file(paste0(file_path, "utils/Hello-World.txt")))
   # not existing file
-  expect_error(check_file(file = "I_dont_exist.txt"), 
-               'file does not exist: "I_dont_exist.txt"')
+  expect_error(check_file(paste0(file_path, "utils/new-file.txt")), 
+               '^file does not exist: ".*/new-file.txt"')
   
-  # worng argumants type
+  # wrong arguments type
   expect_error(check_file(c("a", "b")), "file has to be a single string")
   expect_error(check_file(20), "file has to be a single string")
 })
 
-
 #----    check_identity    ----
+
 test_that("check_identity works prorerly", {
-  rmd_file <- paste0(file_path, "example_1.Rmd")
-  rnw_file <- paste0(file_path, "example_1.Rnw")
+  rmd_file <- paste0(file_path, "utils/example-1.Rmd")
+  rnw_file <- paste0(file_path, "utils/example-1.Rnw")
   
   expect_true(check_identity(temp_file = rmd_file, local_file = rmd_file))
   expect_true(check_identity(temp_file = rnw_file, local_file = rnw_file))
@@ -40,27 +40,27 @@ test_that("Message function work prorerly", {
   expect_snapshot_output(finish_process("a ticked item"))
 })
 
-test_that("Message function work prorerly bullet", {
+test_that("Message function work properly bullet", {
   expect_snapshot(sub_process("a bullet item"))
 })
-
-
 
 #----    get_file_info    ----
 
 test_that("file info are correct", {
   
-  ex_1 <- list(path = "my_folder",
-               file_name = "my_file.Rnw",
+  ex_1 <- list(path = "foo",
+               file_name = "new-file.Rnw",
                extension = "rnw",
-               file_basename = "my_file")
+               file_basename = "new-file")
   ex_2 <- list(path = ".",
-               file_name = "my.file.Rmd",
+               file_name = "new.file.Rmd",
                extension = "rmd",
-               file_basename = "my.file")
+               file_basename = "new.file")
   
-  expect_identical(get_file_info("my_folder/my_file.Rnw"), ex_1)
-  expect_identical(get_file_info("my.file.Rmd"), ex_2)
+  # identify folder and file 
+  expect_identical(get_file_info("foo/new-file.Rnw"), ex_1)
+  # identify the extension when multiple "." 
+  expect_identical(get_file_info("new.file.Rmd"), ex_2)
   
   expect_error(get_file_info("my_file"), "file do not include extension")
   expect_error(get_file_info(20), "file has to be a single string")
@@ -70,12 +70,12 @@ test_that("file info are correct", {
 
 test_that("check get_instructions", {
   # Rmd
-  file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
+  file_info <- get_file_info("foo/new-file.Rmd")
   expect_snapshot_output(get_instructions(file_info = file_info, hide_code = TRUE))
   expect_snapshot_output(get_instructions(file_info = file_info, hide_code = FALSE))
   
   # Rnw
-  file_info <- get_file_info(paste0(file_path, "example_1.Rnw"))
+  file_info <- get_file_info("new-file.Rnw")
   expect_snapshot_output(get_instructions(file_info = file_info, hide_code = TRUE))
   expect_snapshot_output(get_instructions(file_info = file_info, hide_code = FALSE))
 })
@@ -83,12 +83,17 @@ test_that("check get_instructions", {
 #----    format_document    ----
 
 test_that("check format_document", {
-  document <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
-  file_info <- get_file_info(paste0(file_path, "example_1.Rmd"))
+  # Rmd
+  file_rmd <- paste0(file_path, "utils/example-1.Rmd")
+  document <- readLines(file_rmd, encoding = "UTF-8")
+  file_info <- get_file_info(file_rmd)
   expect_snapshot_output(format_document(document, file_info = file_info, 
                                          hide_code = FALSE))
   
-  document <- readLines(paste0(file_path, "example_1_rmd.txt"), encoding = "UTF-8")
+  # Rnw
+  file_rnw <- paste0(file_path, "utils/example-1.Rnw")
+  document <- readLines(file_rnw, encoding = "UTF-8")
+  file_info <- get_file_info(file_rnw)
   expect_snapshot_output(format_document(document, file_info = file_info,
                                          hide_code = TRUE))
 })
@@ -96,35 +101,35 @@ test_that("check format_document", {
 #----    check_dribble    ----
 
 test_that("check check_dribble", {
-  # dribble_hello_world <- get_dribble_info(gfile = "Hello-world", path = "reading_folder")
-  # save(dribble_hello_world, file = paste0(file_path, "dribble_hello_world.rda"))
-  load(paste0(file_path, "dribble_hello_world.rda"))
+  # dribble_hello_world <- get_dribble_info(gfile = "Hello-world")$file
+  # save(dribble_hello_world, file = paste0(file_path, "utils/dribble_hello_world.rda"))
+  load(paste0(file_path, "utils/dribble_hello_world.rda"))
   
   # none
-  expect_error(check_dribble(dribble_hello_world$file, "Hello-world"))
-  expect_error(check_dribble(dribble_hello_world$file[-1, ], "Hello-world", NA))
+  expect_error(check_dribble(dribble_hello_world, "Hello-world"))
+  expect_error(check_dribble(dribble_hello_world[-1, ], "Hello-world", NA))
   
   # single
-  expect_error(check_dribble(dribble_hello_world$file[-1, ], "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world[-1, ], "Hello-world", 
                             test = "single"))
-  expect_error(check_dribble(dribble_hello_world$file[c(1, 1), ], "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world[c(1, 1), ], "Hello-world", 
                             test = "single"))
-  expect_error(check_dribble(dribble_hello_world$file, "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world, "Hello-world", 
                             test = "single"), NA)
   
   # both
-  expect_error(check_dribble(dribble_hello_world$file[c(1,1), ], "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world[c(1,1), ], "Hello-world", 
                             test = "both"))
-  expect_error(check_dribble(dribble_hello_world$file, "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world, "Hello-world", 
                             test = "both"), NA)
-  expect_error(check_dribble(dribble_hello_world$file[-1], "Hello-world", 
+  expect_error(check_dribble(dribble_hello_world[-1], "Hello-world", 
                             test = "both"), NA)
   
 })
 
 #----    eval_instructions    ----
 
-document <- readLines(paste0(file_path, "example_instructions.txt"), 
+document <- readLines(paste0(file_path, "utils/example_instructions.txt"), 
                       warn = FALSE, encoding = "UTF-8")
 
 
@@ -171,7 +176,7 @@ test_that("check eval_instructions no hide_code", {
 #----    load_code    ----
 
 test_that("check load_code", {
-  expect_error(load_code(file_name = "example_1.Rmd", path = "fake", 
+  expect_error(load_code(file_name = "new-file.Rmd", path = "foo", 
                          type = "header"), "^Failed restoring code.*")
 })
 
@@ -194,15 +199,17 @@ test_that("check sanitize_path", {
 
 test_that("check sanitize_path", {
   
-  file_info <- get_file_info("my-report.txt")
+  file_info <- get_file_info("new-file.txt")
  
-  expect_error(check_supported_documents(file_info))
+  expect_error(check_supported_documents(file_info), "not supported file")
 })
 
 #----    sanitize_document    ----
 
 test_that("check sanitize_document", {
-  expect_match(sanitize_document(c("Line1\n", "Line2\n\n\n", "Line3\n\n\n Line4")),
+  expect_match(sanitize_document(c("Line1\n", 
+                                   "Line2\n\n\n", 
+                                   "Line3\n\n\n Line4")),
                "Line1\n\nLine2\n\n\nLine3\n\n Line4\n")
 })
 

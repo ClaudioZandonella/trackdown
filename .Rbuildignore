@@ -31,3 +31,4 @@
 ^CRAN-RELEASE$
 ^man/figures/video-thumbnail\.png$
 ^issues$
+^R/personal_utils\.R$

@@ -65,15 +65,19 @@ sanitize_document <- function(file) {
 #----    stop_quietly    ----
 
 #' Stop quietly
-#' 
-#' Stop a function without throwing an error.
-#' Function adapted from https://stackoverflow.com/a/42945293/12481476
 #'
-#' @param text a string indicating the message to display 
+#' Stop a function without throwing an error. Function adapted from
+#' https://stackoverflow.com/a/42945293/12481476
+#'
+#' Note that messages() is required to print text because show.error.messages is
+#' set to FALSE
+#'
+#' @param text a string indicating the message to display
 #'
 #' @return NULL
 #' @noRd
-#'
+#' 
+
 stop_quietly <- function(text = NULL) {
   opt <- options(show.error.messages = FALSE)
   on.exit(options(opt))
