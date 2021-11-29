@@ -190,7 +190,7 @@ test_that("check restore_chunk works properly", {
   # example-1-restore.Rnw
   document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rnw"), warn = FALSE, encoding = "UTF-8")
   chunk_info <- load_code("example-1.Rnw", path = paste0(file_path, "utils_chunk/"), type = "chunk")
-  index_header <- 12
+  index_header <- 9
   
   # complete
   expect_snapshot_output(restore_chunk(document = document, chunk_info = chunk_info,
@@ -213,7 +213,7 @@ test_that("check restore_chunk works properly", {
 
 my_path <- paste0(file_path, "utils_chunk/")
 
-test_that("get that restore_code works properly", {
+test_that("check restore_code works properly", {
   
   #---- Rmd ----
   # example-1-restore.Rmd
@@ -245,7 +245,7 @@ test_that("get that restore_code works properly", {
   
 })
 
-test_that("get that restore_code missing header-tag", {
+test_that("check restore_code missing header-tag", {
   # missing header-tag
   
   #---- Rmd ----
@@ -267,7 +267,7 @@ test_that("get that restore_code missing header-tag", {
 # my-file-restore.Rmd) with place-holders instead of code, ready to be restored
 
 
-test_that("get that restore_file works properly", {
+test_that("check restore_file works properly", {
   
   my_path <-  paste0(file_path, "utils_chunk/")
   
@@ -307,7 +307,7 @@ unlink(paste0(file_path, "utils_chunk/.trackdown"), recursive = TRUE)
 
 #---- restore_code test no .trackdown folder ----
 
-test_that("get that restore_code no .trackdown folder", {
+test_that("check restore_code no .trackdown folder", {
   
   my_path <-  paste0(file_path, "utils_chunk/")
   

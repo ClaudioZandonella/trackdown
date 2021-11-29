@@ -1,0 +1,66 @@
+---
+title: "Reviewdown Test"
+author: "reviewdown"
+date: "2/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r, pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r, echo=FALSE, warning=FALSE}
+# R chunk with no name but multiple options (using ,)
+```
+
+```{r echo=FALSE}
+# R chunk with no name but options (not using,)
+```
+
+```{r, chunk_name}
+# wrong R chunk with , and name is parsed as argument
+```
+
+```{sql, eval=FALSE}
+/*A sql chunk chunk with no name but options*/
+```
+
+```{eval = TRUE}
+A void code
+```
+
+```{}
+Another void code
+```
+
+```
+Still another void code
+```
+
+```a really strange inline block ```
+
+``` {r}
+a strange chuck header with space before {
+```
+
+End of the document

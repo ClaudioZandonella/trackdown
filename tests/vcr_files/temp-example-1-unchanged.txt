@@ -3,7 +3,7 @@ This is not a common Document. The Document includes properly formatted Markdown
 Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
 Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
 You must not modify or remove these lines, we will do it for you ;)
-FILE-NAME: example_1.Rmd
+FILE-NAME: example-1.Rmd
 HIDE-CODE: TRUE
 #----End Instructions----#
 [[document-header]]
@@ -13,9 +13,6 @@ HIDE-CODE: TRUE
 
 
 ## R Markdown
-
-
-Some changes
 
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.

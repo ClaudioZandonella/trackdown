@@ -428,14 +428,14 @@ restore_code <- function(document, file_name, path){
 
 #' Restore Chunk Code
 #'
-#' Given the document, chunck info and header line index, restore chunks in the
+#' Given the document, chunk info and header line index, restore chunks in the
 #' document. Allow to fix possible missing chunk-tags in the document by adding
 #' them right after the previous matching chunk. In case the first one is
-#' missing, chunk is added after the header. Note that actual chuks restoring
+#' missing, chunk is added after the header. Note that actual chunks restoring
 #' process starts from the end going backwards.
 #'
 #' @param document character vector with the lines of the document 
-#' @param chunk_info dataframe with the chunk infomation to restore previously
+#' @param chunk_info dataframe with the chunk information to restore previously
 #'   saved
 #' @param index_header integer indicating the line index of th header
 #'

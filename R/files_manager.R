@@ -288,7 +288,7 @@ download_file <- function(file,
   }
   
   #---- end ----
-  return(invisible(changed)) # to retun a invisible TRUE/FALSE for rendering
+  return(invisible(changed)) # to return a invisible TRUE/FALSE for rendering
 }
 
 #----    render_file    ----

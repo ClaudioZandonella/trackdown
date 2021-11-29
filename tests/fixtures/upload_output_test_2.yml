@@ -1,11 +1,11 @@
 http_interactions:
 - request:
     method: patch
-    uri: https://www.googleapis.com/upload/drive/v3/files/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
+    uri: https://www.googleapis.com/upload/drive/v3/files/1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
     body:
       encoding: ''
-      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmp34xHh7/drive-update-meta7ff42866001.json",
-        type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/temp-output-example_1.pdf",
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmp9Vo2Mz/drive-update-meta12e013d28bbd5.json",
+        type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/utils_manager/temp-output-example-2.pdf",
         type = "application/pdf")
     headers:
       Accept: application/json, text/xml, application/xml, */*
@@ -17,49 +17,48 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443";
-        ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443";
-        ma=2592000; v="46,43"
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      content-length: '3184'
+      content-length: '3247'
       content-type: application/json; charset=UTF-8
-      date: Thu, 26 Aug 2021 17:17:06 GMT
+      date: Mon, 29 Nov 2021 17:15:33 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: UploadServer
       vary:
       - Origin
       - X-Origin
-      x-guploader-uploadid: ADPycdthcRNBcl4AImLZZLVsVjc1Gf137bS98ViW4ZCXVtowHjDsitrAMGIYHnwK-5ZHwVVtnkGl5Q6rf45Mg882Ee9-J0sdEQ
+      x-guploader-uploadid: ADPycdvX_BQF9Om5RbOO0FHngHJ_a1KYmnZ1a-TKqveZDm1aFDzdqClU_Wrs6E8wOqCG0jX7pp00WInuzshWC8MLvlmPxY3N8A
     body:
       encoding: UTF-8
       file: no
       string: |
         {
          "kind": "drive#file",
-         "id": "1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo",
-         "name": "old_output",
+         "id": "1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa",
+         "name": "old-example-2-output",
          "mimeType": "application/pdf",
          "starred": false,
          "trashed": false,
          "explicitlyTrashed": false,
          "parents": [
-          "1CB3g50fT5m1LHMl3-lPiuoKd7v3jeYgb"
+          "1ggoy9t7-5VQr_Spz4BzFm59tPtXzIWtg"
          ],
          "spaces": [
           "drive"
          ],
-         "version": "26",
-         "webContentLink": "https://drive.google.com/uc?id=1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo&export=download",
-         "webViewLink": "https://drive.google.com/file/d/1_G3Hlj_5icRjvaZp7PRBKt35pFFU2Ayo/view?usp=drivesdk",
+         "version": "7",
+         "webContentLink": "https://drive.google.com/uc?id=1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa&export=download",
+         "webViewLink": "https://drive.google.com/file/d/1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa/view?usp=drivesdk",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
          "hasThumbnail": true,
-         "thumbnailLink": "https://lh3.googleusercontent.com/bb_BuvU_R9ZlJ4SKMJXfsnNZUKlTliby2zSGqbq0WnqbcYxuKCTBmuEMS9qeh4rN-vZNFAuKS8YPlG4=s220",
-         "thumbnailVersion": "20",
+         "thumbnailLink": "https://lh3.googleusercontent.com/5wyXtykG4ZWMJ5egO3D8fe_1LlRIVRez3IY-jLDt0c9oHYe8cPSO9UDWvgw93OCVulG4lSf8WeDDu_8=s220",
+         "thumbnailVersion": "6",
          "viewedByMe": false,
-         "createdTime": "2021-03-30T14:53:18.163Z",
-         "modifiedTime": "2021-08-26T17:17:05.672Z",
-         "modifiedByMeTime": "2021-08-26T17:17:05.672Z",
+         "createdTime": "2021-11-29T17:07:04.411Z",
+         "modifiedTime": "2021-11-29T17:15:32.925Z",
+         "modifiedByMeTime": "2021-11-29T17:15:32.925Z",
          "modifiedByMe": true,
          "owners": [
           {
@@ -82,6 +81,7 @@ http_interactions:
          "shared": false,
          "ownedByMe": true,
          "capabilities": {
+          "canAcceptOwnership": false,
           "canAddChildren": false,
           "canAddMyDriveParent": false,
           "canChangeCopyRequiresWriterPermission": true,
@@ -118,24 +118,25 @@ http_interactions:
            "role": "owner",
            "displayName": "trackdown rpackage",
            "photoLink": "https://lh3.googleusercontent.com/a-/AOh14Gg8g9gjcb-a1TO55XHd1r9YSgKruLe1rzCys3Gx=s64",
-           "deleted": false
+           "deleted": false,
+           "pendingOwner": false
           }
          ],
          "permissionIds": [
           "09109446299227804908"
          ],
-         "originalFilename": "temp-output-example_1.pdf",
+         "originalFilename": "temp-output-example-2.pdf",
          "fullFileExtension": "pdf",
          "fileExtension": "",
-         "md5Checksum": "c4c579d54fcae53859003c281a672e04",
-         "size": "146115",
-         "quotaBytesUsed": "146115",
-         "headRevisionId": "0B_bXnIs35pMScDQvT0pGTGJ3MEt5TGEwTDV0ZWdpeVhyeEtZPQ",
+         "md5Checksum": "6f509672aad500d2ac3369870680ce5f",
+         "size": "83546",
+         "quotaBytesUsed": "83546",
+         "headRevisionId": "0B_bXnIs35pMSVmRSOXBMZGlNengveDZvaStRMFB6UW5STzRNPQ",
          "isAppAuthorized": true,
          "linkShareMetadata": {
           "securityUpdateEligible": false,
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2021-08-26 17:17:06 GMT
+  recorded_at: 2021-11-29 17:15:33 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
