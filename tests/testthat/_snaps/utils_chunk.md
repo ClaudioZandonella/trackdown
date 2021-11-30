@@ -126,6 +126,50 @@
 
 ---
 
+     [1] "<!-- A child document -->"                                                                                                                                                                      
+     [2] ""                                                                                                                                                                                               
+     [3] "## R Markdown"                                                                                                                                                                                  
+     [4] ""                                                                                                                                                                                               
+     [5] "---"                                                                                                                                                                                            
+     [6] ""                                                                                                                                                                                               
+     [7] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+     [8] ""                                                                                                                                                                                               
+     [9] "---"                                                                                                                                                                                            
+    [10] ""                                                                                                                                                                                               
+    [11] "[[chunk-cars]]"                                                                                                                                                                                 
+    [12] ""                                                                                                                                                                                               
+    [13] "## Including Plots"                                                                                                                                                                             
+    [14] ""                                                                                                                                                                                               
+    [15] "You can also embed plots, for example:"                                                                                                                                                         
+    [16] ""                                                                                                                                                                                               
+    [17] "[[chunk-pressure]]"                                                                                                                                                                             
+
+---
+
+    [1] "[[document-header]]"                                                                                                                                                                            
+    [2] ""                                                                                                                                                                                               
+    [3] "## R Markdown"                                                                                                                                                                                  
+    [4] ""                                                                                                                                                                                               
+    [5] "---"                                                                                                                                                                                            
+    [6] ""                                                                                                                                                                                               
+    [7] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+    [8] ""                                                                                                                                                                                               
+    [9] "---"                                                                                                                                                                                            
+
+---
+
+    [1] "<!-- A child document -->"                                                                                                                                                                      
+    [2] ""                                                                                                                                                                                               
+    [3] "## R Markdown"                                                                                                                                                                                  
+    [4] ""                                                                                                                                                                                               
+    [5] "---"                                                                                                                                                                                            
+    [6] ""                                                                                                                                                                                               
+    [7] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+    [8] ""                                                                                                                                                                                               
+    [9] "---"                                                                                                                                                                                            
+
+---
+
      [1] "[[document-header]]"                                                                                                                                                                                         
      [2] ""                                                                                                                                                                                                            
      [3] "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"                                                                                                                        
@@ -167,6 +211,40 @@
     [39] "End of the document"                                                                                                                                                                                         
     [40] ""                                                                                                                                                                                                            
     [41] "\\end{document}"                                                                                                                                                                                             
+
+---
+
+     [1] "% A child document"                                                                                                                                                                         
+     [2] ""                                                                                                                                                                                           
+     [3] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+     [4] ""                                                                                                                                                                                           
+     [5] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
+     [6] ""                                                                                                                                                                                           
+     [7] "[[chunk-cars]]"                                                                                                                                                                             
+     [8] ""                                                                                                                                                                                           
+     [9] "\\section{Including Plots}"                                                                                                                                                                 
+    [10] ""                                                                                                                                                                                           
+    [11] "You can also embed plots, for example:"                                                                                                                                                     
+    [12] ""                                                                                                                                                                                           
+    [13] "[[chunk-pressure]]"                                                                                                                                                                         
+
+---
+
+    [1] "[[document-header]]"                                                                                                                                                                        
+    [2] ""                                                                                                                                                                                           
+    [3] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+    [4] ""                                                                                                                                                                                           
+    [5] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
+    [6] ""                                                                                                                                                                                           
+    [7] "\\end{document}"                                                                                                                                                                            
+
+---
+
+    [1] "% A child document"                                                                                                                                                                         
+    [2] ""                                                                                                                                                                                           
+    [3] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+    [4] ""                                                                                                                                                                                           
+    [5] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
 
 # check restore_chunk works properly
 
@@ -512,6 +590,73 @@
 
 ---
 
+     [1] "<!-- A child document -->"                                                                                                                                                                      
+     [2] ""                                                                                                                                                                                               
+     [3] "## R Markdown"                                                                                                                                                                                  
+     [4] ""                                                                                                                                                                                               
+     [5] "---"                                                                                                                                                                                            
+     [6] ""                                                                                                                                                                                               
+     [7] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+     [8] ""                                                                                                                                                                                               
+     [9] "---"                                                                                                                                                                                            
+    [10] ""                                                                                                                                                                                               
+    [11] "```{r cars}\nsummary(cars)\n```"                                                                                                                                                                
+    [12] ""                                                                                                                                                                                               
+    [13] "## Including Plots"                                                                                                                                                                             
+    [14] ""                                                                                                                                                                                               
+    [15] "You can also embed plots, for example:"                                                                                                                                                         
+    [16] ""                                                                                                                                                                                               
+    [17] "```{r, pressure, echo=FALSE}\nplot(pressure)\n```"                                                                                                                                              
+    [18] ""                                                                                                                                                                                               
+
+---
+
+     [1] "---\ntitle: \"Reviewdown Test\"\nauthor: \"reviewdown\"\ndate: \"2/3/2021\"\noutput: html_document\n---"                                                                                        
+     [2] ""                                                                                                                                                                                               
+     [3] "## R Markdown"                                                                                                                                                                                  
+     [4] ""                                                                                                                                                                                               
+     [5] "---"                                                                                                                                                                                            
+     [6] ""                                                                                                                                                                                               
+     [7] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+     [8] ""                                                                                                                                                                                               
+     [9] "---"                                                                                                                                                                                            
+    [10] ""                                                                                                                                                                                               
+
+---
+
+     [1] "<!-- A child document -->"                                                                                                                                                                      
+     [2] ""                                                                                                                                                                                               
+     [3] "## R Markdown"                                                                                                                                                                                  
+     [4] ""                                                                                                                                                                                               
+     [5] "---"                                                                                                                                                                                            
+     [6] ""                                                                                                                                                                                               
+     [7] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+     [8] ""                                                                                                                                                                                               
+     [9] "---"                                                                                                                                                                                            
+    [10] ""                                                                                                                                                                                               
+
+---
+
+     [1] "```{r cars}\nsummary(cars)\n```\n\n```{r, pressure, echo=FALSE}\nplot(pressure)\n```"                                                                                                           
+     [2] "<!-- A child document -->"                                                                                                                                                                      
+     [3] ""                                                                                                                                                                                               
+     [4] "## R Markdown"                                                                                                                                                                                  
+     [5] ""                                                                                                                                                                                               
+     [6] "---"                                                                                                                                                                                            
+     [7] ""                                                                                                                                                                                               
+     [8] "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>."
+     [9] ""                                                                                                                                                                                               
+    [10] "---"                                                                                                                                                                                            
+    [11] ""                                                                                                                                                                                               
+    [12] ""                                                                                                                                                                                               
+    [13] "## Including Plots"                                                                                                                                                                             
+    [14] ""                                                                                                                                                                                               
+    [15] "You can also embed plots, for example:"                                                                                                                                                         
+    [16] ""                                                                                                                                                                                               
+    [17] ""                                                                                                                                                                                               
+
+---
+
      [1] "#----Trackdown Instructions----#"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
      [2] "This is not a common Document. The Document includes properly formatted LaTeX syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code."                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
      [3] "Please do not remove placeholders of type \"[[chunk-<name>]]\" or \"[[document-header]]\""                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -608,6 +753,61 @@
     [43] ""                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
     [44] "\\end{document}"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     [45] ""                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+---
+
+     [1] "% A child document"                                                                                                                                                                         
+     [2] ""                                                                                                                                                                                           
+     [3] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+     [4] ""                                                                                                                                                                                           
+     [5] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
+     [6] ""                                                                                                                                                                                           
+     [7] "<<cars>>=\nsummary(cars)\n@"                                                                                                                                                                
+     [8] ""                                                                                                                                                                                           
+     [9] "\\section{Including Plots}"                                                                                                                                                                 
+    [10] ""                                                                                                                                                                                           
+    [11] "You can also embed plots, for example:"                                                                                                                                                     
+    [12] ""                                                                                                                                                                                           
+    [13] "<<pressure, echo=FALSE>>=\nplot(pressure)\n@"                                                                                                                                               
+    [14] ""                                                                                                                                                                                           
+    [15] ""                                                                                                                                                                                           
+
+---
+
+    [1] "\\documentclass{article}  \n\n\\usepackage[T1] {fontenc} \t\t  % Font encoding\n\\usepackage [utf8] {inputenc}\t\t% Encoding for the document\n\n\\begin{document}"                         
+    [2] ""                                                                                                                                                                                           
+    [3] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+    [4] ""                                                                                                                                                                                           
+    [5] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
+    [6] ""                                                                                                                                                                                           
+    [7] "\\end{document}"                                                                                                                                                                            
+    [8] ""                                                                                                                                                                                           
+
+---
+
+    [1] "% A child document"                                                                                                                                                                         
+    [2] ""                                                                                                                                                                                           
+    [3] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+    [4] ""                                                                                                                                                                                           
+    [5] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
+    [6] ""                                                                                                                                                                                           
+
+---
+
+     [1] "<<cars>>=\nsummary(cars)\n@\n\n<<pressure, echo=FALSE>>=\nplot(pressure)\n@"                                                                                                                
+     [2] "% A child document"                                                                                                                                                                         
+     [3] ""                                                                                                                                                                                           
+     [4] "\\section{R and \\LaTeX}"                                                                                                                                                                   
+     [5] ""                                                                                                                                                                                           
+     [6] "This is an Rnw document. \\LaTeX is a (\\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \\LaTeX see \\url{https://www.overleaf.com/learn}."
+     [7] ""                                                                                                                                                                                           
+     [8] ""                                                                                                                                                                                           
+     [9] "\\section{Including Plots}"                                                                                                                                                                 
+    [10] ""                                                                                                                                                                                           
+    [11] "You can also embed plots, for example:"                                                                                                                                                     
+    [12] ""                                                                                                                                                                                           
+    [13] ""                                                                                                                                                                                           
+    [14] ""                                                                                                                                                                                           
 
 # check restore_file works properly
 

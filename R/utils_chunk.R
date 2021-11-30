@@ -61,7 +61,7 @@ get_chunk_range <- function(lines, info_patterns){
   if(info_patterns$extension == "rmd"){
     # solve issue of chunks without language and '{}'
     # check for chunk of types '```{...}' or '```'
-    index <- which(grepl(info_patterns$chunk_header_start, lines))
+    index <- grep(info_patterns$chunk_header_start, lines)
     
     if(length(index)>0){
       header_indices <- index[seq(1,length(index),2)]
@@ -73,9 +73,9 @@ get_chunk_range <- function(lines, info_patterns){
   
   } else if(info_patterns$extension == "rnw"){
     # find which lines are chunk starts and chunk ends
-    header_indices <- which(grepl(info_patterns$chunk_header_start, lines))
+    header_indices <- grep(info_patterns$chunk_header_start, lines)
     # find which lines are chunk ends
-    end_indices <- which(grepl(info_patterns$chunk_end, lines))
+    end_indices <- grep(info_patterns$chunk_end, lines)
   }
   
   if(any(header_indices>end_indices))
@@ -106,7 +106,7 @@ get_chunk_range <- function(lines, info_patterns){
 #'   \item{name_tag} the name used as tag in the text
 #' }
 #' Note that in case of "rnw" extension the language is always NA. NULL is
-#' returned if no chunk was available.
+#' returned if no chunk is available.
 #' 
 #' @examples 
 #'   # rmd
@@ -151,9 +151,9 @@ extract_chunk <- function(text_lines, info_patterns){
   return(chunk_info)
 }
 
-#----    extract_header    ----
+#----    check_header    ----
 
-#' Extract Header
+#' Check Header
 #'
 #' @param text_lines a character vector with the text lines of the file  
 #' @param info_patterns a list with the regex pattern according to file
@@ -177,33 +177,91 @@ extract_chunk <- function(text_lines, info_patterns){
 #'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rnw")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
 #'   extract_header(text_lines, info_patterns)
+#'   
+#'   check_header(text_lines, info_patterns)
+#'   
+
+check_header <- function(text_lines, info_patterns){
+  
+  if(info_patterns$extension == "rmd"){
+    
+    # in rmd start and end header are the same
+    delimiters <-  grep(info_patterns$file_header_start, text_lines)
+    
+    # Based on knitr code (based on the partition_yaml_front_matter and
+    # parse_yaml_front_matter functions here:
+    # https://github.com/rstudio/rmarkdown/blob/master/R/output_format.R)
+    # https://github.com/yihui/knitr/blob/237cde1afc1f5b94178069e4ee39debe9d4ece28/R/params.R#L134-L138
+    res <- length(delimiters) >= 2 && 
+      (delimiters[2] - delimiters[1] > 1) &&
+      (delimiters[1] == 1 || is_blank(head(text_lines, delimiters[1] - 1)))
+    
+  } else if(info_patterns$extension == "rnw"){
+    # check if "\documentclass{}" and \begin{document}" are present
+    header_start <- grep(info_patterns$file_header_start, text_lines)
+    header_end <- grep(info_patterns$file_header_end, text_lines)
+    
+    if(length(header_start) + length(header_end) == 1L) # if we find only 1 of the two delimiters
+      stop("There are some issues in the identification of the document header start/end line indexes",
+           call. = FALSE)
+    
+    res <- length(header_start) == 1L &&
+      length(header_end) == 1L
+  }
+  
+  return(res)
+  
+}
+
+
+#----    extract_header    ----
+
+#' Extract Header
+#'
+#' @param text_lines a character vector with the text lines of the file  
+#' @param info_patterns a list with the regex pattern according to file
+#'   extension, returned by get_extension_patterns() function
+#' 
+#' @noRd
+#' @return  a tibble with \itemize{
+#'   \item{starts} the line number of the header start
+#'   \item{ends} the line number of the header end
+#'   \item{header_text} the header form start to end (included)
+#'   \item{name_tag} the name used as tag in the text
+#'   }
+#'   Note that if no header is available, NULL is returned
+#' 
+#' @examples 
+#'   # rmd
+#'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rmd")
+#'   info_patterns <- get_extension_patterns(extension = "rmd")
+#'   extract_header(text_lines, info_patterns)
+#'   
+#'   # rnw
+#'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rnw")
+#'   info_patterns <- get_extension_patterns(extension = "rnw")
+#'   extract_header(text_lines, info_patterns)
 #'
 
 extract_header <- function(text_lines, info_patterns){
   
-  has_header <- TRUE
+  has_header <- check_header(text_lines = text_lines, 
+                             info_patterns = info_patterns)
   
   if(isTRUE(has_header)){
     # file has header
     if(info_patterns$extension == "rmd"){
       # in rmd start and end header are the same
-      header_index <- which(grepl(info_patterns$file_header_start, text_lines))
-      
-      if(length(header_index) < 2) 
-        stop("There are some issues in the identification of YAML start/end line indexes",
-             call. = FALSE)
+      header_index <- grep(info_patterns$file_header_start, text_lines)
       
       header_start <- header_index[1]
       header_end <- header_index[2]
       
-    } else if(info_patterns$extension == "rnw"){
-      header_start <- 1 # which(grepl(info_patterns$file_header_start, text_lines)) # assume first line of the document
-      header_end <- which(grepl(info_patterns$file_header_end, text_lines))
+      } else if(info_patterns$extension == "rnw"){
       
-      if(length(header_start) != 1 || length(header_end) != 1) 
-        stop("There are some issues in the identification of the document header start/end line indexes",
-             call. = FALSE)
-    }
+        header_start <- 1 # grep(info_patterns$file_header_start, text_lines) # assume first line of the document
+        header_end <- grep(info_patterns$file_header_end, text_lines)
+      }
     
     res <- data.frame(
       starts = header_start,
@@ -211,16 +269,12 @@ extract_header <- function(text_lines, info_patterns){
       header_text = paste(text_lines[header_start:header_end], collapse = "\n"),
       name_tag = "[[document-header]]", 
       stringsAsFactors = FALSE)
-  
+    
     } else {
+      
       #file has no header
-      res <- data.frame(
-        starts = 0,
-        ends = 0,
-        header_text = NA,
-        name_tag = "[[document-header]]", 
-        stringsAsFactors = FALSE)
-    }
+      res <- NULL
+  }
   
   return(res)
 }
@@ -311,26 +365,26 @@ hide_code <- function(document, file_info){
   info_patterns <- get_extension_patterns(extension = file_info$extension)
   
   #---- header ----
-  # extract and save
+  # extract and save (NULL if no header present)
   header_info <- extract_header(text_lines = document, info_patterns = info_patterns) 
   saveRDS(header_info, file = file.path(file_info$path, ".trackdown",
                                         paste0(file_info$file_name,"-header_info.rds")))
-  # replace
-  document[header_info$starts:header_info$ends] <- NA # header space as NA
-  document[header_info$starts] <- header_info$name_tag # set header tag
-  
+  # replace if no NULL
+  if(!is.null(header_info)){
+    document[header_info$starts:header_info$ends] <- NA # header space as NA
+    document[header_info$starts] <- header_info$name_tag # set header tag
+  }
   
   #---- chunks  ----
-  # extract and save
+  # extract and save (NULL if no chunk present)
   chunk_info <- extract_chunk(text_lines = document, info_patterns = info_patterns)
   saveRDS(chunk_info, file = file.path(file_info$path, ".trackdown", 
                                        paste0(file_info$file_name,"-chunk_info.rds")))
-  # replace
+  # replace (seq_along() allows to skip if chunk_info is NULL)
   for(i in seq_along(chunk_info$index)){
     document[chunk_info$starts[i]:chunk_info$ends[i]] <- NA # chunk space as NA
     document[chunk_info$starts[i]] <- chunk_info$name_tag[i] # set chunk tag
   }
-  
   
   # remove extra space named as NA
   document <- document[!is.na(document)] 
@@ -418,21 +472,31 @@ restore_code <- function(document, file_name, path){
   chunk_info <- load_code(file_name = file_name, path = path, type = "chunk")
   
   #---- restore header ----
-  index_header <- which(grepl("^\\[\\[document-header\\]\\]", document))
   
-  if(length(index_header) != 1L) {
-    warning("Failed retrieving [[document-header]] placeholder, code added at first line", call. = FALSE)
-    document <- c(header_info$header_text, document)
-    index_header <- 1L
+  if(is.null(header_info)){
+    # Skip and set index_header to allow document[seq_len(index_header)]
+    # in restore_chunk to return nothing
+    index_header <- 0L     
   } else {
-    document[index_header] <- header_info$header_text
+    # Find "[[document-header]]" tag
+    index_header <- grep("^\\[\\[document-header\\]\\]", document)
+    
+    if(length(index_header) != 1L) {
+      warning("Failed retrieving [[document-header]] placeholder, code added at first line", call. = FALSE)
+      document <- c(header_info$header_text, document)
+      index_header <- 1L
+    } else {
+      document[index_header] <- header_info$header_text
+    }
   }
   
-  
   #---- restore chunks ----
-  document <- restore_chunk(document = document,
-                            chunk_info = chunk_info,
-                            index_header = index_header)
+  
+  if(!is.null(chunk_info)){
+    document <- restore_chunk(document = document,
+                              chunk_info = chunk_info,
+                              index_header = index_header)
+  }
   
   return(document)
   
@@ -476,8 +540,7 @@ restore_code <- function(document, file_name, path){
 
 restore_chunk <- function(document, chunk_info, index_header){
   
-  
-  index_chunks <- which(grepl("^\\[\\[chunk-.+\\]\\]", document))
+  index_chunks <- grep("^\\[\\[chunk-.+\\]\\]", document)
   # extract names [[chunk-*]] removing possible spaces
   names_chunks <- gsub("^\\s*(\\[\\[chunk-.+\\]\\])\\s*","\\1", document[index_chunks])
   
@@ -492,7 +555,7 @@ restore_chunk <- function(document, chunk_info, index_header){
       
       # test if is the last remaining chunk
       if(i == 1L){
-        document <- c(document[seq_len(index_header)], 
+        document <- c(document[seq_len(index_header)],  # if no header index_header is 0
                       paste0(unmatched, collapse = "\n\n"), 
                       document[(index_header + 1):length(document)])
         unmatched <- NULL

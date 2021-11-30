@@ -108,7 +108,7 @@
 #'   technical details like authentication and file management.}
 #'  }
 #'
-#' @importFrom utils tail
+#' @importFrom utils tail head
 #'
 #' @docType package
 #' @name trackdown-package

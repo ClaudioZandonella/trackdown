@@ -223,6 +223,18 @@ test_that("get_os", {
   })
 })
 
+#----    is_balnk    ----
+
+test_that("is_blank works properly", {
+  expect_true({is_blank("     ")})
+  expect_true({is_blank("")})
+  expect_true({is_blank(NULL)})
+  
+  expect_false({is_blank("Hello World")})
+  expect_false({is_blank(NA)})
+  })
+
+
 #----
 
 

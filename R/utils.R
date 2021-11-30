@@ -487,5 +487,33 @@ get_os <- function(){
   return(.Platform$OS.type)
 }
 
+#----    is_blank    ----
+
+#' Is Blank Line
+#' 
+#' Evaluate whether is a blank line.
+#' Based on knitr is_blank() function
+#' https://github.com/yihui/knitr/blob/237cde1afc1f5b94178069e4ee39debe9d4ece28/R/utils.R#L47-L49
+#'
+#' @param x  a string
+#'
+#' @return logical value
+#' @noRd
+#'
+#' @examples
+#' # FALSE
+#' is_blank("Hello-World!")
+#' is_blank(NA)
+#' 
+#' # TRUE
+#' is_blank("    ")
+#' is_blank("")
+#' is_blank(NULL)
+#' 
+
+is_blank <-  function(x) {
+  if (length(x)) all(grepl('^\\s*$', x)) else TRUE
+}
+
 #----
 
