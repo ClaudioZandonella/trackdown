@@ -177,7 +177,7 @@ get_file_info <- function(file){
 #' @noRd
 #'
 #' @examples
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   file_info <- get_file_info("tests/testthat/test_files/examples/example-1.Rmd")
 #'   get_instructions(file_info, TRUE)
 #' 
 
@@ -220,8 +220,8 @@ get_instructions <- function(file_info, hide_code){
 #' @noRd 
 #'
 #' @examples
-#'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   document <- readLines("tests/testthat/test_files/examples/example-1.Rmd")
+#'   file_info <- get_file_info("tests/testthat/test_files/examples/example-1.Rmd")
 #'   format_document(document, file_info = file_info, hide_code = FALSE)
 #'   
 
@@ -314,7 +314,7 @@ check_dribble <- function(dribble, gfile, test = c("none", "single", "both")){
 #'
 #' @examples
 #' 
-#' document <- readLines("tests/testthat/test_files/example_instructions.txt", warn = FALSE)
+#' document <- readLines("tests/testthat/test_files/examples/example-1-restore.Rmd", warn = FALSE)
 #' eval_instructions(document)
 #' 
 #' # no instructions delimiters

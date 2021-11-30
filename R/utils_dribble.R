@@ -60,8 +60,8 @@ get_dribble_info <- function(gfile, path = NULL, shared_drive = NULL) {
 #' @noRd
 #' 
 #' @examples 
-#'   get_path_dribble(path = "reading_folder")
-#'   get_path_dribble(path = "reading_folder/my_folder")
+#'   get_path_dribble(path = "unit_tests")
+#'   get_path_dribble(path = "unit_tests/utils_dribble")
 #' 
 
 get_path_dribble <- function(path, shared_drive = NULL, .response = 1){

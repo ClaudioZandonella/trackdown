@@ -46,12 +46,12 @@ mkdir_trackdown <- function(local_path, folder_name = ".trackdown"){
 #'
 #' @examples
 #'   # rmd
-#'   lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   lines <- readLines("tests/testthat/test_files/examples/example-1.Rmd")
 #'   info_patterns <- get_extension_patterns(extension = "rmd")
 #'   get_chunk_range(lines, info_patterns)
 #'   
 #'   # rnw
-#'   lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
+#'   lines <- readLines("tests/testthat/test_files/examples/example-1.Rnw")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
 #'   get_chunk_range(lines, info_patterns)
 #' 
@@ -110,12 +110,12 @@ get_chunk_range <- function(lines, info_patterns){
 #' 
 #' @examples 
 #'   # rmd
-#'   text_lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rmd")
 #'   info_patterns <- get_extension_patterns(extension = "rmd")
 #'   extract_chunk(text_lines, info_patterns)
 #'   
 #'   # rnw
-#'   text_lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
+#'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rnw")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
 #'   extract_chunk(text_lines, info_patterns)
 #'
@@ -169,44 +169,58 @@ extract_chunk <- function(text_lines, info_patterns){
 #' 
 #' @examples 
 #'   # rmd
-#'   text_lines <- readLines("tests/testthat/test_files/example_1_rmd.txt")
+#'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rmd")
 #'   info_patterns <- get_extension_patterns(extension = "rmd")
 #'   extract_header(text_lines, info_patterns)
 #'   
 #'   # rnw
-#'   text_lines <- readLines("tests/testthat/test_files/example_1_rnw.txt")
+#'   text_lines <- readLines("tests/testthat/test_files/examples/example-1.Rnw")
 #'   info_patterns <- get_extension_patterns(extension = "rnw")
 #'   extract_header(text_lines, info_patterns)
 #'
 
 extract_header <- function(text_lines, info_patterns){
   
-  if(info_patterns$extension == "rmd"){
-    # in rmd start and end header are the same
-    header_index <- which(grepl(info_patterns$file_header_start, text_lines))
-    
-    if(length(header_index) < 2) 
-      stop("There are some issues in the identification of YAML start/end line indexes",
-           call. = FALSE)
-    
-    header_start <- header_index[1]
-    header_end <- header_index[2]
-    
-  } else if(info_patterns$extension == "rnw"){
-    header_start <- 1 # which(grepl(info_patterns$file_header_start, text_lines)) # assume first line of the document
-    header_end <- which(grepl(info_patterns$file_header_end, text_lines))
-    
-    if(length(header_start) != 1 || length(header_end) != 1) 
-      stop("There are some issues in the identification of the document header start/end line indexes",
-           call. = FALSE)
-  }
+  has_header <- TRUE
   
-  res <- data.frame(
-    starts = header_start,
-    ends = header_end,
-    header_text = paste(text_lines[header_start:header_end], collapse = "\n"),
-    name_tag = "[[document-header]]", 
-    stringsAsFactors = FALSE)
+  if(isTRUE(has_header)){
+    # file has header
+    if(info_patterns$extension == "rmd"){
+      # in rmd start and end header are the same
+      header_index <- which(grepl(info_patterns$file_header_start, text_lines))
+      
+      if(length(header_index) < 2) 
+        stop("There are some issues in the identification of YAML start/end line indexes",
+             call. = FALSE)
+      
+      header_start <- header_index[1]
+      header_end <- header_index[2]
+      
+    } else if(info_patterns$extension == "rnw"){
+      header_start <- 1 # which(grepl(info_patterns$file_header_start, text_lines)) # assume first line of the document
+      header_end <- which(grepl(info_patterns$file_header_end, text_lines))
+      
+      if(length(header_start) != 1 || length(header_end) != 1) 
+        stop("There are some issues in the identification of the document header start/end line indexes",
+             call. = FALSE)
+    }
+    
+    res <- data.frame(
+      starts = header_start,
+      ends = header_end,
+      header_text = paste(text_lines[header_start:header_end], collapse = "\n"),
+      name_tag = "[[document-header]]", 
+      stringsAsFactors = FALSE)
+  
+    } else {
+      #file has no header
+      res <- data.frame(
+        starts = 0,
+        ends = 0,
+        header_text = NA,
+        name_tag = "[[document-header]]", 
+        stringsAsFactors = FALSE)
+    }
   
   return(res)
 }
@@ -274,13 +288,13 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
 #'
 #' @examples
 #'   # rmd
-#'   document <- readLines("tests/testthat/test_files/example_1_rmd.txt")
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rmd")
+#'   document <- readLines("tests/testthat/test_files/examples/example-1.Rmd")
+#'   file_info <- get_file_info("tests/testthat/test_files/examples/example-1.Rmd")
 #'   hide_code(document, file_info)
 #'   
 #'   # rnw
-#'   document <- readLines("tests/testthat/test_files/example_1_rnw.txt")
-#'   file_info <- get_file_info("tests/testthat/test_files/example_1.Rnw")
+#'   document <- readLines("tests/testthat/test_files/examples/example-1.Rnw")
+#'   file_info <- get_file_info("tests/testthat/test_files/examples/example-1.Rnw")
 #'   hide_code(document, file_info)
 #'   
 #'   # remove files
@@ -388,7 +402,7 @@ restore_file <- function(temp_file, file_name, path){
 #' # Rnw
 #' file_name <- "example_1.Rnw"
 #' 
-#' path <- "tests/testthat/test_files"
+#' path <- "tests/testthat/test_files/examples"
 #' document <- readLines(file.path(path, paste0("restore_", file_name)), warn = FALSE)
 #' restore_code(document, file_name, path)
 #' 
@@ -445,14 +459,14 @@ restore_code <- function(document, file_name, path){
 #' @examples
 #' 
 #' # Rmd
-#' file <- "tests/testthat/test_files/restore_example_1.Rmd"
-#' chunk_info <- load_code("example_1.Rmd", path = "tests/testthat/test_files", 
+#' file <- "tests/testthat/test_files/examples/example-1-restore.Rmd"
+#' chunk_info <- load_code("example-1.Rmd", path = "tests/testthat/test_files/examples", 
 #'                           type = "chunk")
 #' index_header <- 9
 #' 
 #' # Rnw
-#' file <- "tests/testthat/test_files/restore_example_1.Rnw"
-#' chunk_info <- load_code("example_1.Rnw", path = "tests/testthat/test_files", 
+#' file <- "tests/testthat/test_files/examples/example-1-restore.Rnw"
+#' chunk_info <- load_code("example-1.Rnw", path = "tests/testthat/test_files/examples", 
 #'                           type = "chunk")
 #' index_header <- 12
 #' 

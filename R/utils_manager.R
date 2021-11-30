@@ -28,10 +28,10 @@
 #'
 #' @examples
 #' # file
-#' file <- "tests/testthat/test_files/example_1.Rmd"
+#' file <- "tests/testthat/test_files/examples/example-1.Rmd"
 #' 
 #' # output
-#' file <- "tests/testthat/test_files/example_1.pdf"
+#' file <- "tests/testthat/test_files/examples/example-1.pdf"
 #' 
 #' evaluate_file(file)
 #' 
@@ -93,10 +93,10 @@ evaluate_file <- function(file,
 #' @noRd
 #'
 #' @examples
-#' file <- "tests/testthat/test_files/example_1.Rmd"
+#' file <- "tests/testthat/test_files/examples/example-1.Rmd"
 #' file_info <- get_file_info(file)
-#' gfile <- "example_1"
-#' dribble_document <- get_dribble_info(gfile = gfile, path = "trackdown/examples")
+#' gfile <- "example-1"
+#' dribble_document <- get_dribble_info(gfile = gfile, path = "unit_tests/examples")
 #' hide_code <- FALSE
 #' upload_document(file, file_info, gfile, gpath = "trackdown/examples",
 #'                 dribble_document, hide_code, update = TRUE)
@@ -193,10 +193,10 @@ upload_document <- function(file, file_info,
 #'
 #' @examples
 #' # pdf
-#' path_output <- "tests/testthat/test_files/example_1.pdf"
+#' path_output <- "tests/testthat/test_files/examples/example_1.pdf"
 #' 
 #' # html
-#' path_output <- "tests/testthat/test_files/example_1.html"
+#' path_output <- "tests/testthat/test_files/example-1.html"
 #' 
 #' output_info <- get_file_info(path_output)
 #' gfile_output <- "example_1-output"

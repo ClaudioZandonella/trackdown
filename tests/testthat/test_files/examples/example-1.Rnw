@@ -1,0 +1,81 @@
+
+%----    Basic packages    ----%
+\documentclass{article}  
+\usepackage[T1] {fontenc} 		  % Font encoding
+\usepackage [utf8] {inputenc}		% Encoding for the document
+\usepackage[a4paper,includeheadfoot,top=2.4cm, bottom=2cm, left=2.4cm, right=2.4cm]{geometry}  % margin settings
+\usepackage[english]{babel}      
+
+
+%----    Other packages    ----%
+\usepackage{tikz}       
+\usepackage{graphicx}   % for including graphics
+\usepackage{amsmath}    % for math equation
+\usepackage{hyperref}    % ref between elements
+
+
+%%%%%%%%%%%%%%%%%%%%%%          Settings        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+<<setup, include=FALSE>>=
+knitr::opts_chunk$set(echo = TRUE)
+@
+
+
+
+% Document title info
+\title{Reviewdown Test}
+\author{reviewdown}
+% \date{}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         Title           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%----------------------------------------------------------------------------------%
+%--------------------------         Introduction         --------------------------%
+%----------------------------------------------------------------------------------%
+
+
+\section{R and \LaTeX}
+
+This is an Rnw document. \LaTeX is a (\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \LaTeX see \url{https://www.overleaf.com/learn}.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+<<cars>>=
+summary(cars)
+@
+
+\section{Including Plots}
+
+You can also embed plots, for example:
+
+<<pressure, echo=FALSE>>=
+plot(pressure)
+@
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+<<echo=FALSE, warning=FALSE>>=
+# R chunk with no name but multiple options (using ,)
+@
+
+<<echo=FALSE>>= # a really evil comment
+# R chunk with no name but options (not using,)
+@
+
+
+<<sql, eval=FALSE>>=
+/*A  wrong sql chunk chunk with no name but options*/
+@
+
+<<>>=
+# A void code block
+@
+
+End of the document
+
+\end{document}
