@@ -1,0 +1,5 @@
+% A child document
+
+\section{R and \LaTeX}
+
+This is an Rnw document. \LaTeX is a (\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \LaTeX see \url{https://www.overleaf.com/learn}.
