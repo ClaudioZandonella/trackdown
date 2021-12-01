@@ -47,8 +47,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes"))
-          install.packages(c("rmarkdown", "devtools"))
+          install.packages(c("remotes"), repos = "http://cran.us.r-project.org")
+          # install.packages(c("rmarkdown", "devtools"))
           # remotes::install_deps(dependencies = TRUE)
           # remotes::install_cran("covr")
         shell: Rscript {0}
