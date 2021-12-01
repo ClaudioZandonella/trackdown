@@ -40,15 +40,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-2-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-2-
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-codecov-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-codecov-
           # key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           # restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes"))
-          install.packages(c("devtools"))
+          install.packages(c("remotes"), repos = "http://cran.us.r-project.org")
+          install.packages(c("devtools"), repos = "http://cran.us.r-project.org")
           # remotes::install_deps(dependencies = TRUE)
           # remotes::install_cran("covr")
         shell: Rscript {0}
