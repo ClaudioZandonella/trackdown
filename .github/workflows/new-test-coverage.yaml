@@ -12,9 +12,9 @@ on:
   #     - master
 
 name: new-test-coverage
-
+# Check test coverage
 jobs:
-  test-coverage:
+  new-test-coverage:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -29,35 +29,30 @@ jobs:
       - name: Install libgit2
         run: brew install libgit2
 
-      # - name: Query dependencies
-      #   run: |
-      #     install.packages('remotes')
-      #     saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-      #     writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-      #   shell: Rscript {0}
-      # 
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+        shell: Rscript {0}
+
       - name: Cache R packages
         uses: actions/cache@v2
         with:
-          path: ~/Library/Application Support/renv
-          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: | 
-            ${{ runner.os }}-renv-
-      
-      - name: Restore packages
-        shell: Rscript {0}
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-2-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-2-
+          # key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          # restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+
+      - name: Install dependencies
         run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
-            
-      #
-      # - name: Install dependencies
-      #   run: |
-      #     install.packages(c("remotes"))
-      #     remotes::install_deps(dependencies = TRUE)
-      #     remotes::install_cran("covr")
-      #   shell: Rscript {0}
-      # 
+          install.packages(c("remotes"))
+          install.packages(c("rmarkdown"))
+          # remotes::install_deps(dependencies = TRUE)
+          # remotes::install_cran("covr")
+        shell: Rscript {0}
+
       # - name: Test coverage
       #   run: covr::codecov()
       #   shell: Rscript {0}
