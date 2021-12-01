@@ -193,6 +193,13 @@ test_that("expect correct download document", {
 
 })
 
+
+test_that("expect correct use of rm_gcomments", {
+  
+  expect_error(download_file(file = "my_file.Rmd", rm_gcomments = "true"),
+               "rm_gcomments argument has to be logical")
+})
+
 #----    render_file    ----
 
 # chunk info are created in the section above "create .trackdown with file info"

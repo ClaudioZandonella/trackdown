@@ -207,6 +207,8 @@ update_file <- function(file,
 #' \code{\link{trackdown-package}} help page.
 #'
 #' @inheritParams upload_file
+#' @param rm_gcomments [experimental] logical value indicating whether or not to
+#'   remove Google comments.
 #'
 #' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise
 #' 
@@ -216,8 +218,13 @@ update_file <- function(file,
 download_file <- function(file,
                           gfile = NULL,
                           gpath = "trackdown",
-                          shared_drive = NULL) {
+                          shared_drive = NULL,
+                          rm_gcomments = FALSE) {
   
+  #---- check arguments ----
+  if(!is.logical(rm_gcomments)) stop("rm_gcomments argument has to be logical",
+                                     call. = FALSE)
+  #---- start process ----
   main_process(paste("Downloading", emph_file(file), "with online changes..."))
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
@@ -270,7 +277,8 @@ download_file <- function(file,
   
   restore_file(temp_file = temp_file, 
                file_name = document$file_info$file_name,
-               path = document$file_info$path)
+               path = document$file_info$path,
+               rm_gcomments = rm_gcomments)
 
   
   #---- compare and replace ----

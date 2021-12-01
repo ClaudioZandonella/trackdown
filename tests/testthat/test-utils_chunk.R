@@ -1,6 +1,6 @@
-###################################
-####    test Utils Dribble     ####
-###################################
+#################################
+####    test Utils Chunk     ####
+#################################
 
 file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
@@ -229,10 +229,6 @@ test_that("check restore_chunk works properly", {
   expect_snapshot_output(restore_chunk(document = document[-c(11, 29, 35, 37, 45)], 
                                        chunk_info = chunk_info, index_header = index_header))
   
-  # missing first 2 chunks and others (1°,2°, 7°, 8°, last)
-  expect_snapshot_output(restore_chunk(document = document[-c(11, 19, 35, 37, 45)], 
-                                       chunk_info = chunk_info, index_header = index_header))
-  
   #---- Rnw ----
   # example-1-restore.Rnw
   document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rnw"), warn = FALSE, encoding = "UTF-8")
@@ -249,6 +245,18 @@ test_that("check restore_chunk works properly", {
 
 })
 
+test_that("check restore_chunk works when missing first chuncks", {
+  #---- Rmd ----
+  # example-1-restore.Rmd
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE, encoding = "UTF-8")
+  chunk_info <- load_code("example-1.Rmd", path = paste0(file_path, "utils_chunk/"), type = "chunk")
+  index_header <- 9
+  
+  # missing first 2 chunks and others (1°,2°, 7°, 8°, last)
+  expect_snapshot_output(restore_chunk(document = document[-c(11, 19, 35, 37, 45)], 
+                                       chunk_info = chunk_info, index_header = index_header))
+  
+})
 
 #----    restore_code    ----
 

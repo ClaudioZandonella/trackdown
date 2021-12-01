@@ -1,0 +1,23 @@
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes properly formatted LaTeX syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
+Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: comments.Rnw
+HIDE-CODE: TRUE
+#----End Instructions----#
+[[document-header]]
+
+%----    Title    ----%
+
+\maketitle
+
+[c]
+
+\section{R and \LaTeX}
+
+This is an Rnw document. \LaTeX is a (\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \LaTeX see \url{https://www.overleaf.com/learn}.
+
+[[chunk-cars]]
+
+\end{document}

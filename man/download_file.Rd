@@ -4,7 +4,13 @@
 \alias{download_file}
 \title{Downloads from Google Docs}
 \usage{
-download_file(file, gfile = NULL, gpath = "trackdown", shared_drive = NULL)
+download_file(
+  file,
+  gfile = NULL,
+  gpath = "trackdown",
+  shared_drive = NULL,
+  rm_gcomments = FALSE
+)
 }
 \arguments{
 \item{file}{character. The path of a local `.Rmd` or `.Rnw` file.}
@@ -20,6 +26,9 @@ level, although it is not recommended.}
 
 \item{shared_drive}{character. The name of a Google Drive shared drive
 (optional).}
+
+\item{rm_gcomments}{[experimental] logical value indicating whether or not to
+remove Google comments.}
 }
 \value{
 `TRUE` if file from Google Drive was saved, `FALSE` otherwise

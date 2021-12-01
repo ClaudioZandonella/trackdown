@@ -396,21 +396,28 @@ hide_code <- function(document, file_info){
 
 #' Restore the Downloaded File with Code Info
 #'
-#' Restore placeholders of type "[[chunk-<name>]]"/"[[Document-header]]" 
-#' with the actual code and sanitize file.
+#' Restore placeholders of type "[[chunk-<name>]]"/"[[Document-header]]" with
+#' the actual code and sanitize file.
 #'
 #' @param temp_file character indicating the path to the downloaded file
 #' @param file_name character indicating the current file name
 #' @param path character indicating the folder of the original file
+#' @param rm_gcomments [experimental] logical value indicating whether or not to
+#'   remove Google comments
 #'
 #' @return a single string with the content of the document
 #' @noRd
 #' 
 
-restore_file <- function(temp_file, file_name, path){
+restore_file <- function(temp_file, file_name, path, rm_gcomments = FALSE){
   
   # read document lines
   document <- readLines(temp_file, warn = FALSE, encoding = "UTF-8")
+  
+  # remove Google comments
+  if(isTRUE(rm_gcomments)){
+    document <- remove_google_comments(document)
+  }
   
   # eval instructions
   instructions <- eval_instructions(document = document, file_name = file_name)
