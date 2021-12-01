@@ -1,4 +1,6 @@
-source("renv/activate.R")
+if(interactive()){
+  source("renv/activate.R")
+}
 
 options(
   gargle_oauth_cache = ".secrets",
