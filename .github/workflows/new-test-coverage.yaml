@@ -48,7 +48,7 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages(c("remotes"), repos = "http://cran.us.r-project.org")
-          install.packages(c("sodium"), repos = "http://cran.us.r-project.org")
+          install.packages(c("sodium", "vcr"), repos = "http://cran.us.r-project.org")
           # remotes::install_deps(dependencies = TRUE)
           # remotes::install_cran("covr")
         shell: Rscript {0}
