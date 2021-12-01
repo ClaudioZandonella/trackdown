@@ -47,7 +47,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes"), repos = "http://cran.us.r-project.org")
+          install.packages(c("remotes"), repos = "http://cran.us.r-project.org") # add mirror
           # install.packages(c("rmarkdown", "devtools"))
           # remotes::install_deps(dependencies = TRUE)
           # remotes::install_cran("covr")
