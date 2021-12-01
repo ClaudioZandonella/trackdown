@@ -41,7 +41,8 @@ jobs:
         with:
           path: ~/Library/Application Support/renv
           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: | ${{ runner.os }}-renv-
+          restore-keys: | 
+            ${{ runner.os }}-renv-
             
       #
       # - name: Install dependencies
