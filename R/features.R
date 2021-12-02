@@ -6,8 +6,8 @@
 
 #' Remove Google Comments
 #'
-#' Remove Goolgle comments from th edownloaded file. Comments are all listed at
-#' the bottom of the file. They are of type "[a]my commnet" and the tag is also
+#' Remove Google comments from the downloaded file. Comments are all listed at
+#' the bottom of the file. They are of type "[a]my comment" and the tag is also
 #' present in the text. Tags have character indexes.
 #'
 #' @param document document character vector with the lines of the document 

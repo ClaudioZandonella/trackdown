@@ -1,5 +1,14 @@
 # trackdown (development version)
 
+## trackdown 1.1.0
+
+New features:
+ 
+- Introduce (experimental) argument `rm_gcomments`in `download_file()` to automatically remove Google comments when downloading the file (See issue #25).   
+- Introduce support for child `.Rmd` and `.Rnw` files (documents without headers).
+
+Argument `hide_code = TRUE` can now be used regardless whether the file contains header code and/or chunks or not. This fixed the issues #22 and #24.
+
 ## trackdown 1.0.2
 
 Fix issue [#21](https://github.com/ClaudioZandonella/trackdown/issues/21)
@@ -8,7 +17,7 @@ Fix issue [#21](https://github.com/ClaudioZandonella/trackdown/issues/21)
 
 Fix issue [#17](https://github.com/ClaudioZandonella/trackdown/issues/17) and issue [#19](https://github.com/ClaudioZandonella/trackdown/issues/19)
 
-## trackdown 1.0.0
+## trackdown 1.0.0 (CRAN release)
 
 Initial CRAN release
 
