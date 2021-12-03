@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -144,6 +144,17 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#trackdown-development-version" class="anchor"></a>trackdown (development version)<small> Unreleased </small>
 </h1>
+<div id="trackdown-110" class="section level2">
+<h2 class="hasAnchor">
+<a href="#trackdown-110" class="anchor"></a>trackdown 1.1.0</h2>
+<p>New features:</p>
+<ul>
+<li>Introduce (experimental) argument <code>rm_gcomments</code>in <code><a href="../reference/download_file.html">download_file()</a></code> to automatically remove Google comments when downloading the file (See issue <a href='https://github.com/claudiozandonella/trackdown/issues/25'>#25</a>).<br>
+</li>
+<li>Introduce support for child <code>.Rmd</code> and <code>.Rnw</code> files (documents without headers).</li>
+</ul>
+<p>Argument <code>hide_code = TRUE</code> can now be used regardless of whether the file contains header code and/or chunks or not. This fixed the issues <a href='https://github.com/claudiozandonella/trackdown/issues/22'>#22</a> and <a href='https://github.com/claudiozandonella/trackdown/issues/24'>#24</a>.</p>
+</div>
 <div id="trackdown-102" class="section level2">
 <h2 class="hasAnchor">
 <a href="#trackdown-102" class="anchor"></a>trackdown 1.0.2</h2>
