@@ -1,5 +1,9 @@
 # trackdown (development version)
 
+## trackdown 1.1.1
+
+Fix issue encoding in Windows. Now trackdown does not assume `"UTF-8"` encoding but it relies on `"native.enc"`.
+
 ## trackdown 1.1.0
 
 New features:
@@ -7,7 +11,7 @@ New features:
 - Introduce (experimental) argument `rm_gcomments`in `download_file()` to automatically remove Google comments when downloading the file (See issue #25).   
 - Introduce support for child `.Rmd` and `.Rnw` files (documents without headers).
 
-Argument `hide_code = TRUE` can now be used regardless whether the file contains header code and/or chunks or not. This fixed the issues #22 and #24.
+Argument `hide_code = TRUE` can now be used regardless of whether the file contains header code and/or chunks or not. This fixed the issues #22 and #24.
 
 ## trackdown 1.0.2
 
