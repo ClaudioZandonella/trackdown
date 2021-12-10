@@ -131,7 +131,7 @@ list_files <- c("example-1.Rmd", "example-1.Rnw")
 invisible(
   lapply(list_files, function(x){
     file <- paste0(file_path, "files_manager/", x)
-    document <- readLines(file, encoding = "UTF-8")
+    document <- readLines(file)
     file_info <- get_file_info(file)
     
     hide_code(document, file_info)

@@ -27,7 +27,7 @@ test_that("check a folder 'My_new_folder' is created", {
 test_that("check get_chunk_range works correctly", {
   
   # rmd
-  lines <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"), encoding = "UTF-8")
+  lines <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"))
   info_patterns <- get_extension_patterns(extension = "rmd")
   
   expect_true(nrow(get_chunk_range(lines[1:7], info_patterns)) == 0)
@@ -39,11 +39,11 @@ test_that("check get_chunk_range works correctly", {
 #----    extract_chunk    ----
 
 # rmd
-lines_rmd <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"), encoding = "UTF-8")
+lines_rmd <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"))
 info_patterns_rmd <- get_extension_patterns(extension = "rmd")
 
 # rnw
-lines_rnw <- readLines(paste0(file_path, "utils_chunk/example-1.Rnw"), encoding = "UTF-8")
+lines_rnw <- readLines(paste0(file_path, "utils_chunk/example-1.Rnw"))
 info_patterns_rnw <- get_extension_patterns(extension = "rnw")
 
 test_that("get the correct extract_chunk", {
@@ -61,12 +61,12 @@ test_that("get the correct extract_chunk no info", {
 #----    check_header    ----
 
 # rmd
-header_rmd <- readLines(paste0(file_path, "utils_chunk/no-code.Rmd"), encoding = "UTF-8")
+header_rmd <- readLines(paste0(file_path, "utils_chunk/no-code.Rmd"))
 no_header_rmd <- header_rmd[-c(1:6)]
 info_patterns_rmd <- get_extension_patterns(extension = "rmd")
 
 # rnw
-header_rnw <- readLines(paste0(file_path, "utils_chunk/no-code.Rnw"), encoding = "UTF-8")
+header_rnw <- readLines(paste0(file_path, "utils_chunk/no-code.Rnw"))
 no_header_rnw <- header_rnw[-c(1:6)]
 info_patterns_rnw <- get_extension_patterns(extension = "rnw")
 
@@ -92,11 +92,11 @@ test_that("check check_header works properly", {
 #----    extract_header    ----
 
 # rmd
-lines_rmd <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"), encoding = "UTF-8")
+lines_rmd <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"))
 info_patterns_rmd <- get_extension_patterns(extension = "rmd")
 
 # rnw
-lines_rnw <- readLines(paste0(file_path, "utils_chunk/example-1.Rnw"), encoding = "UTF-8")
+lines_rnw <- readLines(paste0(file_path, "utils_chunk/example-1.Rnw"))
 info_patterns_rnw <- get_extension_patterns(extension = "rnw")
 
 
@@ -151,28 +151,28 @@ test_that("get the correct hide_code", {
   
   #----     rmd    ----
   file_rmd <- paste0(file_path, "utils_chunk/example-1.Rmd")
-  document <- readLines(file_rmd, encoding = "UTF-8")
+  document <- readLines(file_rmd)
   file_info <- get_file_info(file_rmd)
   expect_snapshot_output(hide_code(document, file_info))
   
   # no header and or code
-  no_header <- readLines(paste0(file_path, "utils_chunk/no-header.Rmd"), encoding = "UTF-8")
-  no_code <- readLines(paste0(file_path, "utils_chunk/no-code.Rmd"), encoding = "UTF-8")
-  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code.Rmd"), encoding = "UTF-8")
+  no_header <- readLines(paste0(file_path, "utils_chunk/no-header.Rmd"))
+  no_code <- readLines(paste0(file_path, "utils_chunk/no-code.Rmd"))
+  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code.Rmd"))
   expect_snapshot_output(hide_code(no_header, file_info))
   expect_snapshot_output(hide_code(no_code, file_info))
   expect_snapshot_output(hide_code(no_header_code, file_info))
   
   #----    rnw    ----
   file_rnw <- paste0(file_path, "utils_chunk/example-1.Rnw")
-  document <- readLines(file_rnw, encoding = "UTF-8")
+  document <- readLines(file_rnw)
   file_info <- get_file_info(file_rnw)
   expect_snapshot_output(hide_code(document, file_info))
   
   # no header and or code
-  no_header <- readLines(paste0(file_path, "utils_chunk/no-header.Rnw"), encoding = "UTF-8")
-  no_code <- readLines(paste0(file_path, "utils_chunk/no-code.Rnw"), encoding = "UTF-8")
-  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code.Rnw"), encoding = "UTF-8")
+  no_header <- readLines(paste0(file_path, "utils_chunk/no-header.Rnw"))
+  no_code <- readLines(paste0(file_path, "utils_chunk/no-code.Rnw"))
+  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code.Rnw"))
   expect_snapshot_output(hide_code(no_header, file_info))
   expect_snapshot_output(hide_code(no_code, file_info))
   expect_snapshot_output(hide_code(no_header_code, file_info))
@@ -198,7 +198,7 @@ list_files <- c("example-1.Rmd", "example-1.Rnw",
 invisible(
   lapply(list_files, function(x){
     file <- paste0(file_path, "utils_chunk/", x)
-    document <- readLines(file, encoding = "UTF-8")
+    document <- readLines(file)
     file_info <- get_file_info(file)
     
     hide_code(document, file_info)
@@ -217,7 +217,7 @@ invisible(
 test_that("check restore_chunk works properly", {
   #---- Rmd ----
   # example-1-restore.Rmd
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE)
   chunk_info <- load_code("example-1.Rmd", path = paste0(file_path, "utils_chunk/"), type = "chunk")
   index_header <- 9
   
@@ -231,7 +231,7 @@ test_that("check restore_chunk works properly", {
   
   #---- Rnw ----
   # example-1-restore.Rnw
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rnw"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rnw"), warn = FALSE)
   chunk_info <- load_code("example-1.Rnw", path = paste0(file_path, "utils_chunk/"), type = "chunk")
   index_header <- 9
   
@@ -248,7 +248,7 @@ test_that("check restore_chunk works properly", {
 test_that("check restore_chunk works when missing first chuncks", {
   #---- Rmd ----
   # example-1-restore.Rmd
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE)
   chunk_info <- load_code("example-1.Rmd", path = paste0(file_path, "utils_chunk/"), type = "chunk")
   index_header <- 9
   
@@ -273,7 +273,7 @@ test_that("check restore_code works properly", {
   #---- Rmd ----
   # example-1-restore.Rmd
   file_name <- "example-1.Rmd"
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE)
   
   # complete
   expect_snapshot_output(restore_code(document = document, 
@@ -284,9 +284,9 @@ test_that("check restore_code works properly", {
                                       file_name = file_name, path = my_path))
   
   # no header and or code [remove instruction]
-  no_header <- readLines(paste0(file_path, "utils_chunk/no-header-restore.Rmd"), encoding = "UTF-8")[-c(1:8)]
-  no_code <- readLines(paste0(file_path, "utils_chunk/no-code-restore.Rmd"), encoding = "UTF-8")[-c(1:8)]
-  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code-restore.Rmd"), encoding = "UTF-8")[-c(1:8)]
+  no_header <- readLines(paste0(file_path, "utils_chunk/no-header-restore.Rmd"))[-c(1:8)]
+  no_code <- readLines(paste0(file_path, "utils_chunk/no-code-restore.Rmd"))[-c(1:8)]
+  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code-restore.Rmd"))[-c(1:8)]
   expect_snapshot_output(restore_code(no_header, file_name = "no-header.Rmd", path = my_path))
   expect_snapshot_output(restore_code(no_code, file_name = "no-code.Rmd", path = my_path))
   expect_snapshot_output(restore_code(no_header_code, file_name = "no-header-code.Rmd", path = my_path))
@@ -299,7 +299,7 @@ test_that("check restore_code works properly", {
   
   # example-1-restore.Rmd
   file_name <- "example-1.Rnw"
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rnw"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rnw"), warn = FALSE)
   
   # complete
   expect_snapshot_output(restore_code(document = document, 
@@ -310,9 +310,9 @@ test_that("check restore_code works properly", {
                                       file_name = file_name, path = my_path))
   
   # no header and or code [remove instruction]
-  no_header <- readLines(paste0(file_path, "utils_chunk/no-header-restore.Rnw"), encoding = "UTF-8")[-c(1:8)]
-  no_code <- readLines(paste0(file_path, "utils_chunk/no-code-restore.Rnw"), encoding = "UTF-8")[-c(1:8)]
-  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code-restore.Rnw"), encoding = "UTF-8")[-c(1:8)]
+  no_header <- readLines(paste0(file_path, "utils_chunk/no-header-restore.Rnw"))[-c(1:8)]
+  no_code <- readLines(paste0(file_path, "utils_chunk/no-code-restore.Rnw"))[-c(1:8)]
+  no_header_code <- readLines(paste0(file_path, "utils_chunk/no-header-code-restore.Rnw"))[-c(1:8)]
   expect_snapshot_output(restore_code(no_header, file_name = "no-header.Rnw", path = my_path))
   expect_snapshot_output(restore_code(no_code, file_name = "no-code.Rnw", path = my_path))
   expect_snapshot_output(restore_code(no_header_code, file_name = "no-header-code.Rnw", path = my_path))
@@ -328,7 +328,7 @@ test_that("check restore_code missing header-tag", {
   #---- Rmd ----
   # example-1-restore.Rmd
   file_name <- "example-1.Rmd"
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE)
   
   expect_warning(restore_code(document = document[-9], 
                               file_name = file_name, path = my_path),
@@ -391,7 +391,7 @@ test_that("check restore_code no .trackdown folder", {
   #---- Rmd ----
   # example-1-restore.Rmd
   file_name <- "example-1.Rmd"
-  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE, encoding = "UTF-8")
+  document <- readLines(paste0(file_path, "utils_chunk/example-1-restore.Rmd"), warn = FALSE)
   
   expect_error(restore_code(document = document, 
                             file_name = file_name, path = my_path),

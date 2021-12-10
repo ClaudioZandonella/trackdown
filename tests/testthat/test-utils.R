@@ -86,14 +86,14 @@ test_that("check get_instructions", {
 test_that("check format_document", {
   # Rmd
   file_rmd <- paste0(file_path, "utils/example-1.Rmd")
-  document <- readLines(file_rmd, encoding = "UTF-8")
+  document <- readLines(file_rmd)
   file_info <- get_file_info(file_rmd)
   expect_snapshot_output(format_document(document, file_info = file_info, 
                                          hide_code = FALSE))
   
   # Rnw
   file_rnw <- paste0(file_path, "utils/example-1.Rnw")
-  document <- readLines(file_rnw, encoding = "UTF-8")
+  document <- readLines(file_rnw)
   file_info <- get_file_info(file_rnw)
   expect_snapshot_output(format_document(document, file_info = file_info,
                                          hide_code = TRUE))
@@ -131,7 +131,7 @@ test_that("check check_dribble", {
 #----    eval_instructions    ----
 
 document <- readLines(paste0(file_path, "utils/example_instructions.txt"), 
-                      warn = FALSE, encoding = "UTF-8")
+                      warn = FALSE)
 
 
 test_that("check eval_instructions full file", {
