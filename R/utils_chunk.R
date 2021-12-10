@@ -412,7 +412,7 @@ hide_code <- function(document, file_info){
 restore_file <- function(temp_file, file_name, path, rm_gcomments = FALSE){
   
   # read document lines
-  document <- readLines(temp_file, warn = FALSE, encoding = "UTF-8")
+  document <- readLines(temp_file, warn = FALSE)
   
   # remove Google comments
   if(isTRUE(rm_gcomments)){
