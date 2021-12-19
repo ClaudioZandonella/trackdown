@@ -1,5 +1,5 @@
 Package: trackdown
-Title: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive
+Title: Collaborative Editing of Rmd (or Rnw) Documents in Google Drive
 Version: 1.1.1
 Authors@R:
     c(person(given = "Emily",

@@ -1,6 +1,6 @@
 # trackdown (development version)
 
-## trackdown 1.1.1
+## trackdown 1.1.1 (CRAN release)
 
 Fix issue encoding in Windows. Now trackdown does not assume `"UTF-8"` encoding but it relies on `"native.enc"`.
 
