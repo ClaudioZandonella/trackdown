@@ -11,7 +11,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![CRANstatus](https://www.r-pkg.org/badges/version/trackdown)](https://CRAN.R-project.org/package=trackdown)
 [![R-CMD-check](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/claudiozandonella/trackdown/actions/workflows/check-standard.yaml)
 [![codecov](https://codecov.io/gh/claudiozandonella/trackdown/branch/develop/graph/badge.svg?token=E6GR3JAHV6)](https://app.codecov.io/gh/claudiozandonella/trackdown)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5167320.svg)](https://doi.org/10.5281/zenodo.5167320)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5772942.svg)](https://doi.org/10.5281/zenodo.5772942)
 <!-- badges: end -->
 
 ## Overview
@@ -180,5 +180,5 @@ The BibTeX entry is:
       year = {2021},
       note = {R package version 1.1.1},
       url = {https://github.com/claudiozandonella/trackdown},
-      doi = {10.5281/zenodo.5167320},
+      doi = {10.5281/zenodo.5772942},
     }
