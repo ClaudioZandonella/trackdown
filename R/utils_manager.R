@@ -187,6 +187,8 @@ upload_document <- function(file, file_info,
 #'   document.
 #' @param .response integer indicating automatic response in non interactive
 #'   environment on whether to convert html to pdf (1 = Yes, 2 = No).
+#' @param force logical value indicating whether to skip confirm check by user
+#'   (default is \code{FALSE}).
 #'
 #' @return a dribble of the uploaded (or updated) output
 #' @noRd
@@ -207,7 +209,7 @@ upload_document <- function(file, file_info,
 
 upload_output <- function(path_output, output_info, 
                           gfile_output, gpath, dribble_output, 
-                          update = FALSE, .response = 2L){
+                          update = FALSE, force = FALSE, .response = 2L){
   
   # check if the document is html 
   if (output_info$extension == "html"){
@@ -215,7 +217,7 @@ upload_output <- function(path_output, output_info,
     # check if pagedown is available and if chrome is installed
     if(requireNamespace("pagedown", quietly = TRUE) && !does_error(pagedown::find_chrome())){
       
-      if(interactive()){
+      if(interactive() && isFALSE(force)){
         html2pdf <- utils::menu(c("Yes", "No"),
                                 title = paste("Transform HTML to PDF output before uploading?"))
       } else {

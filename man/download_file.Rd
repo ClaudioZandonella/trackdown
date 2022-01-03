@@ -9,7 +9,8 @@ download_file(
   gfile = NULL,
   gpath = "trackdown",
   shared_drive = NULL,
-  rm_gcomments = FALSE
+  rm_gcomments = FALSE,
+  force = FALSE
 )
 }
 \arguments{
@@ -29,9 +30,12 @@ level, although it is not recommended.}
 
 \item{rm_gcomments}{[experimental] logical value indicating whether or not to
 remove Google comments.}
+
+\item{force}{logical value indicating whether to skip confirm check by user
+(default is \code{FALSE}).}
 }
 \value{
-`TRUE` if file from Google Drive was saved, `FALSE` otherwise
+`TRUE` if file from Google Drive was saved, `FALSE` otherwise.
 }
 \description{
 Download edited version of a file from Google Drive updating the local

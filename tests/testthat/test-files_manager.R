@@ -55,6 +55,12 @@ test_that("expect correct upload document", {
   
 })
 
+test_that("expect correct use of rm_gcomments", {
+  
+  expect_error(upload_file(file = "my_file.Rmd", force = "true"),
+               "force argument has to be logical")
+})
+
 # remove files
 unlink(paste0(file_path, "files_manager/.trackdown"), recursive = TRUE)
 
@@ -118,6 +124,12 @@ test_that("expect correct update document", {
   expect_equal(nrow(dribble), 2)
   expect_equal(dribble$name, c("rnw-example-1-update", "rnw-example-1-update-output"))
 
+})
+
+test_that("expect correct use of rm_gcomments", {
+  
+  expect_error(update_file(file = "my_file.Rmd", force = "true"),
+               "force argument has to be logical")
 })
 
 # remove files
@@ -198,6 +210,12 @@ test_that("expect correct use of rm_gcomments", {
   
   expect_error(download_file(file = "my_file.Rmd", rm_gcomments = "true"),
                "rm_gcomments argument has to be logical")
+})
+
+test_that("expect correct use of rm_gcomments", {
+  
+  expect_error(download_file(file = "my_file.Rmd", force = "true"),
+               "force argument has to be logical")
 })
 
 #----    render_file    ----

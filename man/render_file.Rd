@@ -8,7 +8,9 @@ render_file(
   file,
   gfile = basename(file),
   gpath = "trackdown",
-  shared_drive = NULL
+  shared_drive = NULL,
+  force = FALSE,
+  rm_gcomments = FALSE
 )
 }
 \arguments{
@@ -25,10 +27,16 @@ level, although it is not recommended.}
 
 \item{shared_drive}{character. The name of a Google Drive shared drive
 (optional).}
+
+\item{force}{logical value indicating whether to skip confirm check by user
+(default is \code{FALSE}).}
+
+\item{rm_gcomments}{[experimental] logical value indicating whether or not to
+remove Google comments.}
 }
 \value{
 `TRUE` if file from Google Drive was saved and rendered, `FALSE`
-  otherwise
+  otherwise.
 }
 \description{
 Render file from Google Drive if there have been edits\cr\cr

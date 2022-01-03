@@ -10,7 +10,8 @@ update_file(
   gpath = "trackdown",
   shared_drive = NULL,
   hide_code = FALSE,
-  path_output = NULL
+  path_output = NULL,
+  force = FALSE
 )
 }
 \arguments{
@@ -35,9 +36,12 @@ are displayed instead.}
 \item{path_output}{default \code{NULL}, specify the path to the output to upload
 together with the other file. PDF are directly uploaded, HTML can be first
 converted into PDF if package \code{pagedown} and Chrome are available.}
+
+\item{force}{logical value indicating whether to skip confirm check by user
+(default is \code{FALSE}).}
 }
 \value{
-a dribble of the uploaded file (and output if specified)
+a dribble of the uploaded file (and output if specified).
 }
 \description{
 Replaces the content of an existing file in Google Drive with the contents of

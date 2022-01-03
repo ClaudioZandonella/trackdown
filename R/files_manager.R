@@ -33,8 +33,10 @@
 #' @param  path_output default \code{NULL}, specify the path to the output to upload
 #'   together with the other file. PDF are directly uploaded, HTML can be first
 #'   converted into PDF if package \code{pagedown} and Chrome are available.
+#' @param force logical value indicating whether to skip confirm check by user
+#'   (default is \code{FALSE}).
 #'   
-#' @return a dribble of the uploaded file (and output if specified)
+#' @return a dribble of the uploaded file (and output if specified).
 #' 
 #' @export
 #' 
@@ -44,11 +46,16 @@ upload_file <- function(file,
                         gpath = "trackdown",
                         shared_drive = NULL,
                         hide_code = FALSE,
-                        path_output = NULL) {
+                        path_output = NULL,
+                        force = FALSE) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
+  
+  #---- check arguments ----
+  if(!is.logical(force)) stop("force argument has to be logical",
+                              call. = FALSE)
   
   #---- check document info ----
   document <- evaluate_file(file = file, 
@@ -86,7 +93,8 @@ upload_file <- function(file,
       gfile_output = output$gfile,
       gpath = gpath,
       dribble_output = output$dribble_info, 
-      update = FALSE)
+      update = FALSE,
+      force = force)
     
     res[2, ] <- dribble_output
     res <- googledrive::as_dribble(res)
@@ -115,7 +123,7 @@ upload_file <- function(file,
 #'
 #' @inheritParams upload_file
 #' 
-#' @return a dribble of the uploaded file (and output if specified)
+#' @return a dribble of the uploaded file (and output if specified).
 #' @export
 #'
 
@@ -124,11 +132,17 @@ update_file <- function(file,
                         gpath = "trackdown",
                         shared_drive = NULL,
                         hide_code = FALSE,
-                        path_output = NULL) {
+                        path_output = NULL,
+                        force = FALSE) {
+  
   
   main_process(paste("Updating files to", cli::col_magenta("Google Drive")))
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
+  
+  #---- check arguments ----
+  if(!is.logical(force)) stop("force argument has to be logical",
+                              call. = FALSE)
   
   #---- check document info ----
   document <- evaluate_file(file = file, 
@@ -151,7 +165,7 @@ update_file <- function(file,
   #---- check user ----
   
   # check whether user really wants to replace file in Google Drive
-  if(interactive()){
+  if(interactive() && isFALSE(force)){
     response <- utils::menu(c("Yes", "No"),
       title = paste("Updating the file in Google Drive will overwrite its current content.",
                     "You might lose tracked changes. Do you want to proceed?"))
@@ -183,7 +197,8 @@ update_file <- function(file,
       gfile_output = output$gfile,
       gpath = gpath,
       dribble_output = output$dribble_info, 
-      update = update)
+      update = update,
+      force = force)
     
     res[2, ] <- dribble_output
     res <- googledrive::as_dribble(res)
@@ -210,7 +225,7 @@ update_file <- function(file,
 #' @param rm_gcomments [experimental] logical value indicating whether or not to
 #'   remove Google comments.
 #'
-#' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise
+#' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise.
 #' 
 #' @export
 #' 
@@ -219,11 +234,14 @@ download_file <- function(file,
                           gfile = NULL,
                           gpath = "trackdown",
                           shared_drive = NULL,
-                          rm_gcomments = FALSE) {
+                          rm_gcomments = FALSE,
+                          force = FALSE) {
   
   #---- check arguments ----
   if(!is.logical(rm_gcomments)) stop("rm_gcomments argument has to be logical",
                                      call. = FALSE)
+  if(!is.logical(force)) stop("force argument has to be logical",
+                              call. = FALSE)
   #---- start process ----
   main_process(paste("Downloading", emph_file(file), "with online changes..."))
   
@@ -241,7 +259,7 @@ download_file <- function(file,
   #---- check user ----
   
   # check whether user really wants to download file from Google Drive
-  if(interactive()){
+  if(interactive() && isFALSE(force)){
     response <- utils::menu(
       c("Yes", "No"),
       title = paste("Downloading the file from Google Drive will overwrite local file.",
@@ -308,23 +326,28 @@ download_file <- function(file,
 #' \code{\link{trackdown-package}} help page.
 #' 
 #' @inheritParams upload_file
-#' 
+#' @param rm_gcomments [experimental] logical value indicating whether or not to
+#'   remove Google comments.
 #' @return `TRUE` if file from Google Drive was saved and rendered, `FALSE`
-#'   otherwise
+#'   otherwise.
 #' @export
 #'
 
 render_file <- function(file,
                         gfile = basename(file),
                         gpath = "trackdown",
-                        shared_drive = NULL) {
+                        shared_drive = NULL,
+                        force = FALSE,
+                        rm_gcomments = FALSE) {
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
   
   changed <- download_file(file = file, 
                            gfile = gfile, 
                            gpath = gpath, 
-                           shared_drive = shared_drive)
+                           shared_drive = shared_drive,
+                           force = force,
+                           rm_gcomments = rm_gcomments)
   if (changed) {
     rmarkdown::render(file, quiet = TRUE)
     finish_process(paste(cli::col_blue(file), "donwloaded and rendered!"))
