@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -188,6 +188,17 @@
 <p>This feature is intended to help collaborators to evaluate the overall layout, including figures and tables, and allows them to add comments to propose and discuss changes (See Figure below). Note that, in the case of PDF files, it is possible to add comments directly to the file in Google Drive. However, this is not possible with HTML files.</p>
 <p><img src="edit-output.png" style="width:100.0%"></p>
 <p>In the case of HTML files, <code>trackdown</code> can automatically convert them into PDFs before uploading them to Google Drive. This feature requires that the <code>pagedown</code> package is available. As the <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, it has to be installed manually by the user if it is not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html">pagedown::chrome_print()</a></code> is used to convert an HTML into a PDF. Note that Google Chrome has to be installed on the user’s system for this conversion operation.</p>
+</div>
+<div id="extra-arguments" class="section level4">
+<h4 class="hasAnchor">
+<a href="#extra-arguments" class="anchor"></a>Extra Arguments</h4>
+<p>Some extra arguments have been added to allow specific function features:</p>
+<ul>
+<li>
+<code>force</code> logical value indicating whether to skip confirm check by user (default is ). This argument is available for all functions and allows users to skip confirm checks about overwriting documents. See <a href="https://github.com/ClaudioZandonella/trackdown/issues/27">issue #27</a> for further details</li>
+<li>
+<code>rm_gcomments</code> logical value indicating whether or not to remove Google comments. When downloading the document for a quick check you will download all Google comments in the document as well. This argument allows users to remove Google comments automatically (available only for <code><a href="../reference/download_file.html">download_file()</a></code> and <code><a href="../reference/render_file.html">render_file()</a></code> functions). See <a href="https://github.com/ClaudioZandonella/trackdown/issues/25">issue #25</a> for further details</li>
+</ul>
 </div>
 </div>
   </div>

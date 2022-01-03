@@ -82,7 +82,7 @@ trackdown-package help page." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -154,7 +154,9 @@ To know more about <code>trackdown</code> workflow and features see
   <span class='va'>file</span>,
   gfile <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>,
   gpath <span class='op'>=</span> <span class='st'>"trackdown"</span>,
-  shared_drive <span class='op'>=</span> <span class='cn'>NULL</span>
+  shared_drive <span class='op'>=</span> <span class='cn'>NULL</span>,
+  force <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  rm_gcomments <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -182,12 +184,22 @@ level, although it is not recommended.</p></td>
       <td><p>character. The name of a Google Drive shared drive
 (optional).</p></td>
     </tr>
+    <tr>
+      <th>force</th>
+      <td><p>logical value indicating whether to skip confirm check by user
+(default is <code>FALSE</code>).</p></td>
+    </tr>
+    <tr>
+      <th>rm_gcomments</th>
+      <td><p>[experimental] logical value indicating whether or not to
+remove Google comments.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>`TRUE` if file from Google Drive was saved and rendered, `FALSE`
-  otherwise</p>
+  otherwise.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
