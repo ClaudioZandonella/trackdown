@@ -97,7 +97,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
       }
       
       if (response == 2){
-        stop_quietly("Process arrested")
+        stop_quietly("Process aborted")
       } else {
         
         # evaluate if unique parent folder is available

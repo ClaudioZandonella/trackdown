@@ -171,7 +171,7 @@ update_file <- function(file,
                     "You might lose tracked changes. Do you want to proceed?"))
     
     if (response == 2L) {
-      cli::cli_alert_danger("Process arrested")
+      cli::cli_alert_danger("Process aborted")
       return(NULL)
     }
   }
@@ -266,7 +266,7 @@ download_file <- function(file,
                     "Do you want to proceed?"))
     
     if (response == 2L) {
-      cli::cli_alert_danger("Process arrested")
+      cli::cli_alert_danger("Process aborted")
       return(NULL)
     }
   }

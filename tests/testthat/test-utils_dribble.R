@@ -44,14 +44,14 @@ test_that("get the correct path dribble", {
   # expect message start with "No unique parent folder"
   expect_true(grepl("^No unique parent folder",dribble_path_5$message))
 
-  # not available folder create process arrested
+  # not available folder create process aborted
   vcr::use_cassette("get_path_dribble_test_6", {
     dribble_path_6 <- tryCatch(
       get_path_dribble(path = "unit_tests/utils_dribble/new_folder", .response = 2),
       error = function(e) e)
   })
-  # expect message "Process arrested" from stop_quietly() function
-  expect_equal(as.character(dribble_path_6$call), c("stop_quietly","Process arrested"))
+  # expect message "Process aborted" from stop_quietly() function
+  expect_equal(as.character(dribble_path_6$call), c("stop_quietly","Process aborted"))
 
 })
 
