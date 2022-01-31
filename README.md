@@ -149,6 +149,17 @@ To know more about `trackdown`, please reference:
 -   `vignette("trackdown-tech-notes")` for details regarding technical
     details like authentication and file management.
 
+## Extending `trackdown`
+
+Workflows and solutions proposed by other user:
+
+-   **Synchronizing Multiple Documents
+    ([link](https://gist.github.com/smithjd/aaf71b5a6575a0d4a1e4ac3168c4c682)).**
+    GitHub Gist by [John David Smith](https://github.com/smithjd) to
+    automatically keep track of multiple documents from multiple authors
+    detecting local and online changes. It can be used to manage a
+    [Distill website](https://rstudio.github.io/distill/website.html).
+
 ## Contributing to `trackdown`
 
 Development of the `trackdown` package is an ongoing project, surely
