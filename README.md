@@ -151,7 +151,7 @@ To know more about `trackdown`, please reference:
 
 ## Extending `trackdown`
 
-Workflows and solutions proposed by other user:
+Workflows and solutions proposed by other users:
 
 -   **Synchronizing Multiple Documents
     ([link](https://gist.github.com/smithjd/aaf71b5a6575a0d4a1e4ac3168c4c682)).**
