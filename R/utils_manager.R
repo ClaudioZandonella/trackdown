@@ -139,7 +139,7 @@ upload_document <- function(file, file_info,
   
   
   if(isTRUE(update)){
-    start_process("Updating document with local changes  to Google Drive...")
+    start_process("Updating document with local changes to Google Drive...")
     
     # Update document
     res <- googledrive::drive_update(
