@@ -220,7 +220,7 @@ get_root_dribble <- function(shared_drive = NULL){
   if (!is.null(shared_drive)) {
     dribble_root <- googledrive::shared_drive_get(shared_drive)
   } else {
-    dribble_root <- googledrive::drive_get("~/")
+    dribble_root <- googledrive::drive_get(id = "root")
   }
   
   return(dribble_root)
