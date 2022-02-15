@@ -1,5 +1,9 @@
 # trackdown (development version)
 
+## trackdown 1.2.1
+
+Corrige output message pull request #29 (by @chainsawriot)
+
 ## trackdown 1.2.0
 
 Introduce the `force` argument allowing users to skip confirm checks about overwriting documents (see Issue #27).
