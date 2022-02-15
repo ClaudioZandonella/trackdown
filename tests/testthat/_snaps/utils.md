@@ -5,7 +5,7 @@
 
 ---
 
-    <ansi_string>
+    <cli_ansi_string>
     [1] blue text
 
 ---
