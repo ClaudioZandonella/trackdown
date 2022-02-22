@@ -15,6 +15,7 @@ pkgdown
 .secrets
 
 R/personal_utils.R
+data-raw/
 
 inst/doc
 doc

@@ -33,3 +33,4 @@
 ^issues$
 ^R/personal_utils\.R$
 ^tests/testthat/test_files/examples$
+^data-raw$
