@@ -22,7 +22,7 @@ http_interactions:
       content-length: '890'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:15 GMT
+      date: Tue, 22 Feb 2022 11:29:22 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -129,7 +129,7 @@ http_interactions:
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2022-02-15 19:55:16 GMT
+  recorded_at: 2022-02-22 11:29:23 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -154,7 +154,7 @@ http_interactions:
       content-length: '1006'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:15 GMT
+      date: Tue, 22 Feb 2022 11:29:22 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -272,7 +272,7 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2022-02-15 19:55:16 GMT
+  recorded_at: 2022-02-22 11:29:23 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -294,10 +294,10 @@ http_interactions:
         ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '1004'
+      content-length: '1002'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:16 GMT
+      date: Tue, 22 Feb 2022 11:29:23 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -407,7 +407,7 @@ http_interactions:
            ],
            "folderColorRgb": "#8f8f8f",
            "quotaBytesUsed": "0",
-           "isAppAuthorized": true,
+           "isAppAuthorized": false,
            "linkShareMetadata": {
             "securityUpdateEligible": false,
             "securityUpdateEnabled": true
@@ -415,7 +415,7 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2022-02-15 19:55:16 GMT
+  recorded_at: 2022-02-22 11:29:23 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -437,10 +437,10 @@ http_interactions:
         ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '1278'
+      content-length: '1277'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:16 GMT
+      date: Tue, 22 Feb 2022 11:29:23 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -477,7 +477,7 @@ http_interactions:
            "webViewLink": "https://docs.google.com/document/d/1jgTk1oD8idR2ei3-yyYyF1qwRJoX-GsZ7Hd4f2DIGDA/edit?usp=drivesdk",
            "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
            "hasThumbnail": true,
-           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1jgTk1oD8idR2ei3-yyYyF1qwRJoX-GsZ7Hd4f2DIGDA&v=1&s=AMedNnoAAAAAYgwhRH2tMNNLIu_stuZaOztCOD4u5xAW&sz=s220",
+           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1jgTk1oD8idR2ei3-yyYyF1qwRJoX-GsZ7Hd4f2DIGDA&v=1&s=AMedNnoAAAAAYhTlM9aik-NWQNctLkdxB5BuvhIrTk5g&sz=s220",
            "thumbnailVersion": "1",
            "viewedByMe": true,
            "viewedByMeTime": "2021-11-29T16:30:07.909Z",
@@ -552,7 +552,7 @@ http_interactions:
            ],
            "size": "1024",
            "quotaBytesUsed": "1024",
-           "isAppAuthorized": true,
+           "isAppAuthorized": false,
            "exportLinks": {
             "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1jgTk1oD8idR2ei3-yyYyF1qwRJoX-GsZ7Hd4f2DIGDA&exportFormat=rtf",
             "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=1jgTk1oD8idR2ei3-yyYyF1qwRJoX-GsZ7Hd4f2DIGDA&exportFormat=odt",
@@ -570,5 +570,5 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2022-02-15 19:55:16 GMT
+  recorded_at: 2022-02-22 11:29:23 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

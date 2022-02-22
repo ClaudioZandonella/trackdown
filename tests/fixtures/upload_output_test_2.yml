@@ -4,7 +4,7 @@ http_interactions:
     uri: https://www.googleapis.com/upload/drive/v3/files/1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
     body:
       encoding: ''
-      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmp66FmSS/drive-update-meta18039585d33d2.json",
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/RtmpkklLVv/drive-update-meta3fd4efd5124.json",
         type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/utils_manager/temp-output-example-2.pdf",
         type = "application/pdf")
     headers:
@@ -20,16 +20,16 @@ http_interactions:
       alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
         ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      content-length: '3249'
+      content-length: '3250'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:32 GMT
+      date: Tue, 22 Feb 2022 11:29:40 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: UploadServer
       vary:
       - Origin
       - X-Origin
-      x-guploader-uploadid: ADPycdsShoS9Hdd7nB9tXhklqOLdZwP3izl6isycWM6G7KBGaTnf21zBT0lZENH6QjtAceiElixfLZJZ84dcQJ-JUd1mHHRlDg
+      x-guploader-uploadid: ADPycdvUrABYB4_ovtFTII_YXUpdHMW7Ih3xvNlH65vXm8PoepWXE05S9A-oaa-NwAAZQ89gnzTQRzpySd3X_ATv88w
     body:
       encoding: UTF-8
       file: no
@@ -48,17 +48,17 @@ http_interactions:
          "spaces": [
           "drive"
          ],
-         "version": "12",
+         "version": "14",
          "webContentLink": "https://drive.google.com/uc?id=1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa&export=download",
          "webViewLink": "https://drive.google.com/file/d/1rDjs8ch2IiPSL8FrvlWit18YEQwfthDa/view?usp=drivesdk",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/pdf",
          "hasThumbnail": true,
-         "thumbnailLink": "https://lh3.googleusercontent.com/5kdWFKxsAKVD6Px14cemgnYUjoWs239UHnI5HcAuSl26AYEJPAMceI9Rv7kJ5MFiXX4TdE-zv0wEUMs=s220",
-         "thumbnailVersion": "10",
+         "thumbnailLink": "https://lh3.googleusercontent.com/6vAQoECYCkypsf0FGaS02i0_vWegpTekCmCuP8qut0y3RHL3qwHGJWOqhrr9V80yCRSTDwW5JksCgAg=s220",
+         "thumbnailVersion": "12",
          "viewedByMe": false,
          "createdTime": "2021-11-29T17:07:04.411Z",
-         "modifiedTime": "2022-02-15T19:55:32.147Z",
-         "modifiedByMeTime": "2022-02-15T19:55:32.147Z",
+         "modifiedTime": "2022-02-22T11:29:39.530Z",
+         "modifiedByMeTime": "2022-02-22T11:29:39.530Z",
          "modifiedByMe": true,
          "owners": [
           {
@@ -128,15 +128,15 @@ http_interactions:
          "originalFilename": "temp-output-example-2.pdf",
          "fullFileExtension": "pdf",
          "fileExtension": "",
-         "md5Checksum": "b82b36ce282f75f51494d005397ad8ca",
+         "md5Checksum": "15f2ab4367c732a6fd0e25f96c2f8477",
          "size": "89804",
          "quotaBytesUsed": "89804",
-         "headRevisionId": "0B_bXnIs35pMSZjdmeVB3bUJiaURiR05MNkRPT2hqTmo0TU1NPQ",
-         "isAppAuthorized": true,
+         "headRevisionId": "0B_bXnIs35pMSOFBhcDNjcy9lT0Rwb0hHU0NicDJjSjJiejZrPQ",
+         "isAppAuthorized": false,
          "linkShareMetadata": {
           "securityUpdateEligible": false,
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2022-02-15 19:55:32 GMT
+  recorded_at: 2022-02-22 11:29:40 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

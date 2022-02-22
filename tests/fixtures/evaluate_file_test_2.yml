@@ -22,7 +22,7 @@ http_interactions:
       content-length: '890'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:11 GMT
+      date: Tue, 22 Feb 2022 11:29:19 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -129,7 +129,7 @@ http_interactions:
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2022-02-15 19:55:13 GMT
+  recorded_at: 2022-02-22 11:29:20 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -154,7 +154,7 @@ http_interactions:
       content-length: '1006'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:12 GMT
+      date: Tue, 22 Feb 2022 11:29:19 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -272,7 +272,7 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2022-02-15 19:55:13 GMT
+  recorded_at: 2022-02-22 11:29:20 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -294,10 +294,10 @@ http_interactions:
         ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
       content-encoding: gzip
-      content-length: '1004'
+      content-length: '1002'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:12 GMT
+      date: Tue, 22 Feb 2022 11:29:19 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -407,7 +407,7 @@ http_interactions:
            ],
            "folderColorRgb": "#8f8f8f",
            "quotaBytesUsed": "0",
-           "isAppAuthorized": true,
+           "isAppAuthorized": false,
            "linkShareMetadata": {
             "securityUpdateEligible": false,
             "securityUpdateEnabled": true
@@ -415,7 +415,7 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2022-02-15 19:55:13 GMT
+  recorded_at: 2022-02-22 11:29:20 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
 - request:
     method: get
@@ -440,7 +440,7 @@ http_interactions:
       content-length: '1468'
       content-security-policy: frame-ancestors 'self'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:13 GMT
+      date: Tue, 22 Feb 2022 11:29:20 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: GSE
@@ -476,7 +476,7 @@ http_interactions:
            "webViewLink": "https://docs.google.com/document/d/1pHGNiKta5av0U5hvaikePM3fjCxTkqkLstiVNMwpzI8/edit?usp=drivesdk",
            "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
            "hasThumbnail": true,
-           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1pHGNiKta5av0U5hvaikePM3fjCxTkqkLstiVNMwpzI8&v=2&s=AMedNnoAAAAAYgwhQUdv8GIkKp94US1PH5sua7nH9eL9&sz=s220",
+           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1pHGNiKta5av0U5hvaikePM3fjCxTkqkLstiVNMwpzI8&v=2&s=AMedNnoAAAAAYhTlMA8v95y_X8zJfR9jn7KJvHa0dnS1&sz=s220",
            "thumbnailVersion": "2",
            "viewedByMe": true,
            "viewedByMeTime": "2021-11-29T16:32:55.617Z",
@@ -585,7 +585,7 @@ http_interactions:
            "webViewLink": "https://docs.google.com/document/d/1JdRQM0K91EZMLYnIPW-_AwrKVqigHc_kOdkSUxk3ok8/edit?usp=drivesdk",
            "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
            "hasThumbnail": true,
-           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1JdRQM0K91EZMLYnIPW-_AwrKVqigHc_kOdkSUxk3ok8&v=2&s=AMedNnoAAAAAYgwhQRBLXeq3_BOafPvvD_QuLKnT1mRD&sz=s220",
+           "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1JdRQM0K91EZMLYnIPW-_AwrKVqigHc_kOdkSUxk3ok8&v=2&s=AMedNnoAAAAAYhTlMEnJ_VGlRr-P3tbP_JRQ1Bh5xkL4&sz=s220",
            "thumbnailVersion": "2",
            "viewedByMe": true,
            "viewedByMeTime": "2021-11-29T16:32:37.911Z",
@@ -678,5 +678,5 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2022-02-15 19:55:13 GMT
+  recorded_at: 2022-02-22 11:29:20 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

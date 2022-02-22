@@ -39,6 +39,7 @@ Suggests:
     covr,
     devtools,
     gargle,
+    httr,
     knitr,
     pagedown,
     sodium,

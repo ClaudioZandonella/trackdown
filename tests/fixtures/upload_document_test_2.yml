@@ -4,7 +4,7 @@ http_interactions:
     uri: https://www.googleapis.com/upload/drive/v3/files/1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
     body:
       encoding: ''
-      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmp66FmSS/drive-update-meta180397d884490.json",
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/RtmpkklLVv/drive-update-meta3fd4f008638.json",
         type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/utils_manager/.temp-example-1.txt",
         type = "text/plain")
     headers:
@@ -20,16 +20,16 @@ http_interactions:
       alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
         ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       cache-control: no-cache, no-store, max-age=0, must-revalidate
-      content-length: '4479'
+      content-length: '4480'
       content-type: application/json; charset=UTF-8
-      date: Tue, 15 Feb 2022 19:55:22 GMT
+      date: Tue, 22 Feb 2022 11:29:29 GMT
       expires: Mon, 01 Jan 1990 00:00:00 GMT
       pragma: no-cache
       server: UploadServer
       vary:
       - Origin
       - X-Origin
-      x-guploader-uploadid: ADPycduFFfZ5KhBLHxTILYFWd5wZ82sLphZAY5QxAINcJIJwlTbfD5APV4YtitYqutyxKRMdvs5WF00M5yv0XXNnuX2AG9yIPA
+      x-guploader-uploadid: ADPycduYouHoc_jrkcHI9jhgOJgyAPKHKPxy4W55RWAlC01kLhcWC_8L3Jcv8ipcmT3zkCKrWXAzM1HSpoaJKwaqPc0
     body:
       encoding: UTF-8
       file: no
@@ -48,18 +48,18 @@ http_interactions:
          "spaces": [
           "drive"
          ],
-         "version": "17",
+         "version": "20",
          "webContentLink": "https://drive.google.com/uc?id=1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA&export=download",
          "webViewLink": "https://docs.google.com/document/d/1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA/edit?usp=drivesdk",
          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
          "hasThumbnail": true,
-         "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA&v=3&s=AMedNnoAAAAAYgwhSltMjHwU5yCaPzu6SO_ysWrMgH44&sz=s220",
-         "thumbnailVersion": "3",
+         "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA&v=4&s=AMedNnoAAAAAYhTlOTOK60PQNcw-sH1BNdmoQM3Tm78w&sz=s220",
+         "thumbnailVersion": "4",
          "viewedByMe": true,
-         "viewedByMeTime": "2022-02-15T19:17:08.296Z",
+         "viewedByMeTime": "2022-02-15T19:55:22.275Z",
          "createdTime": "2021-11-29T16:53:56.587Z",
-         "modifiedTime": "2022-02-15T19:55:21.365Z",
-         "modifiedByMeTime": "2022-02-15T19:55:21.365Z",
+         "modifiedTime": "2022-02-22T11:29:28.385Z",
+         "modifiedByMeTime": "2022-02-22T11:29:28.385Z",
          "modifiedByMe": true,
          "owners": [
           {
@@ -128,7 +128,7 @@ http_interactions:
          ],
          "size": "1024",
          "quotaBytesUsed": "1024",
-         "isAppAuthorized": true,
+         "isAppAuthorized": false,
          "exportLinks": {
           "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA&exportFormat=rtf",
           "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=1Jor69T2g0O40vaLPtkc_5HaZB_E0FN3UMefVIVkPDGA&exportFormat=odt",
@@ -144,5 +144,5 @@ http_interactions:
           "securityUpdateEnabled": true
          }
         }
-  recorded_at: 2022-02-15 19:55:23 GMT
+  recorded_at: 2022-02-22 11:29:30 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
