@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -62,6 +58,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/trackdown-features.html">Function Arguments and Features</a>
+    </li>
+    <li>
+      <a href="../articles/trackdown-privacy-policy.html">Privacy Policy for trackdown Access to Google APIs</a>
     </li>
     <li>
       <a href="../articles/trackdown-tech-notes.html">Technical Notes</a>
@@ -77,7 +76,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/claudiozandonella/trackdown/">
+  <a href="https://github.com/claudiozandonella/trackdown/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -92,13 +91,13 @@
 
       
 
-      </header><script src="trackdown-features_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Function Arguments and Features</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/claudiozandonella/trackdown/blob/master/vignettes/trackdown-features.Rmd"><code>vignettes/trackdown-features.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/claudiozandonella/trackdown/blob/HEAD/vignettes/trackdown-features.Rmd" class="external-link"><code>vignettes/trackdown-features.Rmd</code></a></small>
       <div class="hidden name"><code>trackdown-features.Rmd</code></div>
 
     </div>
@@ -127,9 +126,9 @@
 <strong>Use Google Drive shared drives</strong> (See <a href="#shared-drive">shared_drive</a>): The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.</li>
 </ul>
 <p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> to know more about the workflow and <code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for an overview of technical details.</p>
-<div id="arg-feat" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arg-feat" class="anchor"></a>Arguments and Features</h2>
+<div class="section level2">
+<h2 id="arg-feat">Arguments and Features<a class="anchor" aria-label="anchor" href="#arg-feat"></a>
+</h2>
 <p>All <code>trackdown</code> functions share some common arguments that are used to manage the workflow:</p>
 <pre><code>*_file(file,
        gfile = NULL,
@@ -143,61 +142,61 @@
 <code>path_output</code> to upload the rendered output document to Google Drive in conjunction with the .Rmd (or .Rnw) document.</li>
 </ul>
 <p>In this section, all arguments of <code>trackdown</code> functions are introduced, describing default settings and highlighting main features.</p>
-<div id="file" class="section level4">
-<h4 class="hasAnchor">
-<a href="#file" class="anchor"></a><code>file</code>
+<div class="section level4">
+<h4 id="file">
+<code>file</code><a class="anchor" aria-label="anchor" href="#file"></a>
 </h4>
 <p>A string indicating the path of the local <code>.Rmd</code> (or <code>.Rnw</code>) file.</p>
 <p>All <code>trackdown</code> functions take as reference the local file to manage the workflow. Thus, the <code>file</code> argument is mandatory, both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.</p>
 </div>
-<div id="gfile" class="section level4">
-<h4 class="hasAnchor">
-<a href="#gfile" class="anchor"></a><code>gfile</code>
+<div class="section level4">
+<h4 id="gfile">
+<code>gfile</code><a class="anchor" aria-label="anchor" href="#gfile"></a>
 </h4>
 <p>A string indicating the name of the file in Google Drive.</p>
 <p>By default (<code>NULL</code>), the name of the local file (without extension) is used as the name of the file in Google Drive. By specifying the <code>gfile</code> argument one can personalize the name of the file in Google Drive. In this case, one has to remember to point to the correct file in Google Drive every time one updates or downloads the file during the collaborative writing process.</p>
 </div>
-<div id="gpath" class="section level4">
-<h4 class="hasAnchor">
-<a href="#gpath" class="anchor"></a><code>gpath</code>
+<div class="section level4">
+<h4 id="gpath">
+<code>gpath</code><a class="anchor" aria-label="anchor" href="#gpath"></a>
 </h4>
 <p>A string indicating a directory in My Drive or in a shared drive (optional).</p>
 <p>By default, files are uploaded to the folder <code>"trackdown/"</code> on Google Drive. To specify another folder, the full path is required (e.g., <code>"trackdown/my_folder/"</code>). If the indicated folder is not already available on Google Drive, the user is asked for permission to create it. One can use <code>NULL</code> to upload the file directly at the root level, although this is not recommended.</p>
 </div>
-<div id="shared-drive" class="section level4">
-<h4 class="hasAnchor">
-<a href="#shared-drive" class="anchor"></a><code>shared_drive</code>
+<div class="section level4">
+<h4 id="shared-drive">
+<code>shared_drive</code><a class="anchor" aria-label="anchor" href="#shared-drive"></a>
 </h4>
 <p>A string indicating the name of a shared drive (optional).</p>
 <p>By default, a personal Google Drive (i.e., My Drive) is used, but a shared drive can be specified to facilitate collaboration.</p>
 </div>
-<div id="hide-code" class="section level4">
-<h4 class="hasAnchor">
-<a href="#hide-code" class="anchor"></a><code>hide_code</code>
+<div class="section level4">
+<h4 id="hide-code">
+<code>hide_code</code><a class="anchor" aria-label="anchor" href="#hide-code"></a>
 </h4>
 <p>A logical value indicating whether code in the header of the document (YAML header or LaTeX preamble) and code chunks should be removed from the document when it is uploaded (or updated).</p>
 <p>This argument is available only for the <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. By default, the value is set to <code>FALSE</code>. If set to <code>TRUE</code>, the code in the document header and code chunks will be removed from the document and automatically restored when downloaded. Placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” are displayed instead.</p>
 <p>This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file and allows them to focus on the narrative text. Note that to guarantee correct code restoration, placeholders must not be modified or removed.</p>
 </div>
-<div id="path-output" class="section level4">
-<h4 class="hasAnchor">
-<a href="#path-output" class="anchor"></a><code>path_output</code>
+<div class="section level4">
+<h4 id="path-output">
+<code>path_output</code><a class="anchor" aria-label="anchor" href="#path-output"></a>
 </h4>
 <p>A string indicating the output path (i.e., the resulting rendered document).</p>
 <p>This argument is available only for the <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. By default (<code>NULL</code>), no output is uploaded to Google Drive. If specified, the output file (i.e., the rendered HTML or PDF file) is uploaded in conjunction with the main file. The output is named in Google Drive like the main file plus “-output” at the end (e.g., given a main file with the name “My-Report”, the output would be named “My-Report-output”).</p>
 <p>This feature is intended to help collaborators to evaluate the overall layout, including figures and tables, and allows them to add comments to propose and discuss changes (See Figure below). Note that, in the case of PDF files, it is possible to add comments directly to the file in Google Drive. However, this is not possible with HTML files.</p>
 <p><img src="edit-output.png" style="width:100.0%"></p>
-<p>In the case of HTML files, <code>trackdown</code> can automatically convert them into PDFs before uploading them to Google Drive. This feature requires that the <code>pagedown</code> package is available. As the <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, it has to be installed manually by the user if it is not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html">pagedown::chrome_print()</a></code> is used to convert an HTML into a PDF. Note that Google Chrome has to be installed on the user’s system for this conversion operation.</p>
+<p>In the case of HTML files, <code>trackdown</code> can automatically convert them into PDFs before uploading them to Google Drive. This feature requires that the <code>pagedown</code> package is available. As the <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, it has to be installed manually by the user if it is not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html" class="external-link">pagedown::chrome_print()</a></code> is used to convert an HTML into a PDF. Note that Google Chrome has to be installed on the user’s system for this conversion operation.</p>
 </div>
-<div id="extra-arguments" class="section level4">
-<h4 class="hasAnchor">
-<a href="#extra-arguments" class="anchor"></a>Extra Arguments</h4>
+<div class="section level4">
+<h4 id="extra-arguments">Extra Arguments<a class="anchor" aria-label="anchor" href="#extra-arguments"></a>
+</h4>
 <p>Some extra arguments have been added to allow specific function features:</p>
 <ul>
 <li>
-<code>force</code> logical value indicating whether to skip confirm check by user (default is ). This argument is available for all functions and allows users to skip confirm checks about overwriting documents. See <a href="https://github.com/ClaudioZandonella/trackdown/issues/27">issue #27</a> for further details</li>
+<code>force</code> logical value indicating whether to skip confirm check by user (default is ). This argument is available for all functions and allows users to skip confirm checks about overwriting documents. See <a href="https://github.com/ClaudioZandonella/trackdown/issues/27" class="external-link">issue #27</a> for further details</li>
 <li>
-<code>rm_gcomments</code> logical value indicating whether or not to remove Google comments. When downloading the document for a quick check you will download all Google comments in the document as well. This argument allows users to remove Google comments automatically (available only for <code><a href="../reference/download_file.html">download_file()</a></code> and <code><a href="../reference/render_file.html">render_file()</a></code> functions). See <a href="https://github.com/ClaudioZandonella/trackdown/issues/25">issue #25</a> for further details</li>
+<code>rm_gcomments</code> logical value indicating whether or not to remove Google comments. When downloading the document for a quick check you will download all Google comments in the document as well. This argument allows users to remove Google comments automatically (available only for <code><a href="../reference/download_file.html">download_file()</a></code> and <code><a href="../reference/render_file.html">render_file()</a></code> functions). See <a href="https://github.com/ClaudioZandonella/trackdown/issues/25" class="external-link">issue #25</a> for further details</li>
 </ul>
 </div>
 </div>
@@ -214,11 +213,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer, Mathew Ling.</p>
+  <p></p>
+<p>Developed by Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer, Mathew Ling.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -226,6 +227,8 @@
 
   
 
+
+  
 
   </body>
 </html>

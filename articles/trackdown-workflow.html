@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -62,6 +58,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/trackdown-features.html">Function Arguments and Features</a>
+    </li>
+    <li>
+      <a href="../articles/trackdown-privacy-policy.html">Privacy Policy for trackdown Access to Google APIs</a>
     </li>
     <li>
       <a href="../articles/trackdown-tech-notes.html">Technical Notes</a>
@@ -77,7 +76,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/claudiozandonella/trackdown/">
+  <a href="https://github.com/claudiozandonella/trackdown/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -92,22 +91,22 @@
 
       
 
-      </header><script src="trackdown-workflow_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>The trackdown Workflow</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/claudiozandonella/trackdown/blob/master/vignettes/trackdown-workflow.Rmd"><code>vignettes/trackdown-workflow.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/claudiozandonella/trackdown/blob/HEAD/vignettes/trackdown-workflow.Rmd" class="external-link"><code>vignettes/trackdown-workflow.Rmd</code></a></small>
       <div class="hidden name"><code>trackdown-workflow.Rmd</code></div>
 
     </div>
 
     
     
-<div id="wf-idea" class="section level2">
-<h2 class="hasAnchor">
-<a href="#wf-idea" class="anchor"></a>The Workflow Idea</h2>
+<div class="section level2">
+<h2 id="wf-idea">The Workflow Idea<a class="anchor" aria-label="anchor" href="#wf-idea"></a>
+</h2>
 <p>During the collaborative writing of an <code>.Rmd</code> (or <code>.Rnw</code>) document, it is important to employ different workflows for computer code and narrative text:</p>
 <ul>
 <li>
@@ -133,14 +132,14 @@
 </ul>
 <p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-features.html">vignette("trackdown-features")</a></code> for a detailed description of function arguments and features and <code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for technical details.</p>
 </div>
-<div id="wf-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#wf-example" class="anchor"></a>Workflow Example</h2>
+<div class="section level2">
+<h2 id="wf-example">Workflow Example<a class="anchor" aria-label="anchor" href="#wf-example"></a>
+</h2>
 <p>Here a hypothetical workflow using <code>trackdown</code> is described as an example. The actual workflow is flexible and depends on the specific needs and circumstances of a given user and project.</p>
 <p>Suppose you want to collaborate with your colleagues on the writing of an R Markdown document, e.g., to prepare a submission to a scientific journal. If you are the most experienced among your colleagues in the usage of R and programming in general, you should take responsibility for managing and organizing the workflow.</p>
-<div id="ex-upload" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ex-upload" class="anchor"></a>Upload File</h4>
+<div class="section level4">
+<h4 id="ex-upload">Upload File<a class="anchor" aria-label="anchor" href="#ex-upload"></a>
+</h4>
 <p>You create the initial document, for example <code>My-Report.Rmd</code>, and upload the file to Google Drive using the function <code><a href="../reference/upload_file.html">upload_file()</a></code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/upload_file.html">upload_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span>, hide_code <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -148,9 +147,9 @@
 <p>Note that <code>trackdown</code> adds some simple instructions and reminders on top of the document and, by specifying the argument <code>hide_code = TRUE</code> (default is <code>FALSE</code>), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” (See Figure below). This allows collaborators to focus on the narrative text.</p>
 <p><img src="JOSS-fig.png" style="width:100.0%"></p>
 </div>
-<div id="collaborate" class="section level4">
-<h4 class="hasAnchor">
-<a href="#collaborate" class="anchor"></a>Collaborate</h4>
+<div class="section level4">
+<h4 id="collaborate">Collaborate<a class="anchor" aria-label="anchor" href="#collaborate"></a>
+</h4>
 <p>After uploading your document to Google Drive, you can now share a link to the document with your colleagues and invite them to collaborate on the writing of the narrative text.</p>
 <p>Google Docs offers a familiar, intuitive, and free web-based interface that allows multiple users to simultaneously write/edit the same document (See Figure below). In Google Docs it is possible to :</p>
 <ul>
@@ -162,36 +161,36 @@
 <img src="Example-edit.png" style="width:100.0%">
 </center>
 <p>Moreover, Google Docs allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text. Remember that working on the parts of the document including code should be avoided.</p>
-<p>Note that not all collaborators have to have a Google account (although this is recommended to utilize all Google Docs features). Only the person who manages the <code>trackdown</code> workflow needs to have a Google account to upload files to Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0">Instructions</a>).</p>
+<p>Note that not all collaborators have to have a Google account (although this is recommended to utilize all Google Docs features). Only the person who manages the <code>trackdown</code> workflow needs to have a Google account to upload files to Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0" class="external-link">Instructions</a>).</p>
 </div>
-<div id="ex-download" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ex-download" class="anchor"></a>Download File</h4>
+<div class="section level4">
+<h4 id="ex-download">Download File<a class="anchor" aria-label="anchor" href="#ex-download"></a>
+</h4>
 <p>At some point, you will want to add some code to the document to include figures, tables, or analysis results. This should not be done in Google Docs, instead, you should first download the document.</p>
 <p>Before downloading the document from Google Drive, however, it is important that you accept (or reject) all changes made by your collaborators to the document in Google Docs. An easy way to accept all changes at once is the menu command “<em>Tools</em> &gt; <em>Review suggested edits</em> &gt; <em>Accept all</em>”. Now the edited version of the document can be downloaded from Google Drive using the function <code><a href="../reference/download_file.html">download_file()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/download_file.html">download_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
 <p>Note that downloading the file from Google Drive will overwrite the local file.</p>
 </div>
-<div id="ex-update" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ex-update" class="anchor"></a>Update File</h4>
+<div class="section level4">
+<h4 id="ex-update">Update File<a class="anchor" aria-label="anchor" href="#ex-update"></a>
+</h4>
 <p>Once you added the required code chunks, further editing of the narrative text may be necessary. In this case, you first update the file in Google Drive with your local version of the document using the function <code><a href="../reference/update_file.html">update_file()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/update_file.html">update_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span>, hide_code <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>By executing this command, the document in Google Drive is updated with your latest local changes. Now you and your colleagues can continue collaborating on the writing of the document. This iterative process of updating the file in Google Drive and downloading it locally continues until the desired results are obtained. Note that updating the file in Google Drive will overwrite its current content losing any tracked changes.</p>
 </div>
-<div id="ex-render" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ex-render" class="anchor"></a>Render File</h4>
+<div class="section level4">
+<h4 id="ex-render">Render File<a class="anchor" aria-label="anchor" href="#ex-render"></a>
+</h4>
 <p>Once the document is finished and all changes have been accepted, you can download the document and automatically compile the document to obtain the rendered output using the function <code><a href="../reference/render_file.html">render_file()</a></code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/render_file.html">render_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span><span class="op">)</span></code></pre></div>
-<p>This function is simply a wrapper around <code><a href="../reference/download_file.html">download_file()</a></code> that will additionally call <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html">rmarkdown::render()</a></code> once the document has been downloaded.</p>
+<p>This function is simply a wrapper around <code><a href="../reference/download_file.html">download_file()</a></code> that will additionally call <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render.html" class="external-link">rmarkdown::render()</a></code> once the document has been downloaded.</p>
 </div>
-<div id="ex-check" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ex-check" class="anchor"></a>A Quick Check</h4>
+<div class="section level4">
+<h4 id="ex-check">A Quick Check<a class="anchor" aria-label="anchor" href="#ex-check"></a>
+</h4>
 <p>Taking advantage of the “<em>Undo</em>” option available in Google Docs, it is possible to download the current document version at any time during the workflow without the need to accept all suggested edits permanently. You can:</p>
 <ol style="list-style-type: decimal">
 <li>Use the menu option “<em>Tools</em> &gt; <em>Review suggested edits</em> &gt; <em>Accept all</em>” to momentarily accept all changes.</li>
@@ -201,9 +200,9 @@
 <p>This way, it is possible to check the current document and compile it locally at any time, without the need to accept all suggested edits permanently. Note, however, that it is not possible to update the document in Google Drive with local changes. This would overwrite the current content losing tracked changes.</p>
 </div>
 </div>
-<div id="collab" class="section level2">
-<h2 class="hasAnchor">
-<a href="#collab" class="anchor"></a>Collaboration: Narrative Text vs Code</h2>
+<div class="section level2">
+<h2 id="collab">Collaboration: Narrative Text vs Code<a class="anchor" aria-label="anchor" href="#collab"></a>
+</h2>
 <p>As stated above, during the collaborative writing/editing of an <code>.Rmd</code> (or <code>.Rnw</code>) document, it is important to employ different workflows for computer code and narrative text. Collaborative code writing should be based on version control systems like Git, whereas collaborative writing of the narrative text can be done more efficiently in Google Docs. Let’s further discuss these two aspects:</p>
 <ul>
 <li><p><strong>Code</strong> - Collaborative code writing is done most efficiently using version control systems like <strong>Git</strong>. Ideally, collaborators working on the code are experienced enough to organize the project in an online repository (e.g., GitHub or GitLab) and manage the workflow using Git. Writing or editing actual code in Google Docs, although possible, is strongly discouraged as it is not possible to run the code to check if it is correct. Thus, it is very easy to introduce errors that would break the code. It is highly recommended to write code in an appropriate IDE (e.g., RStudio).</p></li>
@@ -226,11 +225,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer, Mathew Ling.</p>
+  <p></p>
+<p>Developed by Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer, Mathew Ling.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -238,6 +239,8 @@
 
   
 
+
+  
 
   </body>
 </html>
