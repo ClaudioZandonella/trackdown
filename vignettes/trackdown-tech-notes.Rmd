@@ -45,7 +45,9 @@ When working with HTML output files, `trackdown` can automatically convert them 
 
 ### Authentication {#auth}
 
-Under the hood, the `trackdown` package uses functions from the `googledrive` R package ([Official Documentation](https://googledrive.tidyverse.org/)) to manage files transfers to and from Google Drive. However, the `googledrive` package requires authorization to view and manage a user’s Google Drive files. The first time one uses `trackdown`, one will be directed to a web browser and asked to sign in to one’s Google account to grant `googledrive` permission to communicate with Google Drive.
+> From `trackdown` v1.3.0 (still in development), the `trackdown` package uses its own API credentials (OAuth client ID and secret; see `vignette("trackdown-privacy-policy")`). 
+
+Under the hood, the `trackdown` package uses functions from the `googledrive` R package ([Official Documentation](https://googledrive.tidyverse.org/)) to manage files transfers to and from Google Drive. These operations requires authorization to view and manage a user’s Google Drive files.  The first time one uses `trackdown`, one will be directed to a web browser and asked to sign in to one’s Google account to grant `googledrive` permission to communicate with Google Drive.
 
 Authentication is managed by the `gargle` R package ([Official Documentation](https://gargle.r-lib.org/index.html)). By default, user credentials are cached in a folder in the user’s home directory, `~/.R/gargle/gargle-oauth`, from where they can be automatically refreshed, as necessary. Storage at the user level means that the same token can be used across multiple projects and tokens are less likely to be synced to the cloud by accident. Note that if one is using R from a web-based platform like RStudio Server or Cloud, there will be a variant of this user authentification flow, known as out-of-band auth ("oob"). See help page of `googledrive::drive_auth()` for further information ([link](https://googledrive.tidyverse.org/reference/drive_auth.html)).
 

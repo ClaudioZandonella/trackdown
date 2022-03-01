@@ -49,6 +49,7 @@ trackdown_app <- function(){
 #' Set trackdown Client API
 #'
 #' @return NULL
+#' @noRd
 #'
 
 active_trackdown_app <- function(){

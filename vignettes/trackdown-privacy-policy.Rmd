@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+> The following Privacy Policy notes are valid for `trackdown` v1.3.0 (still in development)
+
 The `trackdown` package works with Google APIs from R.
 
 The `trackdown` package is governed by policies recorded here. The `trackdown` package uses internal resources owned by the “Trackdown R Package” project on Google Cloud Platform. That is the name you will see in a consent screen.
@@ -44,7 +46,7 @@ Overview of the scopes requested by the Trackdown R Package project and their ra
 
 - Drive (read/write): The `trackdown` package allows you to upload and download files to your Drive and therefore the default scopes include read/write access.
 
-- Docs (read/write): The `trackdown` package allows you to modify the your Docs documents and therefore the default scopes include read/write access.
+- Docs (read/write): The `trackdown` package allows you to modify your Docs documents and therefore the default scopes include read/write access.
 
 ### Sharing User Data
 
