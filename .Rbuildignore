@@ -35,3 +35,4 @@
 ^tests/testthat/test_files/examples$
 ^data-raw$
 ^trial$
+^old$
