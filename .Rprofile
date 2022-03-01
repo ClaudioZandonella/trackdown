@@ -4,7 +4,7 @@ if(interactive()){
 
 options(
   gargle_oauth_cache = ".secrets",
-  gargle_oauth_email = "trackdown.rpackage@gmail.com"
+  gargle_oauth_email = "trackdown.tests@gmail.com"
 )
 
 if (interactive() && require('devtools')){

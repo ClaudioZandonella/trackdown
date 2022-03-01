@@ -41,7 +41,7 @@ get_auth_credentials <- function(){
     # set options 
     options(
       gargle_oauth_cache = paste0(file_path, "secrets"),
-      gargle_oauth_email = "trackdown.rpackage@gmail.com"
+      gargle_oauth_email = "trackdown.tests@gmail.com"
     )
     
     googledrive::drive_auth()
