@@ -2,6 +2,10 @@
 ####    Trackdown Auth    ####
 ##############################
 
+# Follow gargle and googledrie recommendations
+# https://gargle.r-lib.org/articles/gargle-auth-in-client-package.html
+# https://googledrive.tidyverse.org/articles/bring-your-own-app.html
+
 #----    check_from_trackdown    ----
 
 #' Check Call is from trackdown

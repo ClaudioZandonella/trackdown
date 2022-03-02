@@ -33,12 +33,12 @@ License: GPL-3
 Encoding: UTF-8
 Imports:
     cli (>= 3.0.0),
+    gargle (>= 1.2.0),
     googledrive (> 1.0.1),
     rmarkdown
 Suggests: 
     covr,
     devtools,
-    gargle,
     httr,
     knitr,
     pagedown,

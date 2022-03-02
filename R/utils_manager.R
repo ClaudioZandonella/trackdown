@@ -104,7 +104,8 @@ evaluate_file <- function(file,
 
 upload_document <- function(file, file_info, 
                             gfile, gpath, dribble_document, 
-                            hide_code, update = FALSE){
+                            hide_code, rich_text = TRUE, rich_text_par = NULL,
+                            update = FALSE){
   #---- temp file ----
   # create .temp-file to upload
   temp_file <- file.path(file_info$path, 
@@ -132,10 +133,10 @@ upload_document <- function(file, file_info,
   googledrive::local_drive_quiet() # suppress messages from googledrive
   
   # Format document to a single string
-  document <- format_document(document, 
-                              file_info = file_info, 
-                              hide_code = hide_code)
-  cat(document, file = temp_file)
+  document_oneline <- format_document(document, 
+                                      file_info = file_info, 
+                                      hide_code = hide_code)
+  cat(document_oneline, file = temp_file)
   
   
   if(isTRUE(update)){
@@ -161,6 +162,16 @@ upload_document <- function(file, file_info,
     finish_process(paste("Document uploaded at",
                          cli::col_blue(paste(gpath, gfile, sep = "/"))))
   }
+  
+  #----    rich_text    ----
+  
+  # if(isTRUE(rich_text)){
+  #   run_rich_text(text = document_oneline, 
+  #                 document_ID = res$id,
+  #                 extension = file_info$extension,
+  #                 rich_text_par = rich_text_par)
+  # }
+  
   
   return(res)
 }
