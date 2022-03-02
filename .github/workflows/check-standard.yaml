@@ -2,9 +2,9 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master, develop, token-auth]
+    branches: [main, master, develop, token-auth, rich-text]
   pull_request:
-    branches: [main, master, develop, token-auth]
+    branches: [main, master, develop, token-auth, rich-text]
 
 name: R-CMD-check
 
