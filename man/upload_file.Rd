@@ -52,9 +52,7 @@ settings for rich_text. See “Rich Text” in details section.}
 (default is \code{FALSE}).}
 }
 \value{
-a dribble of the uploaded file (and output if specified). highlight
-  important text (e.g., code chunks and in-line code) in the Google Docs
-  document (default is \code{TRUE})
+a dribble of the uploaded file (and output if specified).
 }
 \description{
 Uploads a local file to Google Drive as a plain text document. Will only
