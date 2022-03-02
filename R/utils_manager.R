@@ -165,13 +165,12 @@ upload_document <- function(file, file_info,
   
   #----    rich_text    ----
   
-  # if(isTRUE(rich_text)){
-  #   run_rich_text(text = document_oneline, 
-  #                 document_ID = res$id,
-  #                 extension = file_info$extension,
-  #                 rich_text_par = rich_text_par)
-  # }
-  
+  if(isTRUE(rich_text)){
+    run_rich_text(text = document_oneline,
+                  document_ID = res$id,
+                  extension = file_info$extension,
+                  rich_text_par = rich_text_par)
+  }
   
   return(res)
 }

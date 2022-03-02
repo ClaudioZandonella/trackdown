@@ -16,13 +16,13 @@
 #' available, users can decide to upload a pdf version of the html file.\cr\cr
 #' To know more about \code{trackdown} workflow and features see
 #' \code{\link{trackdown-package}} help page.
-#' 
+#'
 #' @param file character. The path of a local `.Rmd` or `.Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
 #' @param gpath character. (Sub)directory in My Drive or a shared drive
 #'   (optional). By default files are uploaded in the folder "trackdown". To
-#'   specify another folder the full path is required (e.g., 
+#'   specify another folder the full path is required (e.g.,
 #'   "trackdown/my_folder"). Use \code{NULL} to upload directly at the root
 #'   level, although it is not recommended.
 #' @param shared_drive character. The name of a Google Drive shared drive
@@ -30,15 +30,48 @@
 #' @param hide_code logical value indicating whether to remove code from the
 #'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 #'   are displayed instead.
-#' @param  path_output default \code{NULL}, specify the path to the output to upload
-#'   together with the other file. PDF are directly uploaded, HTML can be first
-#'   converted into PDF if package \code{pagedown} and Chrome are available.
+#' @param  path_output default \code{NULL}, specify the path to the output to
+#'   upload together with the other file. PDF are directly uploaded, HTML can be
+#'   first converted into PDF if package \code{pagedown} and Chrome are
+#'   available.
+#' @param rich_text [experimental] logical value (default is \code{TRUE})
+#'   indicating whether to upload to Google Docs a rich document (i.e.,
+#'   important text that should not be changed is highlighted). See “Rich Text”
+#'   in details section.
+#' @param rich_text_par [experimental] argument used to pass a list with custom
+#'   settings for rich_text. See “Rich Text” in details section.
 #' @param force logical value indicating whether to skip confirm check by user
 #'   (default is \code{FALSE}).
-#'   
+#'
 #' @return a dribble of the uploaded file (and output if specified).
-#' 
+#'
+#' @details
+#'
+#' \strong{Rich Text [experimental]}
+#'
+#' The \code{rich_text} option (default is \code{TRUE}) allows to upload a rich
+#' document to Google Docs. Important text that should not be changed is
+#' highlighted. This includes, added Instructions at the top of the document,
+#' Placeholders hiding the code, header of the document (YAML header or LaTeX
+#' preamble), code chunks, and in-line code.
+#'
+#' Default colour is opaque yellow. You can customize the colour specifying the
+#' \code{rgb_color} option in the \code{rich_text_par} argument. The
+#' \code{rgb_color} has to be a list with elements \code{red}, \code{green}, and \code{blue}.
+#' Each elemnt has to be a numeric value between 0 and 1. See example below.
+#'
 #' @export
+#' 
+#' @examples 
+#' 
+#' \dontrun{
+#' 
+#' # Change default color to opaque light-blue
+#' upload_file(file = "path-to/my-file", rich_text = TRUE,
+#'             rich_text_par = list(rgb_color = list(red = 102/255,
+#'                                                   green = 204/255,
+#'                                                   blue = 255/255)))
+#' }
 #' 
 
 upload_file <- function(file,
@@ -47,6 +80,8 @@ upload_file <- function(file,
                         shared_drive = NULL,
                         hide_code = FALSE,
                         path_output = NULL,
+                        rich_text = TRUE,
+                        rich_text_par = NULL,
                         force = FALSE) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
@@ -82,7 +117,9 @@ upload_file <- function(file,
     gfile = document$gfile,
     gpath = gpath,
     dribble_document = document$dribble_info, 
-    hide_code = hide_code, 
+    hide_code = hide_code,
+    rich_text = rich_text,
+    rich_text_par = rich_text_par,
     update = FALSE)
   
   #---- upload output ----
@@ -124,7 +161,21 @@ upload_file <- function(file,
 #' @inheritParams upload_file
 #' 
 #' @return a dribble of the uploaded file (and output if specified).
+#' 
+#' @inherit upload_file details
+#' 
 #' @export
+#'
+#' @examples 
+#' 
+#' \dontrun{
+#' 
+#' # Change default color to opaque light-blue
+#' update_file(file = "path-to/my-file", rich_text = TRUE,
+#'             rich_text_par = list(rgb_color = list(red = 102/255,
+#'                                                   green = 204/255,
+#'                                                   blue = 255/255)))
+#' }
 #'
 
 update_file <- function(file,
@@ -133,6 +184,8 @@ update_file <- function(file,
                         shared_drive = NULL,
                         hide_code = FALSE,
                         path_output = NULL,
+                        rich_text = TRUE,
+                        rich_text_par = NULL,
                         force = FALSE) {
   
   
@@ -183,7 +236,9 @@ update_file <- function(file,
     gfile = document$gfile, 
     gpath = gpath,
     dribble_document = document$dribble_info, 
-    hide_code = hide_code, 
+    hide_code = hide_code,
+    rich_text = rich_text,
+    rich_text_par = rich_text_par,
     update = TRUE)
   
   #---- upload output ----

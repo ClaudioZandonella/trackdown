@@ -17,7 +17,8 @@ test_that("expect error form upload_file", {
   vcr::use_cassette("upload_file_test_1", {
     upload_file_1 <- tryCatch(
       upload_file(file = paste0(file_path, "files_manager/example-1.Rmd"),
-                  gfile = "already-present-file", gpath = gpath),
+                  gfile = "already-present-file", gpath = gpath,
+                  rich_text = FALSE),
       error = function(e) e)
   })
   # expect message starting with
@@ -35,6 +36,7 @@ test_that("expect correct upload document", {
     dribble <- upload_file(file = paste0(file_path, "files_manager/example-1.Rmd"),
                            gpath = gpath,
                            hide_code = TRUE,
+                           rich_text = FALSE,
                            path_output = paste0(file_path, "files_manager/example-1.html"))
     googledrive::drive_rm(dribble)
   })
@@ -46,6 +48,7 @@ test_that("expect correct upload document", {
     dribble <- upload_file(file = paste0(file_path, "files_manager/example-1.Rnw"),
                            gpath = gpath,
                            hide_code = TRUE,
+                           rich_text = FALSE,
                            path_output = paste0(file_path, "files_manager/example-1.pdf"))
     googledrive::drive_rm(dribble)
   })
@@ -78,7 +81,7 @@ test_that("expect error form update_file", {
   vcr::use_cassette("update_file_test_1", {
     upload_file_1 <- tryCatch(
       update_file(file = paste0(file_path, "files_manager/example-1.Rmd"),
-                  gfile = "new-file", gpath = gpath),
+                  gfile = "new-file", gpath = gpath, rich_text = FALSE),
       error = function(e) e)
   })
   # expect message starting with
@@ -88,7 +91,7 @@ test_that("expect error form update_file", {
   vcr::use_cassette("update_file_test_2", {
     upload_file_1 <- tryCatch(
       update_file(file = paste0(file_path, "files_manager/example-1.Rmd"),
-                  gfile = "example-1-copy", gpath = gpath),
+                  gfile = "example-1-copy", gpath = gpath, rich_text = FALSE),
       error = function(e) e)
   })
   # expect message starting with
@@ -107,6 +110,7 @@ test_that("expect correct update document", {
                            gfile = "rmd-example-1-update",
                            gpath = gpath,
                            hide_code = TRUE,
+                           rich_text = FALSE,
                            path_output = paste0(file_path, "files_manager/example-1.html"))
   })
   expect_equal(nrow(dribble), 2)
@@ -118,6 +122,7 @@ test_that("expect correct update document", {
                            gfile = "rnw-example-1-update",
                            gpath = gpath,
                            hide_code = FALSE,
+                           rich_text = FALSE,
                            path_output = paste0(file_path, "files_manager/example-1.pdf"))
     googledrive::drive_rm(dribble[2, ])
   })

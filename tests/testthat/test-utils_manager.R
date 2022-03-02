@@ -87,7 +87,8 @@ test_that("upload the document correctly", {
     dribble_new <- upload_document(file = file, file_info = file_info,
                                    gfile = "new-example-1", gpath = gpath,
                                    dribble_document = dribble_old_example,
-                                   hide_code = FALSE, update = FALSE)
+                                   hide_code = FALSE, update = FALSE,
+                                   rich_text = FALSE)
 
     googledrive::drive_rm(dribble_new)
   })
@@ -99,7 +100,8 @@ test_that("upload the document correctly", {
     dribble_old <- upload_document(file = file, file_info = file_info,
                                    gfile = "old-example-1", gpath = gpath,
                                    dribble_document = dribble_old_example,
-                                   hide_code = TRUE, update = TRUE)
+                                   hide_code = TRUE, update = TRUE,
+                                   rich_text = FALSE)
 
   })
   expect_equal(dribble_old$name, "old-example-1")

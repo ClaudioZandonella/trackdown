@@ -21,7 +21,7 @@ file name).}
 
 \item{gpath}{character. (Sub)directory in My Drive or a shared drive
 (optional). By default files are uploaded in the folder "trackdown". To
-specify another folder the full path is required (e.g., 
+specify another folder the full path is required (e.g.,
 "trackdown/my_folder"). Use \code{NULL} to upload directly at the root
 level, although it is not recommended.}
 
