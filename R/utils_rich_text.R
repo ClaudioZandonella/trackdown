@@ -20,8 +20,7 @@ get_param_highlight_text <- function(text,
     rgb_color <- rich_text_par[["rgb_color"]]
   }
   
-  patterns <- get_patterns_highlight(text = text,
-                                     extension = extension)
+  patterns <- get_patterns_highlight(extension = extension)
   
   indexes_list <- lapply(patterns, function(x)
     get_range_index(pattern = x, text = text))
@@ -39,7 +38,7 @@ get_param_highlight_text <- function(text,
 
 #----    get_patterns_highlight    ----
 
-get_patterns_highlight <- function(text, extension){
+get_patterns_highlight <- function(extension){
   
   # Regex notes:
   # -  [\s\S]* all characters including new line (\s matches white spaces)
@@ -63,6 +62,8 @@ get_patterns_highlight <- function(text, extension){
   res <- c(
     # Instructions: all lines included between "#----Trackdown Instructions----#" and "#----End Instructions----#"
     "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#",
+    # Place-Holders: find place-holders of type [[document-*]] or [[chunk-*]]
+    "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]",
     patterns
   )
   
