@@ -1,0 +1,69 @@
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: example-rich-text.Rmd
+HIDE-CODE: FALSE
+#----End Instructions----#
+[[document-header]]
+
+[[chunk-setup]]
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum!
+
+`r sum(1:5)`
+
+A false inline code `r-code` or `r\ code` another `r `. Multiple inline code `r sum(1:5)` same line `r "Hello World!!!"` to avoid greedy.
+
+--- Lorem ipsum dolor sit amet consectetur adipisicing elit. `r sum(1:5)`!
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. `r "Hello World!!!"` Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+[[chunk-cars]]
+
+## Including Plots
+
+You can also embed plots, for example:
+
+[[chunk-pressure]]
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+[[chunk-4]]
+
+[[chunk-5]]
+
+[[chunk-6]]
+
+[[chunk-7]]
+
+[[chunk-8]]
+
+```a really strange inline block ```
+
+[[chunk-9]]
+
+[[chunk-10]]
+
+[[chunk-11]]
+
+End of the document!
