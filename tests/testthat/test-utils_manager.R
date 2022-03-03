@@ -105,6 +105,25 @@ test_that("upload the document correctly", {
 
   })
   expect_equal(dribble_old$name, "old-example-1")
+  
+  # Upload rich text
+  file <- paste0(file_path,"utils_manager/rmd-rich-text.Rmd")
+  file_info <- get_file_info(file)
+  
+  # # dribble_rich_text
+  # dribble_rich_text <- get_dribble_info(gfile = "rmd-rich-text", path = gpath)
+  # save(dribble_rich_text, file = "tests/testthat/test_files/utils_manager/dribble_rich_text.rda")
+  load(paste0(file_path, "utils_manager/dribble_rich_text.rda"))
+  
+  vcr::use_cassette("upload_document_test_3", {
+    dribble_rich <- upload_document(file = file, file_info = file_info,
+                                   gpath = gpath, gfile = "rmd-rich-text",
+                                   dribble_document = dribble_rich_text,
+                                   hide_code = TRUE, update = TRUE,
+                                   rich_text = TRUE)
+    
+  })
+  expect_equal(dribble_rich$name, "rmd-rich-text")
 
   # remove files
   unlink(paste0(file_path, "utils_manager/.trackdown"), recursive = TRUE)

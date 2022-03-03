@@ -1,0 +1,90 @@
+---
+title: "Trackdown Test"
+author: "trackdown"
+date: "2/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum!
+
+`r sum(1:5)`
+
+A false inline code `r-code` or `r\ code` another `r `. Multiple inline code `r sum(1:5)` same line `r "Hello World!!!"` to avoid greedy.
+
+--- Lorem ipsum dolor sit amet consectetur adipisicing elit. `r sum(1:5)`!
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. `r "Hello World!!!"` Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r, pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r, echo=FALSE, warning=FALSE}
+# R chunk with no name but multiple options (using ,)
+```
+
+
+```{sql, eval=FALSE}
+/*A sql chunk chunk with no name but options*/
+```
+
+```{eval = TRUE}
+A void code
+```
+
+```{}
+Another void code
+```
+
+```
+Still another void code
+```
+
+```a really strange inline block ```
+
+``` {r}
+# a strange chuck header with space before {
+```
+
+``` bash
+$ pwd 1
+```
+
+``` bash
+$ pwd 2
+```
+
+End of the document!

@@ -1,0 +1,212 @@
+http_interactions:
+- request:
+    method: patch
+    uri: https://www.googleapis.com/upload/drive/v3/files/1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE?supportsAllDrives=TRUE&fields=%2A&uploadType=multipart
+    body:
+      encoding: ''
+      string: metadata=list(path = "/private/var/folders/y5/btw5zzhj5jsb6cmlv7x4_q7h0000gp/T/Rtmpp4UOn5/drive-update-meta1440a3dd52c42.json",
+        type = "application/json; charset=UTF-8"),media=list(path = "/Users/claudio/Dottorato/Pacchetti/trackdown/tests/testthat/test_files/utils_manager/.temp-rmd-rich-text.txt",
+        type = "text/plain")
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      content-length: '4361'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 03 Mar 2022 17:41:03 GMT
+      expires: Mon, 01 Jan 1990 00:00:00 GMT
+      pragma: no-cache
+      server: UploadServer
+      vary:
+      - Origin
+      - X-Origin
+      x-guploader-uploadid: ADPycdv6J7hzgcW7E497KXWhzwMR0sSLhZDlDkZHJET4ywSc2o1qDuADoJvcjiRo-_Bc0QmxKA9C5ZNQQFvvawhw6wTPJSPCMg
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+         "kind": "drive#file",
+         "id": "1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE",
+         "name": "rmd-rich-text",
+         "mimeType": "application/vnd.google-apps.document",
+         "starred": false,
+         "trashed": false,
+         "explicitlyTrashed": false,
+         "parents": [
+          "1fPMaNeiJv9JumpYKl40-lfq0B9Ju_pZx"
+         ],
+         "spaces": [
+          "drive"
+         ],
+         "version": "6",
+         "webContentLink": "https://drive.google.com/uc?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&export=download",
+         "webViewLink": "https://docs.google.com/document/d/1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE/edit?usp=drivesdk",
+         "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.document",
+         "hasThumbnail": true,
+         "thumbnailLink": "https://docs.google.com/feeds/vt?gd=true&id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&v=1&s=AMedNnoAAAAAYiEZzwfF8CqRC8M7ETiGDYYzx9TZm-j9&sz=s220",
+         "thumbnailVersion": "1",
+         "viewedByMe": true,
+         "viewedByMeTime": "2022-03-03T17:38:31.393Z",
+         "createdTime": "2022-03-03T17:38:29.348Z",
+         "modifiedTime": "2022-03-03T17:41:02.097Z",
+         "modifiedByMeTime": "2022-03-03T17:41:02.097Z",
+         "modifiedByMe": true,
+         "owners": [
+          {
+           "kind": "drive#user",
+           "displayName": "trackdown tests",
+           "photoLink": "https://lh3.googleusercontent.com/a/default-user=s64",
+           "me": true,
+           "permissionId": "07198277475976122843",
+           "emailAddress": "trackdown.tests@gmail.com"
+          }
+         ],
+         "lastModifyingUser": {
+          "kind": "drive#user",
+          "displayName": "trackdown tests",
+          "photoLink": "https://lh3.googleusercontent.com/a/default-user=s64",
+          "me": true,
+          "permissionId": "07198277475976122843",
+          "emailAddress": "trackdown.tests@gmail.com"
+         },
+         "shared": false,
+         "ownedByMe": true,
+         "capabilities": {
+          "canAcceptOwnership": false,
+          "canAddChildren": false,
+          "canAddMyDriveParent": false,
+          "canChangeCopyRequiresWriterPermission": true,
+          "canChangeSecurityUpdateEnabled": false,
+          "canChangeViewersCanCopyContent": true,
+          "canComment": true,
+          "canCopy": true,
+          "canDelete": true,
+          "canDownload": true,
+          "canEdit": true,
+          "canListChildren": false,
+          "canModifyContent": true,
+          "canMoveChildrenWithinDrive": false,
+          "canMoveItemIntoTeamDrive": true,
+          "canMoveItemOutOfDrive": true,
+          "canMoveItemWithinDrive": true,
+          "canReadRevisions": true,
+          "canRemoveChildren": false,
+          "canRemoveMyDriveParent": true,
+          "canRename": true,
+          "canShare": true,
+          "canTrash": true,
+          "canUntrash": true
+         },
+         "viewersCanCopyContent": true,
+         "copyRequiresWriterPermission": false,
+         "writersCanShare": true,
+         "permissions": [
+          {
+           "kind": "drive#permission",
+           "id": "07198277475976122843",
+           "type": "user",
+           "emailAddress": "trackdown.tests@gmail.com",
+           "role": "owner",
+           "displayName": "trackdown tests",
+           "photoLink": "https://lh3.googleusercontent.com/a/default-user=s64",
+           "deleted": false,
+           "pendingOwner": false
+          }
+         ],
+         "permissionIds": [
+          "07198277475976122843"
+         ],
+         "size": "1024",
+         "quotaBytesUsed": "1024",
+         "isAppAuthorized": true,
+         "exportLinks": {
+          "application/rtf": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=rtf",
+          "application/vnd.oasis.opendocument.text": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=odt",
+          "text/html": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=html",
+          "application/pdf": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=pdf",
+          "application/epub+zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=epub",
+          "application/zip": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=zip",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=docx",
+          "text/plain": "https://docs.google.com/feeds/download/documents/export/Export?id=1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE&exportFormat=txt"
+         },
+         "linkShareMetadata": {
+          "securityUpdateEligible": false,
+          "securityUpdateEnabled": true
+         }
+        }
+  recorded_at: 2022-03-03 17:41:04 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
+- request:
+    method: post
+    uri: https://docs.googleapis.com/v1/documents/1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE:batchUpdate
+    body:
+      encoding: ''
+      string: '{"requests":[{"updateTextStyle":{"range":{"startIndex":1,"endIndex":593},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":594,"endIndex":613},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":615,"endIndex":630},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2204,"endIndex":2218},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2280,"endIndex":2298},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2427,"endIndex":2438},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2440,"endIndex":2451},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2453,"endIndex":2464},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2466,"endIndex":2477},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2479,"endIndex":2490},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2530,"endIndex":2541},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2543,"endIndex":2555},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2557,"endIndex":2569},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1157,"endIndex":1169},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1248,"endIndex":1260},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1271,"endIndex":1291},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1371,"endIndex":1383},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1741,"endIndex":1761},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      cache-control: private
+      content-encoding: gzip
+      content-length: '233'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 03 Mar 2022 17:41:04 GMT
+      server: ESF
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-xss-protection: '0'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "replies": [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+          ],
+          "writeControl": {
+            "requiredRevisionId": "ALm37BUbwtNAEaZ_u92Z7lpAN7gwxb3xldhsAQSEZ1UJ7yiW5A8ULLKRZ46mi4BaTzq4A0HK2agVr5gRb1OftFw"
+          },
+          "documentId": "1ZSN8K4_ncx3kbHIPA5gttDLpbCZg51RYuZL4-3vrIuE"
+        }
+  recorded_at: 2022-03-03 17:41:04 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0
