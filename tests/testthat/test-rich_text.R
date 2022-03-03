@@ -7,7 +7,8 @@ file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 #----    run_rich_text    ----
 
 test_that("get correct rich document in google Docs with run_rich_text()", {
-
+  skip_if_no_token()
+  skip_if_offline()
   #--- rmd ----
 
   # Rmd main normal
