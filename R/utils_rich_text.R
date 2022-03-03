@@ -98,7 +98,6 @@ get_patterns_highlight <- function(extension){
   # -  .*? non-greedy
   # -  (?<=a)b Positive lookbehind: Matches "b" if is preceded by "a"
   # -  (?<!a)b Negative lookbehind: Matches "b" if is NOT preceded by "a"
-  # -  (?=a)b Positive lookahead: Matches "b" if is followed by "a"
   
   if(extension == "rmd"){
     patterns <- c(
@@ -107,7 +106,7 @@ get_patterns_highlight <- function(extension){
       # Chunks: all lines included between "```" and "```". Must be on different lines
       "(?<=\n)```[^`]*\n[\\s\\S]*?```",
       # In-line Code
-      "`r [^`]+(?=`)"
+      "`r [^`]+`"
     )
   } else {
     patterns <- NULL

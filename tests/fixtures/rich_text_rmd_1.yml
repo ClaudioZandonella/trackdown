@@ -1,0 +1,65 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://docs.googleapis.com/v1/documents/1XDtFNFG4G3VlHeWiDO5GStLmPZcCcZ4yEXh5Fv2uU3M:batchUpdate
+    body:
+      encoding: ''
+      string: '{"requests":[{"updateTextStyle":{"range":{"startIndex":1,"endIndex":503},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":504,"endIndex":594},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":596,"endIndex":662},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2236,"endIndex":2265},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2327,"endIndex":2374},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2503,"endIndex":2594},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2596,"endIndex":2667},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2669,"endIndex":2701},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2703,"endIndex":2730},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2732,"endIndex":2763},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2803,"endIndex":2859},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2861,"endIndex":2881},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2883,"endIndex":2903},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1189,"endIndex":1201},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1280,"endIndex":1292},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1303,"endIndex":1323},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1403,"endIndex":1415},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1773,"endIndex":1793},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      cache-control: private
+      content-encoding: gzip
+      content-length: '232'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 03 Mar 2022 16:41:47 GMT
+      server: ESF
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-xss-protection: '0'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "replies": [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+          ],
+          "writeControl": {
+            "requiredRevisionId": "ALm37BWdRcdTzrHUSnOZo_EMX6KggkEVmXVT9MijSakDIS2wVJPgJW2pvPixIulwizvFIev3__GIVCFsAJPMtiY"
+          },
+          "documentId": "1XDtFNFG4G3VlHeWiDO5GStLmPZcCcZ4yEXh5Fv2uU3M"
+        }
+  recorded_at: 2022-03-03 16:41:47 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

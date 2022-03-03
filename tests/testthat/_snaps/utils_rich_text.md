@@ -145,19 +145,19 @@
     [1] "``` bash\n$ pwd 2\n```\n"
     
     [[14]]
-    [1] "`r sum(1:5)`"
+    [1] "`r sum(1:5)`\n"
     
     [[15]]
-    [1] "`r sum(1:5)`"
+    [1] "`r sum(1:5)` "
     
     [[16]]
-    [1] "`r \"Hello World!!!\"`"
+    [1] "`r \"Hello World!!!\"` "
     
     [[17]]
-    [1] "`r sum(1:5)`"
+    [1] "`r sum(1:5)`!"
     
     [[18]]
-    [1] "`r \"Hello World!!!\"`"
+    [1] "`r \"Hello World!!!\"` "
     
 
 ---
@@ -171,7 +171,7 @@
     
     [[1]]$updateTextStyle$range$endIndex
     end_index 
-          512 
+          588 
     
     
     [[1]]$updateTextStyle$textStyle
@@ -201,11 +201,11 @@
     [[2]]$updateTextStyle$range
     [[2]]$updateTextStyle$range$startIndex
     start_index 
-            513 
+            589 
     
     [[2]]$updateTextStyle$range$endIndex
     end_index 
-          532 
+          608 
     
     
     [[2]]$updateTextStyle$textStyle
@@ -235,11 +235,11 @@
     [[3]]$updateTextStyle$range
     [[3]]$updateTextStyle$range$startIndex
     start_index 
-            534 
+            610 
     
     [[3]]$updateTextStyle$range$endIndex
     end_index 
-          549 
+          625 
     
     
     [[3]]$updateTextStyle$textStyle
@@ -268,7 +268,7 @@
 ---
 
     [[1]]
-    [1] "#----Trackdown Instructions----#\nThis is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.\nOnce the review is over accept all changes: Tools -> Review suggested edits -> Accept all.\nYou must not modify or remove these lines, we will do it for you ;)\nFILE-NAME: example-rich-text.Rmd\nHIDE-CODE: FALSE\n#----End Instructions----#\n"
+    [1] "#----Trackdown Instructions----#\nThis is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.\nPlease do not remove placeholders of type \"[[chunk-<name>]]\" or \"[[document-header]]\"\nOnce the review is over accept all changes: Tools -> Review suggested edits -> Accept all.\nYou must not modify or remove these lines, we will do it for you ;)\nFILE-NAME: rmd-main.Rmd\nHIDE-CODE: TRUE\n#----End Instructions----#\n"
     
     [[2]]
     [1] "[[document-header]]\n"
@@ -307,19 +307,19 @@
     [1] "[[chunk-11]]\n"
     
     [[14]]
-    [1] "`r sum(1:5)`"
+    [1] "`r sum(1:5)`\n"
     
     [[15]]
-    [1] "`r sum(1:5)`"
+    [1] "`r sum(1:5)` "
     
     [[16]]
-    [1] "`r \"Hello World!!!\"`"
+    [1] "`r \"Hello World!!!\"` "
     
     [[17]]
-    [1] "`r sum(1:5)`"
+    [1] "`r sum(1:5)`!"
     
     [[18]]
-    [1] "`r \"Hello World!!!\"`"
+    [1] "`r \"Hello World!!!\"` "
     
 
 ---
@@ -402,7 +402,7 @@
     [2] "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]"                            
     [3] "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---"                
     [4] "(?<=\n)```[^`]*\n[\\s\\S]*?```"                                     
-    [5] "`r [^`]+(?=`)"                                                      
+    [5] "`r [^`]+`"                                                          
 
 # get correct range indexes from get_range_index()
 
@@ -422,18 +422,18 @@
 ---
 
        start_index end_index
-    1          513       532
-    2          534       549
-    3         2123      2137
-    4         2199      2217
-    5         2346      2357
-    6         2359      2370
-    7         2372      2383
-    8         2385      2396
-    9         2398      2409
-    10        2449      2460
-    11        2462      2474
-    12        2476      2488
+    1          589       608
+    2          610       625
+    3         2199      2213
+    4         2275      2293
+    5         2422      2433
+    6         2435      2446
+    7         2448      2459
+    8         2461      2472
+    9         2474      2485
+    10        2525      2536
+    11        2538      2550
+    12        2552      2564
 
 # get correct template from template_highlight_text()
 

@@ -1,14 +1,13 @@
-#----Trackdown Instructions----#
-This is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
-Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
-Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
-You must not modify or remove these lines, we will do it for you ;)
-FILE-NAME: rmd-main.Rmd
-HIDE-CODE: TRUE
-#----End Instructions----#
-[[document-header]]
+---
+title: "Trackdown Test"
+author: "trackdown"
+date: "2/3/2021"
+output: html_document
+---
 
-[[chunk-setup]]
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## R Markdown
 
@@ -39,32 +38,53 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. `r "Hello World!!!"` Ma
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-[[chunk-cars]]
+```{r cars}
+summary(cars)
+```
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-[[chunk-pressure]]
+```{r, pressure, echo=FALSE}
+plot(pressure)
+```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-[[chunk-4]]
+```{r, echo=FALSE, warning=FALSE}
+# R chunk with no name but multiple options (using ,)
+```
 
-[[chunk-5]]
 
-[[chunk-6]]
+```{sql, eval=FALSE}
+/*A sql chunk chunk with no name but options*/
+```
 
-[[chunk-7]]
+```{eval = TRUE}
+A void code
+```
 
-[[chunk-8]]
+```{}
+Another void code
+```
+
+```
+Still another void code
+```
 
 ```a really strange inline block ```
 
-[[chunk-9]]
+``` {r}
+# a strange chuck header with space before {
+```
 
-[[chunk-10]]
+``` bash
+$ pwd 1
+```
 
-[[chunk-11]]
+``` bash
+$ pwd 2
+```
 
 End of the document!

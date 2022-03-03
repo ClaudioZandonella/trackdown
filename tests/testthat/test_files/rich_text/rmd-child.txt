@@ -1,0 +1,21 @@
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: rmd-child.Rmd
+HIDE-CODE: FALSE
+#----End Instructions----#
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+optio, eaque rerum!
