@@ -78,7 +78,7 @@ preamble), code chunks, and in-line code.
 Default colour is opaque yellow. You can customize the colour specifying the
 \code{rgb_color} option in the \code{rich_text_par} argument. The
 \code{rgb_color} has to be a list with elements \code{red}, \code{green}, and \code{blue}.
-Each elemnt has to be a numeric value between 0 and 1. See example below.
+Each element has to be a numeric value between 0 and 1. See example below.
 }
 \examples{
 

@@ -88,6 +88,11 @@ evaluate_file <- function(file,
 #'   are displayed instead.
 #' @param update logical value indicating whether to update or upload the
 #'   document.
+#' @param rich_text [experimental] logical value (default is \code{TRUE})
+#'   indicating whether to upload to Google Docs a rich document (i.e.,
+#'   important text that should not be changed is highlighted).
+#' @param rich_text_par [experimental] argument used to pass a list with custom
+#'   settings for rich_text.
 #'
 #' @return a dribble of the uploaded (or updated) document
 #' @noRd
@@ -170,6 +175,8 @@ upload_document <- function(file, file_info,
                   document_ID = res$id,
                   extension = file_info$extension,
                   rich_text_par = rich_text_par)
+    
+    finish_process("Rich text requests completed")
   }
   
   return(res)
