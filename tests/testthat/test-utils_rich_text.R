@@ -8,6 +8,7 @@ file_path <- ifelse(interactive(), "tests/testthat/test_files/", "test_files/")
 
 test_that("get correct request parameters from get_param_highlight_text()", {
   
+  #----    rmd    ----
   # normal rmd text
   rmd_rich_text <- paste(readLines(
     paste0(file_path, "utils_rich_text/rmd-rich-text.txt")), collapse = "\n")
@@ -46,6 +47,39 @@ test_that("get correct request parameters from get_param_highlight_text()", {
                                       green = 204/255,
                                       blue = 255/255)))
   expect_snapshot_output(res_4)
+  
+  #----    rnw    ----
+  
+  # normal rnw text
+  rnw_main <- paste(readLines(
+    paste0(file_path, "utils_rich_text/rnw-main.txt")), collapse = "\n")
+  res_5 <- get_param_highlight_text(rnw_main, extension = "rnw")
+  extract_5 <- lapply(res_5, function(x) substr(rnw_main,
+                                                x$updateTextStyle$range$startIndex,
+                                                x$updateTextStyle$range$endIndex))
+  
+  expect_equal(length(res_5), 12)
+  expect_snapshot_output(res_5[1:3])
+  expect_snapshot_output(extract_5)
+  
+  # hide code rnw text
+  rnw_hide_code <- paste(readLines(
+    paste0(file_path, "utils_rich_text/rnw-hide-code.txt")), collapse = "\n")
+  res_6 <- get_param_highlight_text(rnw_hide_code, extension = "rnw")
+  extract_6 <- lapply(res_6, function(x) substr(rnw_hide_code,
+                                                x$updateTextStyle$range$startIndex,
+                                                x$updateTextStyle$range$endIndex))
+  
+  expect_equal(length(res_6), 11) #  11 instead of 12 because set-up chunk is inside header
+  expect_snapshot_output(res_6[1:3])
+  expect_snapshot_output(extract_6)
+  
+  # rnw minimal
+  rnw_minimal <- paste(readLines(
+    paste0(file_path, "utils_rich_text/rnw-minimal.txt")), collapse = "\n")
+  res_7 <- get_param_highlight_text(rnw_minimal, extension = "rnw")
+  expect_equal(length(res_7), 1)
+  expect_snapshot_output(res_7)
 })
 
 
@@ -55,6 +89,9 @@ test_that("get correct patterns from get_patterns_highlight()", {
   
   # Rmd
   expect_snapshot_output(get_patterns_highlight(extension = "rmd"))
+  
+  # Rnw
+  expect_snapshot_output(get_patterns_highlight(extension = "rnw"))
   
 })
 
@@ -82,6 +119,28 @@ test_that("get correct range indexes from get_range_index()", {
   # No matches
   res_3 <- get_range_index(pattern_rmd[2], rmd_rich_text)
   expect_equal(nrow(res_3), 0)
+  
+  
+  #---- Rmd ----
+  pattern_rnw <- get_patterns_highlight(extension = "rnw")
+  
+  # normal rmd text
+  rnw_main <- paste(readLines(
+    paste0(file_path, "utils_rich_text/rnw-main.txt")), collapse = "\n")
+  res_4 <- get_range_index(pattern_rnw[4], rnw_main)
+  
+  expect_snapshot_output(res_4)
+  
+  # hide code rmd text
+  rnw_hide_code <- paste(readLines(
+    paste0(file_path, "utils_rich_text/rnw-hide-code.txt")), collapse = "\n")
+  res_5 <- get_range_index(pattern_rnw[2], rnw_hide_code)
+  
+  expect_snapshot_output(res_5)
+  
+  # No matches
+  res_6 <- get_range_index(pattern_rnw[2], rnw_main)
+  expect_equal(nrow(res_6), 0)
 })
 
 

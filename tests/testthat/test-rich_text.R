@@ -59,6 +59,58 @@ test_that("get correct rich document in google Docs with run_rich_text()", {
   })
 
   expect_snapshot_output(response_3$replies)
+  
+  
+  #----    rnw    ----
+  
+  # Rnw main normal
+  
+  # update_file(file = paste0(file_path, "rich_text/rnw-main.Rnw"),
+  #             gpath = "unit_tests/rich_text", rich_text = FALSE, force = TRUE)
+  
+  rnw_main <- paste(readLines(paste0(file_path, "rich_text/rnw-main.txt")), collapse = "\n")
+  vcr::use_cassette("rich_text_rnw_1", {
+    response_4 <- run_rich_text(text = rnw_main,
+                                document_ID = "14vZunKODTzGtko9u3Y_aWxLYRlDmifCQgQYUDc61q_s",
+                                extension = "rnw")
+  })
+  
+  expect_snapshot_output(response_4$replies)
+  
+  # Rmd main hide code
+  
+  # update_file(file = paste0(file_path, "rich_text/rnw-main.Rnw"),
+  #             gpath = "unit_tests/rich_text", gfile = "rnw-hide-code",
+  #             hide_code = TRUE, rich_text = FALSE, force = TRUE)
+  
+  rnw_hide_code <- paste(readLines(paste0(file_path, "rich_text/rnw-hide-code.txt")), collapse = "\n")
+  vcr::use_cassette("rich_text_rnw_2", {
+    response_5 <- run_rich_text(text = rnw_hide_code,
+                                document_ID = "1Tyvo-CtnmRa3LF5vxfjwTPN1SWobE8oDc15omGkKHYE",
+                                extension = "rnw")
+  })
+  
+  expect_snapshot_output(response_5$replies)
+  
+  # Rmd child color blue
+  
+  # update_file(file = paste0(file_path, "rich_text/rnw-child.Rnw"),
+  #             gpath = "unit_tests/rich_text", hide_code = FALSE,
+  #             rich_text = FALSE, force = TRUE)
+  
+  rnw_child <- paste(readLines(paste0(file_path, "rich_text/rnw-child.txt")), collapse = "\n")
+  vcr::use_cassette("rich_text_rnw_3", {
+    response_6 <- run_rich_text(text = rnw_child,
+                                document_ID = "15xbnqgbgrsUa3zqmDL1Th6t0N0uJ_zBX8RNsjT3M8Ag",
+                                extension = "rnw",
+                                rich_text_par = list(rgb_color = list(
+                                  red = 102/255,
+                                  green = 204/255,
+                                  blue = 255/255)))
+  })
+  
+  expect_snapshot_output(response_6$replies)
+  
 
 })
 

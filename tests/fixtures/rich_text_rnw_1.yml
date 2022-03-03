@@ -1,0 +1,59 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://docs.googleapis.com/v1/documents/14vZunKODTzGtko9u3Y_aWxLYRlDmifCQgQYUDc61q_s:batchUpdate
+    body:
+      encoding: ''
+      string: '{"requests":[{"updateTextStyle":{"range":{"startIndex":1,"endIndex":500},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":535,"endIndex":1242},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1086,"endIndex":1148},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2191,"endIndex":2227},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2302,"endIndex":2344},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2473,"endIndex":2563},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2565,"endIndex":2654},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2656,"endIndex":2732},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":2734,"endIndex":2761},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1815,"endIndex":1831},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1854,"endIndex":1870},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":1881,"endIndex":1905},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      cache-control: private
+      content-encoding: gzip
+      content-length: '233'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 03 Mar 2022 18:59:09 GMT
+      server: ESF
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-xss-protection: '0'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "replies": [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+          ],
+          "writeControl": {
+            "requiredRevisionId": "ALm37BW1s_2qWLWH1w_IcSnxFBViyN2OiWfj4w4rEvZJ8rKVfzt0GRZHg4hpdCmtNkSIjLFm6Os8oEQRp8cy-jI"
+          },
+          "documentId": "14vZunKODTzGtko9u3Y_aWxLYRlDmifCQgQYUDc61q_s"
+        }
+  recorded_at: 2022-03-03 18:59:09 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

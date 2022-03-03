@@ -109,7 +109,14 @@ get_patterns_highlight <- function(extension){
       "`r [^`]+`"
     )
   } else {
-    patterns <- NULL
+    patterns <- c(
+      # Header: all lines included between "\documentclass{" and "\begin{document}". Must not be preceded by other "\" to avoid match possible document text
+      "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}",
+      # Chunks: all lines included between "<<...>>=" and "@".
+      "<<.*?>>=[\\s\\S]*?\\s*@\\s*?",
+      # In-line Code
+      "\\\\Sexpr{.+?}"
+    )
   }
   
   res <- c(

@@ -1,0 +1,48 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://docs.googleapis.com/v1/documents/15xbnqgbgrsUa3zqmDL1Th6t0N0uJ_zBX8RNsjT3M8Ag:batchUpdate
+    body:
+      encoding: ''
+      string: '{"requests":[{"updateTextStyle":{"range":{"startIndex":1,"endIndex":501},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":0.4,"green":0.8,"blue":1}}}},"fields":"*"}}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      cache-control: private
+      content-encoding: gzip
+      content-length: '229'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 03 Mar 2022 18:59:10 GMT
+      server: ESF
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-xss-protection: '0'
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        {
+          "replies": [
+            {}
+          ],
+          "writeControl": {
+            "requiredRevisionId": "ALm37BVAiT20S-ZXNP6lt9vX2a9q3k6K9BDwvxh9kytSgR-21544slXbQ99UB8zWFNojixs2Tb4vfxxO7xydbEE"
+          },
+          "documentId": "15xbnqgbgrsUa3zqmDL1Th6t0N0uJ_zBX8RNsjT3M8Ag"
+        }
+  recorded_at: 2022-03-03 18:59:10 GMT
+  recorded_with: vcr/1.0.2, webmockr/0.8.0

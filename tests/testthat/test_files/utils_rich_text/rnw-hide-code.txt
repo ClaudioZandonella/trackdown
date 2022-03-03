@@ -1,0 +1,52 @@
+#----Trackdown Instructions----#
+This is not a common Document. The Document includes properly formatted LaTeX syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
+Please do not remove placeholders of type "[[chunk-<name>]]" or "[[document-header]]"
+Once the review is over accept all changes: Tools -> Review suggested edits -> Accept all.
+You must not modify or remove these lines, we will do it for you ;)
+FILE-NAME: rnw-main.Rnw
+HIDE-CODE: TRUE
+#----End Instructions----#
+[[document-header]]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%    Title    %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%-------------------------------------------------------%
+%-----------         Introduction         --------------%
+%-------------------------------------------------------%
+
+\section{R and \LaTeX}
+
+This is an Rnw document. \LaTeX is a (\textit{not so}) simple formatting syntax for authoring PDF documents. For more details on using \LaTeX see \url{https://www.overleaf.com/learn}.
+
+\Sexpr{sum(1:5)}
+
+Multiple inline code \Sexpr{sum(1:5)} same line \Sexpr{"Hello World!!!"} to avooid greedy.
+
+Tryng to mess up \LaTeX \\documentclass{ 
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: \\begin{document}
+
+[[chunk-cars]]
+
+\section{Including Plots}
+
+You can also embed plots, for example:
+
+[[chunk-pressure]]
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+[[chunk-3]]
+
+[[chunk-4]]
+
+[[chunk-sql]]
+
+[[chunk-6]]
+
+End of the document
+
+\end{document}
