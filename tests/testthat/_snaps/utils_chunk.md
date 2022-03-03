@@ -1,3 +1,10 @@
+# check get_chunk_range works correctly
+
+      starts ends
+    1      8   10
+    2     18   20
+    3     24   26
+
 # get the correct extract_chunk
 
        language       name                     options starts ends index
@@ -63,6 +70,21 @@
     5        [[chunk-5]]
     6      [[chunk-sql]]
     7        [[chunk-7]]
+
+---
+
+      language  name         options starts ends index
+    1        r setup , include=FALSE      8   10     1
+    2     bash  <NA>                     18   20     2
+    3     bash  <NA>                     24   26     3
+                                                                chunk_text
+    1 ```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```
+    2                                                 ```bash\npwd #1\n```
+    3                                               ``` bash \npwd #2\n```
+             name_tag
+    1 [[chunk-setup]]
+    2     [[chunk-2]]
+    3     [[chunk-3]]
 
 # get the correct extract_header
 

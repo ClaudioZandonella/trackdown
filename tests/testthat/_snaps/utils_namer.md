@@ -24,3 +24,10 @@
     6       NA      sql              , eval=FALSE     71   73     6
     7       NA     <NA>                               75   77     7
 
+---
+
+      language  name         options starts ends index
+    1        r setup , include=FALSE      8   10     1
+    2     bash  <NA>                     18   20     2
+    3     bash  <NA>                     24   26     3
+

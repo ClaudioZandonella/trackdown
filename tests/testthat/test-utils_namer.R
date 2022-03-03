@@ -117,6 +117,10 @@ test_that("get the correct get_chunk_info", {
   expect_null(get_chunk_info(lines_no_chunk, info_patterns_rmd))
   expect_null(get_chunk_info(lines_no_chunk, info_patterns_rnw))
   
+  # chunks type ```bash
+  lines_bash <- readLines(paste0(file_path, "utils_chunk/example-bash.Rmd"))
+  expect_snapshot_output(get_chunk_info(lines_bash, info_patterns_rmd))
+  
 })
 
 #----

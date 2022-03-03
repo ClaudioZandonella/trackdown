@@ -34,6 +34,9 @@ test_that("check get_chunk_range works correctly", {
  
   expect_error(get_chunk_range(c("```", lines[8:10]), info_patterns))
   
+  # chunks type ```bash
+  lines_bash <- readLines(paste0(file_path, "utils_chunk/example-bash.Rmd"))
+  expect_snapshot_output(get_chunk_range(lines_bash, info_patterns))
 })
 
 #----    extract_chunk    ----
@@ -42,6 +45,9 @@ test_that("check get_chunk_range works correctly", {
 lines_rmd <- readLines(paste0(file_path, "utils_chunk/example-1.Rmd"))
 info_patterns_rmd <- get_extension_patterns(extension = "rmd")
 
+# chunks type ```bash
+lines_bash <- readLines(paste0(file_path, "utils_chunk/example-bash.Rmd"))
+
 # rnw
 lines_rnw <- readLines(paste0(file_path, "utils_chunk/example-1.Rnw"))
 info_patterns_rnw <- get_extension_patterns(extension = "rnw")
@@ -49,6 +55,7 @@ info_patterns_rnw <- get_extension_patterns(extension = "rnw")
 test_that("get the correct extract_chunk", {
   expect_snapshot_output(extract_chunk(lines_rmd, info_patterns_rmd))
   expect_snapshot_output(extract_chunk(lines_rnw, info_patterns_rnw))
+  expect_snapshot_output(extract_chunk(lines_bash, info_patterns_rmd))
 })
 
 test_that("get the correct extract_chunk no info", {
@@ -125,14 +132,16 @@ test_that("get the correct extract_header no header", {
 
 test_that("file info are correct", {
   
-  ex_rmd <- list(chunk_header_start = "^```(\\s*$|\\s*\\{)",
-                 chunk_header_end = "\\}\\s*$",
+  ex_rmd <- list(chunk_header_start = "^```\\s*\\{?",
+                 chunk_header_end = "\\}?\\s*$",
+                 chunk_start = "^```\\s*(\\S*\\s*$|\\{)",
                  chunk_end = "^```\\s*$",
                  file_header_start = "^---\\s*$",
                  file_header_end = "^---\\s*$",
                  extension = "rmd")
   ex_rnw <- list(chunk_header_start = "^<<",
                  chunk_header_end = ">>=.*$",
+                 chunk_start = "^<<",
                  chunk_end = "^@\\s*$",
                  file_header_start = "^\\\\documentclass\\{",
                  file_header_end = "^\\\\begin\\{document\\}",
