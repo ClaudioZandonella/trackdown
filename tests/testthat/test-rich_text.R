@@ -60,4 +60,42 @@ test_that("get correct rich document in google Docs with run_rich_text()", {
 
 })
 
+#----    run_rich_text    ----
+
+test_that("get correct request parameters from get_param_request()", {
+  
+  #---- Rmd ----
+  
+  # Rmd main normal
+  rmd_main <- paste(readLines(paste0(file_path, "rich_text/rmd-main.txt")), collapse = "\n")
+  par_1 <- get_param_request(text = rmd_main, document_ID = "document-ID", extension = "rmd")
+  
+  expect_snapshot_output(str(par_1))
+  
+})
+
+
+#----    build_request    ----
+
+test_that("get correct request from build_request()", {
+  
+  #---- Rmd ----
+  
+  # Rmd main normal
+  rmd_main <- paste(readLines(paste0(file_path, "rich_text/rmd-main.txt")), collapse = "\n")
+  par_1 <- get_param_request(text = rmd_main, document_ID = "document-ID", extension = "rmd")
+  
+  req_1 <- build_request(endpoint = "docs.documents.batchUpdate", 
+                         params = par_1, token = "My-token", 
+                         base_url = "https://docs.googleapis.com")
+  expect_snapshot_output(str(req_1))
+  
+  # Non existing endpoint
+  expect_error(build_request(endpoint = "a-new-endpoint", 
+                             params = par_1, token = "My-token", 
+                             base_url = "https://docs.googleapis.com"),
+               regexp = "^Endpoint .* not recognized")
+  
+})
+
 #---

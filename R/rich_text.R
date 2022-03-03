@@ -178,7 +178,7 @@ build_request <- function(endpoint = character(),
   # .endpoint is a package internal object with the endpoints available
   ept <- .endpoints[[endpoint]]
   if (is.null(ept)) {
-    stop(sprintf("\nEndpoint not recognized:\n  * %s", endpoint))
+    stop(sprintf("Endpoint '%s' not recognized", endpoint), call. = FALSE)
   }
   
   ## modifications specific to googledrive package
@@ -196,7 +196,7 @@ build_request <- function(endpoint = character(),
     method = request$method,
     params = request$params,
     body = request$body,
-    token = googledrive::drive_token(),
+    token = token,
     base_url = base_url)
   
   return(res)
