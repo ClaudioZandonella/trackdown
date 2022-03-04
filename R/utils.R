@@ -515,5 +515,9 @@ is_blank <-  function(x) {
   if (length(x)) all(grepl('^\\s*$', x)) else TRUE
 }
 
+#----    is_pkgdown    ----
+
+.is_pkgdown <- FALSE
+
 #----
 

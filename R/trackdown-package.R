@@ -119,8 +119,7 @@ NULL
 .onLoad <- function(libname, pkgname) {
   
   active_trackdown_app()
-  
-  invisible()
+
 }
 
 

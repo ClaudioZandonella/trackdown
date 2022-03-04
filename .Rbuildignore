@@ -37,3 +37,7 @@
 ^trial$
 ^old$
 ^note-google-API$
+^vignettes/edit-output-pkgdown\.png$
+^vignettes/Example-edit-pkgdown\.png$
+^vignettes/JOSS-fig-pkgdown\.png$
+^vignettes/rich-text-pkgdown\.png$

@@ -26,6 +26,27 @@ writing and editing process. After integrating all authors’
 contributions, the final document can be downloaded and rendered
 locally.
 
+> From `trackdown` v1.3.0 \[currently only available on GitHub\], the
+> `trackdown` package introduces the `rich_text` feature and uses its
+> own API credentials .
+>
+> -   **`rich_text`.** Upload *rich* documents to Google Docs where
+>     important text that should not be changed is automatically
+>     highlighted (e.g., placeholders hiding the code, header of the
+>     document, code chunks, and in-line code). This prevents
+>     collaborators from inadvertently making changes to the code which
+>     might corrupt the file. See [rich-text feature
+>     details](https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
+> -   **API Credentials.** Now, `trackdown` uses its own Goole API
+>     credentials (OAuth client ID and secret). This requires
+>     authentication to enable *“Trackdown R Package”*. The project is
+>     undergoing Google verification so it is already available but
+>     Google displays a worning message (see details at [issue
+>     comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)).
+>     Don’t worry `trackdown` uses the same system as `googledirve`
+>     package that was previously used. See details on privacy policy at
+>     `vignette("trackdown-privacy-policy")`).
+
 ## Installation
 
 You can install the released version from
@@ -71,9 +92,6 @@ workflow can be summarized as:
 > Collaborative **code** writing using **Git** & collaborative writing
 > of **narrative text** using **Google Docs**
 
-<!-- pakgdown code-->
-<!-- <iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen></iframe> -->
-<!-- Github code -->
 <center>
 <a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank">
 <img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;">

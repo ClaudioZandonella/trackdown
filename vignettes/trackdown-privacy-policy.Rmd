@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-> The following Privacy Policy notes are valid for `trackdown` v1.3.0 (still in development)
+> The following Privacy Policy notes are valid for `trackdown` v1.3.0 [currently only available on GitHub]
 
 The `trackdown` package works with Google APIs from R.
 

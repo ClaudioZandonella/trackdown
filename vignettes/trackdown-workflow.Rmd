@@ -12,8 +12,19 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   eval = FALSE,
+  fig.align = "center",
   comment = "#>"
 )
+
+if(isTRUE(trackdown:::.is_pkgdown)){
+  JOSS_fig <- "JOSS-fig-pkgdown.png"
+  rich_text <- "rich-text-pkgdown.png"
+  Example_edit <- "Example-edit-pkgdown.png"
+} else {
+  JOSS_fig <- "JOSS-fig.png"
+  rich_text <- "rich-text.png"
+  Example_edit <- "Example-edit.png"
+}
 ```
 
 ## The Workflow Idea {#wf-idea}
@@ -27,7 +38,9 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) docume
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs** 
 
-![](trackdown-workflow.png){ width=100% }
+```{r, echo = FALSE, eval=TRUE, out.width="100%"}
+knitr::include_graphics("trackdown-workflow.png")
+```
 
 `trackdown` offers different functions to manage this workflow:
 
@@ -56,7 +69,15 @@ By executing this command, the `My-Report.Rmd` file is uploaded from your local 
 
 Note that `trackdown` adds some simple instructions and reminders on top of the document and, by specifying the argument `hide_code = TRUE` (default is `FALSE`), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" (See Figure below). This allows collaborators to focus on the narrative text. 
 
-![](JOSS-fig.png){ width=100% }
+```{r, echo = FALSE, eval=TRUE, out.width="100%"}
+knitr::include_graphics(JOSS_fig)
+```
+
+From `trackdown` v1.3.0 [currently only available on GitHub], the `rich_text` feature has been introduced allowing to upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted. This includes, added instructions at the top of the document, placeholders hiding the code, header of the document (YAML header or LaTeX preamble), code chunks, and in-line code (see example in Figure below). For further details, see `vignette("trackdown-features")`.
+
+```{r, echo = FALSE, eval=TRUE, out.width="70%"}
+knitr::include_graphics(rich_text)
+```
 
 #### Collaborate
 
@@ -68,9 +89,9 @@ Google Docs offers a familiar, intuitive, and free web-based interface that allo
 - add comments to suggest and discuss changes
 - check spelling and grammar errors (potentially integrating third-party services like Grammarly)
 
-<center>
-![](Example-edit.png){ width=100% }
-</center>
+```{r, echo = FALSE, eval=TRUE, out.width="100%"}
+knitr::include_graphics(Example_edit)
+```
 
 Moreover, Google Docs allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text. Remember that working on the parts of the document including code should be avoided.
 

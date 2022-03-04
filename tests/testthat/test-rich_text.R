@@ -114,6 +114,10 @@ test_that("get correct rich document in google Docs with run_rich_text()", {
 
 })
 
+# remove files
+unlink(paste0(file_path, "rich_text/.trackdown"), recursive = TRUE)
+
+
 #----    run_rich_text    ----
 
 test_that("get correct request parameters from get_param_request()", {

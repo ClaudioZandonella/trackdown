@@ -12,6 +12,6 @@ test_that("check check_from_trackdown() wprks properly", {
 #----    trackdown_app    ----
 
 test_that("check check_from_trackdown() wprks properly", {
-  expect_equal(length(.trackdown_auth()), 4)
   expect_match(.trackdown_auth()$appname, "trackdown-rpackage")
+  expect_equal(length(.trackdown_auth()), 4)
 })

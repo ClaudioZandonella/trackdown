@@ -51,8 +51,8 @@
 #'
 #' The \code{rich_text} option (default is \code{TRUE}) allows to upload a rich
 #' document to Google Docs. Important text that should not be changed is
-#' highlighted. This includes, added Instructions at the top of the document,
-#' Placeholders hiding the code, header of the document (YAML header or LaTeX
+#' highlighted. This includes, added instructions at the top of the document,
+#' placeholders hiding the code, header of the document (YAML header or LaTeX
 #' preamble), code chunks, and in-line code.
 #'
 #' Default colour is opaque yellow. You can customize the colour specifying the
