@@ -122,6 +122,11 @@ possible to:
     download. This prevents collaborators from inadvertently making
     changes to the code which might corrupt the file and allows them to
     focus on the narrative text.
+-   **Rich Text:** Upload *rich* documents to Google Docs. Important
+    text that should not be changed is automatically highlighted (e.g.,
+    placeholders hiding the code, header of the document, code chunks,
+    and in-line code). This prevents collaborators from inadvertently
+    making changes to the code which might corrupt the file.
 -   **Upload Output:** The actual output document (i.e., the rendered
     file) can be uploaded to Google Drive in conjunction with the `.Rmd`
     (or `.Rnw`) document. This helps collaborators to evaluate the
@@ -211,3 +216,8 @@ The BibTeX entry is:
       url = {https://github.com/claudiozandonella/trackdown},
       doi = {10.5281/zenodo.5772942},
     }
+
+## Privacy
+
+[Privacy
+policy](https://claudiozandonella.github.io/trackdown/articles/trackdown-privacy-policy.html)
