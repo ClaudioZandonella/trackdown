@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -102,6 +102,15 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>The <code>trackdown</code> package offers a simple solution for collaborative writing and editing of R Markdown (or Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or <code>.Rnw</code>) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
+<blockquote>
+<p>From <code>trackdown</code> v1.3.0 [currently only available on GitHub], the <code>trackdown</code> package introduces the <code>rich_text</code> feature and uses its own API credentials.</p>
+<ul>
+<li>
+<strong><code>rich_text</code>.</strong> Upload <em>rich</em> documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See <a href="https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text" class="external-link">rich-text feature details</a>.</li>
+<li>
+<strong>API Credentials.</strong> Now, <code>trackdown</code> uses its own Goole API credentials (OAuth client ID and secret). This requires google authentication and to enable <em>“Trackdown R Package”</em>. The project is undergoing Google verification so it is already available but Google displays a worning message (see details at <a href="https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007" class="external-link">issue comment</a>). Don’t worry <code>trackdown</code> uses the same system as <code>googledirve</code> package that was previously used. See details on privacy policy at <code><a href="articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</li>
+</ul>
+</blockquote>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -130,15 +139,9 @@
 <blockquote>
 <p>Collaborative <strong>code</strong> writing using <strong>Git</strong> &amp; collaborative writing of <strong>narrative text</strong> using <strong>Google Docs</strong></p>
 </blockquote>
-<!-- pakgdown code-->
-<iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen>
-</iframe>
-<!-- Github code -->
-<!-- <center> -->
-<!-- <a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank"> -->
-<!-- <img src="man/figures/video-thumbnail.png" align="center" style = "border: none; float: center;"> -->
-<!-- </a> -->
-<!-- </center> -->
+<center>
+<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank" class="external-link"> <img src="reference/figures/video-thumbnail.png" align="center" style="border: none; float: center;"></a>
+</center>
 <div class="section level3">
 <h3 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h3>

@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ HIDE-CODE: TRUE
 <h3 id="auth">Authentication<a class="anchor" aria-label="anchor" href="#auth"></a>
 </h3>
 <blockquote>
-<p>From <code>trackdown</code> v1.3.0 (still in development), the <code>trackdown</code> package uses its own API credentials (OAuth client ID and secret; see <code><a href="../articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</p>
+<p>From <code>trackdown</code> v1.3.0 [currently only available on GitHub], the <code>trackdown</code> package uses its own API credentials (OAuth client ID and secret; see <code><a href="../articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</p>
 </blockquote>
 <p>Under the hood, the <code>trackdown</code> package uses functions from the <code>googledrive</code> R package (<a href="https://googledrive.tidyverse.org/" class="external-link">Official Documentation</a>) to manage files transfers to and from Google Drive. These operations requires authorization to view and manage a user’s Google Drive files. The first time one uses <code>trackdown</code>, one will be directed to a web browser and asked to sign in to one’s Google account to grant <code>googledrive</code> permission to communicate with Google Drive.</p>
 <p>Authentication is managed by the <code>gargle</code> R package (<a href="https://gargle.r-lib.org/index.html" class="external-link">Official Documentation</a>). By default, user credentials are cached in a folder in the user’s home directory, <code>~/.R/gargle/gargle-oauth</code>, from where they can be automatically refreshed, as necessary. Storage at the user level means that the same token can be used across multiple projects and tokens are less likely to be synced to the cloud by accident. Note that if one is using R from a web-based platform like RStudio Server or Cloud, there will be a variant of this user authentification flow, known as out-of-band auth (“oob”). See help page of <code><a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">googledrive::drive_auth()</a></code> for further information (<a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">link</a>).</p>
