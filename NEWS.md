@@ -1,5 +1,12 @@
 # trackdown (development version)
 
+## trackdown 1.3.0
+
+Introduce the `rich_text` feature and uses its own API credentials (see Issue #28)
+
+- **`rich_text`.** Upload *rich* documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). See [rich-text feature details]( https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
+- **API Credentials.** Now, `trackdown` uses its own Goole API credentials (OAuth client ID and secret). See details on privacy policy at `vignette("trackdown-privacy-policy")` and [issue comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007).
+
 ## trackdown 1.2.1
 
 Corrige output message pull request #29 (by @chainsawriot)
