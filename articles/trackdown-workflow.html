@@ -145,9 +145,9 @@
 <code class="sourceCode R"><span class="fu">trackdown</span><span class="fu">::</span><span class="fu"><a href="../reference/upload_file.html">upload_file</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Path-to-file/My-Report.Rmd"</span>, hide_code <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>By executing this command, the <code>My-Report.Rmd</code> file is uploaded from your local computer to your Google Drive. By default, the file is uploaded to Google Drive using the same name as the local file (without extension) and saved in a folder named <code>trackdown/</code>.</p>
 <p>Note that <code>trackdown</code> adds some simple instructions and reminders on top of the document and, by specifying the argument <code>hide_code = TRUE</code> (default is <code>FALSE</code>), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” (See Figure below). This allows collaborators to focus on the narrative text.</p>
-<p><img src="JOSS-fig.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="JOSS-fig-pkgdown.png" width="100%" style="display: block; margin: auto;"></p>
 <p>From <code>trackdown</code> v1.3.0 [currently only available on GitHub], the <code>rich_text</code> feature has been introduced allowing to upload <em>rich</em> documents to Google Docs. Now, important text that should not be changed is automatically highlighted. This includes, added instructions at the top of the document, placeholders hiding the code, header of the document (YAML header or LaTeX preamble), code chunks, and in-line code (see example in Figure below). For further details, see <code><a href="../articles/trackdown-features.html">vignette("trackdown-features")</a></code>.</p>
-<p><img src="rich-text.png" width="70%" style="display: block; margin: auto;"></p>
+<p><img src="rich-text-pkgdown.png" width="70%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="collaborate">Collaborate<a class="anchor" aria-label="anchor" href="#collaborate"></a>
@@ -159,7 +159,7 @@
 <li>add comments to suggest and discuss changes</li>
 <li>check spelling and grammar errors (potentially integrating third-party services like Grammarly)</li>
 </ul>
-<p><img src="Example-edit.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="Example-edit-pkgdown.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Moreover, Google Docs allows anyone to contribute to the writing/editing of the document. No programming experience is required, users can just focus on writing/editing the narrative text. Remember that working on the parts of the document including code should be avoided.</p>
 <p>Note that not all collaborators have to have a Google account (although this is recommended to utilize all Google Docs features). Only the person who manages the <code>trackdown</code> workflow needs to have a Google account to upload files to Google Drive. Other collaborators can be invited to contribute to the document using a shared link (See <a href="https://support.google.com/drive/answer/2494822?co=GENIE.Platform%3DDesktop&amp;hl=en&amp;oco=0" class="external-link">Instructions</a>).</p>
 </div>

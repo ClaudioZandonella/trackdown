@@ -192,7 +192,7 @@
 <ul>
 <li>
 <p><strong>Highlight Important Text.</strong> Important text that should not be changed is highlighted. This includes, added Instructions at the top of the document, placeholders hiding the code, header of the document (YAML header or LaTeX preamble), code chunks, and in-line code. This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See example in Figure below.</p>
-<p><img src="rich-text.png" width="90%" style="display: block; margin: auto;"></p>
+<p><img src="rich-text-pkgdown.png" width="90%" style="display: block; margin: auto;"></p>
 </li>
 </ul>
 <p>The <code>rich_text_par</code> argument used is used to pass a list with custom settings for <code>rich_text</code>. Currently supported custom settings are:</p>
@@ -217,7 +217,7 @@
 <p>A string indicating the output path (i.e., the resulting rendered document).</p>
 <p>This argument is available only for the <code><a href="../reference/upload_file.html">upload_file()</a></code> and <code><a href="../reference/update_file.html">update_file()</a></code> functions. By default (<code>NULL</code>), no output is uploaded to Google Drive. If specified, the output file (i.e., the rendered HTML or PDF file) is uploaded in conjunction with the main file. The output is named in Google Drive like the main file plus “-output” at the end (e.g., given a main file with the name “My-Report”, the output would be named “My-Report-output”).</p>
 <p>This feature is intended to help collaborators to evaluate the overall layout, including figures and tables, and allows them to add comments to propose and discuss changes (See Figure below). Note that, in the case of PDF files, it is possible to add comments directly to the file in Google Drive. However, this is not possible with HTML files.</p>
-<p><img src="edit-output.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="edit-output-pkgdown.png" width="100%" style="display: block; margin: auto;"></p>
 <p>In the case of HTML files, <code>trackdown</code> can automatically convert them into PDFs before uploading them to Google Drive. This feature requires that the <code>pagedown</code> package is available. As the <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, it has to be installed manually by the user if it is not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html" class="external-link">pagedown::chrome_print()</a></code> is used to convert an HTML into a PDF. Note that Google Chrome has to be installed on the user’s system for this conversion operation.</p>
 </div>
 <div class="section level4">
