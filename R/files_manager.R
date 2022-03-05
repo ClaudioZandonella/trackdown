@@ -389,7 +389,7 @@ download_file <- function(file,
 #'
 
 render_file <- function(file,
-                        gfile = basename(file),
+                        gfile = NULL,
                         gpath = "trackdown",
                         shared_drive = NULL,
                         force = FALSE,
