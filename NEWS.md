@@ -1,5 +1,9 @@
 # trackdown (development version)
 
+## trackdown 1.3.1
+
+Fix default `gfile` name in `render_file()` pull request #30 (by @mone27)
+
 ## trackdown 1.3.0
 
 Introduce the `rich_text` feature and uses its own API credentials (see Issue #28)
