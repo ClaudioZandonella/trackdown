@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.1</span>
       </span>
     </div>
 
@@ -69,7 +69,11 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="trackdown-development-version">trackdown (development version)<a class="anchor" aria-label="anchor" href="#trackdown-development-version"></a></h2>
 <div class="section level3">
-<h3 id="trackdown-development-version-1">trackdown 1.3.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-1"></a></h3>
+<h3 id="trackdown-development-version-1">trackdown 1.3.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-1"></a></h3>
+<p>Fix default <code>gfile</code> name in <code><a href="../reference/render_file.html">render_file()</a></code> pull request <a href="https://github.com/claudiozandonella/trackdown/issues/30" class="external-link">#30</a> (by <a href="https://github.com/mone27" class="external-link">@mone27</a>)</p>
+</div>
+<div class="section level3">
+<h3 id="trackdown-development-version-2">trackdown 1.3.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-2"></a></h3>
 <p>Introduce the <code>rich_text</code> feature and uses its own API credentials (see Issue <a href="https://github.com/claudiozandonella/trackdown/issues/28" class="external-link">#28</a>)</p>
 <ul><li>
 <strong><code>rich_text</code>.</strong> Upload <em>rich</em> documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). See <a href="https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text" class="external-link">rich-text feature details</a>.</li>
@@ -77,11 +81,11 @@
 <strong>API Credentials.</strong> Now, <code>trackdown</code> uses its own Goole API credentials (OAuth client ID and secret). See details on privacy policy at <code><a href="../articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code> and <a href="https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007" class="external-link">issue comment</a>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="trackdown-development-version-2">trackdown 1.2.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-2"></a></h3>
+<h3 id="trackdown-development-version-3">trackdown 1.2.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-3"></a></h3>
 <p>Corrige output message pull request <a href="https://github.com/claudiozandonella/trackdown/issues/29" class="external-link">#29</a> (by <a href="https://github.com/chainsawriot" class="external-link">@chainsawriot</a>)</p>
 </div>
 <div class="section level3">
-<h3 id="trackdown-development-version-3">trackdown 1.2.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-3"></a></h3>
+<h3 id="trackdown-development-version-4">trackdown 1.2.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-4"></a></h3>
 <p>Introduce the <code>force</code> argument allowing users to skip confirm checks about overwriting documents (see Issue <a href="https://github.com/claudiozandonella/trackdown/issues/27" class="external-link">#27</a>).</p>
 </div>
 <div class="section level3">
@@ -89,18 +93,18 @@
 <p>Fix issue encoding in Windows. Now trackdown does not assume <code>"UTF-8"</code> encoding but it relies on <code>"native.enc"</code>.</p>
 </div>
 <div class="section level3">
-<h3 id="trackdown-development-version-4">trackdown 1.1.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-4"></a></h3>
+<h3 id="trackdown-development-version-5">trackdown 1.1.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-5"></a></h3>
 <p>New features:</p>
 <ul><li>Introduce (experimental) argument <code>rm_gcomments</code>in <code><a href="../reference/download_file.html">download_file()</a></code> to automatically remove Google comments when downloading the file (See issue <a href="https://github.com/claudiozandonella/trackdown/issues/25" class="external-link">#25</a>).<br></li>
 <li>Introduce support for child <code>.Rmd</code> and <code>.Rnw</code> files (documents without headers).</li>
 </ul><p>Argument <code>hide_code = TRUE</code> can now be used regardless of whether the file contains header code and/or chunks or not. This fixed the issues <a href="https://github.com/claudiozandonella/trackdown/issues/22" class="external-link">#22</a> and <a href="https://github.com/claudiozandonella/trackdown/issues/24" class="external-link">#24</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="trackdown-development-version-5">trackdown 1.0.2<a class="anchor" aria-label="anchor" href="#trackdown-development-version-5"></a></h3>
+<h3 id="trackdown-development-version-6">trackdown 1.0.2<a class="anchor" aria-label="anchor" href="#trackdown-development-version-6"></a></h3>
 <p>Fix issue <a href="https://github.com/ClaudioZandonella/trackdown/issues/21" class="external-link">#21</a></p>
 </div>
 <div class="section level3">
-<h3 id="trackdown-development-version-6">trackdown 1.0.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-6"></a></h3>
+<h3 id="trackdown-development-version-7">trackdown 1.0.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-7"></a></h3>
 <p>Fix issue <a href="https://github.com/ClaudioZandonella/trackdown/issues/17" class="external-link">#17</a> and issue <a href="https://github.com/ClaudioZandonella/trackdown/issues/19" class="external-link">#19</a></p>
 </div>
 <div class="section level3">
@@ -112,7 +116,7 @@
 <li>use relative path to specify <code>fixture</code> and <code>vcr_files</code> folders in unit-tests</li>
 </ul></div>
 <div class="section level3">
-<h3 id="trackdown-development-version-7">trackdown 0.1.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-7"></a></h3>
+<h3 id="trackdown-development-version-8">trackdown 0.1.1<a class="anchor" aria-label="anchor" href="#trackdown-development-version-8"></a></h3>
 <p>Following the release of <code>googledrive</code> version 2.0.0 (<a href="https://www.tidyverse.org/blog/2021/07/googledrive-2-0-0/" class="external-link">link</a>), on which <code>trackdown</code> is based to interact with Google Drive, we updated the internal functions. In particular:</p>
 <ul><li>Set googledrive (&gt;= 2.0.0) in the <code>Imports</code> field of the <code>DESCRIPTION</code> file.</li>
 <li>Substitute <code>team_drive_\*()</code> deprecated functions and <code>team_drive =</code> deprecated arguments with the new <code>shared_drive_*()</code> functions and <code>shared_drive =</code> argument in all the <code>googledrive</code> functions used internally by <code>trackdown</code>.</li>
@@ -120,7 +124,7 @@
 <li>Update unit-tests</li>
 </ul></div>
 <div class="section level3">
-<h3 id="trackdown-development-version-8">trackdown 0.1.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-8"></a></h3>
+<h3 id="trackdown-development-version-9">trackdown 0.1.0<a class="anchor" aria-label="anchor" href="#trackdown-development-version-9"></a></h3>
 <p>Stable version after the full revision of the package previously named <code>rmdrive</code></p>
 <p>The workflow follows the same idea as before, but there are several new features and changes. The main ones are:</p>
 <ul><li>
