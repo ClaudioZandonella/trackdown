@@ -6,7 +6,7 @@
 \usage{
 render_file(
   file,
-  gfile = basename(file),
+  gfile = NULL,
   gpath = "trackdown",
   shared_drive = NULL,
   force = FALSE,
