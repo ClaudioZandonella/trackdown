@@ -1,5 +1,9 @@
 # trackdown (development version)
 
+## trackdown 1.3.2
+
+Update privacy policy Trackdown R Package client API required scopes.  
+
 ## trackdown 1.3.1
 
 Fix default `gfile` name in `render_file()` pull request #30 (by @mone27)

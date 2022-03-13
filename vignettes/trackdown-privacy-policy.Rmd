@@ -44,9 +44,7 @@ Overview of the scopes requested by the Trackdown R Package project and their ra
 
 - `userinfo.email` (read only): The Trackdown R Package project request this scope so that cached tokens can be labelled with the associated Google user, allowing you to more easily access Google APIs with more than one identity. The Trackdown R Package project do NOT have access to and do NOT store your Google password.
 
-- Drive (read/write): The `trackdown` package allows you to upload and download files to your Drive and therefore the default scopes include read/write access.
-
-- Docs (read/write): The `trackdown` package allows you to modify your Docs documents and therefore the default scopes include read/write access.
+- Drive (read/write): The `trackdown` package allows you to upload, modify, and download files to your Drive and therefore the default scopes include read/write access.
 
 ### Sharing User Data
 
