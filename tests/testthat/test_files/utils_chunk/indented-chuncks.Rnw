@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\begin{document}
+
+some indented chunk
+
+    <<>>=
+3+4
+    @
+
+some non indented code
+
+<<>>=
+3+4
+@
+
+
+some strangely indented code
+
+    <<>>=
+3+4
+@
+
+<<>>=
+3+4
+    @
+    
+  <<>>=
+3+4
+  @
+
+
+    <<>>=
+3+4
+  @
+
+
+  <<>>=
+3+4
+    @
+
+\end{document}

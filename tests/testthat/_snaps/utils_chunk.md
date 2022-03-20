@@ -86,6 +86,44 @@
     2     [[chunk-2]]
     3     [[chunk-3]]
 
+# get the correct extract_chunk with indendted chuncks
+
+      language  name         options starts ends index
+    1        r setup , include=FALSE      8   10     1
+    2        r  cars                     15   17     2
+    3        r  <NA>                     19   21     3
+    4        r  <NA>                     26   28     4
+    5        r  <NA>                     30   32     5
+    6        r  <NA>                     34   36     6
+    7        r  <NA>                     39   41     7
+                                                                chunk_text
+    1 ```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```
+    2                              ```{r cars}\n    summary(cars)\n    ```
+    3                                             ```{r}\n    3+3\n    ```
+    4                                      ```{r }\n  summary(cars)\n  ```
+    5                                   ```{r}\n    summary(cars)\n    ```
+    6                                     ```{r}\n    summary(cars)\n  ```
+    7                                             ```{r}\n    3+3\n    ```
+             name_tag
+    1 [[chunk-setup]]
+    2  [[chunk-cars]]
+    3     [[chunk-3]]
+    4     [[chunk-4]]
+    5     [[chunk-5]]
+    6     [[chunk-6]]
+    7     [[chunk-7]]
+
+---
+
+      language name options starts ends index            chunk_text    name_tag
+    1       NA   NA              7    9     1     <<>>=\n3+4\n    @ [[chunk-1]]
+    2       NA   NA             13   15     2         <<>>=\n3+4\n@ [[chunk-2]]
+    3       NA   NA             20   22     3         <<>>=\n3+4\n@ [[chunk-3]]
+    4       NA   NA             24   26     4     <<>>=\n3+4\n    @ [[chunk-4]]
+    5       NA   NA             28   30     5       <<>>=\n3+4\n  @ [[chunk-5]]
+    6       NA   NA             33   35     6       <<>>=\n3+4\n  @ [[chunk-6]]
+    7       NA   NA             38   40     7     <<>>=\n3+4\n    @ [[chunk-7]]
+
 # get the correct extract_header
 
       starts ends

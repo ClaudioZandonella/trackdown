@@ -309,19 +309,19 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
   extension <- match.arg(extension)
   
   if (extension == "rmd"){     # ```{*}   ```bash    ```
-    res <- list(chunk_header_start = "^```\\s*\\{?",   # start with ``` followed by possible white spaces and a possible {
+    res <- list(chunk_header_start = "^\\s*```\\s*\\{?",   # start with ``` followed by possible white spaces and a possible {
                 chunk_header_end = "\\}?\\s*$",        # ends with a possible { and possible white spaces
-                chunk_start = "^```\\s*(\\S*\\s*$|\\{)", # allow "```{...}", "```bash", "```"  
-                chunk_end = "^```\\s*$",
+                chunk_start = "^\\s*```\\s*(\\S*\\s*$|\\{)", # allow "```{...}", "```bash", "```"  
+                chunk_end = "^\\s*```\\s*$",
                 file_header_start = "^---\\s*$",
                 file_header_end = "^---\\s*$",
                 extension = extension)
     
   } else if (extension == "rnw"){  # <<*>>=   @
-    res <- list(chunk_header_start = "^<<",
+    res <- list(chunk_header_start = "^\\s*<<",
                 chunk_header_end = ">>=.*$",
-                chunk_start = "^<<",
-                chunk_end = "^@\\s*$",
+                chunk_start = "^\\s*<<",
+                chunk_end = "^\\s*@\\s*$",
                 file_header_start = "^\\\\documentclass\\{",
                 file_header_end = "^\\\\begin\\{document\\}",
                 extension = extension)

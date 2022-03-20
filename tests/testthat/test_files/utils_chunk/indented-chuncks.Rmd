@@ -1,0 +1,41 @@
+---
+title: "Indented Chunks"
+author: "Trackdown"
+date: "3/20/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## List of inented chunk
+
+- chunk 1
+    ```{r cars}
+    summary(cars)
+    ```
+- chunk 2
+    ```{r}
+    3+3
+    ```
+
+## Strangely Indendet chunk
+
+- chunk 3
+  ```{r }
+  summary(cars)
+  ```
+- chunk 4
+```{r}
+    summary(cars)
+    ```
+- chunk 5
+    ```{r}
+    summary(cars)
+  ```
+
+- chunk 6
+    ```{r}
+    3+3
+    ```

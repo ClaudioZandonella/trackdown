@@ -65,6 +65,19 @@ test_that("get the correct extract_chunk no info", {
   expect_null(extract_chunk(lines_no_chunk, info_patterns_rnw))
 })
 
+test_that("get the correct extract_chunk with indendted chuncks", {
+  # Rmd
+  indented_rmd <- readLines(paste0(file_path, "utils_chunk/indented-chuncks.Rmd"))
+  expect_snapshot_output(extract_chunk(text_lines = indented_rmd, 
+                                       info_patterns = info_patterns_rmd))
+  
+  # Rnw
+  indented_rnw <- readLines(paste0(file_path, "utils_chunk/indented-chuncks.Rnw"))
+  expect_snapshot_output(extract_chunk(text_lines = indented_rnw, 
+                                       info_patterns = info_patterns_rnw))
+})
+
+
 #----    check_header    ----
 
 # rmd
@@ -132,17 +145,17 @@ test_that("get the correct extract_header no header", {
 
 test_that("file info are correct", {
   
-  ex_rmd <- list(chunk_header_start = "^```\\s*\\{?",
+  ex_rmd <- list(chunk_header_start = "^\\s*```\\s*\\{?",
                  chunk_header_end = "\\}?\\s*$",
-                 chunk_start = "^```\\s*(\\S*\\s*$|\\{)",
-                 chunk_end = "^```\\s*$",
+                 chunk_start = "^\\s*```\\s*(\\S*\\s*$|\\{)",
+                 chunk_end = "^\\s*```\\s*$",
                  file_header_start = "^---\\s*$",
                  file_header_end = "^---\\s*$",
                  extension = "rmd")
-  ex_rnw <- list(chunk_header_start = "^<<",
+  ex_rnw <- list(chunk_header_start = "^\\s*<<",
                  chunk_header_end = ">>=.*$",
-                 chunk_start = "^<<",
-                 chunk_end = "^@\\s*$",
+                 chunk_start = "^\\s*<<",
+                 chunk_end = "^\\s*@\\s*$",
                  file_header_start = "^\\\\documentclass\\{",
                  file_header_end = "^\\\\begin\\{document\\}",
                  extension = "rnw")
