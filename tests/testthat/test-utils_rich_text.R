@@ -95,6 +95,23 @@ test_that("get correct patterns from get_patterns_highlight()", {
   
 })
 
+#----    check patters    ----
+
+# Citations
+test_that("citations are correctly matched", {
+
+  # Rmd
+  citations_rmd <- paste(readLines(
+    paste0(file_path, "utils_rich_text/citations.rmd")), collapse = "\n")
+  pattern_rmd <- get_patterns_highlight(extension = "rmd")
+  
+  res_cit_1 <- get_range_index(pattern_rmd[6], citations_rmd)
+  expect_snapshot_output(res_cit_1)
+
+  # Rnw
+
+})
+
 #----    get_range_index    ----
 
 test_that("get correct range indexes from get_range_index()", {

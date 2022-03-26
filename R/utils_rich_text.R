@@ -106,7 +106,9 @@ get_patterns_highlight <- function(extension){
       # Chunks: all lines included between "```" and "```". Must be on different lines
       "(?<=\n)```[^`]*\n[\\s\\S]*?```",
       # In-line Code
-      "`r [^`]+`"
+      "`r [^`]+`",
+      # Citations: @cit-tag or -@cit-tag but not my@email. @ not preceded by  letters, numbers or "."
+      "(?<![a-zA-Z0-9.])-?@[^\\s\\]]+"
     )
   } else {
     patterns <- c(

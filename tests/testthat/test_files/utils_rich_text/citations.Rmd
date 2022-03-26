@@ -1,0 +1,18 @@
+---
+bibliography: my-bib.bib
+---
+## R Markdown
+
+This is an R Markdown document [@R-studio]. (yes) Markdown [my@email] (no) is a simple [@R-studio; some words @rmarkdown2022] (yes) formatting syntax for authoring HTML, PDF, and MS Word documents.@rmarkdown2022 (no) For more details on using R Markdown @rmarkdown2022 (yes) see <http://rmarkdown.rstudio.com>.
+
+-@rmarkdown2022 (yes)
+
+my2@email (no)
+
+.@R-studio (no)
+
+:@R-studio (yes)
+
+[@R-studio; rmarkdown2022] (yes)
+
+[@R-studio. rmarkdown2022] (yes)

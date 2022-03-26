@@ -725,6 +725,7 @@
     [3] "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---"                
     [4] "(?<=\n)```[^`]*\n[\\s\\S]*?```"                                     
     [5] "`r [^`]+`"                                                          
+    [6] "(?<![a-zA-Z0-9.])-?@[^\\s\\]]+"                                     
 
 ---
 
@@ -733,6 +734,18 @@
     [3] "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}"     
     [4] "<<.*?>>=[\\s\\S]*?\\s*@\\s*?"                                       
     [5] "\\\\Sexpr{.+?}"                                                     
+
+# citations are correctly matched
+
+      start_index end_index
+    1          81        90
+    2         137       147
+    3         159       173
+    4         303       317
+    5         361       376
+    6         418       427
+    7         436       446
+    8         470       480
 
 # get correct range indexes from get_range_index()
 
