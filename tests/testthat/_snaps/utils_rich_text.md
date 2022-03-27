@@ -724,6 +724,10 @@
     "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#" 
                                                                      tags 
                                 "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]" 
+                                                         inline_equations 
+                                      "(?<!\\\\)\\$\\S.+?\\S(?<!\\\\)\\$" 
+                                                                equations 
+      "(?<!\\\\)\\$\\$(?!\\s*\n\\s*\n)[\\s\\S]*?(?<!\n\n)(?<!\\\\)\\$\\$" 
                                                                    header 
                     "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---" 
                                                                    chunks 
@@ -739,6 +743,10 @@
     "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#" 
                                                                      tags 
                                 "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]" 
+                                                         inline_equations 
+                                      "(?<!\\\\)\\$\\S.+?\\S(?<!\\\\)\\$" 
+                                                                equations 
+      "(?<!\\\\)\\$\\$(?!\\s*\n\\s*\n)[\\s\\S]*?(?<!\n\n)(?<!\\\\)\\$\\$" 
                                                                    header 
          "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}" 
                                                                    chunks 
@@ -757,6 +765,22 @@
     6         418       427
     7         436       446
     8         470       480
+
+# equations are correctly matched
+
+      start_index end_index
+    1          37        49
+    2          63        68
+    3         381       392
+
+---
+
+      start_index end_index
+    1         167       192
+    2         220       238
+    3         271       307
+    4         333       355
+    5         381       392
 
 # get correct range indexes from get_range_index()
 

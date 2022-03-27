@@ -105,10 +105,26 @@ test_that("citations are correctly matched", {
     paste0(file_path, "utils_rich_text/citations.Rmd")), collapse = "\n")
   pattern_rmd <- get_patterns_highlight(extension = "rmd")
   
-  res_cit_1 <- get_range_index(pattern_rmd[6], citations_rmd)
+  res_cit_1 <- get_range_index(pattern_rmd["citations"], citations_rmd)
   expect_snapshot_output(res_cit_1)
 
   # Rnw
+
+})
+
+# Equations
+test_that("equations are correctly matched", {
+
+  # Rmd
+  equations_rmd <- paste(readLines(
+    paste0(file_path, "utils_rich_text/equations.Rmd")), collapse = "\n")
+  pattern_rmd <- get_patterns_highlight(extension = "rmd")
+
+  res_inline_eq <- get_range_index(pattern_rmd["inline_equations"], equations_rmd)
+  expect_snapshot_output(res_inline_eq)
+  
+  res_eq <- get_range_index(pattern_rmd["equations"], equations_rmd)
+  expect_snapshot_output(res_eq)
 
 })
 
@@ -122,19 +138,19 @@ test_that("get correct range indexes from get_range_index()", {
   # normal rmd text
   rmd_rich_text <- paste(readLines(
     paste0(file_path, "utils_rich_text/rmd-rich-text.txt")), collapse = "\n")
-  res_1 <- get_range_index(pattern_rmd[4], rmd_rich_text)
+  res_1 <- get_range_index(pattern_rmd["chunks"], rmd_rich_text)
   
   expect_snapshot_output(res_1)
   
   # hide code rmd text
   rmd_rich_text_hide_code <- paste(readLines(
     paste0(file_path, "utils_rich_text/rmd-rich-text-hide-code.txt")), collapse = "\n")
-  res_2 <- get_range_index(pattern_rmd[2], rmd_rich_text_hide_code)
+  res_2 <- get_range_index(pattern_rmd["tags"], rmd_rich_text_hide_code)
   
   expect_snapshot_output(res_2)
   
   # No matches
-  res_3 <- get_range_index(pattern_rmd[2], rmd_rich_text)
+  res_3 <- get_range_index(pattern_rmd["tags"], rmd_rich_text)
   expect_equal(nrow(res_3), 0)
   
   
@@ -144,19 +160,19 @@ test_that("get correct range indexes from get_range_index()", {
   # normal rmd text
   rnw_main <- paste(readLines(
     paste0(file_path, "utils_rich_text/rnw-main.txt")), collapse = "\n")
-  res_4 <- get_range_index(pattern_rnw[4], rnw_main)
+  res_4 <- get_range_index(pattern_rnw["chunks"], rnw_main)
   
   expect_snapshot_output(res_4)
   
   # hide code rmd text
   rnw_hide_code <- paste(readLines(
     paste0(file_path, "utils_rich_text/rnw-hide-code.txt")), collapse = "\n")
-  res_5 <- get_range_index(pattern_rnw[2], rnw_hide_code)
+  res_5 <- get_range_index(pattern_rnw["tags"], rnw_hide_code)
   
   expect_snapshot_output(res_5)
   
   # No matches
-  res_6 <- get_range_index(pattern_rnw[2], rnw_main)
+  res_6 <- get_range_index(pattern_rnw["tags"], rnw_main)
   expect_equal(nrow(res_6), 0)
 })
 

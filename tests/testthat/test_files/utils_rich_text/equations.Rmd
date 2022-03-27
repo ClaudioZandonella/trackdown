@@ -1,0 +1,52 @@
+## R Markdown
+
+An in-line equations $\beta = .3$ a strange eq $3\$$. 
+
+A non in-line equation $ 4 $. Dollar sign \$strange\$. Last dollar sign \$.
+
+An equation block
+$$
+y \sim x + \epsilon
+$$
+Indented equation block
+
+  $$
+  \sqrt{2}
+  $$
+
+Multiple lines equation block
+
+$$
+y \sim x + \epsilon\\
+\sqrt{2}
+$$
+
+Another equation block  $$
+  \sqrt{2}
+text  $$
+
+Another equation block
+
+$$ \log3 $$
+
+Non equation blocks
+
+$$
+
+some strange text
+$$
+
+Non equation blocks
+
+$$
+some strange text
+
+$$
+
+Non equation blocks
+
+$$
+
+some strange text
+
+$$

@@ -130,6 +130,10 @@ get_patterns_highlight <- function(extension){
     instructions = "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#",
     # Place-Holders: find place-holders of type [[document-*]] or [[chunk-*]]
     tags = "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]",
+    # In-line Equations: $math formula$. No spaces beteween "$" and first or last part. Avoid matchin \$ in text or formula
+    inline_equations = "(?<!\\\\)\\$\\S.+?\\S(?<!\\\\)\\$",
+    # Equation blocks: match $$equation blocks$$. Equation blocks and "$$" should not be separated by multiple \n (only one is allowed)
+    equations =  "(?<!\\\\)\\$\\$(?!\\s*\n\\s*\n)[\\s\\S]*?(?<!\n\n)(?<!\\\\)\\$\\$",
     patterns
   )
   
