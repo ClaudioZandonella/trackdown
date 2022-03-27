@@ -61,6 +61,7 @@ get_param_highlight_text <- function(text,
     get_range_index(pattern = x, text = text))
   
   indexes <- do.call("rbind", indexes_list)
+  rownames(indexes) <- NULL
   
   # Get an UN-NAMED list of all the requests with their parameters
   res <- apply(indexes, MARGIN = 1, function(x){
@@ -96,36 +97,39 @@ get_patterns_highlight <- function(extension){
   # Regex notes:
   # -  [\s\S]* all characters including new line (\s matches white spaces)
   # -  .*? non-greedy
+  # -  .+? non-greedy
   # -  (?<=a)b Positive lookbehind: Matches "b" if is preceded by "a"
   # -  (?<!a)b Negative lookbehind: Matches "b" if is NOT preceded by "a"
+  # -  (?=a)b Positive lookahead: Matches "b" if is followed by "a"
+  # -  (?!a)b Negative lookahead: Matches "b" if is NOT followed by "a"
   
   if(extension == "rmd"){
     patterns <- c(
       # Header: all lines included between "---" and "---". Must be preceded by "#----End Instructions----#"
-      "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---",
+      header = "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---",
       # Chunks: all lines included between "```" and "```". Must be on different lines
-      "(?<=\n)```[^`]*\n[\\s\\S]*?```",
+      chunks = "(?<=\n)```[^`]*\n[\\s\\S]*?```",
       # In-line Code
-      "`r [^`]+`",
+      inline_code = "`r [^`]+`",
       # Citations: @cit-tag or -@cit-tag but not my@email. @ not preceded by  letters, numbers or "."
-      "(?<![a-zA-Z0-9.])-?@[^\\s\\]]+"
+      citations = "(?<![a-zA-Z0-9.])-?@[^\\s\\]]+"
     )
   } else {
     patterns <- c(
       # Header: all lines included between "\documentclass{" and "\begin{document}". Must not be preceded by other "\" to avoid match possible document text
-      "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}",
+      header = "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}",
       # Chunks: all lines included between "<<...>>=" and "@".
-      "<<.*?>>=[\\s\\S]*?\\s*@\\s*?",
+      chunks = "<<.*?>>=[\\s\\S]*?\\s*@\\s*?",
       # In-line Code
-      "\\\\Sexpr{.+?}"
+      inline_code = "\\\\Sexpr{.+?}"
     )
   }
   
   res <- c(
     # Instructions: all lines included between "#----Trackdown Instructions----#" and "#----End Instructions----#"
-    "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#",
+    instructions = "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#",
     # Place-Holders: find place-holders of type [[document-*]] or [[chunk-*]]
-    "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]",
+    tags = "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]",
     patterns
   )
   

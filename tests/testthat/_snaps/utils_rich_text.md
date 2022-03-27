@@ -720,20 +720,31 @@
 
 # get correct patterns from get_patterns_highlight()
 
-    [1] "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#"
-    [2] "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]"                            
-    [3] "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---"                
-    [4] "(?<=\n)```[^`]*\n[\\s\\S]*?```"                                     
-    [5] "`r [^`]+`"                                                          
-    [6] "(?<![a-zA-Z0-9.])-?@[^\\s\\]]+"                                     
+                                                             instructions 
+    "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#" 
+                                                                     tags 
+                                "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]" 
+                                                                   header 
+                    "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---" 
+                                                                   chunks 
+                                         "(?<=\n)```[^`]*\n[\\s\\S]*?```" 
+                                                              inline_code 
+                                                              "`r [^`]+`" 
+                                                                citations 
+                                         "(?<![a-zA-Z0-9.])-?@[^\\s\\]]+" 
 
 ---
 
-    [1] "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#"
-    [2] "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]"                            
-    [3] "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}"     
-    [4] "<<.*?>>=[\\s\\S]*?\\s*@\\s*?"                                       
-    [5] "\\\\Sexpr{.+?}"                                                     
+                                                             instructions 
+    "#----Trackdown Instructions----#[\\s\\S]*#----End Instructions----#" 
+                                                                     tags 
+                                "(?<=\n)\\[\\[(document|chunk)-.+?\\]\\]" 
+                                                                   header 
+         "(?<!\\\\)\\\\documentclass\\{[\\s\\S]*?\\\\begin\\{document\\}" 
+                                                                   chunks 
+                                           "<<.*?>>=[\\s\\S]*?\\s*@\\s*?" 
+                                                              inline_code 
+                                                         "\\\\Sexpr{.+?}" 
 
 # citations are correctly matched
 
