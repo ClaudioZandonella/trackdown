@@ -1,5 +1,9 @@
 # trackdown (development version)
 
+## trackdown 1.3.4
+
+Highlight citation tags and equations when using `rich_text`
+
 ## trackdown 1.3.3
 
 Fix issue indented code. Now it is correctly recognized.
