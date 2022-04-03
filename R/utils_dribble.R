@@ -91,7 +91,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
         # check whether user wants to create folder in Google Drive
         response <- utils::menu(c("Yes", "No"), title = paste0(
           "Folder ", sQuote(paste0(path, sep = "/",  collapse = "")),
-          " does not exists in GoogleDrive.", " Do you want to create it?"))
+          " does not exist in Google Drive.", " Do you want to create it?"))
       } else {
         response <-  .response
       }
@@ -104,7 +104,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
         if(nrow(dribble_folder) > 1){
           stop(paste0("No unique parent folder ", 
                       sQuote(paste0(path[1:(i-1)], sep = "/",  collapse = "")),
-                      " exists in GoogleDrive - Folder ",
+                      " exists in Google Drive - Folder ",
                       sQuote(paste0(path[i:length(path)], sep = "/",  collapse = "")),
                       " can not be created automatically"),
                call. = FALSE)
@@ -116,7 +116,7 @@ get_path_dribble <- function(path, shared_drive = NULL, .response = 1){
                                          shared_drive = shared_drive)
           
           finish_process(paste(cli::col_magenta(
-            paste0(path, "/", collapse = "")), "folder created on Google Drive!"))
+            paste0(path, "/", collapse = "")), " folder created on Google Drive!"))
           
           return(dribble)
         }
@@ -159,9 +159,9 @@ get_parent_dribble <- function(path = NULL, shared_drive = NULL, .response = 1){
 
 #----    create_drive_folder    ----
 
-#' Create a folder in Googledrive
+#' Create a folder in Google Drive
 #'
-#' Create a folder in Googledrive. 
+#' Create a folder in Google Drive. 
 #' 
 #'
 #' @param name character vector indicating the sequence of folders to create.
