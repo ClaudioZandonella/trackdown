@@ -37,13 +37,13 @@ locally.
 >     collaborators from inadvertently making changes to the code which
 >     might corrupt the file. See [rich-text feature
 >     details](https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
-> -   **API Credentials.** Now, `trackdown` uses its own Goole API
->     credentials (OAuth client ID and secret). This requires google
+> -   **API Credentials.** Now, `trackdown` uses its own Google API
+>     credentials (OAuth client ID and secret). This requires Google
 >     authentication and to enable *“Trackdown R Package”*. The project
 >     is undergoing Google verification so it is already available but
->     Google displays a worning message (see details at [issue
+>     Google displays a warning message (see details at [issue
 >     comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)).
->     Don’t worry `trackdown` uses the same system as `googledirve`
+>     Don’t worry `trackdown` uses the same system as the `googledrive`
 >     package that was previously used. See details on privacy policy at
 >     `vignette("trackdown-privacy-policy")`).
 
