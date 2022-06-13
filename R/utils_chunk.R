@@ -322,7 +322,7 @@ get_extension_patterns <- function(extension =  c("rmd", "rnw")){
                 chunk_header_end = ">>=.*$",
                 chunk_start = "^\\s*<<",
                 chunk_end = "^\\s*@\\s*$",
-                file_header_start = "^\\\\documentclass\\{",
+                file_header_start = "^\\\\documentclass(\\{|\\[)",
                 file_header_end = "^\\\\begin\\{document\\}",
                 extension = extension)
   }
