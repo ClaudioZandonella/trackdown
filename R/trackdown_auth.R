@@ -44,6 +44,12 @@ check_from_trackdown <- function (env = parent.frame()){
 #' 
 
 trackdown_app <- function(){
+  # priority to user provided app
+  user_app <- getOption("trackdown-app")
+  if (!is.null(user_app)) {
+    return(user_app)
+  }
+  
   check_from_trackdown(parent.frame())
   .trackdown_auth()
 }
