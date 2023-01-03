@@ -2,7 +2,7 @@
 local({
 
   # the requested version of renv
-  version <- "0.15.2"
+  version <- "0.16.0"
 
   # the project directory
   project <- getwd()
@@ -54,19 +54,9 @@ local({
   # mask 'utils' packages, will come first on the search path
   library(utils, lib.loc = .Library)
 
-  # check to see if renv has already been loaded
-  if ("renv" %in% loadedNamespaces()) {
-
-    # if renv has already been loaded, and it's the requested version of renv,
-    # nothing to do
-    spec <- .getNamespaceInfo(.getNamespace("renv"), "spec")
-    if (identical(spec[["version"]], version))
-      return(invisible(TRUE))
-
-    # otherwise, unload and attempt to load the correct version of renv
+  # unload renv if it's already been loaded
+  if ("renv" %in% loadedNamespaces())
     unloadNamespace("renv")
-
-  }
 
   # load bootstrap tools   
   `%||%` <- function(x, y) {
@@ -158,16 +148,20 @@ local({
     nv <- numeric_version(version)
     components <- unclass(nv)[[1]]
   
-    methods <- if (length(components) == 4L) {
-      list(
+    # if this appears to be a development version of 'renv', we'll
+    # try to restore from github
+    dev <- length(components) == 4L
+  
+    # begin collecting different methods for finding renv
+    methods <- c(
+      renv_bootstrap_download_tarball,
+      if (dev)
         renv_bootstrap_download_github
-      )
-    } else {
-      list(
+      else c(
         renv_bootstrap_download_cran_latest,
         renv_bootstrap_download_cran_archive
       )
-    }
+    )
   
     for (method in methods) {
       path <- tryCatch(method(version), error = identity)
@@ -191,43 +185,80 @@ local({
     if (fixup)
       mode <- "w+b"
   
-    utils::download.file(
+    args <- list(
       url      = url,
       destfile = destfile,
       mode     = mode,
       quiet    = TRUE
     )
   
+    if ("headers" %in% names(formals(utils::download.file)))
+      args$headers <- renv_bootstrap_download_custom_headers(url)
+  
+    do.call(utils::download.file, args)
+  
+  }
+  
+  renv_bootstrap_download_custom_headers <- function(url) {
+  
+    headers <- getOption("renv.download.headers")
+    if (is.null(headers))
+      return(character())
+  
+    if (!is.function(headers))
+      stopf("'renv.download.headers' is not a function")
+  
+    headers <- headers(url)
+    if (length(headers) == 0L)
+      return(character())
+  
+    if (is.list(headers))
+      headers <- unlist(headers, recursive = FALSE, use.names = TRUE)
+  
+    ok <-
+      is.character(headers) &&
+      is.character(names(headers)) &&
+      all(nzchar(names(headers)))
+  
+    if (!ok)
+      stop("invocation of 'renv.download.headers' did not return a named character vector")
+  
+    headers
+  
   }
   
   renv_bootstrap_download_cran_latest <- function(version) {
   
     spec <- renv_bootstrap_download_cran_latest_find(version)
-  
-    message("* Downloading renv ", version, " ... ", appendLF = FALSE)
-  
     type  <- spec$type
     repos <- spec$repos
   
-    info <- tryCatch(
-      utils::download.packages(
-        pkgs    = "renv",
-        destdir = tempdir(),
-        repos   = repos,
-        type    = type,
-        quiet   = TRUE
-      ),
+    message("* Downloading renv ", version, " ... ", appendLF = FALSE)
+  
+    baseurl <- utils::contrib.url(repos = repos, type = type)
+    ext <- if (identical(type, "source"))
+      ".tar.gz"
+    else if (Sys.info()[["sysname"]] == "Windows")
+      ".zip"
+    else
+      ".tgz"
+    name <- sprintf("renv_%s%s", version, ext)
+    url <- paste(baseurl, name, sep = "/")
+  
+    destfile <- file.path(tempdir(), name)
+    status <- tryCatch(
+      renv_bootstrap_download_impl(url, destfile),
       condition = identity
     )
   
-    if (inherits(info, "condition")) {
+    if (inherits(status, "condition")) {
       message("FAILED")
       return(FALSE)
     }
   
     # report success and return
     message("OK (downloaded ", type, ")")
-    info[1, 2]
+    destfile
   
   }
   
@@ -304,6 +335,42 @@ local({
   
   }
   
+  renv_bootstrap_download_tarball <- function(version) {
+  
+    # if the user has provided the path to a tarball via
+    # an environment variable, then use it
+    tarball <- Sys.getenv("RENV_BOOTSTRAP_TARBALL", unset = NA)
+    if (is.na(tarball))
+      return()
+  
+    # allow directories
+    info <- file.info(tarball, extra_cols = FALSE)
+    if (identical(info$isdir, TRUE)) {
+      name <- sprintf("renv_%s.tar.gz", version)
+      tarball <- file.path(tarball, name)
+    }
+  
+    # bail if it doesn't exist
+    if (!file.exists(tarball)) {
+  
+      # let the user know we weren't able to honour their request
+      fmt <- "* RENV_BOOTSTRAP_TARBALL is set (%s) but does not exist."
+      msg <- sprintf(fmt, tarball)
+      warning(msg)
+  
+      # bail
+      return()
+  
+    }
+  
+    fmt <- "* Bootstrapping with tarball at path '%s'."
+    msg <- sprintf(fmt, tarball)
+    message(msg)
+  
+    tarball
+  
+  }
+  
   renv_bootstrap_download_github <- function(version) {
   
     enabled <- Sys.getenv("RENV_BOOTSTRAP_FROM_GITHUB", unset = "TRUE")
@@ -357,7 +424,13 @@ local({
     bin <- R.home("bin")
     exe <- if (Sys.info()[["sysname"]] == "Windows") "R.exe" else "R"
     r <- file.path(bin, exe)
-    args <- c("--vanilla", "CMD", "INSTALL", "--no-multiarch", "-l", shQuote(library), shQuote(tarball))
+  
+    args <- c(
+      "--vanilla", "CMD", "INSTALL", "--no-multiarch",
+      "-l", shQuote(path.expand(library)),
+      shQuote(path.expand(tarball))
+    )
+  
     output <- system2(r, args, stdout = TRUE, stderr = TRUE)
     message("Done!")
   
@@ -642,7 +715,7 @@ local({
       return(profile)
   
     # check for a profile file (nothing to do if it doesn't exist)
-    path <- renv_bootstrap_paths_renv("profile", profile = FALSE)
+    path <- renv_bootstrap_paths_renv("profile", profile = FALSE, project = project)
     if (!file.exists(path))
       return(NULL)
   
@@ -731,12 +804,17 @@ local({
   
   }
   
-  renv_bootstrap_user_dir <- function(path) {
-    dir <- renv_bootstrap_user_dir_impl(path)
-    chartr("\\", "/", dir)
+  renv_bootstrap_user_dir <- function() {
+    dir <- renv_bootstrap_user_dir_impl()
+    path.expand(chartr("\\", "/", dir))
   }
   
-  renv_bootstrap_user_dir_impl <- function(path) {
+  renv_bootstrap_user_dir_impl <- function() {
+  
+    # use local override if set
+    override <- getOption("renv.userdir.override")
+    if (!is.null(override))
+      return(override)
   
     # use R_user_dir if available
     tools <- asNamespace("tools")
@@ -747,10 +825,8 @@ local({
     envvars <- c("R_USER_CACHE_DIR", "XDG_CACHE_HOME")
     for (envvar in envvars) {
       root <- Sys.getenv(envvar, unset = NA)
-      if (!is.na(root)) {
-        path <- file.path(root, "R/renv")
-        return(path)
-      }
+      if (!is.na(root))
+        return(file.path(root, "R/renv"))
     }
   
     # use platform-specific default fallbacks
@@ -763,13 +839,28 @@ local({
   
   }
   
+  
   renv_json_read <- function(file = NULL, text = NULL) {
   
+    # if jsonlite is loaded, use that instead
+    if ("jsonlite" %in% loadedNamespaces())
+      renv_json_read_jsonlite(file, text)
+    else
+      renv_json_read_default(file, text)
+  
+  }
+  
+  renv_json_read_jsonlite <- function(file = NULL, text = NULL) {
     text <- paste(text %||% read(file), collapse = "\n")
+    jsonlite::fromJSON(txt = text, simplifyVector = FALSE)
+  }
+  
+  renv_json_read_default <- function(file = NULL, text = NULL) {
   
     # find strings in the JSON
+    text <- paste(text %||% read(file), collapse = "\n")
     pattern <- '["](?:(?:\\\\.)|(?:[^"\\\\]))*?["]'
-    locs <- gregexpr(pattern, text)[[1]]
+    locs <- gregexpr(pattern, text, perl = TRUE)[[1]]
   
     # if any are found, replace them with placeholders
     replaced <- text
@@ -798,8 +889,9 @@ local({
   
     # transform the JSON into something the R parser understands
     transformed <- replaced
-    transformed <- gsub("[[{]", "list(", transformed)
-    transformed <- gsub("[]}]", ")", transformed)
+    transformed <- gsub("{}", "`names<-`(list(), character())", transformed, fixed = TRUE)
+    transformed <- gsub("[[{]", "list(", transformed, perl = TRUE)
+    transformed <- gsub("[]}]", ")", transformed, perl = TRUE)
     transformed <- gsub(":", "=", transformed, fixed = TRUE)
     text <- paste(transformed, collapse = "\n")
   
