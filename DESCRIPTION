@@ -46,7 +46,7 @@ Suggests:
     testthat (>= 3.0.0),
     vcr
 Config/testthat/edition: 3
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 URL: https://github.com/claudiozandonella/trackdown/, https://claudiozandonella.github.io/trackdown/
 BugReports: https://github.com/claudiozandonella/trackdown/issues
