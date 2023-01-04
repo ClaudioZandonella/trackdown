@@ -49,7 +49,8 @@ locally.
 > - \[**IMPORTANT**\] We currently reached the maximum number of users
 >   for the API credentails. Installing the development `trackdown` from
 >   GitHub will require to create your own API credentials. Please, see
->   instructions at \[TODO\]
+>   instructions at
+>   <https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html>
 
 ## Installation
 
@@ -175,6 +176,8 @@ To know more about `trackdown`, please reference:
   of how to collaborate on narrative text and code.
 - `vignette("trackdown-tech-notes")` for details regarding technical
   details like authentication and file management.
+- Guide to create personal credentials
+  <https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html>
 
 ## Extending `trackdown`
 
