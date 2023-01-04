@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -50,13 +50,16 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    </li>
+    <li>
       <a href="articles/trackdown-features.html">Function Arguments and Features</a>
     </li>
     <li>
@@ -109,6 +112,7 @@
 <strong><code>rich_text</code>.</strong> Upload <em>rich</em> documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See <a href="https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text" class="external-link">rich-text feature details</a>.</li>
 <li>
 <strong>API Credentials.</strong> Now, <code>trackdown</code> uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable <em>“Trackdown R Package”</em>. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at <a href="https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007" class="external-link">issue comment</a>). Don’t worry <code>trackdown</code> uses the same system as the <code>googledrive</code> package that was previously used. See details on privacy policy at <code><a href="articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</li>
+<li>[<strong>IMPORTANT</strong>] We currently reached the maximum number of users for the API credentails. Installing the development <code>trackdown</code> from GitHub will require to create your own API credentials. Please, see instructions at [TODO]</li>
 </ul>
 </blockquote>
 </div>
@@ -117,13 +121,13 @@
 </h2>
 <p>You can install the released version from <a href="https://CRAN.R-project.org/package=trackdown" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"trackdown"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"trackdown"</span><span class="op">)</span></span></code></pre></div>
 <p>To install the development version from <a href="https://github.com/ClaudioZandonella/trackdown/" class="external-link">GitHub</a>, run the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"claudiozandonella/trackdown"</span>,
-                         build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/claudiozandonella/trackdown/" class="external-link">trackdown</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"claudiozandonella/trackdown"</span>,</span>
+<span>                         build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/claudiozandonella/trackdown/" class="external-link">trackdown</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="the-trackdown-workflow">The <code>trackdown</code> Workflow<a class="anchor" aria-label="anchor" href="#the-trackdown-workflow"></a>
@@ -139,8 +143,9 @@
 <blockquote>
 <p>Collaborative <strong>code</strong> writing using <strong>Git</strong> &amp; collaborative writing of <strong>narrative text</strong> using <strong>Google Docs</strong></p>
 </blockquote>
-<iframe width="800" height="450" src="https://www.powtoon.com/embed/bWtc2qqbZ5F/" align="middle" frameborder="0" allowfullscreen>
-</iframe>
+<center>
+<a href="https://www.powtoon.com/embed/bWtc2qqbZ5F/" target="_blank" class="external-link"> <img src="reference/figures/video-thumbnail.png" align="center" style="border: none; float: center;"></a>
+</center>
 <div class="section level3">
 <h3 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h3>
@@ -305,7 +310,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

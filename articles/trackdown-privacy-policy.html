@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -50,13 +50,16 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    </li>
+    <li>
       <a href="../articles/trackdown-features.html">Function Arguments and Features</a>
     </li>
     <li>
@@ -94,7 +97,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Privacy Policy for trackdown Access to Google APIs</h1>
+      <h1 data-toc-skip>Privacy Policy for trackdown Access to Google
+APIs</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/claudiozandonella/trackdown/blob/HEAD/vignettes/trackdown-privacy-policy.Rmd" class="external-link"><code>vignettes/trackdown-privacy-policy.Rmd</code></a></small>
@@ -105,44 +109,92 @@
     
     
 <blockquote>
-<p>The following Privacy Policy notes are valid for <code>trackdown</code> v1.3.0 [currently only available on GitHub]</p>
+<p>The following Privacy Policy notes are valid for
+<code>trackdown</code> v1.3.0 [currently only available on GitHub]</p>
+<ul>
+<li>[<strong>IMPORTANT</strong>] We currently reached the maximum number
+of users for the API credentails. Installing the development
+<code>trackdown</code> from GitHub will require to create your own API
+credentials. Please, see instructions at [TODO]</li>
+</ul>
 </blockquote>
 <p>The <code>trackdown</code> package works with Google APIs from R.</p>
-<p>The <code>trackdown</code> package is governed by policies recorded here. The <code>trackdown</code> package uses internal resources owned by the “Trackdown R Package” project on Google Cloud Platform. That is the name you will see in a consent screen.</p>
-<p>Your use of Google APIs with the <code>trackdown</code> package is subject to each API’s respective terms of service. See <a href="https://developers.google.com/terms/" class="external-link uri">https://developers.google.com/terms/</a>.</p>
+<p>The <code>trackdown</code> package is governed by policies recorded
+here. The <code>trackdown</code> package uses internal resources owned
+by the “Trackdown R Package” project on Google Cloud Platform. That is
+the name you will see in a consent screen.</p>
+<p>Your use of Google APIs with the <code>trackdown</code> package is
+subject to each API’s respective terms of service. See <a href="https://developers.google.com/terms/" class="external-link uri">https://developers.google.com/terms/</a>.</p>
 <div class="section level2">
 <h2 id="privacy-google-account-and-user-data">Privacy Google account and user data<a class="anchor" aria-label="anchor" href="#privacy-google-account-and-user-data"></a>
 </h2>
 <div class="section level3">
 <h3 id="accessing-user-data">Accessing User Data<a class="anchor" aria-label="anchor" href="#accessing-user-data"></a>
 </h3>
-<p>The <code>trackdown</code> package accesses Google resources from your local machine. Your machine communicates directly with the Google APIs.</p>
-<p>The Trackdown R Package project never receives your data or the permission to access your data. The owners of the project can only see anonymous, aggregated information about usage of tokens obtained through its OAuth client, such as which APIs and endpoints are being used.</p>
-<p>The <code>trackdown</code> package includes functions that you can execute in order to read or modify your own data. This can only happen after you provide a token, which requires that you authenticate yourself as a specific Google user and authorize these actions.</p>
-<p>The <code>trackdown</code> package can help you get a token by guiding you through the OAuth flow in the browser. There you must consent to allow the Trackdown R Package project to operate on your behalf. The OAuth consent screen will describe the scope of what is being authorized, e.g., it will name the target API(s) and whether you are authorizing “read only” or “read and write” access.</p>
-<p>There are two ways to use these packages without authorizing the Trackdown R Package project: bring your own <a href="https://developers.google.com/identity/protocols/oauth2/service-account" class="external-link">service account token</a> or configure the package to use an OAuth client of your choice.</p>
+<p>The <code>trackdown</code> package accesses Google resources from
+your local machine. Your machine communicates directly with the Google
+APIs.</p>
+<p>The Trackdown R Package project never receives your data or the
+permission to access your data. The owners of the project can only see
+anonymous, aggregated information about usage of tokens obtained through
+its OAuth client, such as which APIs and endpoints are being used.</p>
+<p>The <code>trackdown</code> package includes functions that you can
+execute in order to read or modify your own data. This can only happen
+after you provide a token, which requires that you authenticate yourself
+as a specific Google user and authorize these actions.</p>
+<p>The <code>trackdown</code> package can help you get a token by
+guiding you through the OAuth flow in the browser. There you must
+consent to allow the Trackdown R Package project to operate on your
+behalf. The OAuth consent screen will describe the scope of what is
+being authorized, e.g., it will name the target API(s) and whether you
+are authorizing “read only” or “read and write” access.</p>
+<p>There are two ways to use these packages without authorizing the
+Trackdown R Package project: bring your own <a href="https://developers.google.com/identity/protocols/oauth2/service-account" class="external-link">service
+account token</a> or configure the package to use an OAuth client of
+your choice.</p>
 </div>
 <div class="section level3">
 <h3 id="scopes">Scopes<a class="anchor" aria-label="anchor" href="#scopes"></a>
 </h3>
-<p>Overview of the scopes requested by the Trackdown R Package project and their rationale:</p>
+<p>Overview of the scopes requested by the Trackdown R Package project
+and their rationale:</p>
 <ul>
-<li><p><code>userinfo.email</code> (read only): The Trackdown R Package project request this scope so that cached tokens can be labelled with the associated Google user, allowing you to more easily access Google APIs with more than one identity. The Trackdown R Package project do NOT have access to and do NOT store your Google password.</p></li>
-<li><p>Drive (read/write): The <code>trackdown</code> package allows you to upload, modify, and download files to your Drive and therefore the default scopes include read/write access.</p></li>
+<li><p><code>userinfo.email</code> (read only): The Trackdown R Package
+project request this scope so that cached tokens can be labelled with
+the associated Google user, allowing you to more easily access Google
+APIs with more than one identity. The Trackdown R Package project do NOT
+have access to and do NOT store your Google password.</p></li>
+<li><p>Drive (read/write): The <code>trackdown</code> package allows you
+to upload, modify, and download files to your Drive and therefore the
+default scopes include read/write access.</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="sharing-user-data">Sharing User Data<a class="anchor" aria-label="anchor" href="#sharing-user-data"></a>
 </h3>
-<p>The <code>trackdown</code> package may store your credentials on your local machine, for later reuse by you. Use caution when using this package on a shared machine.</p>
-<p>By default, an OAuth token is cached in a local file, such as <code>~/.R/gargle/gargle-oauth</code>. See the documentation for <a href="https://gargle.r-lib.org/reference/gargle_options.html" class="external-link"><code>gargle::gargle_options()</code></a> and <a href="https://gargle.r-lib.org/reference/credentials_user_oauth2.html" class="external-link"><code>gargle::credentials_user_oauth2()</code></a> for information on how to control the location of the token cache or suppress token caching, globally or at the individual token level.</p>
+<p>The <code>trackdown</code> package may store your credentials on your
+local machine, for later reuse by you. Use caution when using this
+package on a shared machine.</p>
+<p>By default, an OAuth token is cached in a local file, such as
+<code>~/.R/gargle/gargle-oauth</code>. See the documentation for <a href="https://gargle.r-lib.org/reference/gargle_options.html" class="external-link"><code>gargle::gargle_options()</code></a>
+and <a href="https://gargle.r-lib.org/reference/credentials_user_oauth2.html" class="external-link"><code>gargle::credentials_user_oauth2()</code></a>
+for information on how to control the location of the token cache or
+suppress token caching, globally or at the individual token level.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="policies-for-authors-of-packages-or-other-applications">Policies for Authors of Packages or Other Applications<a class="anchor" aria-label="anchor" href="#policies-for-authors-of-packages-or-other-applications"></a>
 </h2>
-<p>Do not use an API key or client ID from the Trackdown R Package project in an external package or tool. Per the Google User Data Policy <a href="https://developers.google.com/terms/api-services-user-data-policy" class="external-link uri">https://developers.google.com/terms/api-services-user-data-policy</a>, your application must accurately represent itself when authenticating to Google API services.</p>
-<p>If you use these packages inside another package or application that executes its own logic — as opposed to code in the Trackdown R Package project or by the user — you must communicate this clearly to the user. Do not use credentials from the Trackdown R Package project; instead, use credentials associated with your project or your user.</p>
+<p>Do not use an API key or client ID from the Trackdown R Package
+project in an external package or tool. Per the Google User Data Policy
+<a href="https://developers.google.com/terms/api-services-user-data-policy" class="external-link uri">https://developers.google.com/terms/api-services-user-data-policy</a>,
+your application must accurately represent itself when authenticating to
+Google API services.</p>
+<p>If you use these packages inside another package or application that
+executes its own logic — as opposed to code in the Trackdown R Package
+project or by the user — you must communicate this clearly to the user.
+Do not use credentials from the Trackdown R Package project; instead,
+use credentials associated with your project or your user.</p>
 </div>
   </div>
 
@@ -163,7 +215,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

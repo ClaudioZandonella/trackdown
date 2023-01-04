@@ -19,6 +19,9 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/oauth-app-configuration.html</loc>
+  </url>
+  <url>
     <loc>/articles/trackdown-features.html</loc>
   </url>
   <url>
@@ -50,6 +53,24 @@
   </url>
   <url>
     <loc>/reference/trackdown-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trackdown_auth.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trackdown_auth_configure.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trackdown_deauth.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trackdown_has_token.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trackdown_token.html</loc>
+  </url>
+  <url>
+    <loc>/reference/trackdown_user.html</loc>
   </url>
   <url>
     <loc>/reference/update_file.html</loc>

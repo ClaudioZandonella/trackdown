@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -50,13 +50,16 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    </li>
+    <li>
       <a href="../articles/trackdown-features.html">Function Arguments and Features</a>
     </li>
     <li>
@@ -104,12 +107,20 @@
 
     
     
-<p>In this vignette, some technical details of the <code>trackdown</code> workflow are discussed.</p>
-<p>For a general overview of the package, see the <code>trackdown-package</code> help page or <code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> to learn more about the workflow and <code><a href="../articles/trackdown-features.html">vignette("trackdown-features")</a></code> for a detailed description of function arguments and features.</p>
+<p>In this vignette, some technical details of the
+<code>trackdown</code> workflow are discussed.</p>
+<p>For a general overview of the package, see the
+<code>trackdown-package</code> help page or
+<code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> to learn more about the
+workflow and <code><a href="../articles/trackdown-features.html">vignette("trackdown-features")</a></code> for a detailed
+description of function arguments and features.</p>
 <div class="section level3">
 <h3 id="instructions">Trackdown Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
 </h3>
-<p>When uploading (or updating) a file to Google Drive, <code>trackdown</code> adds some simple instructions and reminders on top of the document. For example, in the case of a file named <code>My-Report.Rmd</code> the following instructions are added:</p>
+<p>When uploading (or updating) a file to Google Drive,
+<code>trackdown</code> adds some simple instructions and reminders on
+top of the document. For example, in the case of a file named
+<code>My-Report.Rmd</code> the following instructions are added:</p>
 <pre><code>#----Trackdown Instructions----#
 This is not a common Document. The Document includes properly formatted Markdown syntax and R code. Please be aware and responsible in making corrections as you could break the code. Limit changes to narrative text and avoid modifying R code.
 Please do not remove placeholders of type "[[chunk-&lt;name&gt;]]" or "[[document-header]]"
@@ -118,53 +129,150 @@ You must not modify or remove these lines, we will do it for you ;)
 FILE-NAME: My-Report.Rmd
 HIDE-CODE: TRUE
 #----End Instructions----#</code></pre>
-<p>In particular, the menu option for accepting all changes is pointed out and information about the name of the local file and the selected option for hiding the code is displayed. All these instructions are automatically removed when the document is downloaded so they must not be modified.</p>
+<p>In particular, the menu option for accepting all changes is pointed
+out and information about the name of the local file and the selected
+option for hiding the code is displayed. All these instructions are
+automatically removed when the document is downloaded so they must not
+be modified.</p>
 </div>
 <div class="section level3">
 <h3 id="Html2Pdf">Html 2 Pdf<a class="anchor" aria-label="anchor" href="#Html2Pdf"></a>
 </h3>
-<p>The <code>trackdown</code> package allows uploading the rendered output file (i.e., an HTML or PDF file) together with the main file. This allows collaborators to evaluate the overall layout, including figures and tables, and to add comments to propose and discuss changes. However, only in the case of PDF files, collaborators can add comments directly on the file in Google Drive. This is not possible with HTML files.</p>
-<p>When working with HTML output files, <code>trackdown</code> can automatically convert them into PDFs before uploading them to Google Drive. This feature requires that the <code>pagedown</code> package is available. As the <code>pagedown</code> package is not installed as a dependency of <code>trackdown</code>, it has to be installed manually by the user if it is not already available. The function <code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html" class="external-link">pagedown::chrome_print()</a></code> is used to convert HTML into a PDF. Note that Google Chrome has to be installed on the user’s system for this conversion operation.</p>
+<p>The <code>trackdown</code> package allows uploading the rendered
+output file (i.e., an HTML or PDF file) together with the main file.
+This allows collaborators to evaluate the overall layout, including
+figures and tables, and to add comments to propose and discuss changes.
+However, only in the case of PDF files, collaborators can add comments
+directly on the file in Google Drive. This is not possible with HTML
+files.</p>
+<p>When working with HTML output files, <code>trackdown</code> can
+automatically convert them into PDFs before uploading them to Google
+Drive. This feature requires that the <code>pagedown</code> package is
+available. As the <code>pagedown</code> package is not installed as a
+dependency of <code>trackdown</code>, it has to be installed manually by
+the user if it is not already available. The function
+<code><a href="https://rdrr.io/pkg/pagedown/man/chrome_print.html" class="external-link">pagedown::chrome_print()</a></code> is used to convert HTML into a
+PDF. Note that Google Chrome has to be installed on the user’s system
+for this conversion operation.</p>
 </div>
 <div class="section level3">
 <h3 id="auth">Authentication<a class="anchor" aria-label="anchor" href="#auth"></a>
 </h3>
 <blockquote>
-<p>From <code>trackdown</code> v1.3.0 [currently only available on GitHub], the <code>trackdown</code> package uses its own API credentials (OAuth client ID and secret; see <code><a href="../articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</p>
+<p>From <code>trackdown</code> v1.3.0 [currently only available on
+GitHub], the <code>trackdown</code> package uses its own API credentials
+(OAuth client ID and secret; see
+<code><a href="../articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</p>
+<p>[<strong>IMPORTANT</strong>] We currently reached the maximum number
+of users for the API credentails. Installing the development
+<code>trackdown</code> from GitHub will require to create your own API
+credentials. Please, see instructions at [TODO]</p>
 </blockquote>
-<p>Under the hood, the <code>trackdown</code> package uses functions from the <code>googledrive</code> R package (<a href="https://googledrive.tidyverse.org/" class="external-link">Official Documentation</a>) to manage files transfers to and from Google Drive. These operations requires authorization to view and manage a user’s Google Drive files. The first time one uses <code>trackdown</code>, one will be directed to a web browser and asked to sign in to one’s Google account to grant <code>googledrive</code> permission to communicate with Google Drive.</p>
-<p>Authentication is managed by the <code>gargle</code> R package (<a href="https://gargle.r-lib.org/index.html" class="external-link">Official Documentation</a>). By default, user credentials are cached in a folder in the user’s home directory, <code>~/.R/gargle/gargle-oauth</code>, from where they can be automatically refreshed, as necessary. Storage at the user level means that the same token can be used across multiple projects and tokens are less likely to be synced to the cloud by accident. Note that if one is using R from a web-based platform like RStudio Server or Cloud, there will be a variant of this user authentification flow, known as out-of-band auth (“oob”). See help page of <code><a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">googledrive::drive_auth()</a></code> for further information (<a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">link</a>).</p>
-<p>It is possible to personalize <code>gargle</code>’s default settings by adding options in the <code>.Rprofile</code> startup file. For example, the preferred Google account and cache folder can be set:</p>
+<p>Under the hood, the <code>trackdown</code> package uses functions
+from the <code>googledrive</code> R package (<a href="https://googledrive.tidyverse.org/" class="external-link">Official Documentation</a>) to
+manage files transfers to and from Google Drive. These operations
+requires authorization to view and manage a user’s Google Drive files.
+The first time one uses <code>trackdown</code>, one will be directed to
+a web browser and asked to sign in to one’s Google account to grant
+<code>googledrive</code> permission to communicate with Google
+Drive.</p>
+<p>Authentication is managed by the <code>gargle</code> R package (<a href="https://gargle.r-lib.org/index.html" class="external-link">Official Documentation</a>).
+By default, user credentials are cached in a folder in the user’s home
+directory, <code>~/.R/gargle/gargle-oauth</code>, from where they can be
+automatically refreshed, as necessary. Storage at the user level means
+that the same token can be used across multiple projects and tokens are
+less likely to be synced to the cloud by accident. Note that if one is
+using R from a web-based platform like RStudio Server or Cloud, there
+will be a variant of this user authentification flow, known as
+out-of-band auth (“oob”). See help page of
+<code><a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">googledrive::drive_auth()</a></code> for further information (<a href="https://googledrive.tidyverse.org/reference/drive_auth.html" class="external-link">link</a>).</p>
+<p>It is possible to personalize <code>gargle</code>’s default settings
+by adding options in the <code>.Rprofile</code> startup file. For
+example, the preferred Google account and cache folder can be set:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>
-  gargle_oauth_email <span class="op">=</span> <span class="st">"my_email@gmail.com"</span>,
-  gargle_oauth_cache <span class="op">=</span> <span class="st">"/path/to/folder/that/does/not/sync/to/cloud"</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
+<span>  gargle_oauth_email <span class="op">=</span> <span class="st">"my_email@gmail.com"</span>,</span>
+<span>  gargle_oauth_cache <span class="op">=</span> <span class="st">"/path/to/folder/that/does/not/sync/to/cloud"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>See the <code>gargle</code> documentation for further information (<a href="https://gargle.r-lib.org/reference/gargle_options.html" class="external-link">link</a>).</p>
 </div>
 <div class="section level3">
 <h3 id="hidden-folder">The <code>.trackdown</code> folder<a class="anchor" aria-label="anchor" href="#hidden-folder"></a>
 </h3>
-<p>When uploading or updating an <code>.Rmd</code> (or <code>.Rnw</code>) file to Google Drive, it is possible to remove the code in the header of the document (YAML header or LaTeX preamble) and code chunks by specifying the argument <code>hide_code = TRUE</code>.</p>
-<p>The header code and the code chunks are saved in a hidden folder named <code>.trackdown</code> that will be created in the same location as the uploaded <code>.Rmd</code> (or <code>.Rnw</code>) file. For example, when uploading a file named <code>My-Report.Rmd</code>, two files will be created:</p>
+<p>When uploading or updating an <code>.Rmd</code> (or
+<code>.Rnw</code>) file to Google Drive, it is possible to remove the
+code in the header of the document (YAML header or LaTeX preamble) and
+code chunks by specifying the argument
+<code>hide_code = TRUE</code>.</p>
+<p>The header code and the code chunks are saved in a hidden folder
+named <code>.trackdown</code> that will be created in the same location
+as the uploaded <code>.Rmd</code> (or <code>.Rnw</code>) file. For
+example, when uploading a file named <code>My-Report.Rmd</code>, two
+files will be created:</p>
 <ul>
 <li>
-<code>My-Report.Rmd-header_info.rds</code> - containing the header code</li>
+<code>My-Report.Rmd-header_info.rds</code> - containing the header
+code</li>
 <li>
-<code>My-Report.Rmd-chunk_info.rds</code> - containing all code chunks</li>
+<code>My-Report.Rmd-chunk_info.rds</code> - containing all code
+chunks</li>
 </ul>
-<p>These files are required to automatically restore the header code and all code chunks when the document is downloaded from Google Drive. Consequently, it is important to not delete or move the hidden <code>.trackdown</code> folder. This folder should always be in the same location as the <code>.Rmd</code> (or <code>.Rnw</code>) file.</p>
-<p>It is recommended to track the hidden <code>.trackdown</code> folder using Git. This provides an extra layer of safety and a chance to restore the code automatically if the folder was deleted or modified by accident.</p>
+<p>These files are required to automatically restore the header code and
+all code chunks when the document is downloaded from Google Drive.
+Consequently, it is important to not delete or move the hidden
+<code>.trackdown</code> folder. This folder should always be in the same
+location as the <code>.Rmd</code> (or <code>.Rnw</code>) file.</p>
+<p>It is recommended to track the hidden <code>.trackdown</code> folder
+using Git. This provides an extra layer of safety and a chance to
+restore the code automatically if the folder was deleted or modified by
+accident.</p>
 </div>
 <div class="section level3">
 <h3 id="corrupted">Corrupted Files<a class="anchor" aria-label="anchor" href="#corrupted"></a>
 </h3>
-<p>When editing an <code>.Rmd</code> (or <code>.Rnw</code>) file in Google Docs, it is possible to introduce some syntax errors and break the code so that it is no longer possible to render the document locally after downloading it. This applies to both Markdown (or LaTeX) syntax and R code.</p>
+<p>When editing an <code>.Rmd</code> (or <code>.Rnw</code>) file in
+Google Docs, it is possible to introduce some syntax errors and break
+the code so that it is no longer possible to render the document locally
+after downloading it. This applies to both Markdown (or LaTeX) syntax
+and R code.</p>
 <ul>
-<li><p><strong>Markdown (or LaTeX) syntax</strong> - Less expert collaborators are likely to introduce errors while editing the document in Google Docs. Remember that any editing of the narrative text should be done using proper Markdown (or LaTeX) syntax. Any other formatting done in Google Docs (e.g., bold, italic, titles, font size, etc.) will be lost at download. Collaborators with no experience in these markup languages might find this too demanding. In this case, collaborators might prefer to modify the text format using the standard formatting commands, leaving it to their more experienced collaborators to <em>translate</em> the formatting into the corresponding Markdown (or LaTeX) syntax.</p></li>
-<li><p><strong>R code</strong> - Any changes to the R code should be avoided when editing files in Google Docs. Collaborative code writing is better done in an appropriate IDE (e.g., RStudio) using version control systems like Git. To prevent collaborators from inadvertently making changes to the code in Google Docs, it is possible to remove code in the header of the document (YAML header or LaTeX preamble) and code chunks by specifying the argument <code>hide_code = TRUE</code>. This allows collaborators to focus solely on the narrative text. To allow for correct code restoration after download, however, the placeholders of type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” must not be modified or removed when editing the file in Google Docs. If they are inadvertently removed, the <code>trackdown</code> package will try to restore the missing chunks by placing them after the last available placeholder. Unfortunately, this process does not guarantee that chucks are placed in the correct position. Experienced collaborators can, however, easily fix possible issues allowing the document to compile.</p></li>
+<li><p><strong>Markdown (or LaTeX) syntax</strong> - Less expert
+collaborators are likely to introduce errors while editing the document
+in Google Docs. Remember that any editing of the narrative text should
+be done using proper Markdown (or LaTeX) syntax. Any other formatting
+done in Google Docs (e.g., bold, italic, titles, font size, etc.) will
+be lost at download. Collaborators with no experience in these markup
+languages might find this too demanding. In this case, collaborators
+might prefer to modify the text format using the standard formatting
+commands, leaving it to their more experienced collaborators to
+<em>translate</em> the formatting into the corresponding Markdown (or
+LaTeX) syntax.</p></li>
+<li><p><strong>R code</strong> - Any changes to the R code should be
+avoided when editing files in Google Docs. Collaborative code writing is
+better done in an appropriate IDE (e.g., RStudio) using version control
+systems like Git. To prevent collaborators from inadvertently making
+changes to the code in Google Docs, it is possible to remove code in the
+header of the document (YAML header or LaTeX preamble) and code chunks
+by specifying the argument <code>hide_code = TRUE</code>. This allows
+collaborators to focus solely on the narrative text. To allow for
+correct code restoration after download, however, the placeholders of
+type “[[document-header]]” and “[[chunk-&lt;name&gt;]]” must not be
+modified or removed when editing the file in Google Docs. If they are
+inadvertently removed, the <code>trackdown</code> package will try to
+restore the missing chunks by placing them after the last available
+placeholder. Unfortunately, this process does not guarantee that chucks
+are placed in the correct position. Experienced collaborators can,
+however, easily fix possible issues allowing the document to
+compile.</p></li>
 </ul>
-<p>In all cases, using Git to track the <code>.Rmd</code> (or <code>.Rnw</code>) files (or better the whole project) is highly recommended. Git allows restoring previous versions of the document in case of any issues. In the worst-case scenario where <code>trackdown</code> is not able to restore the code chunks, experienced collaborators can still use Git or the information saved in the hidden <code>.trackdown</code> folder to manually restore all corrupted or missing parts.</p>
+<p>In all cases, using Git to track the <code>.Rmd</code> (or
+<code>.Rnw</code>) files (or better the whole project) is highly
+recommended. Git allows restoring previous versions of the document in
+case of any issues. In the worst-case scenario where
+<code>trackdown</code> is not able to restore the code chunks,
+experienced collaborators can still use Git or the information saved in
+the hidden <code>.trackdown</code> folder to manually restore all
+corrupted or missing parts.</p>
 </div>
   </div>
 
@@ -183,7 +291,7 @@ HIDE-CODE: TRUE
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

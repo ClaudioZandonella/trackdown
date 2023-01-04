@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
@@ -26,12 +26,15 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    </li>
+    <li>
       <a href="articles/trackdown-features.html">Function Arguments and Features</a>
     </li>
     <li>
@@ -69,79 +72,56 @@
 <div id="todo" class="section level1">
 
 <ul><li>
-<input type="checkbox" disabled checked>
-clean utilities file with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> to avoid leaving trash if function fails</li>
+<input type="checkbox" disabled checked>clean utilities file with <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> to avoid leaving trash if function fails</li>
 <li>
-<input type="checkbox" disabled checked>
-remove <code>report_pdf</code>
+<input type="checkbox" disabled checked>remove <code>report_pdf</code>
 </li>
 <li>save default setting hide_chunks and upload_report for each document so user don’t need to specify each time</li>
 <li>
-<input type="checkbox" disabled checked>
-change default report name to filename + report</li>
+<input type="checkbox" disabled checked>change default report name to filename + report</li>
 <li>
-<input type="checkbox" disabled checked>
-manage removed chunk from google drive</li>
+<input type="checkbox" disabled checked>manage removed chunk from google drive</li>
 <li>
-<input type="checkbox" disabled checked>
-do not exclude setup chunk</li>
+<input type="checkbox" disabled checked>do not exclude setup chunk</li>
 </ul></div>
 <div class="section level1">
 <h1 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a></h1>
-<ul class="task-list"><li><p><input type="checkbox" disabled checked>
-in <code>init_rmdrive()</code> function the argument <code>local_rmd</code> is used to print the name. - [x] Code line <code>proj_name &lt;- sub("\\..*", "", local_rmd)</code> to remove the file extension is problematic for file name with points in the name (e.g., “trial.file.rmd”).</p></li>
-<li><p><input type="checkbox" disabled checked>
-see <code>extract_yaml()</code> the function body is repeated in <code>hide_chunk()</code></p></li>
-<li><p><input type="checkbox" disabled checked>
-set chunks to NA possible conflict with “NA”? In <code>hide_chunk()</code> code line <code>stringr::str_remove_all(., "NA")</code></p></li>
-<li><p><input type="checkbox" disabled checked>
-in <code>upload_report()</code> chunk_info[!stringr::str_detect(temp_chunk$name, stringr::regex(‘setup’, ignore_case = T)), ] # remove echo = F chunks ??</p></li>
-<li><p><input type="checkbox" disabled checked>
-add message render report; evaluate if to keep separate hide chunk/ upload_report.</p></li>
-<li><p><input type="checkbox" disabled checked>
-deal with possible errors when compiling.</p></li>
-<li><p><input type="checkbox" disabled checked>
-cache</p></li>
+<ul class="task-list"><li><p><input type="checkbox" disabled checked>in <code>init_rmdrive()</code> function the argument <code>local_rmd</code> is used to print the name. - [x] Code line <code>proj_name &lt;- sub("\\..*", "", local_rmd)</code> to remove the file extension is problematic for file name with points in the name (e.g., “trial.file.rmd”).</p></li>
+<li><p><input type="checkbox" disabled checked>see <code>extract_yaml()</code> the function body is repeated in <code>hide_chunk()</code></p></li>
+<li><p><input type="checkbox" disabled checked>set chunks to NA possible conflict with “NA”? In <code>hide_chunk()</code> code line <code>stringr::str_remove_all(., "NA")</code></p></li>
+<li><p><input type="checkbox" disabled checked>in <code>upload_report()</code> chunk_info[!stringr::str_detect(temp_chunk$name, stringr::regex(‘setup’, ignore_case = T)), ] # remove echo = F chunks ??</p></li>
+<li><p><input type="checkbox" disabled checked>add message render report; evaluate if to keep separate hide chunk/ upload_report.</p></li>
+<li><p><input type="checkbox" disabled checked>deal with possible errors when compiling.</p></li>
+<li><p><input type="checkbox" disabled checked>cache</p></li>
 </ul></div>
 <div class="section level1">
 <h1 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a></h1>
-<ul class="task-list"><li><p><input type="checkbox" disabled checked>
-problems when chunks have not the <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code> syntax like simply writing raw code to not evaluate</p></li>
-<li><p><input type="checkbox" disabled checked>
-problems about restoring the first or last chunk</p></li>
+<ul class="task-list"><li><p><input type="checkbox" disabled checked>problems when chunks have not the <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code> syntax like simply writing raw code to not evaluate</p></li>
+<li><p><input type="checkbox" disabled checked>problems about restoring the first or last chunk</p></li>
 </ul><div class="section level2">
 <h2 id="march">March<a class="anchor" aria-label="anchor" href="#march"></a></h2>
 <ul><li>
-<input type="checkbox" disabled checked>
-example_1.Rmd uploaded <strong>as &lt; add name gfile&gt;</strong>!</li>
+<input type="checkbox" disabled checked>example_1.Rmd uploaded <strong>as &lt; add name gfile&gt;</strong>!</li>
 <li>evaluate if get_root_id works also for team_drive (in case bind the two conditions)</li>
 </ul></div>
 <div class="section level2">
 <h2 id="april">April<a class="anchor" aria-label="anchor" href="#april"></a></h2>
 <ul><li>
-<input type="checkbox" disabled checked>
-change sarting point header rnw (from 1st line)</li>
+<input type="checkbox" disabled checked>change sarting point header rnw (from 1st line)</li>
 <li>
-<input type="checkbox" disabled checked>
-resore documen-header if missing at the top document</li>
+<input type="checkbox" disabled checked>resore documen-header if missing at the top document</li>
 <li>
-<input type="checkbox" disabled checked>
-new line first-second chunk</li>
+<input type="checkbox" disabled checked>new line first-second chunk</li>
 <li>
-<input type="checkbox" disabled checked>
-messages (path drive)</li>
+<input type="checkbox" disabled checked>messages (path drive)</li>
 <li>
-<input type="checkbox" disabled checked>
-document restore_file</li>
+<input type="checkbox" disabled checked>document restore_file</li>
 <li>
-<input type="checkbox" disabled checked>
-unlink() instead of file.remove() within testing functions</li>
+<input type="checkbox" disabled checked>unlink() instead of file.remove() within testing functions</li>
 <li>
-<input type="checkbox" disabled checked>
-substitute readLines() with readr::read_lines()</li>
+<input type="checkbox" disabled checked>substitute readLines() with readr::read_lines()</li>
 <li>
-<input type="checkbox" disabled checked>
-change documentation of download_document(). The input file is suggested without extension (<code>rmd</code>)</li>
+<input type="checkbox" disabled checked>change documentation of download_document(). The input file is suggested without extension (<code>rmd</code>)</li>
 <li>check what happens with <code><a href="https://github.com/claudiozandonella/trackdown/" class="external-link">library(trackdown)</a></code>
 </li>
 <li>trying a very complicated <code>rmd</code> document with a lot of chunks and text</li>
@@ -159,8 +139,7 @@ change documentation of download_document(). The input file is suggested without
 <div class="section level2">
 <h2 id="march-2022">March 2022<a class="anchor" aria-label="anchor" href="#march-2022"></a></h2>
 <ul class="task-list"><li>
-<input type="checkbox" disabled checked>
-fix recognize indented chunks</li>
+<input type="checkbox" disabled checked>fix recognize indented chunks</li>
 </ul></div>
 </div>
 
@@ -180,7 +159,7 @@ fix recognize indented chunks</li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
