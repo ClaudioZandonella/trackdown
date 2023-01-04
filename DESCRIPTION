@@ -35,6 +35,7 @@ Imports:
     cli (>= 3.0.0),
     gargle (>= 1.2.0),
     googledrive (>= 2.0.0),
+    rlang (>= 1.0.2),
     rmarkdown
 Suggests: 
     covr,

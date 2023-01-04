@@ -109,6 +109,7 @@
 #'  }
 #'
 #' @importFrom utils tail head
+#' @import rlang
 #'
 #' @docType package
 #' @name trackdown-package
