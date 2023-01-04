@@ -12,7 +12,7 @@
 #'
 #' @param document document character vector with the lines of the document 
 #'
-#' @return
+#' @return document document character vector with the lines of the document 
 #' @noRd
 #' 
 #' @examples
