@@ -14,6 +14,12 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5167319.svg)](https://doi.org/10.5281/zenodo.5167319)
 <!-- badges: end -->
 
+> **IMPORTANT**
+>
+> We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see https://github.com/ClaudioZandonella/trackdown/issues/37#issuecomment-1330785927. More detailed information will be provided.
+>
+> Sorry for the issue. We hope too solve this problem as soon as possible.
+
 ## Overview
 
 The `trackdown` package offers a simple solution for collaborative
