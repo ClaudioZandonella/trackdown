@@ -36,6 +36,7 @@ The `trackdown` package offers a simple solution for collaborative writing and e
 > 
 > - **`rich_text`.** Upload *rich* documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See [rich-text feature details]( https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
 > - **API Credentials.** Now, `trackdown` uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable *“Trackdown R Package”*. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at [issue comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)). Don't worry `trackdown` uses the same system as the `googledrive` package that was previously used. See details on privacy policy at `vignette("trackdown-privacy-policy")`).
+> - [**IMPORTANT**] We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see instructions at [TODO]
 
 ## Installation {#install}
 

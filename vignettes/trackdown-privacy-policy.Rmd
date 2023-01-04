@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 ```
 
 > The following Privacy Policy notes are valid for `trackdown` v1.3.0 [currently only available on GitHub]
+>
+> - [**IMPORTANT**] We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see instructions at [TODO]
 
 The `trackdown` package works with Google APIs from R.
 

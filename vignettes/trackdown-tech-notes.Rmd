@@ -45,7 +45,9 @@ When working with HTML output files, `trackdown` can automatically convert them 
 
 ### Authentication {#auth}
 
-> From `trackdown` v1.3.0 [currently only available on GitHub], the `trackdown` package uses its own API credentials (OAuth client ID and secret; see `vignette("trackdown-privacy-policy")`). 
+> From `trackdown` v1.3.0 [currently only available on GitHub], the `trackdown` package uses its own API credentials (OAuth client ID and secret; see `vignette("trackdown-privacy-policy")`).
+>
+> [**IMPORTANT**] We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see instructions at [TODO]
 
 Under the hood, the `trackdown` package uses functions from the `googledrive` R package ([Official Documentation](https://googledrive.tidyverse.org/)) to manage files transfers to and from Google Drive. These operations requires authorization to view and manage a user’s Google Drive files.  The first time one uses `trackdown`, one will be directed to a web browser and asked to sign in to one’s Google account to grant `googledrive` permission to communicate with Google Drive.
 

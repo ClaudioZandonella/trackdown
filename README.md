@@ -14,12 +14,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5167319.svg)](https://doi.org/10.5281/zenodo.5167319)
 <!-- badges: end -->
 
-> **IMPORTANT**
->
-> We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see https://github.com/ClaudioZandonella/trackdown/issues/37#issuecomment-1330785927. More detailed information will be provided.
->
-> Sorry for the issue. We hope too solve this problem as soon as possible.
-
 ## Overview
 
 The `trackdown` package offers a simple solution for collaborative
@@ -36,22 +30,26 @@ locally.
 > `trackdown` package introduces the `rich_text` feature and uses its
 > own API credentials.
 >
-> -   **`rich_text`.** Upload *rich* documents to Google Docs where
->     important text that should not be changed is automatically
->     highlighted (e.g., placeholders hiding the code, header of the
->     document, code chunks, and in-line code). This prevents
->     collaborators from inadvertently making changes to the code which
->     might corrupt the file. See [rich-text feature
->     details](https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
-> -   **API Credentials.** Now, `trackdown` uses its own Google API
->     credentials (OAuth client ID and secret). This requires Google
->     authentication and to enable *“Trackdown R Package”*. The project
->     is undergoing Google verification so it is already available but
->     Google displays a warning message (see details at [issue
->     comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)).
->     Don’t worry `trackdown` uses the same system as the `googledrive`
->     package that was previously used. See details on privacy policy at
->     `vignette("trackdown-privacy-policy")`).
+> - **`rich_text`.** Upload *rich* documents to Google Docs where
+>   important text that should not be changed is automatically
+>   highlighted (e.g., placeholders hiding the code, header of the
+>   document, code chunks, and in-line code). This prevents
+>   collaborators from inadvertently making changes to the code which
+>   might corrupt the file. See [rich-text feature
+>   details](https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
+> - **API Credentials.** Now, `trackdown` uses its own Google API
+>   credentials (OAuth client ID and secret). This requires Google
+>   authentication and to enable *“Trackdown R Package”*. The project is
+>   undergoing Google verification so it is already available but Google
+>   displays a warning message (see details at [issue
+>   comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)).
+>   Don’t worry `trackdown` uses the same system as the `googledrive`
+>   package that was previously used. See details on privacy policy at
+>   `vignette("trackdown-privacy-policy")`).
+> - \[**IMPORTANT**\] We currently reached the maximum number of users
+>   for the API credentails. Installing the development `trackdown` from
+>   GitHub will require to create your own API credentials. Please, see
+>   instructions at \[TODO\]
 
 ## Installation
 
@@ -79,13 +77,13 @@ During the collaborative writing/editing of an `.Rmd` (or `.Rnw`)
 document, it is important to employ different workflows for computer
 code and narrative text:
 
--   **Code** - Collaborative code writing is done most efficiently by
-    following a traditional **Git**-based workflow using an online
-    repository (e.g., GitHub or GitLab).
--   **Narrative Text** - Collaborative writing of narrative text is done
-    most efficiently using **Google Docs** which provides a familiar and
-    simple online interface that allows multiple users to simultaneously
-    write/edit the same document.
+- **Code** - Collaborative code writing is done most efficiently by
+  following a traditional **Git**-based workflow using an online
+  repository (e.g., GitHub or GitLab).
+- **Narrative Text** - Collaborative writing of narrative text is done
+  most efficiently using **Google Docs** which provides a familiar and
+  simple online interface that allows multiple users to simultaneously
+  write/edit the same document.
 
 Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`)
 document to Google Drive to collaboratively write/edit the narrative
@@ -108,13 +106,13 @@ workflow can be summarized as:
 
 `trackdown` offers different functions to manage the workflow:
 
--   `upload_file()` uploads a file for the first time to Google Drive.
--   `update_file()` updates the content of an existing file in Google
-    Drive with the contents of a local file.
--   `download_file()` downloads the edited version of a file from Google
-    Drive and updates the local version.
--   `render_file()` downloads a file from Google Drive and renders it
-    locally.
+- `upload_file()` uploads a file for the first time to Google Drive.
+- `update_file()` updates the content of an existing file in Google
+  Drive with the contents of a local file.
+- `download_file()` downloads the edited version of a file from Google
+  Drive and updates the local version.
+- `render_file()` downloads a file from Google Drive and renders it
+  locally.
 
 ### Special Features
 
@@ -122,25 +120,25 @@ workflow can be summarized as:
 writing and editing of documents in Google Docs. In particular, it is
 possible to:
 
--   **Hide Code:** Code in the header of the document (YAML header or
-    LaTeX preamble) and code chunks are removed from the document when
-    uploading to Google Drive and are automatically restored during
-    download. This prevents collaborators from inadvertently making
-    changes to the code which might corrupt the file and allows them to
-    focus on the narrative text.
--   **Rich Text:** Upload *rich* documents to Google Docs. Important
-    text that should not be changed is automatically highlighted (e.g.,
-    placeholders hiding the code, header of the document, code chunks,
-    and in-line code). This prevents collaborators from inadvertently
-    making changes to the code which might corrupt the file.
--   **Upload Output:** The actual output document (i.e., the rendered
-    file) can be uploaded to Google Drive in conjunction with the `.Rmd`
-    (or `.Rnw`) document. This helps collaborators to evaluate the
-    overall layout including figures and tables and allows them to add
-    comments to suggest and discuss changes.
--   **Use Google Drive shared drives:** The documents can be uploaded to
-    either a personal Google Drive or to a shared drive to facilitate
-    collaboration.
+- **Hide Code:** Code in the header of the document (YAML header or
+  LaTeX preamble) and code chunks are removed from the document when
+  uploading to Google Drive and are automatically restored during
+  download. This prevents collaborators from inadvertently making
+  changes to the code which might corrupt the file and allows them to
+  focus on the narrative text.
+- **Rich Text:** Upload *rich* documents to Google Docs. Important text
+  that should not be changed is automatically highlighted (e.g.,
+  placeholders hiding the code, header of the document, code chunks, and
+  in-line code). This prevents collaborators from inadvertently making
+  changes to the code which might corrupt the file.
+- **Upload Output:** The actual output document (i.e., the rendered
+  file) can be uploaded to Google Drive in conjunction with the `.Rmd`
+  (or `.Rnw`) document. This helps collaborators to evaluate the overall
+  layout including figures and tables and allows them to add comments to
+  suggest and discuss changes.
+- **Use Google Drive shared drives:** The documents can be uploaded to
+  either a personal Google Drive or to a shared drive to facilitate
+  collaboration.
 
 ### Advantages of Google Docs
 
@@ -148,10 +146,10 @@ Google Docs offers users a familiar, intuitive, and free web-based
 interface that allows multiple users to simultaneously write/edit the
 same document. In Google Docs it is possible to:
 
--   track changes (incl. accepting/rejecting suggestions)
--   add comments to suggest and discuss changes
--   check spelling and grammar errors (potentially integrating
-    third-party services like Grammarly)
+- track changes (incl. accepting/rejecting suggestions)
+- add comments to suggest and discuss changes
+- check spelling and grammar errors (potentially integrating third-party
+  services like Grammarly)
 
 Moreover, Google Docs allows anyone to contribute to the writing/editing
 of the document. No programming experience is required, users can just
@@ -171,23 +169,23 @@ All documentation is available at
 
 To know more about `trackdown`, please reference:
 
--   `vignette("trackdown-features")` for a detailed description of the
-    function arguments and features.
--   `vignette("trackdown-workflow")` for a workflow example and
-    discussion of how to collaborate on narrative text and code.
--   `vignette("trackdown-tech-notes")` for details regarding technical
-    details like authentication and file management.
+- `vignette("trackdown-features")` for a detailed description of the
+  function arguments and features.
+- `vignette("trackdown-workflow")` for a workflow example and discussion
+  of how to collaborate on narrative text and code.
+- `vignette("trackdown-tech-notes")` for details regarding technical
+  details like authentication and file management.
 
 ## Extending `trackdown`
 
 Workflows and solutions proposed by other users:
 
--   **Synchronizing Multiple Documents
-    ([link](https://gist.github.com/smithjd/aaf71b5a6575a0d4a1e4ac3168c4c682)).**
-    GitHub Gist by [John David Smith](https://github.com/smithjd) to
-    automatically keep track of multiple documents from multiple authors
-    detecting local and online changes. It can be used to manage a
-    [Distill website](https://rstudio.github.io/distill/website.html).
+- **Synchronizing Multiple Documents
+  ([link](https://gist.github.com/smithjd/aaf71b5a6575a0d4a1e4ac3168c4c682)).**
+  GitHub Gist by [John David Smith](https://github.com/smithjd) to
+  automatically keep track of multiple documents from multiple authors
+  detecting local and online changes. It can be used to manage a
+  [Distill website](https://rstudio.github.io/distill/website.html).
 
 ## Contributing to `trackdown`
 
