@@ -44,8 +44,10 @@ get_auth_credentials <- function(){
       gargle_oauth_email = "trackdown.tests@gmail.com"
     )
     
-    googledrive::drive_auth()
-    
+    # Obtain token and pass it also to googledrive
+    trackdown_auth()
+    googledrive::drive_auth(token = trackdown_token())  
+     
     file.rename(from = paste0(file_path, "secrets/", list.files(paste0(file_path, "secrets/"))),
                 to = paste0(file_path, "secrets/secret_credentials"))
   }
@@ -63,7 +65,7 @@ get_auth_credentials <- function(){
 #' 
 
 skip_if_no_token <- function() {
-  testthat::skip_if_not(googledrive::drive_has_token(), "No Drive token")
+  testthat::skip_if_not(trackdown_has_token(), "No Drive token")
 }
 
 #----

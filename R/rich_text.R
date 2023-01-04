@@ -54,7 +54,7 @@ run_rich_text <-  function(text,
   request <- build_request(endpoint = "docs.documents.batchUpdate",
                            params = param_request,
                            key = NULL,
-                           token = googledrive::drive_token(),
+                           token = trackdown_token(),
                            base_url = "https://docs.googleapis.com")
   
   response <- gargle::request_make(request)
@@ -172,7 +172,7 @@ get_param_request <-  function(text,
 build_request <- function(endpoint = character(),
                           params = list(),
                           key = NULL,
-                          token = googledrive::drive_token(),
+                          token = trackdown_token(),
                           base_url = "https://docs.googleapis.com"){
   
   # .endpoint is a package internal object with the endpoints available

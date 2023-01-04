@@ -20,7 +20,7 @@
 
     Code
       sub_process("a bullet item")
-    Message <cliMessage>
+    Message
       * a bullet item
 
 # check get_instructions

@@ -2,6 +2,13 @@
 
 export(download_file)
 export(render_file)
+export(trackdown_auth)
+export(trackdown_auth_configure)
+export(trackdown_deauth)
+export(trackdown_has_token)
+export(trackdown_oauth_app)
+export(trackdown_token)
+export(trackdown_user)
 export(update_file)
 export(upload_file)
 import(rlang)
