@@ -57,11 +57,17 @@ test_that("file info are correct", {
                file_name = "new.file.Rmd",
                extension = "rmd",
                file_basename = "new.file")
+  ex_3 <- list(path = ".",
+               file_name = "quarto_file.Qmd",
+               extension = "qmd",
+               file_basename = "quarto_file")
   
   # identify folder and file 
   expect_identical(get_file_info("foo/new-file.Rnw"), ex_1)
   # identify the extension when multiple "." 
   expect_identical(get_file_info("new.file.Rmd"), ex_2)
+  # identify the extension with quarto
+  expect_identical(get_file_info("quarto_file.Qmd"), ex_3)
   
   expect_error(get_file_info("my_file"), "file do not include extension")
   expect_error(get_file_info(20), "file has to be a single string")

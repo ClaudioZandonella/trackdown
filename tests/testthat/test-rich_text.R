@@ -111,7 +111,21 @@ test_that("get correct rich document in google Docs with run_rich_text()", {
   
   expect_snapshot_output(response_6$replies)
   
-
+  #----    qmd    ----
+  
+  # Qmd main normal
+  
+  # update_file(file = paste0(file_path, "rich_text/qmd-main.qmd"),
+  #             gpath = "unit_tests/rich_text", rich_text = FALSE, force = TRUE)
+  
+  text_main <- paste(readLines(paste0(file_path, "rich_text/qmd-main.txt")), collapse = "\n")
+  vcr::use_cassette("rich_text_qmd_1", {
+    response_1 <- run_rich_text(text = text_main,
+                                document_ID = "1sDAU-3DlyNZTOA9zmdlEBAe2YOQYdNCATLWTCFrwIJQ",
+                                extension = "qmd")
+  })
+  
+  expect_snapshot_output(response_1$replies)
 })
 
 # remove files

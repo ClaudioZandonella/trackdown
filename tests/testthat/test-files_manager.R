@@ -55,7 +55,16 @@ test_that("expect correct upload document", {
   expect_equal(nrow(dribble), 2)
   expect_equal(dribble$name, c("example-1", "example-1-output"))
   
-  
+  # upload quarto file and pdf output
+  vcr::use_cassette("upload_file_test_4", {
+    dribble <- upload_file(file = paste0(file_path, "files_manager/example-1.qmd"),
+                           gpath = gpath,
+                           hide_code = TRUE,
+                           rich_text = FALSE)
+    googledrive::drive_rm(dribble)
+  })
+  expect_equal(nrow(dribble), 1)
+  expect_equal(dribble$name, c("example-1"))
 })
 
 test_that("expect correct use of rm_gcomments", {
@@ -128,7 +137,17 @@ test_that("expect correct update document", {
   })
   expect_equal(nrow(dribble), 2)
   expect_equal(dribble$name, c("rnw-example-1-update", "rnw-example-1-update-output"))
-
+  
+  # update quarto file
+  vcr::use_cassette("update_file_test_5", {
+    dribble <- update_file(file = paste0(file_path, "files_manager/example-1.qmd"),
+                           gfile = "qmd-example-1-update",
+                           gpath = gpath,
+                           hide_code = FALSE,
+                           rich_text = FALSE)
+  })
+  expect_equal(nrow(dribble), 1)
+  expect_equal(dribble$name, c("qmd-example-1-update"))
 })
 
 test_that("expect correct use of rm_gcomments", {

@@ -1,0 +1,49 @@
+http_interactions:
+- request:
+    method: post
+    uri: https://docs.googleapis.com/v1/documents/1sDAU-3DlyNZTOA9zmdlEBAe2YOQYdNCATLWTCFrwIJQ:batchUpdate
+    body:
+      encoding: ''
+      string: '{"requests":[{"updateTextStyle":{"range":{"startIndex":386,"endIndex":402},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}},{"updateTextStyle":{"range":{"startIndex":454,"endIndex":485},"textStyle":{"backgroundColor":{"color":{"rgbColor":{"red":1,"green":0.8,"blue":0.4}}}},"fields":"*"}}]}'
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+      Content-Type: application/json
+      Authorization: My bearer token is safe
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      cache-control: private
+      content-encoding: gzip
+      content-length: '228'
+      content-type: application/json; charset=UTF-8
+      date: Thu, 05 Jan 2023 18:37:22 GMT
+      server: ESF
+      vary:
+      - Origin
+      - X-Origin
+      - Referer
+      x-content-type-options: nosniff
+      x-frame-options: SAMEORIGIN
+      x-xss-protection: '0'
+    body:
+      encoding: ''
+      file: no
+      string: |
+        {
+          "replies": [
+            {},
+            {}
+          ],
+          "writeControl": {
+            "requiredRevisionId": "AEQDSK5PJNJJIZDKPKIU461U0HDSQh9nvJKQCIS9RO2CpuvjK5RcYjZLehpFzXZZJn_rdTtMI9wrcCyOKC37XbA"
+          },
+          "documentId": "1sDAU-3DlyNZTOA9zmdlEBAe2YOQYdNCATLWTCFrwIJQ"
+        }
+  recorded_at: 2023-01-05 18:37:22 GMT
+  recorded_with: vcr/1.2.0, webmockr/0.8.2
