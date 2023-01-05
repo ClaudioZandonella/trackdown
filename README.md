@@ -17,7 +17,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 ## Overview
 
 The `trackdown` package offers a simple solution for collaborative
-writing and editing of R Markdown (or Sweave) documents. Using
+writing and editing of R Markdown (or Quarto / Sweave) documents. Using
 `trackdown`, the local `.Rmd` (or `.Rnw`) file can be uploaded as a
 plain-text file to Google Drive. By taking advantage of the easily
 readable Markdown (or LaTeX) syntax and the well-known online interface
@@ -51,6 +51,7 @@ locally.
 >   GitHub will require to create your own API credentials. Please, see
 >   instructions at
 >   <https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html>
+> - **Quarto** documents now supported!!
 
 ## Installation
 
@@ -74,9 +75,9 @@ library(trackdown)
 
 ## The `trackdown` Workflow
 
-During the collaborative writing/editing of an `.Rmd` (or `.Rnw`)
-document, it is important to employ different workflows for computer
-code and narrative text:
+During the collaborative writing/editing of an `.Rmd` (or **Quarto** /
+`.Rnw`) document, it is important to employ different workflows for
+computer code and narrative text:
 
 - **Code** - Collaborative code writing is done most efficiently by
   following a traditional **Git**-based workflow using an online
@@ -86,13 +87,13 @@ code and narrative text:
   simple online interface that allows multiple users to simultaneously
   write/edit the same document.
 
-Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`)
-document to Google Drive to collaboratively write/edit the narrative
-text in Google Docs; download the document locally to continue working
-on the code while harnessing the power of Git for version control and
-collaboration. This iterative process of uploading to and downloading
-from Google Drive continues until the desired results are obtained. The
-workflow can be summarized as:
+Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or Quarto /
+`.Rnw`) document to Google Drive to collaboratively write/edit the
+narrative text in Google Docs; download the document locally to continue
+working on the code while harnessing the power of Git for version
+control and collaboration. This iterative process of uploading to and
+downloading from Google Drive continues until the desired results are
+obtained. The workflow can be summarized as:
 
 > Collaborative **code** writing using **Git** & collaborative writing
 > of **narrative text** using **Google Docs**
@@ -134,9 +135,9 @@ possible to:
   changes to the code which might corrupt the file.
 - **Upload Output:** The actual output document (i.e., the rendered
   file) can be uploaded to Google Drive in conjunction with the `.Rmd`
-  (or `.Rnw`) document. This helps collaborators to evaluate the overall
-  layout including figures and tables and allows them to add comments to
-  suggest and discuss changes.
+  (or Quarto / `.Rnw`) document. This helps collaborators to evaluate
+  the overall layout including figures and tables and allows them to add
+  comments to suggest and discuss changes.
 - **Use Google Drive shared drives:** The documents can be uploaded to
   either a personal Google Drive or to a shared drive to facilitate
   collaboration.
@@ -210,13 +211,13 @@ To cite `trackdown` in publications use:
 
 Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch
 Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing
-and Editing of R Markdown (or Sweave) Documents in Google Drive.
-<https://doi.org/10.5281/zenodo.5167320>.
+and Editing of R Markdown (or Quarto / Sweave) Documents in Google
+Drive. <https://doi.org/10.5281/zenodo.5167320>.
 
 The BibTeX entry is:
 
     @Manual{,
-      title = {trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive},
+      title = {trackdown: Collaborative Writing and Editing of R Markdown (or Quarto / Sweave) Documents in Google Drive},
       author = {Emily Kothe and Claudio Zandonella Callegher and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
       year = {2021},
       note = {R package version 1.1.1},
