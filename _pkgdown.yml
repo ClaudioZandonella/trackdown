@@ -2,6 +2,9 @@
 #   params:
 #     ganalytics: G-38DDQEVS94
 
+template:
+  bootstrap: 5
+  
 reference:
 - title: Authentication
   contents:
