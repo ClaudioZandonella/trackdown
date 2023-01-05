@@ -183,15 +183,15 @@ example, the preferred Google account and cache folder can be set:</p>
 <div class="section level3">
 <h3 id="hidden-folder">The <code>.trackdown</code> folder<a class="anchor" aria-label="anchor" href="#hidden-folder"></a>
 </h3>
-<p>When uploading or updating an <code>.Rmd</code> (or
+<p>When uploading or updating an <code>.Rmd</code> (or Quarto /
 <code>.Rnw</code>) file to Google Drive, it is possible to remove the
 code in the header of the document (YAML header or LaTeX preamble) and
 code chunks by specifying the argument
 <code>hide_code = TRUE</code>.</p>
 <p>The header code and the code chunks are saved in a hidden folder
 named <code>.trackdown</code> that will be created in the same location
-as the uploaded <code>.Rmd</code> (or <code>.Rnw</code>) file. For
-example, when uploading a file named <code>My-Report.Rmd</code>, two
+as the uploaded <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) file.
+For example, when uploading a file named <code>My-Report.Rmd</code>, two
 files will be created:</p>
 <ul>
 <li>
@@ -205,7 +205,8 @@ chunks</li>
 all code chunks when the document is downloaded from Google Drive.
 Consequently, it is important to not delete or move the hidden
 <code>.trackdown</code> folder. This folder should always be in the same
-location as the <code>.Rmd</code> (or <code>.Rnw</code>) file.</p>
+location as the <code>.Rmd</code> (or Quarto / <code>.Rnw</code>)
+file.</p>
 <p>It is recommended to track the hidden <code>.trackdown</code> folder
 using Git. This provides an extra layer of safety and a chance to
 restore the code automatically if the folder was deleted or modified by
@@ -214,11 +215,11 @@ accident.</p>
 <div class="section level3">
 <h3 id="corrupted">Corrupted Files<a class="anchor" aria-label="anchor" href="#corrupted"></a>
 </h3>
-<p>When editing an <code>.Rmd</code> (or <code>.Rnw</code>) file in
-Google Docs, it is possible to introduce some syntax errors and break
-the code so that it is no longer possible to render the document locally
-after downloading it. This applies to both Markdown (or LaTeX) syntax
-and R code.</p>
+<p>When editing an <code>.Rmd</code> (or Quarto / <code>.Rnw</code>)
+file in Google Docs, it is possible to introduce some syntax errors and
+break the code so that it is no longer possible to render the document
+locally after downloading it. This applies to both Markdown (or LaTeX)
+syntax and R code.</p>
 <ul>
 <li><p><strong>Markdown (or LaTeX) syntax</strong> - Less expert
 collaborators are likely to introduce errors while editing the document
@@ -249,7 +250,7 @@ are placed in the correct position. Experienced collaborators can,
 however, easily fix possible issues allowing the document to
 compile.</p></li>
 </ul>
-<p>In all cases, using Git to track the <code>.Rmd</code> (or
+<p>In all cases, using Git to track the <code>.Rmd</code> (or Quarto /
 <code>.Rnw</code>) files (or better the whole project) is highly
 recommended. Git allows restoring previous versions of the document in
 case of any issues. In the worst-case scenario where

@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Collaborative writing and editing of R Markdown (or Sweave) documents. The local .Rmd (or .Rnw) is uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.">
-<title>Collaborative Editing of Rmd (or Rnw) Documents in Google Drive • trackdown</title>
+<meta name="description" content="Collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. The local .Rmd (or Quarto / .Rnw) is uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.">
+<title>Collaborative Editing of Rmd (or Quarto / Rnw) Documents in Google Drive • trackdown</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,8 +17,8 @@
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Collaborative Editing of Rmd (or Rnw) Documents in Google Drive">
-<meta property="og:description" content="Collaborative writing and editing of R Markdown (or Sweave) documents. The local .Rmd (or .Rnw) is uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Collaborative Editing of Rmd (or Quarto / Rnw) Documents in Google Drive">
+<meta property="og:description" content="Collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. The local .Rmd (or Quarto / .Rnw) is uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -87,7 +87,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The <code>trackdown</code> package offers a simple solution for collaborative writing and editing of R Markdown (or Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or <code>.Rnw</code>) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
+<p>The <code>trackdown</code> package offers a simple solution for collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or <code>.Rnw</code>) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
 <blockquote>
 <p>From <code>trackdown</code> v1.3.0 [currently only available on GitHub], the <code>trackdown</code> package introduces the <code>rich_text</code> feature and uses its own API credentials.</p>
 <ul>
@@ -97,6 +97,8 @@
 <strong>API Credentials.</strong> Now, <code>trackdown</code> uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable <em>“Trackdown R Package”</em>. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at <a href="https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007" class="external-link">issue comment</a>). Don’t worry <code>trackdown</code> uses the same system as the <code>googledrive</code> package that was previously used. See details on privacy policy at <code><a href="articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</li>
 <li>[<strong>IMPORTANT</strong>] We currently reached the maximum number of users for the API credentails. Installing the development <code>trackdown</code> from GitHub will require to create your own API credentials. Please, see instructions at <a href="https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html" class="external-link uri">https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html</a>
 </li>
+<li>
+<strong>Quarto</strong> now supported!!</li>
 </ul>
 </blockquote>
 </div>
@@ -116,14 +118,14 @@
 <div class="section level2">
 <h2 id="the-trackdown-workflow">The <code>trackdown</code> Workflow<a class="anchor" aria-label="anchor" href="#the-trackdown-workflow"></a>
 </h2>
-<p>During the collaborative writing/editing of an <code>.Rmd</code> (or <code>.Rnw</code>) document, it is important to employ different workflows for computer code and narrative text:</p>
+<p>During the collaborative writing/editing of an <code>.Rmd</code> (or <strong>Quarto</strong> / <code>.Rnw</code>) document, it is important to employ different workflows for computer code and narrative text:</p>
 <ul>
 <li>
 <strong>Code</strong> - Collaborative code writing is done most efficiently by following a traditional <strong>Git</strong>-based workflow using an online repository (e.g., GitHub or GitLab).</li>
 <li>
 <strong>Narrative Text</strong> - Collaborative writing of narrative text is done most efficiently using <strong>Google Docs</strong> which provides a familiar and simple online interface that allows multiple users to simultaneously write/edit the same document.</li>
 </ul>
-<p>Thus, the workflow’s main idea is simple: Upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
+<p>Thus, the workflow’s main idea is simple: Upload the <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:</p>
 <blockquote>
 <p>Collaborative <strong>code</strong> writing using <strong>Git</strong> &amp; collaborative writing of <strong>narrative text</strong> using <strong>Google Docs</strong></p>
 </blockquote>
@@ -154,7 +156,7 @@
 <li>
 <strong>Rich Text:</strong> Upload <em>rich</em> documents to Google Docs. Important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file.</li>
 <li>
-<strong>Upload Output:</strong> The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout including figures and tables and allows them to add comments to suggest and discuss changes.</li>
+<strong>Upload Output:</strong> The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout including figures and tables and allows them to add comments to suggest and discuss changes.</li>
 <li>
 <strong>Use Google Drive shared drives:</strong> The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.</li>
 </ul>
@@ -210,10 +212,10 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite <code>trackdown</code> in publications use:</p>
-<p>Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive. <a href="https://doi.org/10.5281/zenodo.5167320" class="external-link uri">https://doi.org/10.5281/zenodo.5167320</a>.</p>
+<p>Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing and Editing of R Markdown (or Quarto / Sweave) Documents in Google Drive. <a href="https://doi.org/10.5281/zenodo.5167320" class="external-link uri">https://doi.org/10.5281/zenodo.5167320</a>.</p>
 <p>The BibTeX entry is:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {trackdown<span class="sc">:</span> Collaborative Writing and Editing of R <span class="fu">Markdown</span> (or Sweave) Documents <span class="cf">in</span> Google Drive},</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {trackdown<span class="sc">:</span> Collaborative Writing and Editing of R <span class="fu">Markdown</span> (or Quarto <span class="sc">/</span> Sweave) Documents <span class="cf">in</span> Google Drive},</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Emily Kothe and Claudio Zandonella Callegher and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">1.1</span>},</span>

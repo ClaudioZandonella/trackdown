@@ -92,10 +92,11 @@
     
     
 <p>The main idea behind the <code>trackdown</code> workflow is simple:
-Upload the <code>.Rmd</code> (or <code>.Rnw</code>) document to Google
-Drive to collaboratively write/edit the narrative text in Google Docs;
-download the document locally to continue working on the code while
-harnessing the power of Git for version control and collaboration.</p>
+Upload the <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document to
+Google Drive to collaboratively write/edit the narrative text in Google
+Docs; download the document locally to continue working on the code
+while harnessing the power of Git for version control and
+collaboration.</p>
 <p>To manage this workflow, <code>trackdown</code> offers different
 functions:</p>
 <ul>
@@ -133,8 +134,8 @@ code which might corrupt the file.</li>
 <li>
 <strong>Upload Output</strong> (See <a href="#path-output">path_output</a>): The actual output document (i.e.,
 the rendered file) can be uploaded to Google Drive in conjunction with
-the <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps
-collaborators to evaluate the overall layout including figures and
+the <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document. This
+helps collaborators to evaluate the overall layout including figures and
 tables and it allows them to add comments to suggest and discuss
 changes.</li>
 <li>
@@ -165,7 +166,8 @@ two extra arguments are available:</p>
 the document.</li>
 <li>
 <code>path_output</code> to upload the rendered output document to
-Google Drive in conjunction with the .Rmd (or .Rnw) document.</li>
+Google Drive in conjunction with the <code>.Rmd</code> (or Quarto /
+<code>.Rnw</code>) document.</li>
 </ul>
 <p>In this section, all arguments of <code>trackdown</code> functions
 are introduced, describing default settings and highlighting main
@@ -175,7 +177,7 @@ features.</p>
 <code>file</code><a class="anchor" aria-label="anchor" href="#file"></a>
 </h4>
 <p>A string indicating the path of the local <code>.Rmd</code> (or
-<code>.Rnw</code>) file.</p>
+Quarto / <code>.Rnw</code>) file.</p>
 <p>All <code>trackdown</code> functions take as reference the local file
 to manage the workflow. Thus, the <code>file</code> argument is
 mandatory, both when uploading (or updating) a file to Google Drive or

@@ -95,8 +95,8 @@
 <h2 id="wf-idea">The Workflow Idea<a class="anchor" aria-label="anchor" href="#wf-idea"></a>
 </h2>
 <p>During the collaborative writing of an <code>.Rmd</code> (or
-<code>.Rnw</code>) document, it is important to employ different
-workflows for computer code and narrative text:</p>
+<strong>Quarto</strong> / <code>.Rnw</code>) document, it is important
+to employ different workflows for computer code and narrative text:</p>
 <ul>
 <li>
 <strong>Code</strong> - Collaborative code writing is done most
@@ -110,13 +110,13 @@ allows multiple users to simultaneously write/edit the same
 document.</li>
 </ul>
 <p>Thus, the workflow’s main idea is simple: Upload the
-<code>.Rmd</code> (or <code>.Rnw</code>) document to Google Drive to
-collaboratively write/edit the narrative text in Google Docs; download
-the document locally to continue working on the code while harnessing
-the power of Git for version control and collaboration. This iterative
-process of uploading to and downloading from Google Drive continues
-until the desired results are obtained. The workflow can be summarized
-as:</p>
+<code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document to Google
+Drive to collaboratively write/edit the narrative text in Google Docs;
+download the document locally to continue working on the code while
+harnessing the power of Git for version control and collaboration. This
+iterative process of uploading to and downloading from Google Drive
+continues until the desired results are obtained. The workflow can be
+summarized as:</p>
 <blockquote>
 <p>Collaborative <strong>code</strong> writing using
 <strong>Git</strong> &amp; collaborative writing of <strong>narrative
@@ -290,12 +290,12 @@ current content losing tracked changes.</p>
 <h2 id="collab">Collaboration: Narrative Text vs Code<a class="anchor" aria-label="anchor" href="#collab"></a>
 </h2>
 <p>As stated above, during the collaborative writing/editing of an
-<code>.Rmd</code> (or <code>.Rnw</code>) document, it is important to
-employ different workflows for computer code and narrative text.
-Collaborative code writing should be based on version control systems
-like Git, whereas collaborative writing of the narrative text can be
-done more efficiently in Google Docs. Let’s further discuss these two
-aspects:</p>
+<code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document, it is
+important to employ different workflows for computer code and narrative
+text. Collaborative code writing should be based on version control
+systems like Git, whereas collaborative writing of the narrative text
+can be done more efficiently in Google Docs. Let’s further discuss these
+two aspects:</p>
 <ul>
 <li><p><strong>Code</strong> - Collaborative code writing is done most
 efficiently using version control systems like <strong>Git</strong>.
@@ -311,21 +311,22 @@ RStudio).</p></li>
 writing of the narrative text, <code>trackdown</code> moves the whole
 process to <strong>Google Docs</strong>. However, collaborators should
 be aware that when the document is downloaded from Google Drive it is
-still considered as an <code>.Rmd</code> (or <code>.Rnw</code>) file.
-Thus, any formatting (e.g., bold, italic, titles, font size, etc.) done
-in Google Docs will be lost. To effectively format text, one has to use
-proper Markdown (or LaTeX) syntax. Collaborators with no experience in
-these markup languages could find this too demanding. In this case, they
-might prefer to modify the text using the common formatting options and
-leave it to their more experienced collaborators to <em>translate</em>
-the text formatting into the appropriate Markdown (or LaTeX)
-syntax.</p></li>
+still considered as an <code>.Rmd</code> (or Quarto / <code>.Rnw</code>)
+file. Thus, any formatting (e.g., bold, italic, titles, font size, etc.)
+done in Google Docs will be lost. To effectively format text, one has to
+use proper Markdown (or LaTeX) syntax. Collaborators with no experience
+in these markup languages could find this too demanding. In this case,
+they might prefer to modify the text using the common formatting options
+and leave it to their more experienced collaborators to
+<em>translate</em> the text formatting into the appropriate Markdown (or
+LaTeX) syntax.</p></li>
 </ul>
 <p>Overall, the workflow proposed by <code>trackdown</code> for
-collaborative writing of an R Markdown (or Sweave) document is an
-iterative process where the document is uploaded/updated to Google Drive
-for collaborative writing/editing of the narrative text in Google Docs
-and downloaded locally for collaborative code writing using Git.</p>
+collaborative writing of an R Markdown (or Quarto / Sweave) document is
+an iterative process where the document is uploaded/updated to Google
+Drive for collaborative writing/editing of the narrative text in Google
+Docs and downloaded locally for collaborative code writing using
+Git.</p>
 <p>Note that the main limitation of this workflow is that it is not
 possible to simultaneously collaborate on the narrative text and the
 code included in the document. In this case, changes would be made on
