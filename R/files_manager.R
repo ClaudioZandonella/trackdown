@@ -17,7 +17,7 @@
 #' To know more about \code{trackdown} workflow and features see
 #' \code{\link{trackdown-package}} help page.
 #'
-#' @param file character. The path of a local `.Rmd` or `.Rnw` file.
+#' @param file character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
 #'   file name).
 #' @param gpath character. (Sub)directory in My Drive or a shared drive

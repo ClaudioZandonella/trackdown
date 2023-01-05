@@ -1,7 +1,7 @@
 citHeader("To cite trackdown in publications use:")
 
 citEntry(entry = "Manual",
-  title        = "trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive",
+  title        = "trackdown: Collaborative Writing and Editing of R Markdown (or Quarto / Sweave) Documents in Google Drive",
   author       = personList(as.person("Emily Kothe"),
                             as.person("Claudio Zandonella Callegher"),
                             as.person("Filippo Gambarota"),
@@ -14,6 +14,6 @@ citEntry(entry = "Manual",
 
   textVersion  =
   paste("Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer and Mathew Ling  (2021).",
-        "trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive.",
+        "trackdown: Collaborative Writing and Editing of R Markdown (or Quarto / Sweave) Documents in Google Drive.",
         "https://doi.org/10.5281/zenodo.5167319")
 )

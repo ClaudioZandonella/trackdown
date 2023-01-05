@@ -25,7 +25,7 @@ if(isTRUE(trackdown:::.is_pkgdown)){
 }
 ```
 
-The main idea behind the `trackdown` workflow is simple: Upload the `.Rmd` (or `.Rnw`) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. 
+The main idea behind the `trackdown` workflow is simple: Upload the `.Rmd` (or Quarto / `.Rnw`) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. 
 
 To manage this workflow, `trackdown` offers different functions:
 
@@ -38,7 +38,7 @@ Moreover, `trackdown` offers additional features to facilitate the collaborative
 
 - **Hide Code** (See [hide_code](#hide-code)): Code in the header of a document (YAML header or LaTeX preamble) and code chunks are removed from the document when uploading to Google Drive and are automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.
 - **Rich Text** (See [rich_text](#rich-text)): Upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. 
-- **Upload Output** (See [path_output](#path-output)): The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout including figures and tables and it allows them to add comments to suggest and discuss changes.
+- **Upload Output** (See [path_output](#path-output)): The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the `.Rmd` (or Quarto / `.Rnw`) document. This helps collaborators to evaluate the overall layout including figures and tables and it allows them to add comments to suggest and discuss changes.
 - **Use Google Drive shared drives** (See [shared_drive](#shared-drive)): The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.
 
 For a general overview of the package, see the `trackdown-package` help page or `vignette("trackdown-workflow")` to know more about the workflow and `vignette("trackdown-tech-notes")` for an overview of technical details. 
@@ -57,13 +57,13 @@ All `trackdown` functions share some common arguments that are used to manage th
 Moreover, when uploading or updating a file in Google Drive with `upload_file()` or `update_file()` respectively, two extra arguments are available:
 
 - `hide_code` to hide the header code and code chunks from the document.
-- `path_output` to upload the rendered output document to Google Drive in conjunction with the .Rmd (or .Rnw) document.
+- `path_output` to upload the rendered output document to Google Drive in conjunction with the `.Rmd` (or Quarto / `.Rnw`) document.
 
 In this section, all arguments of `trackdown` functions are introduced, describing default settings and highlighting main features.
 
 #### `file` {#file}
 
-A string indicating the path of the local `.Rmd` (or `.Rnw`) file. 
+A string indicating the path of the local `.Rmd` (or Quarto / `.Rnw`) file. 
 
 All `trackdown` functions take as reference the local file to manage the workflow. Thus, the `file` argument is mandatory, both when uploading (or updating) a file to Google Drive or when downloading the edited version from Google Drive.  
 

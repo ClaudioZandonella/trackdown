@@ -66,23 +66,23 @@ See the `gargle` documentation for further information ([link](https://gargle.r-
 
 ### The `.trackdown` folder {#hidden-folder}
 
-When uploading or updating an `.Rmd` (or `.Rnw`) file to Google Drive, it is possible to remove the code in the header of the document (YAML header or LaTeX preamble) and code chunks by specifying the argument `hide_code = TRUE`.
+When uploading or updating an `.Rmd` (or Quarto / `.Rnw`) file to Google Drive, it is possible to remove the code in the header of the document (YAML header or LaTeX preamble) and code chunks by specifying the argument `hide_code = TRUE`.
 
-The header code and the code chunks are saved in a hidden folder named `.trackdown` that will be created in the same location as the uploaded `.Rmd` (or `.Rnw`) file. For example, when uploading a file named `My-Report.Rmd`, two files will be created:
+The header code and the code chunks are saved in a hidden folder named `.trackdown` that will be created in the same location as the uploaded `.Rmd` (or Quarto / `.Rnw`) file. For example, when uploading a file named `My-Report.Rmd`, two files will be created:
 
 - `My-Report.Rmd-header_info.rds` - containing the header code
 - `My-Report.Rmd-chunk_info.rds` - containing all code chunks
 
-These files are required to automatically restore the header code and all code chunks when the document is downloaded from Google Drive. Consequently, it is important to not delete or move the hidden `.trackdown` folder. This folder should always be in the same location as the `.Rmd` (or `.Rnw`) file.
+These files are required to automatically restore the header code and all code chunks when the document is downloaded from Google Drive. Consequently, it is important to not delete or move the hidden `.trackdown` folder. This folder should always be in the same location as the `.Rmd` (or Quarto / `.Rnw`) file.
 
 It is recommended to track the hidden `.trackdown` folder using Git. This provides an extra layer of safety and a chance to restore the code automatically if the folder was deleted or modified by accident.
 
 ### Corrupted Files {#corrupted}
 
-When editing an `.Rmd` (or `.Rnw`) file in Google Docs, it is possible to introduce some syntax errors and break the code so that it is no longer possible to render the document locally after downloading it. This applies to both Markdown (or LaTeX) syntax and R code.
+When editing an `.Rmd` (or Quarto / `.Rnw`) file in Google Docs, it is possible to introduce some syntax errors and break the code so that it is no longer possible to render the document locally after downloading it. This applies to both Markdown (or LaTeX) syntax and R code.
 
 -  **Markdown (or LaTeX) syntax** - Less expert collaborators are likely to introduce errors while editing the document in Google Docs. Remember that any editing of the narrative text should be done using proper Markdown (or LaTeX) syntax. Any other formatting done in Google Docs (e.g., bold, italic, titles, font size, etc.) will be lost at download. Collaborators with no experience in these markup languages might find this too demanding. In this case, collaborators might prefer to modify the text format using the standard formatting commands, leaving it to their more experienced collaborators to *translate* the formatting into the corresponding Markdown (or LaTeX) syntax. 
 
 - **R code** - Any changes to the R code should be avoided when editing files in Google Docs. Collaborative code writing is better done in an appropriate IDE (e.g., RStudio) using version control systems like Git. To prevent collaborators from inadvertently making changes to the code in Google Docs, it is possible to remove code in the header of the document (YAML header or LaTeX preamble) and code chunks by specifying the argument `hide_code = TRUE`. This allows collaborators to focus solely on the narrative text. To allow for correct code restoration after download, however, the placeholders of type “[[document-header]]” and “[[chunk-\<name\>]]” must not be modified or removed when editing the file in Google Docs. If they are inadvertently removed, the `trackdown` package will try to restore the missing chunks by placing them after the last available placeholder. Unfortunately, this process does not guarantee that chucks are placed in the correct position. Experienced collaborators can, however, easily fix possible issues allowing the document to compile. 
 
-In all cases, using Git to track the `.Rmd` (or `.Rnw`) files (or better the whole project) is highly recommended. Git allows restoring previous versions of the document in case of any issues. In the worst-case scenario where `trackdown` is not able to restore the code chunks, experienced collaborators can still use Git or the information saved in the hidden `.trackdown` folder to manually restore all corrupted or missing parts.
+In all cases, using Git to track the `.Rmd` (or Quarto / `.Rnw`) files (or better the whole project) is highly recommended. Git allows restoring previous versions of the document in case of any issues. In the worst-case scenario where `trackdown` is not able to restore the code chunks, experienced collaborators can still use Git or the information saved in the hidden `.trackdown` folder to manually restore all corrupted or missing parts.

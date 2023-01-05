@@ -17,7 +17,7 @@ update_file(
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd` or `.Rnw` file.}
+\item{file}{character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}

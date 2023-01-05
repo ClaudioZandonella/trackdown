@@ -30,13 +30,14 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The `trackdown` package offers a simple solution for collaborative writing and editing of R Markdown (or Sweave) documents. Using `trackdown`, the local `.Rmd` (or `.Rnw`) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
+The `trackdown` package offers a simple solution for collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. Using `trackdown`, the local `.Rmd` (or `.Rnw`) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
 
 > From `trackdown` v1.3.0 [currently only available on GitHub], the `trackdown` package introduces the `rich_text` feature and uses its own API credentials.
 > 
 > - **`rich_text`.** Upload *rich* documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See [rich-text feature details]( https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
 > - **API Credentials.** Now, `trackdown` uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable *“Trackdown R Package”*. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at [issue comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)). Don't worry `trackdown` uses the same system as the `googledrive` package that was previously used. See details on privacy policy at `vignette("trackdown-privacy-policy")`).
 > - [**IMPORTANT**] We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see instructions at https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html
+> - **Quarto** now supported!!
 
 ## Installation {#install}
 
@@ -58,12 +59,12 @@ library(trackdown)
 
 ## The `trackdown` Workflow {#workflow}
 
-During the collaborative writing/editing of an `.Rmd` (or `.Rnw`) document, it is important to employ different workflows for computer code and narrative text:
+During the collaborative writing/editing of an `.Rmd` (or **Quarto** / `.Rnw`) document, it is important to employ different workflows for computer code and narrative text:
 
 - **Code** - Collaborative code writing is done most efficiently by following a traditional **Git**-based workflow using an online repository (e.g., GitHub or GitLab).
 - **Narrative Text** - Collaborative writing of narrative text is done most efficiently using **Google Docs** which provides a familiar and simple online interface that allows multiple users to simultaneously write/edit the same document.
 
-Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or `.Rnw`) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
+Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or Quarto / `.Rnw`) document to Google Drive to collaboratively write/edit the narrative text in Google Docs; download the document locally to continue working on the code while harnessing the power of Git for version control and collaboration. This iterative process of uploading to and downloading from Google Drive continues until the desired results are obtained. The workflow can be summarized as:
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs** 
 
@@ -107,7 +108,7 @@ add_video()
 
 - **Hide Code:** Code in the header of the document (YAML header or LaTeX preamble) and code chunks are removed from the document when uploading to Google Drive and are automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.
 - **Rich Text:** Upload *rich* documents to Google Docs. Important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. 
-- **Upload Output:** The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the `.Rmd` (or `.Rnw`) document. This helps collaborators to evaluate the overall layout including figures and tables and allows them to add comments to suggest and discuss changes.
+- **Upload Output:** The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the `.Rmd` (or Quarto / `.Rnw`) document. This helps collaborators to evaluate the overall layout including figures and tables and allows them to add comments to suggest and discuss changes.
 - **Use Google Drive shared drives:** The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.
 
 ### Advantages of Google Docs {#google-docs}
@@ -155,14 +156,14 @@ To cite `trackdown` in publications use:
 
 Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch
   Linkersdörfer and Mathew Ling (2021). trackdown: Collaborative Writing and
-  Editing of R Markdown (or Sweave) Documents in Google Drive.
+  Editing of R Markdown (or Quarto / Sweave) Documents in Google Drive.
   https://doi.org/10.5281/zenodo.5167320.
 
 The BibTeX entry is:
 
 ```
 @Manual{,
-  title = {trackdown: Collaborative Writing and Editing of R Markdown (or Sweave) Documents in Google Drive},
+  title = {trackdown: Collaborative Writing and Editing of R Markdown (or Quarto / Sweave) Documents in Google Drive},
   author = {Emily Kothe and Claudio Zandonella Callegher and Filippo Gambarota and Janosch Linkersdörfer and Mathew Ling},
   year = {2021},
   note = {R package version 1.1.1},

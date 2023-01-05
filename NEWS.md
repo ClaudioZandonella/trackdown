@@ -2,14 +2,16 @@
 
 ## trackdown 1.4.0
 
-Allow custom Client API credentials. Developed from initial input by @maelle in PR https://github.com/ClaudioZandonella/trackdown/pull/38 
+- Trackdown now supports **Quarto**
 
-- Review auth process for google APIs using trackdown_* functions (see trackdown_auth.R)
-- When changing trackdown app oauth force googledrive to use the same app credentials
-- Client APIs are checked in the following order:
-  - TRACKDOWN_APP environment variabel indicating the the path to the JSON file with the own app credentials
-  - Own app credentials specified via httr::oauth_app()
-  - Use internal default trackdown app credentials
+
+- Allow custom Client API credentials. Developed from initial input by @maelle in PR https://github.com/ClaudioZandonella/trackdown/pull/38 
+    - Review auth process for google APIs using trackdown_* functions (see trackdown_auth.R)
+    - When changing trackdown app oauth force googledrive to use the same app credentials
+    - Client APIs are checked in the following order:
+      - TRACKDOWN_APP environment variabel indicating the the path to the JSON file with the own app credentials
+      - Own app credentials specified via httr::oauth_app()
+      - Use internal default trackdown app credentials
   
 ## trackdown 1.3.4
 
