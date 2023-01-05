@@ -58,7 +58,7 @@ mkdir_trackdown <- function(local_path, folder_name = ".trackdown"){
 
 get_chunk_range <- function(lines, info_patterns){
   
-  if(info_patterns$extension == "rmd"){
+  if(info_patterns$extension %in% c("rmd", "qmd")){
     # solve issue of chunks without language and '{}'
     # check for chunk of types '```{...}', '```bash', or '```'
     index <- grep(info_patterns$chunk_start, lines)
@@ -183,7 +183,7 @@ extract_chunk <- function(text_lines, info_patterns){
 
 check_header <- function(text_lines, info_patterns){
   
-  if(info_patterns$extension == "rmd"){
+  if(info_patterns$extension %in% c("rmd", "qmd")){
     
     # in rmd start and end header are the same
     delimiters <-  grep(info_patterns$file_header_start, text_lines)
@@ -250,7 +250,7 @@ extract_header <- function(text_lines, info_patterns){
   
   if(isTRUE(has_header)){
     # file has header
-    if(info_patterns$extension == "rmd"){
+    if(info_patterns$extension %in% c("rmd", "qmd")){
       # in rmd start and end header are the same
       header_index <- grep(info_patterns$file_header_start, text_lines)
       
@@ -283,11 +283,11 @@ extract_header <- function(text_lines, info_patterns){
 
 #' Get extensions pattern
 #' 
-#' Given the extension (rmd or rnw), return a list with the regex patterns for
+#' Given the extension (rmd, qmd or rnw), return a list with the regex patterns for
 #' the chunk header (start and end), chunk start, chunk end, and file header
 #' (start/end).
 #' 
-#' @param extension string indicating the file extension ("rmd" or "rnw")
+#' @param extension string indicating the file extension ("rmd", "qmd", or "rnw")
 #'
 #' @return a list with the regex pattern that identify \itemize{
 #' \item{chunk_header_start} the start of the first line of a chunk
@@ -296,19 +296,20 @@ extract_header <- function(text_lines, info_patterns){
 #' \item{chunk_end} the end line of a chunk
 #' \item{file_header_start} the start line of the file header
 #' \item{file_header_end} the end line of the file header
-#' \item{extension} the extension type (rmd or rnw)
+#' \item{extension} the extension type (rmd, qmd or rnw)
 #' }
 #' @noRd
 #'
 #' @examples
 #'   get_extension_patterns("rmd")
+#'   get_extension_patterns("qmd")
 #'   get_extension_patterns("rnw")
 #' 
 
-get_extension_patterns <- function(extension =  c("rmd", "rnw")){
+get_extension_patterns <- function(extension =  c("rmd", "qmd", "rnw")){
   extension <- match.arg(extension)
   
-  if (extension == "rmd"){     # ```{*}   ```bash    ```
+  if (extension %in% c("rmd", "qmd")){     # ```{*}   ```bash    ```
     res <- list(chunk_header_start = "^\\s*```\\s*\\{?",   # start with ``` followed by possible white spaces and a possible {
                 chunk_header_end = "\\}?\\s*$",        # ends with a possible { and possible white spaces
                 chunk_start = "^\\s*```\\s*(\\S*\\s*$|\\{)", # allow "```{...}", "```bash", "```"  

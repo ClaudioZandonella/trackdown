@@ -228,7 +228,7 @@ transform_params <- function(params, extension){
     params_string <- eval(parse(text = paste('alist(', quote_label(params), ')')))
   }
   
-  if (extension == "rmd"){
+  if (extension %in% c("rmd", "qmd")){
     res <- parse_label_rmd(params_string, params)
   } else if (extension == "rnw") {
     res <- parse_label_rnw(params_string, params)

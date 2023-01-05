@@ -103,7 +103,7 @@ get_patterns_highlight <- function(extension){
   # -  (?=a)b Positive lookahead: Matches "b" if is followed by "a"
   # -  (?!a)b Negative lookahead: Matches "b" if is NOT followed by "a"
   
-  if(extension == "rmd"){
+  if(extension %in% c("rmd", "qmd")){
     patterns <- c(
       # Header: all lines included between "---" and "---". Must be preceded by "#----End Instructions----#"
       header = "(?<=#----End Instructions----#\n)---[\\s\\S]*?\n---",

@@ -19,7 +19,7 @@
 #' @param text a single string with the parsed document that has been uploaded
 #'   to Google Drive.
 #' @param document_ID string indicating the Docs file ID.
-#' @param extension string indicating the file extension ("rmd" or "rnw").
+#' @param extension string indicating the file extension ("rmd", "qmd", or "rnw").
 #' @param rich_text_par list with custom settings of the parameters of the API
 #'   request.
 #'
@@ -41,7 +41,7 @@
 
 run_rich_text <-  function(text, 
                            document_ID, 
-                           extension = c("rmd", "rnw"),
+                           extension = c("rmd", "qmd", "rnw"),
                            rich_text_par = NULL){
   
   extension <- match.arg(extension)

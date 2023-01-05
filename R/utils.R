@@ -454,7 +454,7 @@ sanitize_path <- function(path){
 
 #' Check Supported Documents
 #' 
-#' Only .Rmd and .Rnw fiels are supported
+#' Only .Rmd, .Qmd, and .Rnw files are supported
 #' 
 #' @param file_info list with file info returned from get_file_info() function
 #'
@@ -467,7 +467,7 @@ sanitize_path <- function(path){
 #' 
 
 check_supported_documents <- function(file_info){
-  if(!(file_info$extension %in% c("rmd", "rnw"))) # check supported files
+  if(!(file_info$extension %in% c("rmd", "rnw", "qmd"))) # check supported files
     stop(paste(file_info$file_name, "not supported file type (only .Rmd or .Rnw)"), 
          call. = FALSE)
 }
