@@ -1,5 +1,22 @@
 # template:
 #   params:
 #     ganalytics: G-38DDQEVS94
+
 template:
   bootstrap: 5
+  
+reference:
+- title: Authentication
+  contents:
+  - trackdown_auth
+  - trackdown_auth_configure
+  - trackdown_has_token
+  - trackdown_token
+  - trackdown_user
+  - trackdown_deauth
+- title: Document management
+  contents:
+  - download_file
+  - render_file
+  - update_file
+  - upload_file
