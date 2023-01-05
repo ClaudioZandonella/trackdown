@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="trackdown">
 <title>OAuth App Configuration • trackdown</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,12 +13,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="OAuth App Configuration">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="OAuth App Configuration">
 <meta property="og:description" content="trackdown">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -25,84 +25,68 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">trackdown</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">trackdown</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/oauth-app-configuration.html">OAuth App Configuration</a>
-    </li>
-    <li>
-      <a href="../articles/trackdown-features.html">Function Arguments and Features</a>
-    </li>
-    <li>
-      <a href="../articles/trackdown-privacy-policy.html">Privacy Policy for trackdown Access to Google APIs</a>
-    </li>
-    <li>
-      <a href="../articles/trackdown-tech-notes.html">Technical Notes</a>
-    </li>
-    <li>
-      <a href="../articles/trackdown-workflow.html">The trackdown Workflow</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/claudiozandonella/trackdown/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    <a class="dropdown-item" href="../articles/trackdown-features.html">Function Arguments and Features</a>
+    <a class="dropdown-item" href="../articles/trackdown-privacy-policy.html">Privacy Policy for trackdown Access to Google APIs</a>
+    <a class="dropdown-item" href="../articles/trackdown-tech-notes.html">Technical Notes</a>
+    <a class="dropdown-item" href="../articles/trackdown-workflow.html">The trackdown Workflow</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/claudiozandonella/trackdown/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>OAuth App Configuration</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>OAuth App Configuration</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/claudiozandonella/trackdown/blob/HEAD/vignettes/articles/oauth-app-configuration.Rmd" class="external-link"><code>vignettes/articles/oauth-app-configuration.Rmd</code></a></small>
-      <div class="hidden name"><code>oauth-app-configuration.Rmd</code></div>
-
+      <div class="d-none name"><code>oauth-app-configuration.Rmd</code></div>
     </div>
 
     
@@ -128,82 +112,90 @@ to create our own App in Google Cloud Console.</p>
 </blockquote>
 <p>To create an App in Google Cloud Console, follow these steps:</p>
 <ol style="list-style-type: decimal">
-<li>Access Google Cloud Console at <a href="https://console.cloud.google.com/" class="external-link uri">https://console.cloud.google.com/</a>. If this is our first
+<li><p>Access Google Cloud Console at <a href="https://console.cloud.google.com/" class="external-link uri">https://console.cloud.google.com/</a>. If this is our first
 time, we will need to select our country and accept the <em>terms of
-service</em>
-</li>
-<li>Create a new project by clicking the button <em>“Select a
+service</em></p></li>
+<li><p>Create a new project by clicking the button <em>“Select a
 project”</em> and then the button <em>“NEW PROJECT”</em>
 <img src="images/01-new-proj.png" width="90%" style="display: block; margin: auto;">
 Specify the name of the project and click <em>“CREATE”</em>
 <img src="images/02-proj-name.png" width="50%" style="display: block; margin: auto;">
 Select the newly created project to open it
-<img src="images/03-proj-select.png" width="90%" style="display: block; margin: auto;">
-</li>
-<li>Next, we need to specify the setting of the consent screen. From the
-left menu select <em>“APIs and services” &gt; “OAuth consent
-screen”</em>
-<img src="images/04-consent-screen.png" width="90%" style="display: block; margin: auto;">
-Select <em>“External”</em> as User Type
-<img src="images/05-consent-external.png" width="90%" style="display: block; margin: auto;">
-Specify the App information <em>“App name”</em> and <em>“User support
-email”</em> (use your email)
-<img src="images/06-consent-info.png" width="90%" style="display: block; margin: auto;">
-Specify also the developer contact information (use your email) and
-press <em>“SAVE AND CONTINUE”</em>
-<img src="images/07-consent-contact.png" width="90%" style="display: block; margin: auto;">
-</li>
-<li>Next, we need to select the required scopes. Click <em>“ADD OR
-REMOVE SCOPES”</em>
-<img src="images/08-scopes.png" width="90%" style="display: block; margin: auto;">
-Select the required scopes <em>“…/auth/userinfo.email”</em> and
-<em>“openid”</em>
-<img src="images/09-scopes-list.png" width="90%" style="display: block; margin: auto;">
-Click <em>“Update”</em> at the end of the list to save changes</li>
-<li>[OPTIONAL] In the next section, it is possible to specify users (by
-email) to allow them using our newly created app. Alternatively, we can
-publish the app to let everyone (with whom we share the app credentials)
-to use the app (see below)
-<img src="images/10-test-user.png" width="90%" style="display: block; margin: auto;">
-</li>
-<li>In the <em>“Summary”</em> section, we can check all the details and
-press <em>“BACK TO DASHBOARD”</em> for saving all changes</li>
-<li>Next, we can publish our app to allow anyone (with whom we share the
-app credentials) to use our app (in this way we do not need to add email
-manually to the testers list). To do that, click <em>“PUBLISH APP”</em>
-from the <em>“OAuth consent screen”</em> and confirm
-<img src="images/11-publish-app.png" width="90%" style="display: block; margin: auto;">
-</li>
-<li>Now we need to activate the required APIs. Form the <em>“Enable APIs
-and services”</em> panel, click <em>“ENABLE APIS AND SERVICES”</em>
-<img src="images/12-api.png" width="90%" style="display: block; margin: auto;">
+<img src="images/03-proj-select.png" width="90%" style="display: block; margin: auto;"></p></li>
+<li><p>Now we need to activate the required APIs. From the left menu
+select <em>“APIs and services” &gt; “Enable APIs and services”</em>
+<img src="images/04-api.png" width="90%" style="display: block; margin: auto;">
+Click the <em>“ENABLE APIS AND SERVICES”</em> button
+<img src="images/05-api.png" width="90%" style="display: block; margin: auto;">
 Using the API Library search service we need to select two APIs
-<img src="images/13-api-search.png" width="50%" style="display: block; margin: auto;">
+<img src="images/06-api-search.png" width="50%" style="display: block; margin: auto;">
 Select <em>“Google Drive API”</em> from the list and click
 <em>“ENABLE”</em>
-<img src="images/14-api-drive.png" width="90%" style="display: block; margin: auto;">
+<img src="images/07-api-drive.png" width="90%" style="display: block; margin: auto;">
 Select <em>“Google Docs API”</em> from the list and click
 <em>“ENABLE”</em>
-<img src="images/15-api-docs.png" width="90%" style="display: block; margin: auto;">
+<img src="images/08-api-docs.png" width="90%" style="display: block; margin: auto;"></p></li>
+<li><p>Next, we need to specify the setting of the consent screen. From
+the left menu, select <em>“OAuth consent screen”</em>, choose
+<em>“External”</em> as User Type and click <em>“CREATE”</em>
+<img src="images/09-consent-external.png" width="90%" style="display: block; margin: auto;">
+Specify the App information <em>“App name”</em> and <em>“User support
+email”</em> (use your email)
+<img src="images/10-consent-info.png" width="90%" style="display: block; margin: auto;">
+Specify also the developer contact information (use your email) and
+press <em>“SAVE AND CONTINUE”</em>
+<img src="images/11-consent-contact.png" width="90%" style="display: block; margin: auto;"></p></li>
+<li>
+<p>Next, we need to select the required scopes. Click <em>“ADD OR
+REMOVE SCOPES”</em>
+<img src="images/12-scopes.png" width="90%" style="display: block; margin: auto;">
+Select the required scopes <em>“…/auth/userinfo.email”</em> and
+<em>“openid”</em>
+<img src="images/13-scopes-list.png" width="90%" style="display: block; margin: auto;">
+Select also <em>“…/auth/drive”</em> and <em>“…/auth/docs”</em>
+<img src="images/14-scope-docs.png" width="90%" style="display: block; margin: auto;">
+Click <em>“Update”</em> at the end of the list to save changes. As we
+selected sensitive scopes, a pop-out will appear. Do not worry, these
+scopes are required to managed files in Google Drive. Click
+<em>“CONTINUE”</em></p>
+<blockquote>
+<p>After selcting all the required scopes, we should obtain the
+following summary list
+<img src="images/15-scope-summary.png" width="60%" style="display: block; margin: auto;">
+To be precise, only one among <em>“…/auth/drive”</em> and
+<em>“…/auth/docs”</em> is necesssary. However, to avoid any possible
+issue we selected both</p>
+</blockquote>
 </li>
-<li>Next, we need to obtain the credentials to use our newly created
+<li><p><strong>[OPTIONAL]</strong> In the next section, it is possible
+to specify users (by email) to allow them using our newly created app.
+Alternatively, we can publish the app to let everyone (with whom we
+share the app credentials) to use the app (see below)
+<img src="images/15-test-user.png" width="90%" style="display: block; margin: auto;"></p></li>
+<li><p>In the <em>“Summary”</em> section, we can check all the details
+and press <em>“BACK TO DASHBOARD”</em> for saving all changes</p></li>
+<li><p>Next, we can publish our app to allow anyone (with whom we share
+the app credentials) to use our app (in this way we do not need to add
+email manually to the testers list). To do that, click <em>“PUBLISH
+APP”</em> from the <em>“OAuth consent screen”</em> and confirm
+<img src="images/16-publish-app.png" width="90%" style="display: block; margin: auto;"></p></li>
+<li><p>Now, we need to obtain the credentials to use our newly created
 app. Form the <em>“Credentials”</em> panel, click <em>“CREATE
 CREDENTIALS”</em> and select <em>“OAuth client ID”</em>
-<img src="images/16-credentials.png" width="90%" style="display: block; margin: auto;">
+<img src="images/17-credentials.png" width="90%" style="display: block; margin: auto;">
 As <em>“Application type”</em>, select <em>“Desktop app”</em> and
 specify the client app name. Next click <em>“CREATE”</em>
-<img src="images/17-credentials-type.png" width="50%" style="display: block; margin: auto;">
+<img src="images/18-credentials-type.png" width="50%" style="display: block; margin: auto;">
 A window will display the credentials to use the app. We need to
 download the JSON file with the credentials by clicking <em>“DOWNLOAD
 JSON”</em> or alternatively we can copy the <em>“Client ID”</em> and
 <em>“Client Secret”</em>
-<img src="images/18-credentials-popout.png" width="50%" style="display: block; margin: auto;">
+<img src="images/19-credentials-popout.png" width="50%" style="display: block; margin: auto;">
 This information are required to use the Google APIs through our newly
 created app. Only users with this information can use our app. We can
 also retrieve the credentials in a second moment by clicking the
 download button from the list <em>“OAuth2.0 Client IDs”</em>
-<img src="images/19-credentials-client.png" width="70%" style="display: block; margin: auto;">
-</li>
+<img src="images/20-credentials-client.png" width="70%" style="display: block; margin: auto;"></p></li>
 </ol>
 </div>
 <div class="section level2">
@@ -217,8 +209,7 @@ the JSON file), we are ready to configure trackdown.</p>
 file should be shared only with required users. Avoid saving this file
 in public repositories (more details below)</li>
 <li>We need to pass the app credentials to trackdown in order to use the
-Google APIs. To do that, we need to do one of the following things:</li>
-</ol>
+Google APIs. To do that, we need to do one of the following things:
 <ul>
 <li><p>Set the <code>TRACKDOWN_APP</code> environment variable to the
 location of the JSON file. It is convenient to do this in our
@@ -244,7 +235,7 @@ Console (see above).</p>
 <span><span class="fu"><a href="../reference/trackdown_auth_configure.html">trackdown_auth_configure</a></span><span class="op">(</span>app <span class="op">=</span> <span class="va">my_app</span><span class="op">)</span></span></code></pre></div>
 </li>
 </ul>
-<ol style="list-style-type: decimal">
+</li>
 <li>Next, the first time we use trackdown, we will be directed to a web
 browser and asked to sign in to our Google account to grant permission
 to communicate with Google Drive.</li>
@@ -263,17 +254,29 @@ do the oauth flow.
 <div class="section level2">
 <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
 </h2>
+<div class="section level3">
+<h3 id="app-credentials">App Credentials<a class="anchor" aria-label="anchor" href="#app-credentials"></a>
+</h3>
 <p>It is important that trackdown has access to the app credentials.</p>
 <p>By default, trackdown first checks if the path to the JSON file is
 specified via the <code>TRACKDOWN_APP</code> environment variable. If
 not, trackdown will use its internal credentials. However, we have
 already exceeded the user limits. So, user custom app credentials need
-to be indicated spcifying the JSON file path or the app info (obtained
+to be indicated specifying the JSON file path or the app info (obtained
 via <code><a href="https://httr.r-lib.org/reference/oauth_app.html" class="external-link">httr::oauth_app()</a></code> function) in the function
 <code><a href="../reference/trackdown_auth_configure.html">trackdown_auth_configure()</a></code>.</p>
-<p>If you see the following error is beacuse you are using the trackdown
+<p>If you see the following error is because you are using the trackdown
 internal credentials and we have already exceeded the user limits.
-<img src="images/20-errror.png" width="90%" style="display: block; margin: auto;"></p>
+<img src="images/23-errror.png" width="90%" style="display: block; margin: auto;"></p>
+<blockquote>
+<p>Note that the credential used by trackdown will be automaticlayy
+applied alsso to googledrive package functions used internally by
+trackdown functions</p>
+</blockquote>
+</div>
+<div class="section level3">
+<h3 id="users-credentials">User’s Credentials<a class="anchor" aria-label="anchor" href="#users-credentials"></a>
+</h3>
 <p>trackdown manage the authentication process using gargle R-package.
 By default, user credentials are cached in a folder in the user’s home
 directory, <code>~/.R/gargle/gargle-oauth</code>, from where they can be
@@ -281,8 +284,8 @@ automatically refreshed, as necessary. Storage at the user level means
 that the same token can be used across multiple projects and tokens are
 less likely to be synced to the cloud by accident. Note that if one is
 using R from a web-based platform like RStudio Server or Cloud, there
-will be a variant of this user authentification flow, known as
-out-of-band auth (“oob”).</p>
+will be a variant of this user authentication flow, known as out-of-band
+auth (“oob”).</p>
 <p>It is possible to personalize gargle’s default settings by adding
 options in the <code>.Rprofile</code> startup file. For example, the
 preferred Google account and cache folder can be set:</p>
@@ -291,6 +294,10 @@ preferred Google account and cache folder can be set:</p>
 <span>  gargle_oauth_email <span class="op">=</span> <span class="st">"my_email@gmail.com"</span>,</span>
 <span>  gargle_oauth_cache <span class="op">=</span> <span class="st">"/path/to/folder/that/does/not/sync/to/cloud"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h3>
 <p>For more details see:</p>
 <ul>
 <li><a href="https://gargle.r-lib.org/articles/gargle-auth-in-client-package.html#changing-identities-and-more" class="external-link uri">https://gargle.r-lib.org/articles/gargle-auth-in-client-package.html#changing-identities-and-more</a></li>
@@ -298,39 +305,28 @@ preferred Google account and cache folder can be set:</p>
 <li><a href="https://gargle.r-lib.org/index.html" class="external-link uri">https://gargle.r-lib.org/index.html</a></li>
 </ul>
 <p>To learn how to manage credential securely, see: - <a href="https://gargle.r-lib.org/articles/managing-tokens-securely.html" class="external-link uri">https://gargle.r-lib.org/articles/managing-tokens-securely.html</a></p>
-<blockquote>
-<p>Note that the credential used by trackdown will be automaticlayy
-applied alsso to googledrive package functions used internally by
-trackdown functions</p>
-</blockquote>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
 </div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by Emily Kothe, Claudio Zandonella Callegher, Filippo Gambarota, Janosch Linkersdörfer, Mathew Ling.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
