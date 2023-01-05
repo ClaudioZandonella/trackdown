@@ -112,6 +112,7 @@
 #' @import rlang
 #'
 #' @docType package
+#' @keywords internal
 #' @name trackdown-package
 NULL
 
