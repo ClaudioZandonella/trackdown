@@ -85,7 +85,7 @@ knitr::include_graphics('images/14-scope-docs.png')
 ```
   Click *"Update"* at the end of the list to save changes. As we selected sensitive scopes, a pop-out will appear. Do not worry, these scopes are required to managed files in Google Drive. Click *"CONTINUE"*
   
-    > After selcting all the required scopes, we should obtain the following summary list
+    > After selecting all the required scopes, we should obtain the following summary list
     >   ```{r, out.width="60%"}
     >   knitr::include_graphics('images/15-scope-summary.png')
     >   ```
