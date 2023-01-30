@@ -149,12 +149,11 @@ get_param_request <-  function(text,
 #' @param token Token used for API authentication
 #' @param base_url string indicating the API base URL
 #'
-#' @return named list with \itemize{
-#'   \item{method} string indicating the hTTP method (GET or POST) 
-#'   \item{url} string indicating the full URL used for the query
-#'   \item{body} named list with the body of the query
-#'   \item{token} Token used for API authentication
-#' }
+#' @return named list with
+#'   - **method** string indicating the hTTP method (GET or POST) 
+#'   - **url** string indicating the full URL used for the query
+#'   - **body** named list with the body of the query
+#'   - **token** Token used for API authentication
 #' 
 #' @noRd
 #' @examples

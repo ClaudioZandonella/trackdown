@@ -32,7 +32,7 @@ level, although it is not recommended.}
 (optional).}
 
 \item{hide_code}{logical value indicating whether to remove code from the
-text document (chunks and header). Placeholders of type "[]"
+text document (chunks and header). Placeholders of type \code{"[[chunk-<name>]]"}
 are displayed instead.}
 
 \item{path_output}{default \code{NULL}, specify the path to the output to

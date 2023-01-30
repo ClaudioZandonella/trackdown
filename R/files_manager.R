@@ -28,7 +28,7 @@
 #' @param shared_drive character. The name of a Google Drive shared drive
 #'   (optional).
 #' @param hide_code logical value indicating whether to remove code from the
-#'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
+#'   text document (chunks and header). Placeholders of type `"[[chunk-<name>]]"`
 #'   are displayed instead.
 #' @param  path_output default `NULL`, specify the path to the output to
 #'   upload together with the other file. PDF are directly uploaded, HTML can be

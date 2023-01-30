@@ -15,14 +15,12 @@
 #'   single line in dribble ("single") or both condition accepted ("both")
 #'
 #' @return a list with relevant information 
-#'  \itemize{
-#'    \item{file - character indicating the path to the local file (or output)}
-#'    \item{file_info - list with file info returned from  get_file_info()
-#'    function}
-#'    \item{gfile - character indicating the corrected gfile naem for the file}
-#'    \item{dribble_info - list with dribble info of the file and parent
-#'    returned by get_dribble_info() function}
-#'  }
+#'  - file - character indicating the path to the local file (or output)
+#'  - file_info - list with file info returned from  get_file_info()
+#'    function
+#'  - gfile - character indicating the corrected gfile naem for the file
+#'  - dribble_info - list with dribble info of the file and parent
+#'    returned by get_dribble_info() function
 #'  
 #' @noRd
 #'
@@ -84,7 +82,7 @@ evaluate_file <- function(file,
 #' @param dribble_document A list with two dribble object regarding the gfile
 #'   and the parent item.
 #' @param hide_code logical value indicating whether to remove code from the
-#'   text document (chunks and header). Placeholders of  type "[[chunk-<name>]]"
+#'   text document (chunks and header). Placeholders of  type `"[[chunk-<name>]]"`
 #'   are displayed instead.
 #' @param update logical value indicating whether to update or upload the
 #'   document.

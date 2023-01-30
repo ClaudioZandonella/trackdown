@@ -122,13 +122,11 @@ finish_process <- function(message){
 #' @param file a string indicating the path to a file
 #'
 #' @return a list with
-#' \itemize{
-#'   \item{path: the path to the file. If there is no path `"."` is
-#'   returned}
-#'   \item{file_name: file name with extension}
-#'   \item{extension: the file extension without point and all lowercase}
-#'   \item{file_basename: the file name without extesion}
-#' }
+#' - path: the path to the file. If there is no path `"."` is
+#'   returned
+#' - file_name: file name with extension
+#' - extension: the file extension without point and all lowercase
+#'  - file_basename: the file name without extension
 #' 
 #' @noRd
 #' 
@@ -303,12 +301,10 @@ check_dribble <- function(dribble, gfile, test = c("none", "single", "both")){
 #' @param document character vector with the lines of the document 
 #'
 #' @return a list with:
-#' \itemize{
-#'   \item{instruction_start - integer inidicating the instructions initial line}
-#'   \item{instruction_end - integer inidicating the instructions end line}
-#'   \item{file_name - character indicating the file name}
-#'   \item{hide_code - logical indicating whether code was removed}
-#' }
+#' - instruction_start - integer inidicating the instructions initial line
+#' - instruction_end - integer inidicating the instructions end line
+#' - file_name - character indicating the file name
+#' - hide_code - logical indicating whether code was removed
 #' 
 #' @noRd 
 #'

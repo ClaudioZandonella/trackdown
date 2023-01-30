@@ -16,10 +16,8 @@
 #'   (optional).
 #'
 #' @return A list with two dribble object:
-#' \itemize{
-#'  \item{file} dribble object about the gfile
-#'  \item{parent} dribble object about the parent item
-#' }
+#'  - **file** dribble object about the gfile
+#'  - **parent** dribble object about the parent item
 #' 
 #' @noRd
 #' @seealso [googledrive::dribble()]
