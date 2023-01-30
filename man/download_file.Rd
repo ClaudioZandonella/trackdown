@@ -28,7 +28,7 @@ level, although it is not recommended.}
 \item{shared_drive}{character. The name of a Google Drive shared drive
 (optional).}
 
-\item{rm_gcomments}{\link{experimental} logical value indicating whether or not to
+\item{rm_gcomments}{(experimental) logical value indicating whether or not to
 remove Google comments.}
 
 \item{force}{logical value indicating whether to skip confirm check by user

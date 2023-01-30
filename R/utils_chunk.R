@@ -405,7 +405,7 @@ hide_code <- function(document, file_info){
 #' @param temp_file character indicating the path to the downloaded file
 #' @param file_name character indicating the current file name
 #' @param path character indicating the folder of the original file
-#' @param rm_gcomments [experimental] logical value indicating whether or not to
+#' @param rm_gcomments (experimental) logical value indicating whether or not to
 #'   remove Google comments
 #'
 #' @return a single string with the content of the document

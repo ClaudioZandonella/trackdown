@@ -86,10 +86,10 @@ evaluate_file <- function(file,
 #'   are displayed instead.
 #' @param update logical value indicating whether to update or upload the
 #'   document.
-#' @param rich_text [experimental] logical value (default is `TRUE`)
+#' @param rich_text (experimental) logical value (default is `TRUE`)
 #'   indicating whether to upload to Google Docs a rich document (i.e.,
 #'   important text that should not be changed is highlighted).
-#' @param rich_text_par [experimental] argument used to pass a list with custom
+#' @param rich_text_par (experimental) argument used to pass a list with custom
 #'   settings for rich_text.
 #'
 #' @return a dribble of the uploaded (or updated) document
