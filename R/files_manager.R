@@ -10,12 +10,12 @@
 #' upload the file if it doesn't already exist in the chosen location. By
 #' default files are uploaded in the folder "trackdown", if is not available on
 #' Google Drive, permission to create it is required to the user. To update an
-#' already existing file see \code{\link{update_file}}. It is also possible to
-#' upload the output (pdf or html) of the file specifying the \code{path_output}
-#' argument. In case of html files, if \code{pagedown} package and Chrome are
+#' already existing file see [update_file()]. It is also possible to
+#' upload the output (pdf or html) of the file specifying the `path_output`
+#' argument. In case of html files, if `pagedown` package and Chrome are
 #' available, users can decide to upload a pdf version of the html file.\cr\cr
-#' To know more about \code{trackdown} workflow and features see
-#' \code{\link{trackdown-package}} help page.
+#' To know more about `trackdown` workflow and features see
+#' [trackdown-package()] help page.
 #'
 #' @param file character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.
 #' @param gfile character. The name of a Google Drive file (defaults to local
@@ -23,41 +23,43 @@
 #' @param gpath character. (Sub)directory in My Drive or a shared drive
 #'   (optional). By default files are uploaded in the folder "trackdown". To
 #'   specify another folder the full path is required (e.g.,
-#'   "trackdown/my_folder"). Use \code{NULL} to upload directly at the root
+#'   "trackdown/my_folder"). Use `NULL` to upload directly at the root
 #'   level, although it is not recommended.
 #' @param shared_drive character. The name of a Google Drive shared drive
 #'   (optional).
 #' @param hide_code logical value indicating whether to remove code from the
 #'   text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
 #'   are displayed instead.
-#' @param  path_output default \code{NULL}, specify the path to the output to
+#' @param  path_output default `NULL`, specify the path to the output to
 #'   upload together with the other file. PDF are directly uploaded, HTML can be
-#'   first converted into PDF if package \code{pagedown} and Chrome are
+#'   first converted into PDF if package `pagedown` and Chrome are
 #'   available.
-#' @param rich_text [experimental] logical value (default is \code{TRUE})
+#' @param rich_text [experimental] logical value (default is `TRUE`)
 #'   indicating whether to upload to Google Docs a rich document (i.e.,
 #'   important text that should not be changed is highlighted). See “Rich Text”
 #'   in details section.
 #' @param rich_text_par [experimental] argument used to pass a list with custom
 #'   settings for rich_text. See “Rich Text” in details section.
 #' @param force logical value indicating whether to skip confirm check by user
-#'   (default is \code{FALSE}).
+#'   (default is `FALSE`).
+#' @param open logical value indicating whether to open the created file in 
+#' a browser (default is `TRUE` in interactive sessions).
 #'
 #' @return a dribble of the uploaded file (and output if specified).
 #'
 #' @details
 #'
-#' \strong{Rich Text [experimental]}
+#' **Rich Text [experimental]**
 #'
-#' The \code{rich_text} option (default is \code{TRUE}) allows to upload a rich
+#' The `rich_text` option (default is `TRUE`) allows to upload a rich
 #' document to Google Docs. Important text that should not be changed is
 #' highlighted. This includes, added instructions at the top of the document,
 #' placeholders hiding the code, header of the document (YAML header or LaTeX
 #' preamble), code chunks, and in-line code.
 #'
 #' Default colour is opaque yellow. You can customize the colour specifying the
-#' \code{rgb_color} option in the \code{rich_text_par} argument. The
-#' \code{rgb_color} has to be a list with elements \code{red}, \code{green}, and \code{blue}.
+#' `rgb_color` option in the `rich_text_par` argument. The
+#' `rgb_color` has to be a list with elements `red`, `green`, and `blue`.
 #' Each element has to be a numeric value between 0 and 1. See example below.
 #'
 #' @export
@@ -82,7 +84,8 @@ upload_file <- function(file,
                         path_output = NULL,
                         rich_text = TRUE,
                         rich_text_par = NULL,
-                        force = FALSE) {
+                        force = FALSE,
+                        open = rlang::is_interactive()) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
@@ -150,13 +153,13 @@ upload_file <- function(file,
 #' Replaces the content of an existing file in Google Drive with the contents of
 #' a local file. It is also possible to update (or upload if not already
 #' present) the output (pdf or html) of the file specifying the
-#' \code{path_output} argument. In case of html files, if \code{pagedown}
+#' `path_output` argument. In case of html files, if `pagedown`
 #' package and Chrome are available, users can decide to upload a pdf version of
 #' the html file.\cr\cr
-#' \emph{Use with caution as tracked changes in the Google Drive file will be
-#' lost!}\cr\cr 
-#' To know more about \code{trackdown} workflow and features see
-#' \code{\link{trackdown-package}} help page.
+#' *Use with caution as tracked changes in the Google Drive file will be
+#' lost!*\cr\cr 
+#' To know more about `trackdown` workflow and features see
+#' [trackdown-package()] help page.
 #'
 #' @inheritParams upload_file
 #' 
@@ -271,10 +274,10 @@ update_file <- function(file,
 #'
 #' Download edited version of a file from Google Drive updating the local
 #' version with the new changes.\cr\cr
-#' \emph{Use with caution as local version of the file will be
-#' overwritten!}\cr\cr 
-#' To know more about \code{trackdown} workflow and features see
-#' \code{\link{trackdown-package}} help page.
+#' *Use with caution as local version of the file will be
+#' overwritten!*\cr\cr 
+#' To know more about `trackdown` workflow and features see
+#' [trackdown-package()] help page.
 #'
 #' @inheritParams upload_file
 #' @param rm_gcomments [experimental] logical value indicating whether or not to
@@ -377,8 +380,8 @@ download_file <- function(file,
 #' Render file from Google Drive
 #'
 #' Render file from Google Drive if there have been edits\cr\cr
-#' To know more about \code{trackdown} workflow and features see
-#' \code{\link{trackdown-package}} help page.
+#' To know more about `trackdown` workflow and features see
+#' [trackdown-package()] help page.
 #' 
 #' @inheritParams upload_file
 #' @param rm_gcomments [experimental] logical value indicating whether or not to

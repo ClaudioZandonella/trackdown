@@ -10,29 +10,33 @@ trackdown_auth_configure(app, path)
 trackdown_oauth_app()
 }
 \arguments{
-\item{app}{OAuth app, in the sense of [httr::oauth_app()].}
+\item{app}{OAuth app, in the sense of \code{\link[httr:oauth_app]{httr::oauth_app()}}.}
 
 \item{path}{JSON downloaded from Google Cloud Platform Console, containing a
 client id (aka key) and secret, in one of the forms supported for the \code{txt}
 argument of \code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}} (typically, a file path or JSON string).}
 }
 \value{
-* `trackdown_auth_configure()`: An object of R6 class
-    [gargle::AuthState], invisibly.
-  * `trackdown_oauth_app()`: the current user-configured
-    [httr::oauth_app()].
+\itemize{
+\item \code{trackdown_auth_configure()}: An object of R6 class
+\link[gargle:AuthState-class]{gargle::AuthState}, invisibly.
+\item \code{trackdown_oauth_app()}: the current user-configured
+\code{\link[httr:oauth_app]{httr::oauth_app()}}.
+}
 }
 \description{
 These functions give more control over and visibility into the auth
-configuration than [trackdown_auth()] does. `trackdown_auth_configure()`
+configuration than \code{\link[=trackdown_auth]{trackdown_auth()}} does. \code{trackdown_auth_configure()}
 lets the user specify their own:
-  * OAuth app, which is used when obtaining a user token.
+\itemize{
+\item OAuth app, which is used when obtaining a user token.
 See the vignette
-[How to get your own API credentials](https://gargle.r-lib.org/articles/get-api-credentials.html)
+\href{https://gargle.r-lib.org/articles/get-api-credentials.html}{How to get your own API credentials}
 for more.
 If the user does not configure these settings, internal defaults
 are used.
-`trackdown_oauth_app()` retrieves the currently configured OAuth app.
+\code{trackdown_oauth_app()} retrieves the currently configured OAuth app.
+}
 }
 \examples{
 # see the current user-configured OAuth app (probaby `NULL`)

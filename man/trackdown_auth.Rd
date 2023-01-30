@@ -55,7 +55,7 @@ httr's class \code{request}, i.e. a token that has been prepared with
 }
 \description{
 Authorize trackdown to view and manage your trackdown files. This function is a
-wrapper around [gargle::token_fetch()].
+wrapper around \code{\link[gargle:token_fetch]{gargle::token_fetch()}}.
 
 By default, you are directed to a web browser, asked to sign in to your
 Google account, and to grant trackdown permission to operate on your
@@ -68,34 +68,36 @@ tokens are less likely to be synced to the cloud by accident.
 If you are interacting with R within a browser (applies to RStudio Server,
 RStudio Workbench, and RStudio Cloud), you need a variant of this flow,
 known as out-of-band auth ("oob"). If this does not happen
-automatically, you can request it yourself with `use_oob = TRUE` or,
+automatically, you can request it yourself with \code{use_oob = TRUE} or,
 more persistently, by setting an option via
-`options(gargle_oob_default = TRUE)`.
+\code{options(gargle_oob_default = TRUE)}.
 }
 \details{
-Most users, most of the time, do not need to call `trackdown_auth()`
+Most users, most of the time, do not need to call \code{trackdown_auth()}
 explicitly -- it is triggered by the first action that requires
 authorization. Even when called, the default arguments often suffice.
 However, when necessary, this function allows the user to explicitly:
-  * Declare which Google identity to use, via an email address. If there
-    are multiple cached tokens, this can clarify which one to use. It can
-    also force trackdown to switch from one identity to another. If
-    there's no cached token for the email, this triggers a return to the
-    browser to choose the identity and give consent. You can specify just
-    the domain by using a glob pattern. This means that a script
-    containing `email = "*@example.com"` can be run without further
-    tweaks on the machine of either `alice@example.com` or
-    `bob@example.com`.
-  * Use a service account token or workload identity federation.
-  * Bring their own [Token2.0][httr::Token-class].
-  * Specify non-default behavior re: token caching and out-of-bound
-    authentication.
-  * Customize scopes.
+\itemize{
+\item Declare which Google identity to use, via an email address. If there
+are multiple cached tokens, this can clarify which one to use. It can
+also force trackdown to switch from one identity to another. If
+there's no cached token for the email, this triggers a return to the
+browser to choose the identity and give consent. You can specify just
+the domain by using a glob pattern. This means that a script
+containing \code{email = "*@example.com"} can be run without further
+tweaks on the machine of either \code{alice@example.com} or
+\code{bob@example.com}.
+\item Use a service account token or workload identity federation.
+\item Bring their own \link[httr:Token-class]{Token2.0}.
+\item Specify non-default behavior re: token caching and out-of-bound
+authentication.
+\item Customize scopes.
+}
 
 For details on the many ways to find a token, see
-[gargle::token_fetch()]. For deeper control over auth, use
-[trackdown_auth_configure()] to bring your own OAuth app or API key.
-Read more about gargle options, see [gargle::gargle_options].
+\code{\link[gargle:token_fetch]{gargle::token_fetch()}}. For deeper control over auth, use
+\code{\link[=trackdown_auth_configure]{trackdown_auth_configure()}} to bring your own OAuth app or API key.
+Read more about gargle options, see \link[gargle:gargle_options]{gargle::gargle_options}.
 }
 \examples{
 \dontrun{

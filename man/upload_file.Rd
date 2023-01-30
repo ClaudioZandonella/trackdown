@@ -13,11 +13,12 @@ upload_file(
   path_output = NULL,
   rich_text = TRUE,
   rich_text_par = NULL,
-  force = FALSE
+  force = FALSE,
+  open = rlang::is_interactive()
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.}
+\item{file}{character. The path of a local \code{.Rmd}, Quarto, or \code{.Rnw} file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -32,7 +33,7 @@ level, although it is not recommended.}
 (optional).}
 
 \item{hide_code}{logical value indicating whether to remove code from the
-text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
+text document (chunks and header). Placeholders of type "[]"
 are displayed instead.}
 
 \item{path_output}{default \code{NULL}, specify the path to the output to
@@ -40,16 +41,19 @@ upload together with the other file. PDF are directly uploaded, HTML can be
 first converted into PDF if package \code{pagedown} and Chrome are
 available.}
 
-\item{rich_text}{[experimental] logical value (default is \code{TRUE})
+\item{rich_text}{\link{experimental} logical value (default is \code{TRUE})
 indicating whether to upload to Google Docs a rich document (i.e.,
 important text that should not be changed is highlighted). See “Rich Text”
 in details section.}
 
-\item{rich_text_par}{[experimental] argument used to pass a list with custom
+\item{rich_text_par}{\link{experimental} argument used to pass a list with custom
 settings for rich_text. See “Rich Text” in details section.}
 
 \item{force}{logical value indicating whether to skip confirm check by user
 (default is \code{FALSE}).}
+
+\item{open}{logical value indicating whether to open the created file in
+a browser (default is \code{TRUE} in interactive sessions).}
 }
 \value{
 a dribble of the uploaded file (and output if specified).
@@ -59,15 +63,15 @@ Uploads a local file to Google Drive as a plain text document. Will only
 upload the file if it doesn't already exist in the chosen location. By
 default files are uploaded in the folder "trackdown", if is not available on
 Google Drive, permission to create it is required to the user. To update an
-already existing file see \code{\link{update_file}}. It is also possible to
+already existing file see \code{\link[=update_file]{update_file()}}. It is also possible to
 upload the output (pdf or html) of the file specifying the \code{path_output}
 argument. In case of html files, if \code{pagedown} package and Chrome are
 available, users can decide to upload a pdf version of the html file.\cr\cr
 To know more about \code{trackdown} workflow and features see
-\code{\link{trackdown-package}} help page.
+\code{\link[=trackdown-package]{trackdown-package()}} help page.
 }
 \details{
-\strong{Rich Text [experimental]}
+\strong{Rich Text \link{experimental}}
 
 The \code{rich_text} option (default is \code{TRUE}) allows to upload a rich
 document to Google Docs. Important text that should not be changed is

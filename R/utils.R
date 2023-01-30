@@ -123,7 +123,7 @@ finish_process <- function(message){
 #'
 #' @return a list with
 #' \itemize{
-#'   \item{path: the path to the file. If there is no path \code{"."} is
+#'   \item{path: the path to the file. If there is no path `"."` is
 #'   returned}
 #'   \item{file_name: file name with extension}
 #'   \item{extension: the file extension without point and all lowercase}
