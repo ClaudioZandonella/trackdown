@@ -193,7 +193,8 @@ update_file <- function(file,
                         path_output = NULL,
                         rich_text = TRUE,
                         rich_text_par = NULL,
-                        force = FALSE) {
+                        force = FALSE,
+                        open = rlang::is_interactive()) {
   
   
   main_process(paste("Updating files to", cli::col_magenta("Google Drive")))
@@ -268,6 +269,10 @@ update_file <- function(file,
   
   #---- end ----
   finish_process("Process completed!")
+  
+  if (open) {
+    utils::browseURL(res[["drive_resource"]][[1]][["webViewLink"]])
+  }
   
   return(invisible(res))
 }
