@@ -42,6 +42,8 @@
 #'   settings for rich_text. See “Rich Text” in details section.
 #' @param force logical value indicating whether to skip confirm check by user
 #'   (default is \code{FALSE}).
+#' @param open logical value indicating whether to open the created document
+#'   in a browser (default is \code{TRUE} in interactive sessions).
 #'
 #' @return a dribble of the uploaded file (and output if specified).
 #'
@@ -82,7 +84,8 @@ upload_file <- function(file,
                         path_output = NULL,
                         rich_text = TRUE,
                         rich_text_par = NULL,
-                        force = FALSE) {
+                        force = FALSE,
+                        open = rlang::is_interactive()) {
   
   main_process(paste("Uploading files to", cli::col_magenta("Google Drive")))
   
@@ -139,6 +142,10 @@ upload_file <- function(file,
   
   #---- end ----
   finish_process("Process completed!")
+  
+  if (open) {
+    utils::browseURL(res[["drive_resource"]][[1]][["webViewLink"]])
+  }
   
   return(invisible(res))
 }
