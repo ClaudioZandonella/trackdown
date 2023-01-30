@@ -381,7 +381,7 @@ download_file <- function(file,
 #' [trackdown-package()] help page.
 #' 
 #' @inheritParams upload_file
-#' @param rm_gcomments [experimental] logical value indicating whether or not to
+#' @param rm_gcomments (experimental) logical value indicating whether or not to
 #'   remove Google comments.
 #' @return `TRUE` if file from Google Drive was saved and rendered, `FALSE`
 #'   otherwise.

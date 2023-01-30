@@ -31,7 +31,7 @@ level, although it is not recommended.}
 \item{force}{logical value indicating whether to skip confirm check by user
 (default is \code{FALSE}).}
 
-\item{rm_gcomments}{\link{experimental} logical value indicating whether or not to
+\item{rm_gcomments}{(experimental) logical value indicating whether or not to
 remove Google comments.}
 }
 \value{
