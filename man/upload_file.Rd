@@ -13,8 +13,7 @@ upload_file(
   path_output = NULL,
   rich_text = TRUE,
   rich_text_par = NULL,
-  force = FALSE,
-  open = rlang::is_interactive()
+  force = FALSE
 )
 }
 \arguments{
@@ -51,9 +50,6 @@ settings for rich_text. See “Rich Text” in details section.}
 
 \item{force}{logical value indicating whether to skip confirm check by user
 (default is \code{FALSE}).}
-
-\item{open}{logical value indicating whether to open the created file in
-a browser (default is \code{TRUE} in interactive sessions).}
 }
 \value{
 a dribble of the uploaded file (and output if specified).
