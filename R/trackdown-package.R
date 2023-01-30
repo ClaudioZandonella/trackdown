@@ -36,8 +36,8 @@
 #'  continues until the desired results are obtained. The workflow can be
 #'  summarized as:
 #'
-#'  \emph{Collaborative **code** writing using **Git** & collaborative writing
-#'  of **narrative text** using **Google Docs** }
+#'  _Collaborative **code** writing using **Git** & collaborative writing
+#'  of **narrative text** using **Google Docs**_
 #'   
 #' @section Functions:
 #' `trackdown` offers different functions to manage the workflow:

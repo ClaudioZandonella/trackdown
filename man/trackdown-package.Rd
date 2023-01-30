@@ -38,7 +38,7 @@ continues until the desired results are obtained. The workflow can be
 summarized as:
 
 \emph{Collaborative \strong{code} writing using \strong{Git} & collaborative writing
-of \strong{narrative text} using \strong{Google Docs} }
+of \strong{narrative text} using \strong{Google Docs}}
 }
 
 \section{Functions}{
