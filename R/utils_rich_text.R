@@ -154,10 +154,9 @@ get_patterns_highlight <- function(extension){
 #' @param text a single string with the parsed document that has been uploaded
 #'   to Google Drive.
 #'
-#' @return a data frame indicating for each match:\itemize{ 
-#'   \item{start_index} starting position index  
-#'   \item{end_index} ending position index  
-#'   }
+#' @return a data frame indicating for each match: 
+#'   - **start_index** starting position index  
+#'   - **end_index** ending position index  
 #'
 #' @noRd
 #' @examples
