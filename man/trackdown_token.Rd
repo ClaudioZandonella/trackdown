@@ -7,17 +7,17 @@
 trackdown_token()
 }
 \value{
-A `request` object (an S3 class provided by [httr][httr::httr]).
+A \code{request} object (an S3 class provided by \link[httr:httr-package]{httr}).
 }
 \description{
 For internal use or for those programming around the trackdown API.
-Returns a token pre-processed with [httr::config()]. Most users
+Returns a token pre-processed with \code{\link[httr:config]{httr::config()}}. Most users
 do not need to handle tokens "by hand" or, even if they need some
-control, [trackdown_auth()] is what they need. If there is no current
-token, [trackdown_auth()] is called to either load from cache or
+control, \code{\link[=trackdown_auth]{trackdown_auth()}} is what they need. If there is no current
+token, \code{\link[=trackdown_auth]{trackdown_auth()}} is called to either load from cache or
 initiate OAuth2.0 flow.
-If auth has been deactivated via [trackdown_deauth()], `trackdown_token()`
-returns `NULL`.
+If auth has been deactivated via \code{\link[=trackdown_deauth]{trackdown_deauth()}}, \code{trackdown_token()}
+returns \code{NULL}.
 }
 \examples{
 \dontrun{

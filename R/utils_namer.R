@@ -46,14 +46,14 @@ quote_label <-  function(x) {
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
-#' @return  a tibble with \itemize{
-#'   \item{language} of the chunk
-#'   \item{name} of the chunk
-#'   \item{options} of the chunk
-#'   \item{starts} the line number of the chunk header
-#'   \item{ends} the line number of the chunk end
-#'   \item{index} integer index to identify the chunk
-#' }
+#' @return  a tibble with
+#'  - **language** of the chunk
+#'  - **name** of the chunk
+#'  - **options** of the chunk
+#'  - **starts** the line number of the chunk header
+#'  - **ends** the line number of the chunk end
+#'  - **index** integer index to identify the chunk
+#' 
 #' Note that in case of "rnw" extension the language is always NA. NULL is
 #' returned if no chunk was available.
 #' @noRd
@@ -109,11 +109,11 @@ get_chunk_info <- function(lines, info_patterns){
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
-#' @return  a tibble with \itemize{
-#'   \item{language} of the chunk
-#'   \item{name} of the chunk
-#'   \item{options} of the chunk
-#' }
+#' @return  a tibble with
+#'  - **language** of the chunk
+#'  - **name** of the chunk
+#'  - **options** of the chunk
+#' 
 #' Note that in case of "rnw" extension the language is always NA
 #' @noRd
 #'
@@ -155,11 +155,11 @@ parse_chunk_header <- function(chunk_header, info_patterns){
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
-#' @return  a tibble with \itemize{
-#'   \item{language} of the chunk
-#'   \item{name} of the chunk
-#'   \item{options} of the chunk
-#' }
+#' @return  a tibble with
+#'  - **language** of the chunk
+#'  - **name** of the chunk
+#'  - **options** of the chunk
+#' 
 #' Note that in case of "rnw" extension the language is always NA
 #' @noRd
 #'
@@ -201,11 +201,11 @@ digest_chunk_header <- function(chunk_header_index,
 #' @param params a string indicating the content of a chunk header
 #' @param extension a indicating the extension of the file ("rmd" or "rnw")
 #'
-#' @return  a tibble with \itemize{
-#'   \item{language} of the chunk
-#'   \item{name} of the chunk
-#'   \item{options} of the chunk
-#' }
+#' @return  a tibble with
+#'  - **language** of the chunk
+#'  - **name** of the chunk
+#'  - **options** of the chunk
+#' 
 #' Note that in case of "rnw" extension the language is always NA
 #' @noRd
 #'

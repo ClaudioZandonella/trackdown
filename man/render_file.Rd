@@ -14,7 +14,7 @@ render_file(
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.}
+\item{file}{character. The path of a local \code{.Rmd}, Quarto, or \code{.Rnw} file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -31,15 +31,15 @@ level, although it is not recommended.}
 \item{force}{logical value indicating whether to skip confirm check by user
 (default is \code{FALSE}).}
 
-\item{rm_gcomments}{[experimental] logical value indicating whether or not to
+\item{rm_gcomments}{(experimental) logical value indicating whether or not to
 remove Google comments.}
 }
 \value{
-`TRUE` if file from Google Drive was saved and rendered, `FALSE`
-  otherwise.
+\code{TRUE} if file from Google Drive was saved and rendered, \code{FALSE}
+otherwise.
 }
 \description{
 Render file from Google Drive if there have been edits\cr\cr
 To know more about \code{trackdown} workflow and features see
-\code{\link{trackdown-package}} help page.
+\code{\link[=trackdown-package]{trackdown-package()}} help page.
 }

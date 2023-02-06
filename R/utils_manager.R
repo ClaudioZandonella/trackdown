@@ -15,14 +15,12 @@
 #'   single line in dribble ("single") or both condition accepted ("both")
 #'
 #' @return a list with relevant information 
-#'  \itemize{
-#'    \item{file - character indicating the path to the local file (or output)}
-#'    \item{file_info - list with file info returned from  get_file_info()
-#'    function}
-#'    \item{gfile - character indicating the corrected gfile naem for the file}
-#'    \item{dribble_info - list with dribble info of the file and parent
-#'    returned by get_dribble_info() function}
-#'  }
+#'  - file - character indicating the path to the local file (or output)
+#'  - file_info - list with file info returned from  get_file_info()
+#'    function
+#'  - gfile - character indicating the corrected gfile naem for the file
+#'  - dribble_info - list with dribble info of the file and parent
+#'    returned by get_dribble_info() function
 #'  
 #' @noRd
 #'
@@ -71,8 +69,8 @@ evaluate_file <- function(file,
 #'
 #' Internal function to upload (or update) a local file to Google Drive as a
 #' plain text document. Local file information and Google Drive document
-#' information and have to be provided. Option \code{hide_code} allows to
-#' remove code chunks from the text document and option \code{update}
+#' information and have to be provided. Option `hide_code` allows to
+#' remove code chunks from the text document and option `update`
 #' indicates whether to update file in Google Drive.
 #'
 #' @param file character. The path (without file extension) of a local `.Rmd`
@@ -84,14 +82,14 @@ evaluate_file <- function(file,
 #' @param dribble_document A list with two dribble object regarding the gfile
 #'   and the parent item.
 #' @param hide_code logical value indicating whether to remove code from the
-#'   text document (chunks and header). Placeholders of  type "[[chunk-<name>]]"
+#'   text document (chunks and header). Placeholders of  type `"[[chunk-<name>]]"`
 #'   are displayed instead.
 #' @param update logical value indicating whether to update or upload the
 #'   document.
-#' @param rich_text [experimental] logical value (default is \code{TRUE})
+#' @param rich_text (experimental) logical value (default is `TRUE`)
 #'   indicating whether to upload to Google Docs a rich document (i.e.,
 #'   important text that should not be changed is highlighted).
-#' @param rich_text_par [experimental] argument used to pass a list with custom
+#' @param rich_text_par (experimental) argument used to pass a list with custom
 #'   settings for rich_text.
 #'
 #' @return a dribble of the uploaded (or updated) document
@@ -188,8 +186,8 @@ upload_document <- function(file, file_info,
 #'
 #' Internal function to upload (or update) a local file to Google Drive as a
 #' plain text document. Local file information and Google Drive document
-#' information and have to be provided. Option \code{hide_code} allows to
-#' remove code chunks from the text document and option \code{update}
+#' information and have to be provided. Option `hide_code` allows to
+#' remove code chunks from the text document and option `update`
 #' indicates whether to update file in Google Drive.
 #'
 #' @param path_output character. The path (without file extension) of a local
@@ -205,7 +203,7 @@ upload_document <- function(file, file_info,
 #' @param .response integer indicating automatic response in non interactive
 #'   environment on whether to convert html to pdf (1 = Yes, 2 = No).
 #' @param force logical value indicating whether to skip confirm check by user
-#'   (default is \code{FALSE}).
+#'   (default is `FALSE`).
 #'
 #' @return a dribble of the uploaded (or updated) output
 #' @noRd
