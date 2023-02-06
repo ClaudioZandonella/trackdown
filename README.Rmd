@@ -68,7 +68,7 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or Quarto / `.Rnw
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs** 
 
-```{r, echo = FALSE, eval=TRUE, results='asis'}
+```{r, echo = FALSE, eval=TRUE, results='asis', fig.alt = 'Brief video of the trackdown workflow: upload the file to Google Docs, share the file with cllaborators for reviewing/editing, download the file to integrate the changes'}
 add_video <- function(){
   if(isTRUE(trackdown:::.is_pkgdown)){
   

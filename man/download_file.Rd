@@ -14,7 +14,7 @@ download_file(
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.}
+\item{file}{character. The path of a local \code{.Rmd}, Quarto, or \code{.Rnw} file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -28,20 +28,20 @@ level, although it is not recommended.}
 \item{shared_drive}{character. The name of a Google Drive shared drive
 (optional).}
 
-\item{rm_gcomments}{[experimental] logical value indicating whether or not to
+\item{rm_gcomments}{(experimental) logical value indicating whether or not to
 remove Google comments.}
 
 \item{force}{logical value indicating whether to skip confirm check by user
 (default is \code{FALSE}).}
 }
 \value{
-`TRUE` if file from Google Drive was saved, `FALSE` otherwise.
+\code{TRUE} if file from Google Drive was saved, \code{FALSE} otherwise.
 }
 \description{
 Download edited version of a file from Google Drive updating the local
 version with the new changes.\cr\cr
 \emph{Use with caution as local version of the file will be
-overwritten!}\cr\cr 
+overwritten!}\cr\cr
 To know more about \code{trackdown} workflow and features see
-\code{\link{trackdown-package}} help page.
+\code{\link[=trackdown-package]{trackdown-package()}} help page.
 }

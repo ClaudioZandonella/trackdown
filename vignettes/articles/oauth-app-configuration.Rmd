@@ -28,92 +28,92 @@ To create an App in Google Cloud Console, follow these steps:
 
 1. Access Google Cloud Console at https://console.cloud.google.com/. If this is our first time, we will need to select our country and accept the *terms of service*
 1. Create a new project by clicking the button *"Select a project"* and then the button  *"NEW PROJECT"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console create a new project menu'}
 knitr::include_graphics('images/01-new-proj.png')
 ```
   Specify the name of the project and click *"CREATE"*
-```{r, out.width="50%"}
+```{r, out.width="50%", fig.alt = 'Google Cloud Console create a new project settings'}
 knitr::include_graphics('images/02-proj-name.png')
 ```
   Select the newly created project to open it
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console slect a project menu'}
 knitr::include_graphics('images/03-proj-select.png')
 ```
 1. Now we need to activate the required APIs. From the left menu select *"APIs and services" > "Enable APIs and services"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console Enable APIs ans services menu'}
 knitr::include_graphics('images/04-api.png')
 ```
   Click the *"ENABLE APIS AND SERVICES"* button
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console Enable APIs ans services button'}
 knitr::include_graphics('images/05-api.png')
 ```
   Using the API Library search service we need to select two APIs
-```{r, out.width="50%"}
+```{r, out.width="50%", fig.alt = 'Google Cloud Console search for APIs and services'}
 knitr::include_graphics('images/06-api-search.png')
 ```
   Select *"Google Drive API"* from the list and click *"ENABLE"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console enable Google Drive API'}
 knitr::include_graphics('images/07-api-drive.png')
 ```
   Select *"Google Docs API"* from the list and click *"ENABLE"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console enable Google Docs API'}
 knitr::include_graphics('images/08-api-docs.png')
 ```
 1. Next, we need to specify the setting of the consent screen. From the left menu, select *"OAuth consent screen"*, choose *"External"* as User Type and click *"CREATE"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console OAuth consent screen creation'}
 knitr::include_graphics('images/09-consent-external.png')
 ```
   Specify the App information *"App name"* and *"User support email"* (use your email)
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration infrmation (part I)'}
 knitr::include_graphics('images/10-consent-info.png')
 ```
   Specify also the developer contact information (use your email) and press *"SAVE AND CONTINUE"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration infrmation (part II)'}
 knitr::include_graphics('images/11-consent-contact.png')
 ```
 1. Next, we need to select the required scopes. Click *"ADD OR REMOVE SCOPES"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration add scopes'}
 knitr::include_graphics('images/12-scopes.png')
 ```
   Select the required scopes *".../auth/userinfo.email"* and *"openid"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration select required scopes (part I)'}
 knitr::include_graphics('images/13-scopes-list.png')
 ```
   Select also *".../auth/drive"* and *".../auth/docs"*
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration select required scopes (part II)'}
 knitr::include_graphics('images/14-scope-docs.png')
 ```
   Click *"Update"* at the end of the list to save changes. As we selected sensitive scopes, a pop-out will appear. Do not worry, these scopes are required to managed files in Google Drive. Click *"CONTINUE"*
   
-    > After selcting all the required scopes, we should obtain the following summary list
-    >   ```{r, out.width="60%"}
+    > After selecting all the required scopes, we should obtain the following summary list
+    >   ```{r, out.width="60%", fig.alt = 'Google Cloud Console app registration summary list scopes'}
     >   knitr::include_graphics('images/15-scope-summary.png')
     >   ```
     > To be precise, only one among *".../auth/drive"* and *".../auth/docs"* is necesssary. However, to avoid any possible issue we selected both
   
 1. **[OPTIONAL]** In the next section, it is possible to specify users (by email) to allow them using our newly created app. Alternatively, we can publish the app to let everyone (with whom we share the app credentials) to use the app (see below)
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration add test users'}
 knitr::include_graphics('images/15-test-user.png')
 ```
 1. In the *"Summary"* section, we can check all the details and press *"BACK TO DASHBOARD"* for saving all changes
 1. Next, we can publish our app to allow anyone (with whom we share the app credentials) to use our app (in this way we do not need to add email manually to the testers list). To do that, click *"PUBLISH APP"* from the *"OAuth consent screen"* and confirm
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google Cloud Console publish app'}
 knitr::include_graphics('images/16-publish-app.png')
 ```
-1. Now, we need to obtain the credentials to use our newly created app. Form the *"Credentials"* panel, click *"CREATE CREDENTIALS"* and select *"OAuth client ID"*
-```{r, out.width="90%"}
+1. Now, we need to obtain the credentials to use our newly created app. From the *"Credentials"* panel, click *"CREATE CREDENTIALS"* and select *"OAuth client ID"*
+```{r, out.width="90%", fig.alt = 'Google Cloud Console OAuth client ID credentials creation menu'}
 knitr::include_graphics('images/17-credentials.png')
 ```
   As *"Application type"*, select *"Desktop app"* and specify the client app name. Next click *"CREATE"*
-```{r, out.width="50%"}
+```{r, out.width="50%", fig.alt = 'Google Cloud Console OAuth client ID credentials creation settings'}
 knitr::include_graphics('images/18-credentials-type.png')
 ``` 
   A window will display the credentials to use the app. We need to download the JSON file with the credentials by clicking *"DOWNLOAD JSON"* or alternatively we can copy the *"Client ID"* and *"Client Secret"*
-```{r, out.width="50%"}
+```{r, out.width="50%", fig.alt = 'Google Cloud Console OAuth client ID created credentials'}
 knitr::include_graphics('images/19-credentials-popout.png')
 ```
   This information are required to use the Google APIs through our newly created app. Only users with this information can use our app. We can also retrieve the credentials in a second moment by clicking the download button from the list *"OAuth2.0 Client IDs"*
-```{r, out.width="70%"}
+```{r, out.width="70%", fig.alt = 'Google Cloud Console OAuth client ID credentials list'}
 knitr::include_graphics('images/20-credentials-client.png')
 ```
 
@@ -139,11 +139,11 @@ To configure trackdown, follow these steps:
       ```
 1. Next, the first time we use trackdown, we will be directed to a web browser and asked to sign in to our Google account to grant permission to communicate with Google Drive.
 1. We will get a scary warning about an untrusted application, this is because the application is the one we just created. Click *"Advanced"* and *"Go to My App (unsafe)"* to proceed to do the oauth flow.
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google account access warning app not verified'}
 knitr::include_graphics('images/21-warning.png')
 ```
 1. Select all options (all are **required**) and continue.
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google account access settings'}
 knitr::include_graphics('images/22-acccess.png')
 ```
 
@@ -158,7 +158,7 @@ It is important that trackdown has access to the app credentials.
 By default, trackdown first checks if the path to the JSON file is specified via the `TRACKDOWN_APP` environment variable. If not, trackdown will use its internal credentials. However, we have already exceeded the user limits. So, user custom app credentials need to be indicated specifying the JSON file path or the app info (obtained via `httr::oauth_app()` function) in the function `trackdown_auth_configure()`.
     
 If you see the following error is because you are using the trackdown internal credentials and we have already exceeded the user limits.
-```{r, out.width="90%"}
+```{r, out.width="90%", fig.alt = 'Google account access warning app blocked'}
 knitr::include_graphics('images/23-errror.png')
 ```
 

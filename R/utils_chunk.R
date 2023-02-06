@@ -38,10 +38,9 @@ mkdir_trackdown <- function(local_path, folder_name = ".trackdown"){
 #' @param info_patterns a list with the regex pattern according to file
 #'   extension, returned by get_extension_patterns() function
 #'
-#' @return  a tibble with \itemize{
-#'   \item{starts} the line number of the chunk header
-#'   \item{ends} the line number of the chunk end
-#' }
+#' @return  a tibble with
+#'   - **starts** the line number of the chunk header
+#'   - **ends** the line number of the chunk end
 #' @noRd
 #'
 #' @examples
@@ -95,16 +94,16 @@ get_chunk_range <- function(lines, info_patterns){
 #'   extension, returned by get_extension_patterns() function
 #' 
 #' @noRd
-#' @return  a tibble with \itemize{
-#'   \item{language} of the chunk
-#'   \item{name} of the chunk
-#'   \item{options} of the chunk
-#'   \item{starts} the line number of the chunk header
-#'   \item{ends} the line number of the chunk end
-#'   \item{index} integer index to identify the chunk
-#'   \item{chunk_text} the chunk from header to end (included)
-#'   \item{name_tag} the name used as tag in the text
-#' }
+#' @return  a tibble with 
+#'   - **language** of the chunk
+#'   - **name** of the chunk
+#'   - **options** of the chunk
+#'   - **starts** the line number of the chunk header
+#'   - **ends** the line number of the chunk end
+#'   - **index** integer index to identify the chunk
+#'   - **chunk_text** the chunk from header to end (included)
+#'   - **name_tag** the name used as tag in the text
+#'   
 #' Note that in case of "rnw" extension the language is always NA. NULL is
 #' returned if no chunk is available.
 #' 
@@ -160,12 +159,11 @@ extract_chunk <- function(text_lines, info_patterns){
 #'   extension, returned by get_extension_patterns() function
 #' 
 #' @noRd
-#' @return  a tibble with \itemize{
-#'   \item{starts} the line number of the header start
-#'   \item{ends} the line number of the header end
-#'   \item{header_text} the header form start to end (included)
-#'   \item{name_tag} the name used as tag in the text
-#' }
+#' @return  a tibble with
+#'   - **starts** the line number of the header start
+#'   - **ends** the line number of the header end
+#'   - **header_text** the header form start to end (included)
+#'   - **name_tag** the name used as tag in the text
 #' 
 #' @examples 
 #'   # rmd
@@ -223,12 +221,12 @@ check_header <- function(text_lines, info_patterns){
 #'   extension, returned by get_extension_patterns() function
 #' 
 #' @noRd
-#' @return  a tibble with \itemize{
-#'   \item{starts} the line number of the header start
-#'   \item{ends} the line number of the header end
-#'   \item{header_text} the header form start to end (included)
-#'   \item{name_tag} the name used as tag in the text
-#'   }
+#' @return  a tibble with
+#'   - **starts** the line number of the header start
+#'   - **ends** the line number of the header end
+#'   - **header_text** the header form start to end (included)
+#'   - **name_tag** the name used as tag in the text
+#'   
 #'   Note that if no header is available, NULL is returned
 #' 
 #' @examples 
@@ -289,15 +287,15 @@ extract_header <- function(text_lines, info_patterns){
 #' 
 #' @param extension string indicating the file extension ("rmd", "qmd", or "rnw")
 #'
-#' @return a list with the regex pattern that identify \itemize{
-#' \item{chunk_header_start} the start of the first line of a chunk
-#' \item{chunk_header_end} the end of the first line of a chunk
-#' \item{chunk_start} the start line of a chunk
-#' \item{chunk_end} the end line of a chunk
-#' \item{file_header_start} the start line of the file header
-#' \item{file_header_end} the end line of the file header
-#' \item{extension} the extension type (rmd, qmd or rnw)
-#' }
+#' @return a list with the regex pattern that identify
+#' - **chunk_header_start** the start of the first line of a chunk
+#' - **chunk_header_end** the end of the first line of a chunk
+#' - **chunk_start** the start line of a chunk
+#' - **chunk_end** the end line of a chunk
+#' - **file_header_start** the start line of the file header
+#' - **file_header_end** the end line of the file header
+#' - **extension** the extension type (rmd, qmd or rnw)
+#' 
 #' @noRd
 #'
 #' @examples
@@ -337,7 +335,7 @@ get_extension_patterns <- function(extension =  c("rmd", "qmd", "rnw")){
 #' Remove Code
 #'
 #' Remove code from the document (chunks and header). Placeholders of  type
-#' "[[chunk-<name>]]"/"[[Document-header]]" are displayed instead.
+#' `"[[chunk-<name>]]"`/`"[[Document-header]]"` are displayed instead.
 #'
 #' @param document character vector with the lines of the document 
 #' @param file_info list with file info returned from get_file_info() function
@@ -401,13 +399,13 @@ hide_code <- function(document, file_info){
 
 #' Restore the Downloaded File with Code Info
 #'
-#' Restore placeholders of type "[[chunk-<name>]]"/"[[Document-header]]" with
+#' Restore placeholders of type `"[[chunk-<name>]]"`/`"[[Document-header]]"` with
 #' the actual code and sanitize file.
 #'
 #' @param temp_file character indicating the path to the downloaded file
 #' @param file_name character indicating the current file name
 #' @param path character indicating the folder of the original file
-#' @param rm_gcomments [experimental] logical value indicating whether or not to
+#' @param rm_gcomments (experimental) logical value indicating whether or not to
 #'   remove Google comments
 #'
 #' @return a single string with the content of the document

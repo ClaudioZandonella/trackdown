@@ -18,7 +18,7 @@ update_file(
 )
 }
 \arguments{
-\item{file}{character. The path of a local `.Rmd`, Quarto, or `.Rnw` file.}
+\item{file}{character. The path of a local \code{.Rmd}, Quarto, or \code{.Rnw} file.}
 
 \item{gfile}{character. The name of a Google Drive file (defaults to local
 file name).}
@@ -33,7 +33,7 @@ level, although it is not recommended.}
 (optional).}
 
 \item{hide_code}{logical value indicating whether to remove code from the
-text document (chunks and header). Placeholders of type "[[chunk-<name>]]"
+text document (chunks and header). Placeholders of type \code{"[[chunk-<name>]]"}
 are displayed instead.}
 
 \item{path_output}{default \code{NULL}, specify the path to the output to
@@ -41,12 +41,12 @@ upload together with the other file. PDF are directly uploaded, HTML can be
 first converted into PDF if package \code{pagedown} and Chrome are
 available.}
 
-\item{rich_text}{[experimental] logical value (default is \code{TRUE})
+\item{rich_text}{(experimental) logical value (default is \code{TRUE})
 indicating whether to upload to Google Docs a rich document (i.e.,
 important text that should not be changed is highlighted). See “Rich Text”
 in details section.}
 
-\item{rich_text_par}{[experimental] argument used to pass a list with custom
+\item{rich_text_par}{(experimental) argument used to pass a list with custom
 settings for rich_text. See “Rich Text” in details section.}
 
 \item{force}{logical value indicating whether to skip confirm check by user
@@ -66,12 +66,12 @@ present) the output (pdf or html) of the file specifying the
 package and Chrome are available, users can decide to upload a pdf version of
 the html file.\cr\cr
 \emph{Use with caution as tracked changes in the Google Drive file will be
-lost!}\cr\cr 
+lost!}\cr\cr
 To know more about \code{trackdown} workflow and features see
-\code{\link{trackdown-package}} help page.
+\code{\link[=trackdown-package]{trackdown-package()}} help page.
 }
 \details{
-\strong{Rich Text [experimental]}
+\strong{Rich Text (experimental)}
 
 The \code{rich_text} option (default is \code{TRUE}) allows to upload a rich
 document to Google Docs. Important text that should not be changed is

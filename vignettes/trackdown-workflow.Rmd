@@ -38,7 +38,7 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or Quarto / `.Rnw
 
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs** 
 
-```{r, echo = FALSE, eval=TRUE, out.width="100%"}
+```{r, echo = FALSE, eval=TRUE, out.width="100%", fig.alt = 'Chart trackdown workflow: upload the file to Google Docs, share the file with cllaborators for reviewing/editing, download the file to integrate the changes'}
 knitr::include_graphics("trackdown-workflow.png")
 ```
 
@@ -69,13 +69,13 @@ By executing this command, the `My-Report.Rmd` file is uploaded from your local 
 
 Note that `trackdown` adds some simple instructions and reminders on top of the document and, by specifying the argument `hide_code = TRUE` (default is `FALSE`), the header code (YAML) and code chunks are removed from the document displaying instead placeholders of type "[[document-header]]" and "[[chunk-\<name\>]]" (See Figure below). This allows collaborators to focus on the narrative text. 
 
-```{r, echo = FALSE, eval=TRUE, out.width="100%"}
+```{r, echo = FALSE, eval=TRUE, out.width="100%", fig.alt = 'Comparing the local .Rmd source file with the trackdwon version uploaded to Google Drive. Instructions are added at the top of the docuemnt and code chunck are substituted by placeholders'}
 knitr::include_graphics(JOSS_fig)
 ```
 
 From `trackdown` v1.3.0 [currently only available on GitHub], the `rich_text` feature has been introduced allowing to upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted. This includes, added instructions at the top of the document, placeholders hiding the code, header of the document (YAML header or LaTeX preamble), code chunks, and in-line code (see example in Figure below). For further details, see `vignette("trackdown-features")`.
 
-```{r, echo = FALSE, eval=TRUE, out.width="70%"}
+```{r, echo = FALSE, eval=TRUE, out.width="70%", fig.alt = 'Rmarkdown document uploaded in Google docs with highlighted text that should not be modified (e.g., instructions, code chunks, in-line code, etc.)'}
 knitr::include_graphics(rich_text)
 ```
 
@@ -89,7 +89,7 @@ Google Docs offers a familiar, intuitive, and free web-based interface that allo
 - add comments to suggest and discuss changes
 - check spelling and grammar errors (potentially integrating third-party services like Grammarly)
 
-```{r, echo = FALSE, eval=TRUE, out.width="100%"}
+```{r, echo = FALSE, eval=TRUE, out.width="100%", fig.alt = 'Exampel of collaboration in the review and editing of a document in Google Docs (i.e., comments, addition and deletion of text) '}
 knitr::include_graphics(Example_edit)
 ```
 
