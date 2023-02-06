@@ -144,6 +144,7 @@ Some extra arguments have been added to allow specific function features:
 
 - `force` logical value indicating whether to skip confirm check by user (default is \code{FALSE}). This argument is available for all functions and allows users to skip confirm checks about overwriting documents. See [issue #27](https://github.com/ClaudioZandonella/trackdown/issues/27) for further details
 - `rm_gcomments` logical value indicating whether or not to remove Google comments. When downloading the document for a quick check you will download all Google comments in the document as well. This argument allows users to remove Google comments automatically (available only for `download_file()` and `render_file()` functions). See [issue #25](https://github.com/ClaudioZandonella/trackdown/issues/25) for further details
+- `open` logical value indicating whether to open the created document in a browser (default is `TRUE` in interactive sessions). See [issue #46](https://github.com/ClaudioZandonella/trackdown/issues/46), PR by Maëlle Salmon
 
 
 

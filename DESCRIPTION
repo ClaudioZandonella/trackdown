@@ -1,6 +1,6 @@
 Package: trackdown
 Title: Collaborative Editing of Rmd (or Quarto / Rnw) Documents in Google Drive
-Version: 1.4.0
+Version: 1.5.0
 Authors@R:
     c(person(given = "Emily",
              family = "Kothe",

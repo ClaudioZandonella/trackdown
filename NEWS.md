@@ -1,5 +1,11 @@
 # trackdown (development version)
 
+## trackdown 1.5.0
+
+new feature `open` by @maelle
+
+- allow to open the created document in a browser
+
 ## trackdown 1.4.0
 
 - Trackdown now supports **Quarto**
