@@ -24,7 +24,7 @@ document can be downloaded and rendered locally."><meta property="og:image" cont
     
     <a class="navbar-brand me-2" href="../index.html">trackdown</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,37 +86,36 @@ document can be downloaded and rendered locally.</p>
     
 
 <p>During the collaborative writing/editing of an <code>.Rmd</code> (or <code>.Rnw</code>)
- document, it is important to employ different workflows for computer code
- and narrative text:</p>
-<p></p><ul><li><p><strong>Code</strong> - Collaborative code writing is done most efficiently
-  by following a traditional <strong>Git</strong>-based workflow using an online
-  repository (e.g., GitHub or GitLab).</p></li>
+document, it is important to employ different workflows for computer code
+and narrative text:</p><ul><li><p><strong>Code</strong> - Collaborative code writing is done most efficiently
+by following a traditional <strong>Git</strong>-based workflow using an online
+repository (e.g., GitHub or GitLab).</p></li>
 <li><p><strong>Narrative Text</strong> - Collaborative writing of narrative text is
-  done most efficiently using <strong>Google Docs</strong> which provides a familiar
-  and simple online interface that allows multiple users to simultaneously
-  write/edit the same document.</p></li>
+done most efficiently using <strong>Google Docs</strong> which provides a familiar
+and simple online interface that allows multiple users to simultaneously
+write/edit the same document.</p></li>
 </ul><p>Thus, the workflow’s main idea is simple: Upload the <code>.Rmd</code> (or <code>.Rnw</code>)
- document to Google Drive to collaboratively write/edit the narrative text in
- Google Docs; download the document locally to continue working on the code
- while harnessing the power of Git for version control and collaboration.
- This iterative process of uploading to and downloading from Google Drive
- continues until the desired results are obtained. The workflow can be
- summarized as:</p>
+document to Google Drive to collaboratively write/edit the narrative text in
+Google Docs; download the document locally to continue working on the code
+while harnessing the power of Git for version control and collaboration.
+This iterative process of uploading to and downloading from Google Drive
+continues until the desired results are obtained. The workflow can be
+summarized as:</p>
 <p><em>Collaborative <strong>code</strong> writing using <strong>Git</strong> &amp; collaborative writing
- of <strong>narrative text</strong> using <strong>Google Docs</strong> </em></p>
+of <strong>narrative text</strong> using <strong>Google Docs</strong></em></p>
     </div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
 
-<p><code>trackdown</code> offers different functions to manage the workflow:</p><ul><li><p><code><a href="upload_file.html">upload_file</a></code> uploads a file for the first time to Google
-  Drive.</p></li>
-<li><p><code><a href="update_file.html">update_file</a></code> updates the content of an existing file in
-  Google Drive with the contents of a local file.</p></li>
-<li><p><code><a href="download_file.html">download_file</a></code> downloads the edited version of a file
-  from Google Drive and updates the local version.</p></li>
-<li><p><code><a href="render_file.html">render_file</a></code> downloads a file from Google Drive and
-  renders it locally.</p></li>
+<p><code>trackdown</code> offers different functions to manage the workflow:</p><ul><li><p><code><a href="upload_file.html">upload_file()</a></code> uploads a file for the first time to Google
+Drive.</p></li>
+<li><p><code><a href="update_file.html">update_file()</a></code> updates the content of an existing file in
+Google Drive with the contents of a local file.</p></li>
+<li><p>downloads the edited version of a file
+from Google Drive and updates the local version.</p></li>
+<li><p><code><a href="render_file.html">render_file()</a></code> downloads a file from Google Drive and
+renders it locally.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="special-features">Special Features<a class="anchor" aria-label="anchor" href="#special-features"></a></h2>
@@ -125,50 +124,50 @@ document can be downloaded and rendered locally.</p>
 <p><code>trackdown</code> offers additional features to facilitate the collaborative
 writing and editing of documents in Google Docs. In particular, it is
 possible to:</p><ul><li><p><strong>Hide Code:</strong> Code in the header of the document (YAML header
-  or LaTeX preamble) and code chunks are removed from the document when
-  uploading to Google Drive and are automatically restored during download.
-  This prevents collaborators from inadvertently making changes to the code
-  which might corrupt the file and allows them to focus on the narrative
-  text.</p></li>
+or LaTeX preamble) and code chunks are removed from the document when
+uploading to Google Drive and are automatically restored during download.
+This prevents collaborators from inadvertently making changes to the code
+which might corrupt the file and allows them to focus on the narrative
+text.</p></li>
 <li><p><strong>Upload Output:</strong> The actual output document (i.e., the
-  rendered file) can be uploaded to Google Drive in conjunction with the
-  <code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate
-  the overall layout including figures and tables and allows them to add
-  comments to suggest and discuss changes.</p></li>
+rendered file) can be uploaded to Google Drive in conjunction with the
+<code>.Rmd</code> (or <code>.Rnw</code>) document. This helps collaborators to evaluate
+the overall layout including figures and tables and allows them to add
+comments to suggest and discuss changes.</p></li>
 <li><p><strong>Use Google Drive shared drives:</strong> The documents can be
-  uploaded on your personal Google Drive or on a shared drive to facilitate
-  collaboration.</p></li>
+uploaded on your personal Google Drive or on a shared drive to facilitate
+collaboration.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="advantages-of-google-docs">Advantages of Google Docs<a class="anchor" aria-label="anchor" href="#advantages-of-google-docs"></a></h2>
     
 
 <p>Google Docs offers users a familiar, intuitive, and free web-based interface
- that allows multiple users to simultaneously write/edit the same document.
- In Google Docs it is possible to:</p><ul><li><p>track changes (incl. accepting/rejecting suggestions)</p></li>
+that allows multiple users to simultaneously write/edit the same document.
+In Google Docs it is possible to:</p><ul><li><p>track changes (incl. accepting/rejecting suggestions)</p></li>
 <li><p>add comments to suggest and discuss changes</p></li>
 <li><p>check spelling and grammar errors (potentially integrating
-  third-party services like Grammarly)</p></li>
+third-party services like Grammarly)</p></li>
 </ul><p>Moreover, Google Docs allows anyone to contribute to the writing/editing of
- the document. No programming experience is required, users can just focus on
- writing/editing the narrative text.</p> 
+the document. No programming experience is required, users can just focus on
+writing/editing the narrative text.</p>
 <p>Note that not all collaborators have to have a Google account (although this
- is recommended to utilize all Google Docs features). Only the person who
- manages the <code>trackdown</code> workflow needs to have a Google account to
- upload files to Google Drive. Other collaborators can be invited to
- contribute to the document using a shared link.</p>
+is recommended to utilize all Google Docs features). Only the person who
+manages the <code>trackdown</code> workflow needs to have a Google account to
+upload files to Google Drive. Other collaborators can be invited to
+contribute to the document using a shared link.</p>
     </div>
     <div class="section level2">
     <h2 id="documentation-and-vignettes">Documentation and Vignettes<a class="anchor" aria-label="anchor" href="#documentation-and-vignettes"></a></h2>
     
 
-<p>All the documentation is available at <a href="https://claudiozandonella.github.io/trackdown/" class="external-link">https://claudiozandonella.github.io/trackdown/</a>.</p> 
+<p>All the documentation is available at <a href="https://claudiozandonella.github.io/trackdown/" class="external-link">https://claudiozandonella.github.io/trackdown/</a>.</p>
 <p>To know more about the <code>trackdown</code>, please reference:</p><ul><li><p><code><a href="../articles/trackdown-features.html">vignette("trackdown-features")</a></code> for a detailed description of
-  the function arguments and features.</p></li>
+the function arguments and features.</p></li>
 <li><p><code><a href="../articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> for a workflow example and
-  discussion of how to collaborate on narrative text and code.</p></li>
+discussion of how to collaborate on narrative text and code.</p></li>
 <li><p><code><a href="../articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for details regarding
-  technical details like authentication and file management.</p></li>
+technical details like authentication and file management.</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
