@@ -417,7 +417,7 @@ render_file <- function(file,
                            rm_gcomments = rm_gcomments)
   if (changed) {
     rmarkdown::render(file, quiet = TRUE)
-    finish_process(paste(cli::col_blue(file), "donwloaded and rendered!"))
+    finish_process(paste(cli::col_blue(file), "downloaded and rendered!"))
   }
   
   return(invisible(changed))
