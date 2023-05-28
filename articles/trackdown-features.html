@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">trackdown</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    <a class="dropdown-item" href="../articles/oauth-client-configuration.html">OAuth Client App Configuration</a>
     <a class="dropdown-item" href="../articles/trackdown-features.html">Function Arguments and Features</a>
     <a class="dropdown-item" href="../articles/trackdown-privacy-policy.html">Privacy Policy for trackdown Access to Google APIs</a>
     <a class="dropdown-item" href="../articles/trackdown-tech-notes.html">Technical Notes</a>
@@ -125,12 +125,12 @@ and are automatically restored during download. This prevents
 collaborators from inadvertently making changes to the code which might
 corrupt the file and allows them to focus on the narrative text.</li>
 <li>
-<strong>Rich Text</strong> (See <a href="#rich-text">rich_text</a>):
-Upload <em>rich</em> documents to Google Docs. Now, important text that
-should not be changed is automatically highlighted (e.g., placeholders
-hiding the code, header of the document, code chunks, and in-line code).
-This prevents collaborators from inadvertently making changes to the
-code which might corrupt the file.</li>
+<strong>Rich Text </strong> (<img src="figures/lifecycle-experimental.svg" style="vertical-align:middle" alt="experimental"> See <a href="#rich-text">rich_text</a>): Upload
+<em>rich</em> documents to Google Docs. Now, important text that should
+not be changed is automatically highlighted (e.g., placeholders hiding
+the code, header of the document, code chunks, and in-line code). This
+prevents collaborators from inadvertently making changes to the code
+which might corrupt the file.</li>
 <li>
 <strong>Upload Output</strong> (See <a href="#path-output">path_output</a>): The actual output document (i.e.,
 the rendered file) can be uploaded to Google Drive in conjunction with
@@ -239,7 +239,7 @@ removed.</p>
 </div>
 <div class="section level4">
 <h4 id="rich-text">
-<code>rich_text</code><a class="anchor" aria-label="anchor" href="#rich-text"></a>
+<code>rich_text</code> <img src="figures/lifecycle-experimental.svg" style="vertical-align:middle" alt="experimental"><a class="anchor" aria-label="anchor" href="#rich-text"></a>
 </h4>
 <blockquote>
 <p>From <code>trackdown</code> v1.3.0 [currently only available on
@@ -256,7 +256,7 @@ at the top of the document, placeholders hiding the code, header of the
 document (YAML header or LaTeX preamble), code chunks, and in-line code.
 This prevents collaborators from inadvertently making changes to the
 code which might corrupt the file. See example in Figure below.</p>
-<p><img src="rich-text-pkgdown.png" alt="Rmarkdown document uploaded in Google docs with highlighted text that should not be modified (e.g., instructions, code chunks, in-line code, etc.)" width="90%" style="display: block; margin: auto;"></p>
+<p><img src="figures/rich-text-pkgdown.png" alt="Rmarkdown document uploaded in Google docs with highlighted text that should not be modified (e.g., instructions, code chunks, in-line code, etc.)" width="90%" style="display: block; margin: auto;"></p>
 </li>
 </ul>
 <p>The <code>rich_text_par</code> argument used is used to pass a list
@@ -298,7 +298,7 @@ overall layout, including figures and tables, and allows them to add
 comments to propose and discuss changes (See Figure below). Note that,
 in the case of PDF files, it is possible to add comments directly to the
 file in Google Drive. However, this is not possible with HTML files.</p>
-<p><img src="edit-output-pkgdown.png" alt="PDF document uploaded in Google drive edited with comments" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="figures/edit-output-pkgdown.png" alt="PDF document uploaded in Google drive edited with comments" width="100%" style="display: block; margin: auto;"></p>
 <p>In the case of HTML files, <code>trackdown</code> can automatically
 convert them into PDFs before uploading them to Google Drive. This
 feature requires that the <code>pagedown</code> package is available. As
@@ -322,12 +322,12 @@ functions and allows users to skip confirm checks about overwriting
 documents. See <a href="https://github.com/ClaudioZandonella/trackdown/issues/27" class="external-link">issue
 #27</a> for further details</li>
 <li>
-<code>rm_gcomments</code> logical value indicating whether or not to
-remove Google comments. When downloading the document for a quick check
-you will download all Google comments in the document as well. This
-argument allows users to remove Google comments automatically (available
-only for <code><a href="../reference/download_file.html">download_file()</a></code> and <code><a href="../reference/render_file.html">render_file()</a></code>
-functions). See <a href="https://github.com/ClaudioZandonella/trackdown/issues/25" class="external-link">issue
+<code>rm_gcomments</code> <img src="figures/lifecycle-experimental.svg" style="vertical-align:middle" alt="experimental"> logical value indicating whether or not to remove
+Google comments. When downloading the document for a quick check you
+will download all Google comments in the document as well. This argument
+allows users to remove Google comments automatically (available only for
+<code><a href="../reference/download_file.html">download_file()</a></code> and <code><a href="../reference/render_file.html">render_file()</a></code> functions).
+See <a href="https://github.com/ClaudioZandonella/trackdown/issues/25" class="external-link">issue
 #25</a> for further details</li>
 <li>
 <code>open</code> logical value indicating whether to open the

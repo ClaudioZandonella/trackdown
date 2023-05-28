@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="index.html">trackdown</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/oauth-app-configuration.html">OAuth App Configuration</a>
+    <a class="dropdown-item" href="articles/oauth-client-configuration.html">OAuth Client App Configuration</a>
     <a class="dropdown-item" href="articles/trackdown-features.html">Function Arguments and Features</a>
     <a class="dropdown-item" href="articles/trackdown-privacy-policy.html">Privacy Policy for trackdown Access to Google APIs</a>
     <a class="dropdown-item" href="articles/trackdown-tech-notes.html">Technical Notes</a>
@@ -87,15 +87,15 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The <code>trackdown</code> package offers a simple solution for collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or <code>.Rnw</code>) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
+<p>The <code>trackdown</code> package offers a simple solution for collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. Using <code>trackdown</code>, the local <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.</p>
 <blockquote>
 <p>From <code>trackdown</code> v1.3.0 [currently only available on GitHub], the <code>trackdown</code> package introduces the <code>rich_text</code> feature and uses its own API credentials.</p>
 <ul>
 <li>
-<strong><code>rich_text</code>.</strong> Upload <em>rich</em> documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See <a href="https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text" class="external-link">rich-text feature details</a>.</li>
+<strong><code>rich_text</code> <img src="reference/figures/lifecycle-experimental.svg" style="vertical-align:middle" alt="experimental"></strong> - Upload <em>rich</em> documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See <a href="https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text" class="external-link">rich-text feature details</a>.</li>
 <li>
-<strong>API Credentials.</strong> Now, <code>trackdown</code> uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable <em>“Trackdown R Package”</em>. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at <a href="https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007" class="external-link">issue comment</a>). Don’t worry <code>trackdown</code> uses the same system as the <code>googledrive</code> package that was previously used. See details on privacy policy at <code><a href="articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</li>
-<li>[<strong>IMPORTANT</strong>] We currently reached the maximum number of users for the API credentails. Installing the development <code>trackdown</code> from GitHub will require to create your own API credentials. Please, see instructions at <a href="https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html" class="external-link uri">https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html</a>
+<strong>API Credentials</strong> - Now, <code>trackdown</code> uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable <em>“Trackdown R Package”</em>. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at <a href="https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007" class="external-link">issue comment</a>). Don’t worry <code>trackdown</code> uses the same system as the <code>googledrive</code> package that was previously used. See details on privacy policy at <code><a href="articles/trackdown-privacy-policy.html">vignette("trackdown-privacy-policy")</a></code>).</li>
+<li>[<strong>IMPORTANT</strong>] We currently reached the maximum number of users for the API credentails. Installing the development <code>trackdown</code> from GitHub will require to create your own API credentials. Please, see instructions at <a href="https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html" class="external-link uri">https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html</a>
 </li>
 <li>
 <strong>Quarto</strong> documents now supported!!</li>
@@ -154,7 +154,7 @@
 <li>
 <strong>Hide Code:</strong> Code in the header of the document (YAML header or LaTeX preamble) and code chunks are removed from the document when uploading to Google Drive and are automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.</li>
 <li>
-<strong>Rich Text:</strong> Upload <em>rich</em> documents to Google Docs. Important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file.</li>
+<strong>Rich Text <img src="reference/figures/lifecycle-experimental.svg" style="vertical-align:middle" alt="experimental">:</strong> Upload <em>rich</em> documents to Google Docs. Important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file.</li>
 <li>
 <strong>Upload Output:</strong> The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the <code>.Rmd</code> (or Quarto / <code>.Rnw</code>) document. This helps collaborators to evaluate the overall layout including figures and tables and allows them to add comments to suggest and discuss changes.</li>
 <li>
@@ -185,7 +185,7 @@
 <code><a href="articles/trackdown-workflow.html">vignette("trackdown-workflow")</a></code> for a workflow example and discussion of how to collaborate on narrative text and code.</li>
 <li>
 <code><a href="articles/trackdown-tech-notes.html">vignette("trackdown-tech-notes")</a></code> for details regarding technical details like authentication and file management.</li>
-<li>Guide to create personal credentials <a href="https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html" class="external-link uri">https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html</a>
+<li>Guide to create personal credentials <a href="https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html" class="external-link uri">https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html</a>
 </li>
 </ul>
 </div>
