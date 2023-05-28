@@ -70,7 +70,7 @@ trackdown_auth <- function(email = gargle::gargle_oauth_email(),
   
   cred <- gargle::token_fetch(
     scopes = scopes,
-    client = trackdown_oauth_client() %||% trackdown_client(),
+    app = trackdown_oauth_client() %||% trackdown_client(), # client argument not yet available
     email = email,
     path = path,
     package = "trackdown",
