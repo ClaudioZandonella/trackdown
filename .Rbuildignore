@@ -42,3 +42,4 @@
 ^vignettes/JOSS-fig-pkgdown\.png$
 ^vignettes/rich-text-pkgdown\.png$
 ^vignettes/articles$
+^\.renvignore$

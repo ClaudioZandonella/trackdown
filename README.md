@@ -18,8 +18,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 The `trackdown` package offers a simple solution for collaborative
 writing and editing of R Markdown (or Quarto / Sweave) documents. Using
-`trackdown`, the local `.Rmd` (or `.Rnw`) file can be uploaded as a
-plain-text file to Google Drive. By taking advantage of the easily
+`trackdown`, the local `.Rmd` (or Quarto / `.Rnw`) file can be uploaded
+as a plain-text file to Google Drive. By taking advantage of the easily
 readable Markdown (or LaTeX) syntax and the well-known online interface
 offered by Google Docs, collaborators can easily contribute to the
 writing and editing process. After integrating all authors’
@@ -50,7 +50,7 @@ locally.
 >   for the API credentails. Installing the development `trackdown` from
 >   GitHub will require to create your own API credentials. Please, see
 >   instructions at
->   <https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html>
+>   <https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html>
 > - **Quarto** documents now supported!!
 
 ## Installation
@@ -178,7 +178,7 @@ To know more about `trackdown`, please reference:
 - `vignette("trackdown-tech-notes")` for details regarding technical
   details like authentication and file management.
 - Guide to create personal credentials
-  <https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html>
+  <https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html>
 
 ## Extending `trackdown`
 

@@ -1,5 +1,5 @@
 ---
-title: "OAuth App Configuration"
+title: "OAuth Client App Configuration"
 ---
 
 ```{r, include = FALSE}
@@ -15,16 +15,16 @@ knitr::opts_chunk$set(
 To upload, edit, and download our files in Google Drive, trackdown relies on the Google APIs. 
 Using Google APIs requires two main things:
 
-- Creating an app in Google Cloud Console and activate the required Google APIs
+- Creating a client app in Google Cloud Console and activate the required Google APIs
 - Managing users' authentication and authorization in R
 
 In the next sections, we describe all the steps to configure everything is needed to use trackdown.
 
-## Creating an App in Google Cloud Console
+## Creating a Client App in Google Cloud Console
 
-> Trackdown already provides an internal app to use the Google APIs. However, the numebr of users is limited and we already reached the maximum number (i.e., 100 users). Thus to use trackdown, we are required to create our own App in Google Cloud Console.
+> Trackdown already provides an internal client app to use the Google APIs. However, the numebr of users is limited and we already reached the maximum number (i.e., 100 users). Thus to use trackdown, we are required to create our own Client App in Google Cloud Console.
 
-To create an App in Google Cloud Console, follow these steps:
+To create a Client App in Google Cloud Console, follow these steps:
 
 1. Access Google Cloud Console at https://console.cloud.google.com/. If this is our first time, we will need to select our country and accept the *terms of service*
 1. Create a new project by clicking the button *"Select a project"* and then the button  *"NEW PROJECT"*
@@ -83,13 +83,13 @@ knitr::include_graphics('images/13-scopes-list.png')
 ```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration select required scopes (part II)'}
 knitr::include_graphics('images/14-scope-docs.png')
 ```
-  Click *"Update"* at the end of the list to save changes. As we selected sensitive scopes, a pop-out will appear. Do not worry, these scopes are required to managed files in Google Drive. Click *"CONTINUE"*
+  Click *"Update"* at the end of the list to save changes.
   
     > After selecting all the required scopes, we should obtain the following summary list
     >   ```{r, out.width="60%", fig.alt = 'Google Cloud Console app registration summary list scopes'}
     >   knitr::include_graphics('images/15-scope-summary.png')
     >   ```
-    > To be precise, only one among *".../auth/drive"* and *".../auth/docs"* is necesssary. However, to avoid any possible issue we selected both
+    > Note that we selected sensitive and restriced scopes. Do not worry, these scopes are required to managed files in Google Drive.
   
 1. **[OPTIONAL]** In the next section, it is possible to specify users (by email) to allow them using our newly created app. Alternatively, we can publish the app to let everyone (with whom we share the app credentials) to use the app (see below)
 ```{r, out.width="90%", fig.alt = 'Google Cloud Console app registration add test users'}
@@ -100,6 +100,13 @@ knitr::include_graphics('images/15-test-user.png')
 ```{r, out.width="90%", fig.alt = 'Google Cloud Console publish app'}
 knitr::include_graphics('images/16-publish-app.png')
 ```
+
+    > Do not worry about the message. It is just reporting the requirements for the verification of our app by Google. 
+    >
+    > We created the app and published it so other users can use it. As our newly created app uses sensitive and restricted scopes (it uses the google docs API to upload/download files on users google drive), Google allows only a limited number of users (100). To be open to anyone, the app must be verified by Google. This requires all the points listed in the message. However, this is an extra step you do not need.
+    >
+    > If we are planning to use our new app with a limited number of users (less than 100). We do not need this verification. So we do not need to provide other information to Google.
+    
 1. Now, we need to obtain the credentials to use our newly created app. From the *"Credentials"* panel, click *"CREATE CREDENTIALS"* and select *"OAuth client ID"*
 ```{r, out.width="90%", fig.alt = 'Google Cloud Console OAuth client ID credentials creation menu'}
 knitr::include_graphics('images/17-credentials.png')
@@ -120,22 +127,22 @@ knitr::include_graphics('images/20-credentials-client.png')
 
 ## Users' authentication in R
 
-Once created our app and obtained the credentials to use it (i.e., the JSON file), we are ready to configure trackdown.
+Once created our client app and obtained the credentials to use it (i.e., the JSON file), we are ready to configure trackdown.
 
 To configure trackdown, follow these steps:
 
-1. Save the JSON file with the app credentials in a safe place. This file should be shared only with required users. Avoid saving this file in public repositories (more details below)
-1. We need to pass the app credentials to trackdown in order to use the Google APIs. To do that, we  need to do one of the following things:
-    - Set the `TRACKDOWN_APP` environment variable to the location of the JSON file. It is convenient to do this in our `.Renviron` file with `usethis::edit_r_environ()`. In this way, trackdown will be able to automatically retrieve the app credentials. Be careful of using the correct absolute/relative path according to the specific needs
-    - Call `trackdown_auth_configure(path = "path/to/downloaded/json")` by indicating where the JSON lives. This command needs to be run at each session 
-    - Alternatively, instead of using the JSON details, we can specify directly the app client id and secret. Client id and secret can be copied from the *"Credentials"* panel from the Google Cloud Console (see above). 
+1. Save the JSON file with the client app credentials in a safe place. This file should be shared only with required users. Avoid saving this file in public repositories (more details below).
+1. We need to pass the client app credentials to trackdown in order to use the Google APIs. To do that, we  need to do one of the following things:
+    - Set the `TRACKDOWN_CLIENT` environment variable to the location of the JSON file. It is convenient to do this in our `.Renviron` file with `usethis::edit_r_environ()`. In this way, trackdown will be able to automatically retrieve the app credentials. Be careful of using the correct absolute/relative path according to the specific needs
+    - Call `trackdown_auth_configure(path = "path/to/downloaded/json")` by indicating where the JSON lives. This command needs to be run at each session. 
+    - Alternatively, instead of using the JSON details, we can specify directly the client id and secret. Client id and secret can be copied from the *"Credentials"* panel from the Google Cloud Console (see above). 
       ```{r, eval=FALSE, echo=TRUE}
-      my_app <- httr::oauth_app(
-        appname = "acme-corp",
-        key     = "123456789.apps.googleusercontent.com",
-        secret  = "abcdefghijklmnopqrstuvwxyz"
+      my_client <- gargle::gargle_oauth_client(
+        name = "my-client-name",
+        id = "123456789.apps.googleusercontent.com",
+        secret = "abcdefghijklmnopqrstuvwxyz"
       )
-      trackdown_auth_configure(app = my_app)
+      trackdown_auth_configure(client = my_client)
       ```
 1. Next, the first time we use trackdown, we will be directed to a web browser and asked to sign in to our Google account to grant permission to communicate with Google Drive.
 1. We will get a scary warning about an untrusted application, this is because the application is the one we just created. Click *"Advanced"* and *"Go to My App (unsafe)"* to proceed to do the oauth flow.
@@ -153,16 +160,16 @@ Now, we are ready to use trackdown!
 
 ### App Credentials
 
-It is important that trackdown has access to the app credentials. 
+It is important that trackdown has access to our client app credentials. 
 
-By default, trackdown first checks if the path to the JSON file is specified via the `TRACKDOWN_APP` environment variable. If not, trackdown will use its internal credentials. However, we have already exceeded the user limits. So, user custom app credentials need to be indicated specifying the JSON file path or the app info (obtained via `httr::oauth_app()` function) in the function `trackdown_auth_configure()`.
+By default, trackdown first checks if the path to the JSON file is specified via the `TRACKDOWN_CLIENT` environment variable. If not, trackdown will use its internal credentials. However, we have already exceeded the user limits. So, user custom client app credentials need to be indicated specifying the JSON file path or the app info (obtained via `gargle::gargle_oauth_client()` function) in the function `trackdown_auth_configure()`.
     
 If you see the following error is because you are using the trackdown internal credentials and we have already exceeded the user limits.
 ```{r, out.width="90%", fig.alt = 'Google account access warning app blocked'}
 knitr::include_graphics('images/23-errror.png')
 ```
 
-> Note that the credential used by trackdown will be automaticlayy applied alsso to googledrive package functions used internally by trackdown functions
+> Note that the credential used by trackdown will be automaticlayy applied also to googledrive package functions used internally by trackdown functions
 
 
 ### User's Credentials
@@ -183,8 +190,8 @@ options(
 
 For more details see:
 
-- https://gargle.r-lib.org/articles/gargle-auth-in-client-package.html#changing-identities-and-more 
-- https://gargle.r-lib.org/articles/get-api-credentials.html#oauth-client-id-and-secret
+- https://gargle.r-lib.org/articles/gargle-auth-in-client-package.html 
+- https://gargle.r-lib.org/articles/get-api-credentials.html
 - https://gargle.r-lib.org/index.html
 
 To learn how to manage credential securely, see:

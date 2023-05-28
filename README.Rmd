@@ -30,13 +30,13 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The `trackdown` package offers a simple solution for collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. Using `trackdown`, the local `.Rmd` (or `.Rnw`) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
+The `trackdown` package offers a simple solution for collaborative writing and editing of R Markdown (or Quarto / Sweave) documents. Using `trackdown`, the local `.Rmd` (or Quarto / `.Rnw`) file can be uploaded as a plain-text file to Google Drive. By taking advantage of the easily readable Markdown (or LaTeX) syntax and the well-known online interface offered by Google Docs, collaborators can easily contribute to the writing and editing process. After integrating all authors’ contributions, the final document can be downloaded and rendered locally.
 
 > From `trackdown` v1.3.0 [currently only available on GitHub], the `trackdown` package introduces the `rich_text` feature and uses its own API credentials.
 > 
 > - **`rich_text`.** Upload *rich* documents to Google Docs where important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. See [rich-text feature details]( https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
 > - **API Credentials.** Now, `trackdown` uses its own Google API credentials (OAuth client ID and secret). This requires Google authentication and to enable *“Trackdown R Package”*. The project is undergoing Google verification so it is already available but Google displays a warning message (see details at [issue comment](https://github.com/ClaudioZandonella/trackdown/issues/28#issuecomment-1057195007)). Don't worry `trackdown` uses the same system as the `googledrive` package that was previously used. See details on privacy policy at `vignette("trackdown-privacy-policy")`).
-> - [**IMPORTANT**] We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see instructions at https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html
+> - [**IMPORTANT**] We currently reached the maximum number of users for the API credentails. Installing the development `trackdown` from GitHub will require to create your own API credentials. Please, see instructions at https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html
 > - **Quarto** documents now supported!!
 
 ## Installation {#install}
@@ -132,7 +132,7 @@ To know more about `trackdown`, please reference:
 - `vignette("trackdown-features")` for a detailed description of the function arguments and features.
 - `vignette("trackdown-workflow")` for a workflow example and discussion of how to collaborate on narrative text and code.
 - `vignette("trackdown-tech-notes")` for details regarding technical details like authentication and file management.
-- Guide to create personal credentials https://claudiozandonella.github.io/trackdown/articles/oauth-app-configuration.html
+- Guide to create personal credentials https://claudiozandonella.github.io/trackdown/articles/oauth-client-configuration.html
 
 ## Extending `trackdown`
 

@@ -99,7 +99,8 @@
 #'  - `vignette("trackdown-tech-notes")` for details regarding
 #'   technical details like authentication and file management.
 #'
-#' @importFrom utils tail head
+#' @importFrom utils tail head packageVersion
+#' @importFrom lifecycle deprecated
 #' @import rlang
 #'
 #' @docType package
@@ -123,7 +124,7 @@ NULL
   
   # Set trackdown Client API 
   # (force googledrive to use the same app credentials)
-  active_trackdown_app()
+  active_trackdown_client()
   
   invisible()
 }

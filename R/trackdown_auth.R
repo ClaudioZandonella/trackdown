@@ -70,7 +70,7 @@ trackdown_auth <- function(email = gargle::gargle_oauth_email(),
   
   cred <- gargle::token_fetch(
     scopes = scopes,
-    app = trackdown_oauth_app() %||% trackdown_app(),
+    client = trackdown_oauth_client() %||% trackdown_client(),
     email = email,
     path = path,
     package = "trackdown",
@@ -170,62 +170,93 @@ trackdown_has_token <- function() {
 #' @family auth functions
 #' @export
 #' @examples
-#' # see the current user-configured OAuth app (probaby `NULL`)
-#' trackdown_oauth_app()
+#' # see the current user-configured OAuth client (probaby `NULL`)
+#' trackdown_oauth_client()
 #'
 #' if (require(httr)) {
 #'
 #'   # store current state, so we can restore
-#'   original_app <- trackdown_oauth_app()
+#'   original_client <- trackdown_oauth_client()
 #' 
-#'   # bring your own app via client id (aka key) and secret
-#'   google_app <- httr::oauth_app(
-#'     "my-awesome-google-api-wrapping-package",
-#'     key = "123456789.apps.googleusercontent.com",
-#'     secret = "abcdefghijklmnopqrstuvwxyz"
+#'   # bring your own client via client id (aka key) and secret
+#'   google_client <- gargle::gargle_oauth_client(
+#'     id = "123456789.apps.googleusercontent.com",
+#'     secret = "abcdefghijklmnopqrstuvwxyz",
+#'     name = "my-awesome-google-api-wrapping-package",
 #'   )
-#'   trackdown_auth_configure(app = google_app)
+#'   trackdown_auth_configure(client = google_client)
 #'
-#'   # confirm current app
-#'   trackdown_oauth_app()
+#'   # confirm current client
+#'   trackdown_oauth_client()
 #'   
 #'   # restore original state
-#'   trackdown_auth_configure(app = original_app)
-#'   trackdown_oauth_app()
+#'   trackdown_auth_configure(client = original_client)
+#'   trackdown_oauth_client()
 #' }
 #' 
 #' \dontrun{
-#' # bring your own app via JSON downloaded from Google Developers Console
+#' # bring your own client via JSON downloaded from Google Developers Console
 #' trackdown_auth_configure(
 #'   path = "/path/to/the/JSON/you/downloaded/from/google/dev/console.json"
 #' )
 #' }
 #' 
 
-trackdown_auth_configure <- function(app, path) {
-  if (!missing(app) && !missing(path)) {
-    stop("Must supply exactly one of `app` and `path`", call. = FALSE)
+trackdown_auth_configure <- function(client, path,  app = deprecated()) {
+  if (lifecycle::is_present(app)) {
+    lifecycle::deprecate_warn(
+      "1.5.1",
+      "trackdown_auth_configure(app)",
+      "trackdown_auth_configure(client)"
+    )
+    client <- app
   }
   
+  if (!missing(client) && !missing(path)) {
+    stop("Must supply exactly one of `client` and `path`", call. = FALSE)
+  }
   if (!missing(path)) {
     stopifnot(is_string(path))
-    app <- gargle::oauth_app_from_json(path)
+    # The transition from OAuth "app" to OAuth "client" is fully enacted from
+    # gargle 1.4.0.900
+    if (packageVersion('gargle') >= '1.4.0.900'){
+      client <- gargle::oauth_client_from_json(path)
+    } else {
+      client <- gargle::oauth_app_from_json(path)
+    }
+    
   }
-  stopifnot(is.null(app) || inherits(app, "oauth_app"))
   
-  .auth$set_app(app)
+  stopifnot(missing(client) || is.null(client) || inherits(client, "gargle_oauth_client"))
   
-  # Configure googledrive authorization to force using the same app credentials
-  googledrive::drive_auth_configure(app = app)
+  # The transition from OAuth "app" to OAuth "client" is fully enacted from
+  # gargle 1.4.0.900
+  if (packageVersion('gargle') >= '1.4.0.900'){
+    .auth$set_client(client)
+  } else {
+    .auth$set_app(client)
+  }
+  
+  # Configure googledrive authorization to force using the same client credentials
+  googledrive::drive_auth_configure(client = client)
   
   invisible(.auth)
 }
 
-#----    trackdown_oauth_app    ----
+#----    trackdown_oauth_client    ----
 
 #' @export
 #' @rdname trackdown_auth_configure
-trackdown_oauth_app <- function() .auth$app
+trackdown_oauth_client <- function() {
+  # The transition from OAuth "app" to OAuth "client" is fully enacted from
+  # gargle 1.4.0.900
+  if (packageVersion('gargle') >= '1.4.0.900'){
+    res <- .auth$client
+  } else {
+    res <- .auth$app
+  }
+  return(res)
+}
 
 #----    trackdown_user    ----
 
@@ -279,7 +310,7 @@ check_from_trackdown <- function (env = parent.frame()){
   # invisible(env)
 }
 
-#----    trackdown_app    -----
+#----    trackdown_client    -----
 
 #' Get trackdown Client Credentials
 #'
@@ -287,38 +318,38 @@ check_from_trackdown <- function (env = parent.frame()){
 #' @noRd
 #' 
 
-trackdown_app <- function(){
+trackdown_client <- function(){
   check_from_trackdown(parent.frame())
   .trackdown_auth()
 }
 
-#----    active_trackdown_app    ----
+#----    active_trackdown_client    ----
 
 #' Set trackdown Client API
 #' 
-#' Check first if personal app specified via environmental variable
-#' 'TRACKDOWN_APP' indicating the path to the JSON file with the credentials.
-#' Otherwise, use currently specified app or use internal default trackdown
+#' Check first if personal client specified via environmental variable
+#' 'TRACKDOWN_CLIENT' indicating the path to the JSON file with the credentials.
+#' Otherwise, use currently specified client or use internal default trackdown
 #' credentials.
 #' 
-#' It also forces googledrive to use the same app credentials.
+#' It also forces googledrive to use the same client credentials.
 #' 
 #' @return NULL
 #' @noRd
 #'
 
-active_trackdown_app <- function(){
+active_trackdown_client <- function(){
   
-  # Check if environmental variable is set for the JSON file of personal app
-  path <- Sys.getenv("TRACKDOWN_APP", unset = NA)
+  # Check if environmental variable is set for the JSON file of personal client
+  path <- Sys.getenv("TRACKDOWN_CLIENT", unset = NA)
   if(!is.na(path)){
     trackdown_auth_configure(path = path)
   } else {
     
-    # Set Client using app info
-    # If current app is null use internal default trackdown credentials
-    app <-  trackdown_oauth_app() %||% trackdown_app()
-    trackdown_auth_configure(app = app)
+    # Set Client using client info
+    # If current client is null use internal default trackdown credentials
+    client <-  trackdown_oauth_client() %||% trackdown_client()
+    trackdown_auth_configure(client = client)
   }
   
   invisible()

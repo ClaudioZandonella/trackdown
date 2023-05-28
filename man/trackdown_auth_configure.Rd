@@ -2,26 +2,30 @@
 % Please edit documentation in R/trackdown_auth.R
 \name{trackdown_auth_configure}
 \alias{trackdown_auth_configure}
-\alias{trackdown_oauth_app}
+\alias{trackdown_oauth_client}
 \title{Edit and view auth configuration}
 \usage{
-trackdown_auth_configure(app, path)
+trackdown_auth_configure(client, path, app = deprecated())
 
-trackdown_oauth_app()
+trackdown_oauth_client()
 }
 \arguments{
-\item{app}{OAuth app, in the sense of \code{\link[httr:oauth_app]{httr::oauth_app()}}.}
+\item{client}{A Google OAuth client, presumably constructed via
+\code{\link[gargle:gargle_oauth_client_from_json]{gargle::gargle_oauth_client_from_json()}}. Note, however, that it is
+preferred to specify the client with JSON, using the \code{path} argument.}
 
-\item{path}{JSON downloaded from Google Cloud Platform Console, containing a
-client id (aka key) and secret, in one of the forms supported for the \code{txt}
-argument of \code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}} (typically, a file path or JSON string).}
+\item{path}{JSON downloaded from \href{https://console.cloud.google.com}{Google Cloud Console}, containing a client id and
+secret, in one of the forms supported for the \code{txt} argument of
+\code{\link[jsonlite:fromJSON]{jsonlite::fromJSON()}} (typically, a file path or JSON string).}
+
+\item{app}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Replaced by the \code{client}
+argument.}
 }
 \value{
 \itemize{
 \item \code{trackdown_auth_configure()}: An object of R6 class
 \link[gargle:AuthState-class]{gargle::AuthState}, invisibly.
-\item \code{trackdown_oauth_app()}: the current user-configured
-\code{\link[httr:oauth_app]{httr::oauth_app()}}.
+\item \code{trackdown_oauth_client()}: the current user-configured OAuth client.
 }
 }
 \description{
@@ -29,42 +33,43 @@ These functions give more control over and visibility into the auth
 configuration than \code{\link[=trackdown_auth]{trackdown_auth()}} does. \code{trackdown_auth_configure()}
 lets the user specify their own:
 \itemize{
-\item OAuth app, which is used when obtaining a user token.
-See the vignette
-\href{https://gargle.r-lib.org/articles/get-api-credentials.html}{How to get your own API credentials}
+\item OAuth client, which is used when obtaining a user token.
+}
+
+See the \code{vignette("get-api-credentials", package = "gargle")}
 for more.
 If the user does not configure these settings, internal defaults
 are used.
-\code{trackdown_oauth_app()} retrieves the currently configured OAuth app.
-}
+
+\code{trackdown_oauth_client()} retrieves the currently configured OAuth client.
 }
 \examples{
-# see the current user-configured OAuth app (probaby `NULL`)
-trackdown_oauth_app()
+# see the current user-configured OAuth client (probaby `NULL`)
+trackdown_oauth_client()
 
 if (require(httr)) {
 
   # store current state, so we can restore
-  original_app <- trackdown_oauth_app()
+  original_client <- trackdown_oauth_client()
 
-  # bring your own app via client id (aka key) and secret
-  google_app <- httr::oauth_app(
-    "my-awesome-google-api-wrapping-package",
-    key = "123456789.apps.googleusercontent.com",
-    secret = "abcdefghijklmnopqrstuvwxyz"
+  # bring your own client via client id (aka key) and secret
+  google_client <- gargle::gargle_oauth_client(
+    id = "123456789.apps.googleusercontent.com",
+    secret = "abcdefghijklmnopqrstuvwxyz",
+    name = "my-awesome-google-api-wrapping-package",
   )
-  trackdown_auth_configure(app = google_app)
+  trackdown_auth_configure(client = google_client)
 
-  # confirm current app
-  trackdown_oauth_app()
+  # confirm current client
+  trackdown_oauth_client()
   
   # restore original state
-  trackdown_auth_configure(app = original_app)
-  trackdown_oauth_app()
+  trackdown_auth_configure(client = original_client)
+  trackdown_oauth_client()
 }
 
 \dontrun{
-# bring your own app via JSON downloaded from Google Developers Console
+# bring your own client via JSON downloaded from Google Developers Console
 trackdown_auth_configure(
   path = "/path/to/the/JSON/you/downloaded/from/google/dev/console.json"
 )
