@@ -1,5 +1,11 @@
 # trackdown (development version)
 
+## trackdown 1.5.1
+
+- Fix compatibility with `googledrive` version `2.1.0`. `googledrive` and `gargle` packages changed underlying functions and arguments for managing Google api authentication. Now `trackdown` is aligned with the changes. See Issue #57 #59 #62.
+- Add lifecycle badges. See Issue #52.
+- Fix unwanted removed lines at download. See Issue #61
+
 ## trackdown 1.5.0
 
 new feature `open` by @maelle
