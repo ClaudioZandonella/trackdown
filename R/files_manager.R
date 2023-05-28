@@ -91,14 +91,14 @@ upload_file <- function(file,
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
   
+  #---- check arguments ----
+  if(!is.logical(force)) stop("force argument has to be logical",
+                              call. = FALSE)
+  
   #----    get autho token    ----
   if(!googledrive::drive_has_token()){
     googledrive::drive_auth(token = trackdown_token()) 
   } 
-
-  #---- check arguments ----
-  if(!is.logical(force)) stop("force argument has to be logical",
-                              call. = FALSE)
   
   #---- check document info ----
   document <- evaluate_file(file = file, 
@@ -206,14 +206,14 @@ update_file <- function(file,
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
   
+  #---- check arguments ----
+  if(!is.logical(force)) stop("force argument has to be logical",
+                              call. = FALSE)
+  
   #----    get autho token    ----
   if(!googledrive::drive_has_token()){
     googledrive::drive_auth(token = trackdown_token()) 
   } 
-  
-  #---- check arguments ----
-  if(!is.logical(force)) stop("force argument has to be logical",
-                              call. = FALSE)
   
   #---- check document info ----
   document <- evaluate_file(file = file, 
@@ -314,11 +314,6 @@ download_file <- function(file,
                           rm_gcomments = FALSE,
                           force = FALSE) {
   
-  #----    get autho token    ----
-  if(!googledrive::drive_has_token()){
-    googledrive::drive_auth(token = trackdown_token()) 
-  } 
-  
   #---- check arguments ----
   if(!is.logical(rm_gcomments)) stop("rm_gcomments argument has to be logical",
                                      call. = FALSE)
@@ -328,6 +323,11 @@ download_file <- function(file,
   main_process(paste("Downloading", emph_file(file), "with online changes..."))
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
+  
+  #----    get autho token    ----
+  if(!googledrive::drive_has_token()){
+    googledrive::drive_auth(token = trackdown_token()) 
+  } 
   
   #---- check document info ----
   document <- evaluate_file(file = file, 
