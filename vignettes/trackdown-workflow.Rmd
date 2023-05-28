@@ -17,13 +17,13 @@ knitr::opts_chunk$set(
 )
 
 if(isTRUE(trackdown:::.is_pkgdown)){
-  JOSS_fig <- "JOSS-fig-pkgdown.png"
-  rich_text <- "rich-text-pkgdown.png"
-  Example_edit <- "Example-edit-pkgdown.png"
+  JOSS_fig <- "figures/JOSS-fig-pkgdown.png"
+  rich_text <- "figures/rich-text-pkgdown.png"
+  Example_edit <- "figures/Example-edit-pkgdown.png"
 } else {
-  JOSS_fig <- "JOSS-fig.png"
-  rich_text <- "rich-text.png"
-  Example_edit <- "Example-edit.png"
+  JOSS_fig <- "figures/JOSS-fig.png"
+  rich_text <- "figures/rich-text.png"
+  Example_edit <- "figures/Example-edit.png"
 }
 ```
 
@@ -39,7 +39,7 @@ Thus, the workflow’s main idea is simple: Upload the `.Rmd` (or Quarto / `.Rnw
 > Collaborative **code** writing using **Git** & collaborative writing of **narrative text** using **Google Docs** 
 
 ```{r, echo = FALSE, eval=TRUE, out.width="100%", fig.alt = 'Chart trackdown workflow: upload the file to Google Docs, share the file with cllaborators for reviewing/editing, download the file to integrate the changes'}
-knitr::include_graphics("trackdown-workflow.png")
+knitr::include_graphics("figures/trackdown-workflow.png")
 ```
 
 `trackdown` offers different functions to manage this workflow:
@@ -73,7 +73,7 @@ Note that `trackdown` adds some simple instructions and reminders on top of the 
 knitr::include_graphics(JOSS_fig)
 ```
 
-From `trackdown` v1.3.0 [currently only available on GitHub], the `rich_text` feature has been introduced allowing to upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted. This includes, added instructions at the top of the document, placeholders hiding the code, header of the document (YAML header or LaTeX preamble), code chunks, and in-line code (see example in Figure below). For further details, see `vignette("trackdown-features")`.
+From `trackdown` v1.3.0 [currently only available on GitHub], the `rich_text` feature ![experimental](figures/lifecycle-experimental.svg){style="vertical-align:middle"} has been introduced allowing to upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted. This includes, added instructions at the top of the document, placeholders hiding the code, header of the document (YAML header or LaTeX preamble), code chunks, and in-line code (see example in Figure below). For further details, see `vignette("trackdown-features")`.
 
 ```{r, echo = FALSE, eval=TRUE, out.width="70%", fig.alt = 'Rmarkdown document uploaded in Google docs with highlighted text that should not be modified (e.g., instructions, code chunks, in-line code, etc.)'}
 knitr::include_graphics(rich_text)

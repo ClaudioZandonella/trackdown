@@ -41,12 +41,12 @@ upload together with the other file. PDF are directly uploaded, HTML can be
 first converted into PDF if package \code{pagedown} and Chrome are
 available.}
 
-\item{rich_text}{(experimental) logical value (default is \code{TRUE})
+\item{rich_text}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} logical value (default is \code{TRUE})
 indicating whether to upload to Google Docs a rich document (i.e.,
 important text that should not be changed is highlighted). See “Rich Text”
 in details section.}
 
-\item{rich_text_par}{(experimental) argument used to pass a list with custom
+\item{rich_text_par}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} argument used to pass a list with custom
 settings for rich_text. See “Rich Text” in details section.}
 
 \item{force}{logical value indicating whether to skip confirm check by user
@@ -71,7 +71,7 @@ To know more about \code{trackdown} workflow and features see
 \code{\link[=trackdown-package]{trackdown-package()}} help page.
 }
 \details{
-\strong{Rich Text (experimental)}
+\strong{Rich Text \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 
 The \code{rich_text} option (default is \code{TRUE}) allows to upload a rich
 document to Google Docs. Important text that should not be changed is

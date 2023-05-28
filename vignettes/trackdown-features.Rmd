@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 )
 
 if(isTRUE(trackdown:::.is_pkgdown)){
-  rich_text <- "rich-text-pkgdown.png"
-  edit_output <- "edit-output-pkgdown.png"
+  rich_text <- "figures/rich-text-pkgdown.png"
+  edit_output <- "figures/edit-output-pkgdown.png"
 } else {
-  rich_text <- "rich-text.png"
-  edit_output <- "edit-output.png"
+  rich_text <- "figures/rich-text.png"
+  edit_output <- "figures/edit-output.png"
 }
 ```
 
@@ -37,7 +37,7 @@ To manage this workflow, `trackdown` offers different functions:
 Moreover, `trackdown` offers additional features to facilitate the collaborative writing and editing of documents in Google Docs. In particular, it is possible to:
 
 - **Hide Code** (See [hide_code](#hide-code)): Code in the header of a document (YAML header or LaTeX preamble) and code chunks are removed from the document when uploading to Google Drive and are automatically restored during download. This prevents collaborators from inadvertently making changes to the code which might corrupt the file and allows them to focus on the narrative text.
-- **Rich Text** (See [rich_text](#rich-text)): Upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. 
+- **Rich Text ** (![experimental](figures/lifecycle-experimental.svg){style="vertical-align:middle"} See [rich_text](#rich-text)): Upload *rich* documents to Google Docs. Now, important text that should not be changed is automatically highlighted (e.g., placeholders hiding the code, header of the document, code chunks, and in-line code). This prevents collaborators from inadvertently making changes to the code which might corrupt the file. 
 - **Upload Output** (See [path_output](#path-output)): The actual output document (i.e., the rendered file) can be uploaded to Google Drive in conjunction with the `.Rmd` (or Quarto / `.Rnw`) document. This helps collaborators to evaluate the overall layout including figures and tables and it allows them to add comments to suggest and discuss changes.
 - **Use Google Drive shared drives** (See [shared_drive](#shared-drive)): The documents can be uploaded to either a personal Google Drive or to a shared drive to facilitate collaboration.
 
@@ -93,7 +93,7 @@ This argument is available only for the `upload_file()` and `update_file()` func
 
 This feature is intended to prevent collaborators from inadvertently making changes to the code in Google Docs that might corrupt the file and allows them to focus on the narrative text. Note that to guarantee correct code restoration, placeholders must not be modified or removed.
 
-#### `rich_text` {#rich-text}
+#### `rich_text` ![experimental](figures/lifecycle-experimental.svg){style="vertical-align:middle"} {#rich-text}
 
 > From `trackdown` v1.3.0 [currently only available on GitHub]
 
@@ -143,7 +143,7 @@ In the case of HTML files, `trackdown` can automatically convert them into PDFs 
 Some extra arguments have been added to allow specific function features:
 
 - `force` logical value indicating whether to skip confirm check by user (default is \code{FALSE}). This argument is available for all functions and allows users to skip confirm checks about overwriting documents. See [issue #27](https://github.com/ClaudioZandonella/trackdown/issues/27) for further details
-- `rm_gcomments` logical value indicating whether or not to remove Google comments. When downloading the document for a quick check you will download all Google comments in the document as well. This argument allows users to remove Google comments automatically (available only for `download_file()` and `render_file()` functions). See [issue #25](https://github.com/ClaudioZandonella/trackdown/issues/25) for further details
+- `rm_gcomments` ![experimental](figures/lifecycle-experimental.svg){style="vertical-align:middle"} logical value indicating whether or not to remove Google comments. When downloading the document for a quick check you will download all Google comments in the document as well. This argument allows users to remove Google comments automatically (available only for `download_file()` and `render_file()` functions). See [issue #25](https://github.com/ClaudioZandonella/trackdown/issues/25) for further details
 - `open` logical value indicating whether to open the created document in a browser (default is `TRUE` in interactive sessions). See [issue #46](https://github.com/ClaudioZandonella/trackdown/issues/46), PR by Maëlle Salmon
 
 

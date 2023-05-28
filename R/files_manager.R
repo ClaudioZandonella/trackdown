@@ -34,11 +34,11 @@
 #'   upload together with the other file. PDF are directly uploaded, HTML can be
 #'   first converted into PDF if package `pagedown` and Chrome are
 #'   available.
-#' @param rich_text (experimental) logical value (default is `TRUE`)
+#' @param rich_text `r lifecycle::badge("experimental")` logical value (default is `TRUE`)
 #'   indicating whether to upload to Google Docs a rich document (i.e.,
 #'   important text that should not be changed is highlighted). See “Rich Text”
 #'   in details section.
-#' @param rich_text_par (experimental) argument used to pass a list with custom
+#' @param rich_text_par `r lifecycle::badge("experimental")` argument used to pass a list with custom
 #'   settings for rich_text. See “Rich Text” in details section.
 #' @param force logical value indicating whether to skip confirm check by user
 #'   (default is `FALSE`).
@@ -49,7 +49,7 @@
 #'
 #' @details
 #'
-#' **Rich Text (experimental)**
+#' **Rich Text `r lifecycle::badge("experimental")`**
 #'
 #' The `rich_text` option (default is `TRUE`) allows to upload a rich
 #' document to Google Docs. Important text that should not be changed is
@@ -299,7 +299,7 @@ update_file <- function(file,
 #' [trackdown-package()] help page.
 #'
 #' @inheritParams upload_file
-#' @param rm_gcomments (experimental) logical value indicating whether or not to
+#' @param rm_gcomments `r lifecycle::badge("experimental")` logical value indicating whether or not to
 #'   remove Google comments.
 #'
 #' @return `TRUE` if file from Google Drive was saved, `FALSE` otherwise.
@@ -408,7 +408,7 @@ download_file <- function(file,
 #' [trackdown-package()] help page.
 #' 
 #' @inheritParams upload_file
-#' @param rm_gcomments (experimental) logical value indicating whether or not to
+#' @param rm_gcomments `r lifecycle::badge("experimental")` logical value indicating whether or not to
 #'   remove Google comments.
 #' @return `TRUE` if file from Google Drive was saved and rendered, `FALSE`
 #'   otherwise.

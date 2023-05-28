@@ -30,14 +30,15 @@ locally.
 > `trackdown` package introduces the `rich_text` feature and uses its
 > own API credentials.
 >
-> - **`rich_text`.** Upload *rich* documents to Google Docs where
->   important text that should not be changed is automatically
->   highlighted (e.g., placeholders hiding the code, header of the
->   document, code chunks, and in-line code). This prevents
->   collaborators from inadvertently making changes to the code which
->   might corrupt the file. See [rich-text feature
+> - **`rich_text` <img src="man/figures/lifecycle-experimental.svg"
+>   style="vertical-align:middle" alt="experimental" />** - Upload
+>   *rich* documents to Google Docs where important text that should not
+>   be changed is automatically highlighted (e.g., placeholders hiding
+>   the code, header of the document, code chunks, and in-line code).
+>   This prevents collaborators from inadvertently making changes to the
+>   code which might corrupt the file. See [rich-text feature
 >   details](https://claudiozandonella.github.io/trackdown/articles/trackdown-features.html#rich-text).
-> - **API Credentials.** Now, `trackdown` uses its own Google API
+> - **API Credentials** - Now, `trackdown` uses its own Google API
 >   credentials (OAuth client ID and secret). This requires Google
 >   authentication and to enable *“Trackdown R Package”*. The project is
 >   undergoing Google verification so it is already available but Google
@@ -128,11 +129,13 @@ possible to:
   download. This prevents collaborators from inadvertently making
   changes to the code which might corrupt the file and allows them to
   focus on the narrative text.
-- **Rich Text:** Upload *rich* documents to Google Docs. Important text
-  that should not be changed is automatically highlighted (e.g.,
-  placeholders hiding the code, header of the document, code chunks, and
-  in-line code). This prevents collaborators from inadvertently making
-  changes to the code which might corrupt the file.
+- **Rich Text <img src="man/figures/lifecycle-experimental.svg"
+  style="vertical-align:middle" alt="experimental" />:** Upload *rich*
+  documents to Google Docs. Important text that should not be changed is
+  automatically highlighted (e.g., placeholders hiding the code, header
+  of the document, code chunks, and in-line code). This prevents
+  collaborators from inadvertently making changes to the code which
+  might corrupt the file.
 - **Upload Output:** The actual output document (i.e., the rendered
   file) can be uploaded to Google Drive in conjunction with the `.Rmd`
   (or Quarto / `.Rnw`) document. This helps collaborators to evaluate
