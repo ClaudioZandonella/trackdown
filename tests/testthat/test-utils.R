@@ -217,7 +217,7 @@ test_that("check sanitize_document", {
   expect_match(sanitize_document(c("Line1\n", 
                                    "Line2\n\n\n", 
                                    "Line3\n\n\n Line4")),
-               "Line1\n\nLine2\n\n\nLine3\n\n Line4\n")
+               "Line1\nLine2\n\nLine3\n\n Line4\n")
 })
 
 #----    get_os    ----

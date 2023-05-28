@@ -58,7 +58,8 @@ check_identity <- function(temp_file, local_file){
 #'
 sanitize_document <- function(file) {
   file <- c(file, "")
-  res <- gsub("\n\n\n", "\n\n", paste(file, collapse = "\n"))
+  res <- gsub(pattern = "\n\n", replacement = "\n", 
+              paste(file, collapse = "\n"))
   return(res)
 }
 
@@ -229,13 +230,13 @@ format_document <- function(document, file_info, hide_code){
   # Add instructions
   document <- c(get_instructions(file_info = file_info, 
                                  hide_code = hide_code), 
-                document)
+                document,
+                "") #Adds a final EOL
   
-  # sanitize document
-  document <- sanitize_document(document)
+  # Format in a single line
+  res <- paste(document, collapse = "\n")
     
-  
-  return(document)
+  return(res)
 }
 
 #----    check_dribble    ----
