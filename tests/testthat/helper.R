@@ -45,7 +45,6 @@ get_auth_credentials <- function(){
     )
     
     # Obtain token and pass it also to googledrive
-    trackdown_auth()
     googledrive::drive_auth(token = trackdown_token())  
      
     file.rename(from = paste0(file_path, "secrets/", list.files(paste0(file_path, "secrets/"))),

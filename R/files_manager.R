@@ -91,6 +91,11 @@ upload_file <- function(file,
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
   
+  #----    get autho token    ----
+  if(!googledrive::drive_has_token()){
+    googledrive::drive_auth(token = trackdown_token()) 
+  } 
+
   #---- check arguments ----
   if(!is.logical(force)) stop("force argument has to be logical",
                               call. = FALSE)
@@ -201,6 +206,11 @@ update_file <- function(file,
   
   gpath <- sanitize_path(gpath) # remove possible final "/"
   
+  #----    get autho token    ----
+  if(!googledrive::drive_has_token()){
+    googledrive::drive_auth(token = trackdown_token()) 
+  } 
+  
   #---- check arguments ----
   if(!is.logical(force)) stop("force argument has to be logical",
                               call. = FALSE)
@@ -303,6 +313,11 @@ download_file <- function(file,
                           shared_drive = NULL,
                           rm_gcomments = FALSE,
                           force = FALSE) {
+  
+  #----    get autho token    ----
+  if(!googledrive::drive_has_token()){
+    googledrive::drive_auth(token = trackdown_token()) 
+  } 
   
   #---- check arguments ----
   if(!is.logical(rm_gcomments)) stop("rm_gcomments argument has to be logical",
