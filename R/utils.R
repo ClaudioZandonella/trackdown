@@ -183,6 +183,7 @@ get_instructions <- function(file_info, hide_code){
   
   language <- switch(file_info$extension,
                      "rmd" = "Markdown",
+                     'qmd' = 'Quarto',
                      "rnw" = "LaTeX")
   
 
@@ -227,7 +228,8 @@ format_document <- function(document, file_info, hide_code){
   
   # Add instructions
   document <- c(get_instructions(file_info = file_info, 
-                                 hide_code = hide_code), document)
+                                 hide_code = hide_code), 
+                document)
   
   # sanitize document
   document <- sanitize_document(document)
@@ -464,7 +466,7 @@ sanitize_path <- function(path){
 
 check_supported_documents <- function(file_info){
   if(!(file_info$extension %in% c("rmd", "rnw", "qmd"))) # check supported files
-    stop(paste(file_info$file_name, "not supported file type (only .Rmd or .Rnw)"), 
+    stop(paste(file_info$file_name, "not supported file type (only .Rmd, .Qmd, or .Rnw)"), 
          call. = FALSE)
 }
 
