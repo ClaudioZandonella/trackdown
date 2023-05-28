@@ -220,7 +220,7 @@ trackdown_auth_configure <- function(client, path,  app = deprecated()) {
     # The transition from OAuth "app" to OAuth "client" is fully enacted from
     # gargle 1.4.0.900
     if (packageVersion('gargle') >= '1.4.0.900'){
-      client <- gargle::oauth_client_from_json(path)
+      client <- gargle::gargle_oauth_client_from_json(path)
     } else {
       client <- gargle::oauth_app_from_json(path)
     }
