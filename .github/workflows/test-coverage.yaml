@@ -1,9 +1,9 @@
 # Check test coverage
 on:
   push:
-    branches: [main, master, develop, token-auth, rich-text]
+    branches: [main, develop, token-auth, rich-text]
   pull_request:
-    branches: [main, master, develop, token-auth, rich-text]
+    branches: [main, develop, token-auth, rich-text]
 
 name: test-coverage
 

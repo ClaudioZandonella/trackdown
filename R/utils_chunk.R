@@ -188,7 +188,7 @@ check_header <- function(text_lines, info_patterns){
     
     # Based on knitr code (based on the partition_yaml_front_matter and
     # parse_yaml_front_matter functions here:
-    # https://github.com/rstudio/rmarkdown/blob/master/R/output_format.R)
+    # https://github.com/rstudio/rmarkdown/blob/main/R/output_format.R
     # https://github.com/yihui/knitr/blob/237cde1afc1f5b94178069e4ee39debe9d4ece28/R/params.R#L134-L138
     res <- length(delimiters) >= 2 && 
       (delimiters[2] - delimiters[1] > 1) &&

@@ -35,7 +35,7 @@ quote_label <-  function(x) {
 #----    get_chunk_info    ----
 
 # function from namer r-package
-# https://github.com/lockedata/namer/blob/master/R/utils.R#L72
+# https://github.com/lockedata/namer/blob/main/R/utils.R#L72
 # adapted to consider rmd and rnw
 
 #' Get chunk info
@@ -99,7 +99,7 @@ get_chunk_info <- function(lines, info_patterns){
 #----    parse_chunk_header    ----
 
 # function from namer r-package
-# https://github.com/lockedata/namer/blob/master/R/utils.R#L35
+# https://github.com/lockedata/namer/blob/main/R/utils.R#L35
 
 #' Parse chunk header
 #' 
@@ -143,7 +143,7 @@ parse_chunk_header <- function(chunk_header, info_patterns){
 #----    digest_chunk_header    ----
 
 # function from namer r-package
-# https://github.com/lockedata/namer/blob/master/R/utils.R#L45
+# https://github.com/lockedata/namer/blob/main/R/utils.R#L45
 # adapted to consider rmd and rnw
 
 #' Digest chunk header
@@ -191,7 +191,7 @@ digest_chunk_header <- function(chunk_header_index,
 #----    transform_params    ----
 
 # function from namer r-package
-# https://github.com/lockedata/namer/blob/master/R/utils.R#L3
+# https://github.com/lockedata/namer/blob/main/R/utils.R#L3
 # adapted to consider rmd and rnw
 
 #' Transform Parameters
@@ -240,7 +240,7 @@ transform_params <- function(params, extension){
 #----    parse_label_rmd    ----
 
 # function from namer r-package
-# https://github.com/lockedata/namer/blob/master/R/utils.R#L20
+# https://github.com/lockedata/namer/blob/main/R/utils.R#L20
 
 parse_label_rmd <- function(label, params){
   
